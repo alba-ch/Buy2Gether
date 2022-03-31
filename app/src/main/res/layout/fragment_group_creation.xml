@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.group.creation.GroupCreationFragment">
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:maxHeight="100dp"
+            android:maxWidth="100dp"
+            android:layout_height="wrap_content" android:src="@drawable/avatar_1" android:id="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" android:contentDescription="@string/productpicturedesc"
+    />
+    <TextView
+            android:text="@string/preu_original"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/opLabel"
+            android:layout_toStartOf="@id/originalPrice" android:layout_marginEnd="15dp"
+            android:layout_alignTop="@+id/originalPrice" android:layout_marginTop="16dp"/>
+    <TextView
+            android:text="@string/l_mit_d_usuaris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/ulLabel"
+            android:layout_toStartOf="@id/usersLimit" android:layout_marginEnd="28dp"
+            android:layout_alignTop="@+id/usersLimit" android:layout_marginTop="10dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/usersLimit"
+            android:layout_below="@id/imageView" android:layout_marginTop="80dp"
+            android:layout_marginBottom="0dp" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="52dp" android:minHeight="48dp" tools:ignore="SpeakableTextPresentCheck"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/originalPrice"
+            android:layout_below="@id/usersLimit" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="48dp" android:minHeight="48dp"/>
+    <Button
+            android:text="@string/privat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/privateButton"
+            android:layout_toStartOf="@id/hiddenButton" android:layout_marginStart="133dp"
+            android:layout_marginEnd="43dp" android:layout_alignTop="@+id/hiddenButton"
+            android:layout_marginTop="0dp" android:background="#00FFFFFF" android:textColor="#000000"/>
+    <Button
+            android:text="@string/ocult"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/hiddenButton"
+            android:layout_below="@id/originalPrice" android:layout_marginTop="47dp"
+            android:layout_centerHorizontal="true"
+            android:background="#00FFFFFF" android:textColor="#000000"/>
+    <Button
+            android:text="@string/p_blic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/publicButton"
+            android:layout_toEndOf="@id/hiddenButton" android:layout_marginEnd="12dp"
+            android:layout_marginStart="38dp" android:layout_alignTop="@+id/hiddenButton"
+            android:layout_marginTop="0dp" android:background="#00FFFFFF" android:textColor="#000000"/>
+    <com.google.android.material.button.MaterialButton
+            android:theme="@style/Theme.MaterialComponents"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:backgroundTint="@android:color/transparent"
+            android:text="@string/crear_grup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/submitButton"
+            android:layout_below="@id/hiddenButton"
+            android:layout_centerHorizontal="true"
+            />
+</RelativeLayout>
