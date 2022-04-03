@@ -13,5 +13,7 @@
     <string name="productpicturedesc">ProductPictureDesc</string>
     <string name="register">REGISTRAR</string>
     <string name="login">LOGIN</string>
-    <string name="logFromReg"></string>
+    <string name="username">Nom</string>
+    <string name="password">Contrasenya</string>
+    <string name="phone">Telèfon</string>
 </resources>

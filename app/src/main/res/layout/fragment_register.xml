@@ -23,34 +23,36 @@
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.108"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             tools:ignore="ImageContrastCheck"
-            android:contentDescription="TODO"/>
+            android:contentDescription="@string/app_name"/>
     <ImageView
             android:src="@drawable/img_appname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/img_appname"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.353" app:layout_constraintHorizontal_bias="0.546"/>
+            app:layout_constraintVertical_bias="0.353" app:layout_constraintHorizontal_bias="0.546"
+            android:contentDescription="@string/app_name"/>
     <Button
             android:layout_width="310dp"
             android:layout_height="68dp" android:id="@+id/btn_register"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.493" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.861"
-            android:background="@drawable/btn_reglog" android:text="@string/register"/>
+            android:background="@drawable/btn_reglog" android:text="@string/register"
+            android:textColor="@color/colorAccent"/>
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="217dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintVertical_bias="0.601" android:id="@+id/txt_psw"
-            android:textColorHint="@color/black">
+            app:layout_constraintVertical_bias="0.598" android:id="@+id/txt_psw"
+            android:textColorHint="@color/colorHint">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="Contrasenya"
+                android:hint="@string/password"
                 app:layout_constraintHorizontal_bias="0.494"
                 app:layout_constraintVertical_bias="0.591"
                 android:id="@+id/txtin_psw"/>
@@ -58,7 +60,7 @@
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="220dp"
             android:layout_height="49dp"
-            android:textColorHint="@color/black"
+            android:textColorHint="@color/colorHint"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.511"
@@ -68,20 +70,20 @@
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:hint="Nom" android:id="@+id/txtin_username" android:textColorHint="#FF0000"/>
+                android:textColor="@color/colorHint"
+                android:hint="@string/username" android:id="@+id/txtin_username" android:textColorHint="@color/colorHint"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="219dp"
             android:layout_height="59dp"
             app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.696" android:id="@+id/txt_tel" android:textColorHint="@color/black">
+            app:layout_constraintVertical_bias="0.696" android:id="@+id/txt_tel" android:textColorHint="@color/colorHint">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Telèfon" android:id="@+id/txtin_tel"/>
+                android:hint="@string/phone" android:id="@+id/txtin_tel"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
