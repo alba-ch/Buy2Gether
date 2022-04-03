@@ -13,21 +13,20 @@
 
     <fragment
             android:id="@+id/navigation_notifications"
-            android:name="com.pis.buy2gether.ui.notifications.NotificationsFragment"
+            android:name="com.pis.buy2gether.ui.register.RegisterFragment"
             android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_notifications"/>
+            tools:layout="@layout/fragment_register"/>
 
     <fragment
             android:id="@+id/navigation_cart"
-            android:name="com.pis.buy2gether.ui.cart.CartFragment"
+            android:name="com.pis.buy2gether.ui.group.creation.GroupCreationFragment"
             android:label="@string/title_cart"
-            tools:layout="@layout/fragment_cart"/>
+            tools:layout="@layout/fragment_group_creation"/>
 
 
     <fragment
             android:id="@+id/navigation_profile"
-            android:name="com.pis.buy2gether.ui.profile.ProfileFragment"
-            android:label="@string/title_profile"
-            tools:layout="@layout/fragment_profile"/>
+            android:name="com.pis.buy2gether.ui.user.UserFragment"
+            tools:layout="@layout/fragment_user"/>
 
 </navigation>
