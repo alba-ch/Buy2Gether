@@ -5,94 +5,168 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:background="@color/colorAccent"
-        android:layout_height="match_parent" android:id="@+id/useropt">
+        android:layout_height="match_parent"
+        android:id="@+id/useropt">
+
     <ImageView
+            android:id="@+id/img_useropt"
             android:layout_width="431dp"
-            android:layout_height="174dp" android:id="@+id/img_useropt"
+            android:layout_height="174dp"
+            android:background="@drawable/img_useropt"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="0.001"
+
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.001" android:background="@drawable/img_useropt"/>
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:srcCompat="@drawable/shp_useropt" android:id="@+id/shp_useropt"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="96dp" app:layout_constraintHorizontal_bias="0.0"/>
-    <ImageView
-            android:layout_width="77dp"
-            android:layout_height="76dp" app:srcCompat="@drawable/img_bruno" android:id="@+id/img_pfpBruno"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.088"
-            app:layout_constraintVertical_bias="0.032"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout_background"
+            android:layout_width="match_parent"
+            android:layout_height="610dp"
+            android:background="@drawable/corners_shape"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintHeight_percent="0.1"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <ImageView
+            android:id="@+id/img_pfpBruno"
+            android:layout_width="77dp"
+            android:layout_height="76dp"
+            app:srcCompat="@drawable/img_bruno"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintVertical_bias="0.03"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
     <TextView
+            android:id="@+id/txt_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="AA"
             style="@style/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/txt_user"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintVertical_bias="0.05"
+
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.298"
-            app:layout_constraintVertical_bias="0.048"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
+            android:id="@+id/txt_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="EEE"
             style="@style/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/txt_desc"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintVertical_bias="0.08"
+
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.3"
-            app:layout_constraintVertical_bias="0.081"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
+            android:id="@+id/btn_settings"
             android:layout_width="24dp"
-            android:layout_height="24dp" android:id="@+id/btn_settings"
+            android:layout_height="24dp"
+            android:background="@drawable/ic_settings"
+            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintVertical_bias="0.02"
+
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.956"
-            app:layout_constraintVertical_bias="0.02" android:background="@drawable/ic_settings"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     <Button
+            android:id="@+id/btn_lan"
             android:layout_width="25dp"
-            android:layout_height="25dp" android:id="@+id/btn_lan"
+            android:layout_height="25dp"
+            android:background="@drawable/ic_lan_sp"
+            app:layout_constraintHorizontal_bias="0.869"
+            app:layout_constraintVertical_bias="0.02"
+
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.869"
-            app:layout_constraintVertical_bias="0.019" android:background="@drawable/ic_lan_sp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
     <Button
+            android:id="@+id/btn_comandes"
             android:layout_width="343dp"
-            android:layout_height="88dp" android:id="@+id/btn_adreces"
+            android:layout_height="88dp"
+            android:background="@drawable/btn_comandes"
+            app:layout_constraintVertical_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout_background"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <Button
+            android:id="@+id/btn_adreces"
+            android:layout_width="343dp"
+            android:layout_height="88dp"
             android:background="@drawable/btn_adreces"
-            app:layout_constraintBottom_toBottomOf="@+id/shp_useropt" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.346" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.56"/>
+            app:layout_constraintVertical_bias="0.25"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_background"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
+            android:id="@+id/btn_historial"
             android:layout_width="343dp"
-            android:layout_height="88dp" android:id="@+id/btn_historial"
+            android:layout_height="88dp"
             android:background="@drawable/btn_historial"
-            app:layout_constraintBottom_toBottomOf="@+id/shp_useropt" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.475" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.56"/>
+            app:layout_constraintVertical_bias="0.45"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
+            android:id="@+id/btn_amics"
             android:layout_width="343dp"
-            android:layout_height="88dp" android:id="@+id/btn_amics"
+            android:layout_height="88dp"
             android:background="@drawable/btn_amics"
-            app:layout_constraintBottom_toBottomOf="@+id/shp_useropt" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.738" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.56"/>
+            app:layout_constraintVertical_bias="0.85"
+            app:layout_constraintHorizontal_bias="0.5"
+
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_background"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
+            android:id="@+id/btn_ajuda"
             android:layout_width="343dp"
-            android:layout_height="88dp" android:id="@+id/btn_ajuda"
+            android:layout_height="88dp"
             android:background="@drawable/btn_ajuda"
-            app:layout_constraintBottom_toBottomOf="@+id/shp_useropt" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.607" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.56"/>
-    <Button
-            android:layout_width="343dp"
-            android:layout_height="88dp" android:id="@+id/btn_comandes"
-            android:background="@drawable/btn_comandes" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintHorizontal_bias="0.56"
-            app:layout_constraintVertical_bias="0.24"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.72"
+
+            app:layout_constraintBottom_toBottomOf="@+id/constraintLayout_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
