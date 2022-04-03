@@ -11,4 +11,7 @@
     <string name="p_blic">Públic</string>
     <string name="crear_grup">Crear Grup</string>
     <string name="productpicturedesc">ProductPictureDesc</string>
+    <string name="register">REGISTRAR</string>
+    <string name="login">LOGIN</string>
+    <string name="logFromReg"></string>
 </resources>
