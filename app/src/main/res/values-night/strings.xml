@@ -7,4 +7,8 @@
     <string name="p_blic">Públic</string>
     <string name="crear_grup">Crear Grup</string>
     <string name="productpicturedesc">ProductPictureDesc</string>
+<<<<<<< HEAD
+=======
+    <string name="username">Nom</string>
+>>>>>>> origin/UI-Development
 </resources>
