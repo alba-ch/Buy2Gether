@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        android:background="@drawable/notification_item_border"
+        >
+
+    <ImageView
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/avatar_1"
+            android:id="@+id/img_noti"
+            android:layout_marginStart="5pt"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.142"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/app_name"/>
+    <TextView
+            android:id="@+id/Text"
+            android:text="Golfo has sent you a notification Request"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5pt"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_toEndOf="@id/img_noti"
+            android:textSize="20sp"/>
+
+    <ImageView
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_width="60dp"
+            android:layout_height="45dp"
+            android:src="@drawable/deny_cross"
+            android:id="@+id/deny_cross"
+            android:layout_marginEnd="100dp"
+            android:layout_marginBottom="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:contentDescription="@string/app_name"/>
+    <ImageView
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:src="@drawable/accept_tick"
+            android:id="@+id/accept_tick"
+            android:layout_toEndOf="@id/deny_cross"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="-100dp"
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/app_name"/>
+</RelativeLayout>
