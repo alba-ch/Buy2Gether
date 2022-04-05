@@ -16,4 +16,6 @@
     <string name="username">Nom</string>
     <string name="password">Contrasenya</string>
     <string name="phone">Telèfon</string>
+    <string name="enlla_del_producte">Enllaç del producte</string>
+    <string name="tipus_de_producte">Tipus de producte</string>
 </resources>
