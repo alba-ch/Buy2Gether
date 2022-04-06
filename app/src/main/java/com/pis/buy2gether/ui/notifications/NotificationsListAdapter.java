@@ -84,6 +84,10 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         this.mClickListener = itemClickListener;
     }
 
+    public void swipe(ViewHolder viewHolder) {
+        mData.remove(viewHolder.getAdapterPosition());
+        notifyItemRemoved(viewHolder.getAdapterPosition());
+    }
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
