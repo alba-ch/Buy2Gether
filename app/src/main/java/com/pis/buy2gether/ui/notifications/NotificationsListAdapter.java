@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import org.jetbrains.annotations.NotNull;
@@ -36,7 +37,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         String user = mData.get(position);
         holder.myTextView.setText(user + " has requested to be your friend");
-        holder.acceptButton.setVisibility(View.INVISIBLE);
+        //holder.acceptButton.setVisibility(View.INVISIBLE);
         holder.denyButton.setVisibility(View.VISIBLE);
 
     }
@@ -62,6 +63,10 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
             denyButton = itemView.findViewById(R.id.deny_cross);
             itemView.setOnClickListener(this);
         }
+
+
+
+
 
         @Override
         public void onClick(View view) {
