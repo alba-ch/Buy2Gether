@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                    android:background="@drawable/full_border">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/full_border">
     <TextView android:text="Nou Grup Creat!"
           android:layout_width="200dp"
               android:textSize="25dp"
@@ -11,49 +13,76 @@
           android:textColor="@color/purple_500"
           android:layout_centerHorizontal="true"/>
 
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/shareDummy" android:clickable="true"
+                    android:focusable="true"/>
     <EditText android:text="https://ChenDameTuCo.site"
-                                                             android:layout_width="match_parent"
-                                                             android:layout_height="30dp"
-                                                             android:background="@color/gris"
-                                                             android:shadowRadius="5"
-                                                             android:layout_marginTop="75dp"
-                                                             android:focusable="true"
-                                                             android:clickable="true"
-                                                             android:textSize="13dp"
-                                                             android:layout_marginStart="30dp"
-                                                             android:layout_marginEnd="50dp"
-                                                             android:textIsSelectable="true"
-                                                             android:maxLines="1"
-                                                             android:inputType="none"/>
+              android:id="@+id/linkText"
+              android:layout_width="match_parent"
+              android:layout_height="30dp"
+              android:background="@color/gris"
+              android:shadowRadius="5"
+              android:layout_marginTop="130dp"
+              android:focusable="true"
+              android:clickable="true"
+              android:textSize="13dp"
+              android:layout_marginStart="30dp"
+              android:layout_marginEnd="50dp"
+              android:textIsSelectable="true"
+              android:maxLines="1"
+              android:inputType="none"/>
 
     <ImageView android:src="@drawable/link_copy"
+               android:id="@+id/linkImage"
                android:scaleType="fitXY"
                android:layout_height="50dp"
                android:layout_marginStart="235dp"
-               android:layout_marginTop="65dp"
+               android:layout_marginTop="120dp"
                android:layout_marginEnd="0dp"
-               android:layout_width="50dp">
+               android:layout_width="60dp">
     </ImageView>
     <TextView android:text="Enllaç d'invitació"
+              android:id="@+id/linkInvitacio"
               android:layout_width="wrap_content"
-              android:textSize="13dp"
+              android:textSize="17dp"
               android:layout_marginStart="30dp"
-              android:layout_marginTop="50dp"
+              android:layout_marginTop="100dp"
               android:layout_height="20dp"
               android:textColor="@color/black"/>
-
-    <ImageView android:layout_width="30dp"
-               android:layout_height="30dp"
+    <ImageView android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:id="@+id/sharemessages"
                android:scaleType="fitXY"
                android:adjustViewBounds="true"
-               android:layout_marginTop="113dp"
-               android:layout_marginStart="170dp"
+               android:layout_marginTop="183dp"
+               android:layout_marginStart="160dp"
                android:src="@drawable/share_messages"/>
-    <ImageView android:layout_width="30dp"
-               android:layout_height="30dp"
+    <ImageView android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:id="@+id/otherUsers"
                android:scaleType="fitXY"
                android:adjustViewBounds="true"
-               android:layout_marginTop="113dp"
+               android:layout_marginTop="183dp"
+               android:layout_marginStart="105dp"
+               android:src="@drawable/ic_unkownuser"/>
+    <ImageView android:layout_width="40dp"
+               android:layout_height="40dp"
+               android:id="@+id/moreinformation"
+               android:scaleType="fitXY"
+               android:adjustViewBounds="true"
+               android:layout_marginTop="183dp"
                android:layout_marginStart="210dp"
                android:src="@drawable/ic_share_others"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/friendList"
+            android:visibility="invisible"
+            android:focusable="false"
+            android:clickable="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="0dp"
+            tools:listitem="@layout/fragment_share_group_item"
+            tools:itemCount="13">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>
