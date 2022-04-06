@@ -118,4 +118,7 @@
             android:layout_height="wrap_content" android:id="@+id/submitButton"
             android:layout_below="@id/hiddenButton"
             android:layout_marginTop="43dp"/>
+    <include layout="@layout/fragment_share_group"  android:id="@+id/group_popup" android:visibility="invisible" android:layout_width="290dp" android:layout_height="170dp" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+    <!--<RelativeLayout android:layout_width="100dp" android:layout_height="100dp"
+                    tools:src="@layout/fragment_share_group"/>-->
 </RelativeLayout>
