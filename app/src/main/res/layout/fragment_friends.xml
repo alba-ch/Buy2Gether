@@ -6,8 +6,7 @@
         android:layout_width="match_parent"
         android:background="@color/colorAccent"
         android:layout_height="match_parent"
-        android:id="@+id/useropt"
-        tools:context=".ui.user.UserFragment">
+        android:id="@+id/friends" tools:context=".ui.friends.FriendsFragment">
 
     <ImageView
             android:id="@+id/img_useropt"
@@ -16,7 +15,6 @@
             android:background="@drawable/img_useropt"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintVertical_bias="0.001"
-
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,68 +33,54 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_pfpBruno" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
+        <!-- Plus button -->
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_amics"
-                android:layout_width="343dp"
-                android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_amics"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                app:srcCompat="@drawable/ic_plus"
                 android:background="@color/transparent"
                 android:foreground="@drawable/ripple_button_effect"
                 android:clickable="true"
                 android:scaleType="fitXY"
-                app:layout_constraintTop_toBottomOf="@+id/btn_ajuda"
-                android:layout_marginTop="24dp" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="44dp" android:layout_marginEnd="52dp"/>
+        <!-- Return button -->
         <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_ajuda"
-                android:layout_width="343dp"
-                android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_ajuda"
+                android:id="@+id/btn_return"
+                android:layout_width="24dp"
+                android:layout_height="40dp"
+                app:srcCompat="@drawable/ic_arrow_left"
                 android:background="@color/transparent"
                 android:foreground="@drawable/ripple_button_effect"
                 android:clickable="true"
                 android:scaleType="fitXY"
-                app:layout_constraintTop_toBottomOf="@+id/btn_historial"
-                android:layout_marginTop="20dp" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-        <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_adreces"
-                android:layout_width="343dp"
-                android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_adreces"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
-                android:clickable="true"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toTopOf="@+id/btn_historial"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="16dp"/>
-        <androidx.appcompat.widget.AppCompatImageButton
-                app:srcCompat="@drawable/btn_comandes"
-                android:id="@+id/btn_comandes"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
-                android:clickable="true"
-                android:scaleType="fitXY"
-                android:layout_width="343dp"
-                android:layout_height="88dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="36dp" android:layout_marginStart="28dp"/>
+        <TextView
+                android:text="AMICS"
+                android:textColor="@color/cardview_dark_background"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/btn_adreces" app:layout_constraintVertical_bias="0.772"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
-        <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="343dp"
-                android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_historial"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
-                android:clickable="true"
-                android:scaleType="fitXY"
-                android:id="@+id/btn_historial"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.432"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:contentDescription="@string/username"/>
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="38dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:autoText="false"
+                android:textSize="25sp" app:layout_constraintEnd_toEndOf="parent"/>
+        <!-- Recycler view -->
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/friends_list"
+                android:layout_width="347dp"
+                android:layout_height="584dp"
+                android:fadingEdge="horizontal"
+                android:fadingEdgeLength="70dp"
+                android:fillViewport="false"
+                android:requiresFadingEdge="vertical"
+                tools:listitem="@layout/fragment_friend_list_item" tools:itemCount="13"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView"
+                android:layout_marginTop="16dp">
 
+        </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

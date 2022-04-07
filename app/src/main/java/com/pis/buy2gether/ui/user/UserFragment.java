@@ -11,11 +11,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentProfileBinding;
 import com.pis.buy2gether.databinding.FragmentUserBinding;
+import com.pis.buy2gether.ui.friends.FriendsFragment;
+
+import java.util.Objects;
 
 public class UserFragment extends Fragment {
 
@@ -87,6 +91,9 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"AMICS",Toast.LENGTH_SHORT).show();
+                /*FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.useropt, new FriendsFragment());
+                fragmentTransaction.commit();*/
             }
         });
 
