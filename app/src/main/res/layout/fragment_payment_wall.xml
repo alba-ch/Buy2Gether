@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                tools:context=".ui.paymentWall.PaymentWallFragment"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent">
+
+    <RelativeLayout android:id="@+id/cardLayout" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp">
+        <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="20pt"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/cardCard"
+                android:elevation="10dp">
+            <ImageView
+                    android:scaleType="fitXY"
+                    android:layout_marginStart="-25dp"
+                    android:adjustViewBounds="true"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/payment_card"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.142"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="@string/app_name"/>
+        </androidx.cardview.widget.CardView>
+        <TextView
+                android:text="Credit/Debit Card"
+                android:layout_centerVertical="true"
+                android:layout_width="200dp"
+                android:layout_height="30dp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@id/cardCard"
+                android:maxLines="3"
+                android:textSize="20sp"/>
+
+        <RadioButton
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="5dp"
+                android:clickable="false"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content" android:id="@+id/card" android:focusable="true"/>
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/paypalLayout" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="170dp">
+        <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="20pt"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/paypalCard"
+                android:elevation="10dp">
+            <ImageView
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/paypal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.142"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="@string/app_name"/>
+        </androidx.cardview.widget.CardView>
+        <TextView
+                android:text="Paypal"
+                android:layout_width="200dp"
+                android:layout_centerVertical="true"
+                android:layout_height="30dp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@id/paypalCard"
+                android:maxLines="3"
+                android:textSize="20sp"/>
+
+        <RadioButton
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="5dp"
+                android:clickable="false"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content" android:id="@+id/paypal" android:focusable="true"/>
+    </RelativeLayout>
+    <RelativeLayout android:id="@+id/cryptoLayout" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="330dp">
+        <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="20pt"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/cryptoCard"
+                android:elevation="10dp">
+            <ImageView
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/crypto"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.142"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:contentDescription="@string/app_name"/>
+        </androidx.cardview.widget.CardView>
+        <TextView
+                android:text="CryptoCurrency"
+                android:layout_width="200dp"
+                android:layout_centerVertical="true"
+                android:layout_height="30dp"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@id/cryptoCard"
+                android:maxLines="3"
+                android:textSize="20sp"/>
+
+        <RadioButton
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="5dp"
+                android:clickable="false"
+                android:layout_width="62dp"
+                android:layout_height="wrap_content" android:id="@+id/crypto" android:focusable="true"/>
+    </RelativeLayout>
+    <com.google.android.material.button.MaterialButton
+            android:theme="@style/Theme.MaterialComponents"
+            app:strokeColor="@color/black"
+            app:strokeWidth="2dp"
+            app:backgroundTint="@android:color/transparent"
+            android:text="Pagar"
+            android:layout_centerHorizontal="true"
+            android:gravity="bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/submitButton"
+            android:layout_marginTop="440dp"/>
+</RelativeLayout>

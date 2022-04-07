@@ -19,9 +19,9 @@
 
     <fragment
             android:id="@+id/navigation_cart"
-            android:name="com.pis.buy2gether.ui.group.creation.GroupCreationFragment"
+            android:name="com.pis.buy2gether.ui.paymentWall.PaymentWallFragment"
             android:label="@string/title_cart"
-            tools:layout="@layout/fragment_group_creation"/>
+            tools:layout="@layout/fragment_payment_wall"/>
 
 
     <fragment
