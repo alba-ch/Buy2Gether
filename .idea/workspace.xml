@@ -12,14 +12,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="Implemented sharing-popup">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/group/share/FriendListAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_share_group_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/group/creation/GroupCreationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/group/creation/GroupCreationFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_share_group.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_share_group.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +165,8 @@
       <workItem from="1648708560665" duration="8547000" />
       <workItem from="1649174494930" duration="13096000" />
       <workItem from="1649237988410" duration="22827000" />
-      <workItem from="1649281218099" duration="126000" />
+      <workItem from="1649281218099" duration="181000" />
+      <workItem from="1649315829431" duration="720000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -270,7 +266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649265977757</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Implemented share with friends list">
+      <created>1649281377142</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1649281377142</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +305,8 @@
     <MESSAGE value="Implemented notifications swiping" />
     <MESSAGE value="Implemented favorite list" />
     <MESSAGE value="Implemented sharing-popup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented sharing-popup" />
+    <MESSAGE value="Implemented share with friends list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented share with friends list" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

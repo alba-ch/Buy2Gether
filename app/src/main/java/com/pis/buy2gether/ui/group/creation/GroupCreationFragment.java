@@ -92,47 +92,52 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if(view.getId() == binding.getRoot().getId()){
-            binding.usersLimit.setClickable(true);
-            binding.usersLimit.setFocusable(true);
-            binding.originalPrice.setClickable(true);
-            binding.originalPrice.setFocusable(true);
-            binding.submitButton.setClickable(true);
-            binding.submitButton.setFocusable(true);
-            binding.submitButton.setVisibility(View.VISIBLE);
-            binding.groupPopup.getRoot().setVisibility(View.INVISIBLE);
-        } else if(view.getId() == binding.groupPopup.otherUsers.getId()){
-            binding.groupPopup.linkImage.setVisibility(View.INVISIBLE);
-            binding.groupPopup.linkImage.setClickable(false);
-            binding.groupPopup.linkImage.setFocusable(false);
-            binding.groupPopup.linkInvitacio.setVisibility(View.INVISIBLE);
-            binding.groupPopup.linkInvitacio.setClickable(false);
-            binding.groupPopup.linkInvitacio.setFocusable(false);
-            binding.groupPopup.linkText.setVisibility(View.INVISIBLE);
-            binding.groupPopup.linkText.setClickable(false);
-            binding.groupPopup.linkText.setFocusable(false);
-            binding.groupPopup.moreinformation.setVisibility(View.INVISIBLE);
-            binding.groupPopup.moreinformation.setClickable(false);
-            binding.groupPopup.moreinformation.setFocusable(false);
-            binding.groupPopup.sharemessages.setVisibility(View.INVISIBLE);
-            binding.groupPopup.sharemessages.setClickable(false);
-            binding.groupPopup.sharemessages.setFocusable(false);
-            binding.groupPopup.otherUsers.setVisibility(View.INVISIBLE);
-            binding.groupPopup.otherUsers.setClickable(false);
-            binding.groupPopup.otherUsers.setFocusable(false);
-            binding.groupPopup.friendList.setVisibility(View.VISIBLE);
-            binding.groupPopup.friendList.setFocusable(true);
-            binding.groupPopup.friendList.setClickable(true);
-        } else if(view.getId() == R.id.shareDummy) {
-        } else {
-                binding.usersLimit.setClickable(false);
-                binding.usersLimit.setFocusable(false);
-                binding.usersLimit.setVisibility(View.VISIBLE);
-                binding.originalPrice.setClickable(false);
-                binding.originalPrice.setFocusable(false);
-                binding.originalPrice.setVisibility(View.VISIBLE);
-                binding.submitButton.setClickable(false);
-                binding.submitButton.setFocusable(false);
+        if(view.getId() != R.id.shareDummy) {
+            if (view.getId() == binding.getRoot().getId()) {
+                binding.groupPopup.otherUsers.setClickable(false);
+                binding.groupPopup.otherUsers.setFocusable(false);
+
+                binding.groupPopup.sharemessages.setClickable(false);
+                binding.groupPopup.sharemessages.setFocusable(false);
+                binding.groupPopup.linkImage.setClickable(false);
+                binding.groupPopup.linkImage.setFocusable(false);
+                binding.groupPopup.linkInvitacio.setClickable(false);
+                binding.groupPopup.linkInvitacio.setFocusable(false);
+                binding.groupPopup.linkText.setClickable(false);
+                binding.groupPopup.linkText.setFocusable(false);
+                binding.groupPopup.moreinformation.setClickable(false);
+                binding.groupPopup.moreinformation.setFocusable(false);
+                binding.groupPopup.friendList.setFocusable(false);
+                binding.groupPopup.friendList.setClickable(false);
+                binding.submitButton.setVisibility(View.VISIBLE);
+                binding.groupPopup.shareDummy.setClickable(false);
+                binding.groupPopup.shareDummy.setFocusable(false);
+                binding.groupPopup.getRoot().setVisibility(View.INVISIBLE);
+            } else if (view.getId() == binding.groupPopup.otherUsers.getId()) {
+                binding.groupPopup.linkImage.setVisibility(View.INVISIBLE);
+                binding.groupPopup.linkImage.setClickable(false);
+                binding.groupPopup.linkImage.setFocusable(false);
+                binding.groupPopup.linkInvitacio.setVisibility(View.INVISIBLE);
+                binding.groupPopup.linkInvitacio.setClickable(false);
+                binding.groupPopup.linkInvitacio.setFocusable(false);
+                binding.groupPopup.linkText.setVisibility(View.INVISIBLE);
+                binding.groupPopup.linkText.setClickable(false);
+                binding.groupPopup.linkText.setFocusable(false);
+                binding.groupPopup.moreinformation.setVisibility(View.INVISIBLE);
+                binding.groupPopup.moreinformation.setClickable(false);
+                binding.groupPopup.moreinformation.setFocusable(false);
+                binding.groupPopup.sharemessages.setVisibility(View.INVISIBLE);
+                binding.groupPopup.sharemessages.setClickable(false);
+                binding.groupPopup.sharemessages.setFocusable(false);
+                binding.groupPopup.otherUsers.setVisibility(View.INVISIBLE);
+                binding.groupPopup.otherUsers.setClickable(false);
+                binding.groupPopup.otherUsers.setFocusable(false);
+                binding.groupPopup.friendList.setVisibility(View.VISIBLE);
+                binding.groupPopup.friendList.setFocusable(true);
+                binding.groupPopup.friendList.setClickable(true);
+            } else {
+                binding.groupPopup.shareDummy.setClickable(true);
+                binding.groupPopup.shareDummy.setFocusable(true);
 
                 binding.groupPopup.otherUsers.setVisibility(View.VISIBLE);
                 binding.groupPopup.otherUsers.setClickable(true);
@@ -159,5 +164,6 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 binding.submitButton.setVisibility(View.INVISIBLE);
                 binding.groupPopup.getRoot().setVisibility(View.VISIBLE);
             }
+        }
     }
 }
