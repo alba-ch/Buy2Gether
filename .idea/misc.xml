@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.10572916666666667" />
         <entry key="app/src/main/res/drawable/item_selector.xml" value="0.11979166666666667" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10692472821101548" />
+        <entry key="app/src/main/res/layout/array.xml" value="0.10260416666666666" />
         <entry key="app/src/main/res/layout/custom_notification_badge.xml" value="0.10260416666666666" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />

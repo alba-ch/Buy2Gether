@@ -18,4 +18,12 @@
     <string name="phone">Telèfon</string>
     <string name="enlla_del_producte">Enllaç del producte</string>
     <string name="tipus_de_producte">Tipus de producte</string>
+    <string-array name="typeItems">
+        <item>Electrónica</item>
+        <item>Electrodoméstico</item>
+        <item>Juguete</item>
+        <item>Ropa</item>
+        <item>Mueble</item>
+        <item>Otros</item>
+    </string-array>
 </resources>

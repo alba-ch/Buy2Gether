@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -73,6 +74,12 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         friendListAdapter = new FriendListAdapter(getContext(), items);
         recyclerView.setAdapter(friendListAdapter);
         binding.groupPopup.friendList.setAdapter(friendListAdapter);
+        binding.publicButton.setOnClickListener(this);
+        binding.privateButton.setOnClickListener(this);
+        binding.hiddenButton.setOnClickListener(this);
+
+        binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+
 
         binding.groupPopup.shareDummy.setOnClickListener(this);
          groupCreationViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -92,7 +99,30 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if(view.getId() != R.id.shareDummy) {
+        boolean process = view.getId() != R.id.shareDummy;
+        switch (view.getId()){
+            case R.id.privateButton:
+                binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+                binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                process = false;
+                break;
+            case R.id.hiddenButton:
+                binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+                binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                process = false;
+                break;
+            case R.id.publicButton:
+                binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+                binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                process = false;
+                break;
+            default:
+                break;
+        }
+        if(process) {
             if (view.getId() == binding.getRoot().getId()) {
                 binding.groupPopup.otherUsers.setClickable(false);
                 binding.groupPopup.otherUsers.setFocusable(false);
