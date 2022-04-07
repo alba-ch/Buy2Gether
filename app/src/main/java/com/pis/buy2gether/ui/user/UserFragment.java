@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -21,13 +22,13 @@ public class UserFragment extends Fragment {
     private UserViewModel userViewModel;
     private FragmentUserBinding binding;
 
-    Button btn_comandes;
-    Button btn_adreces;
-    Button btn_historial;
-    Button btn_ajuda;
-    Button btn_amics;
-    Button btn_settings;
-    Button btn_lan;
+    ImageButton btn_comandes;
+    ImageButton btn_adreces;
+    ImageButton btn_historial;
+    ImageButton btn_ajuda;
+    ImageButton btn_amics;
+    ImageButton btn_settings;
+    ImageButton btn_lan;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
