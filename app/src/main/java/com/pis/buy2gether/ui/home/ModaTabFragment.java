@@ -53,7 +53,7 @@ public class ModaTabFragment extends Fragment {
         products.add(new TypeTabModel(R.drawable.home_tshirt2,"tshirt2"));
         products.add(new TypeTabModel(R.drawable.home_tshirt3,"tshirt3"));
 
-        recyclerView = binding.rvModa;
+        recyclerView = binding.rvTab1;
         typeRvAdapter = new TypeRvAdapter(products);
 
         recyclerView.setLayoutManager(new GridLayoutManager(context,2));
