@@ -91,9 +91,10 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"AMICS",Toast.LENGTH_SHORT).show();
-                /*FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                /* Canviem de fragment al que conté la llista d'amics */
+                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.useropt, new FriendsFragment());
-                fragmentTransaction.commit();*/
+                fragmentTransaction.commit();
             }
         });
 

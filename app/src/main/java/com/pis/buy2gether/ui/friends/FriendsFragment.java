@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -16,9 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentFriendsBinding;
+import com.pis.buy2gether.ui.favorite.FavoriteFragment;
+import com.pis.buy2gether.ui.user.UserFragment;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class FriendsFragment extends Fragment implements FriendsListAdapter.ItemClickListener {
 
@@ -26,7 +30,7 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
     private FriendsListAdapter friendsListAdapter;
     private FragmentFriendsBinding binding;
 
-    ImageButton btn_return;
+    //ImageButton btn_return;
     ImageButton btn_amics;
     ImageButton btn_settings;
     ImageButton btn_lan;
@@ -39,7 +43,7 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
 
         View view = inflater.inflate(R.layout.fragment_friends,container,false);
         btn_amics = view.findViewById(R.id.btn_amics);
-        btn_return = view.findViewById(R.id.btn_return);
+        ImageButton btn_return = view.findViewById(R.id.btn_return);
         btn_settings = view.findViewById(R.id.btn_settings);
         btn_lan = view.findViewById(R.id.btn_lan);
 
@@ -66,6 +70,16 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         items.add("Goat");
         items.add("Goat");
 
+        btn_return.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"RETURN",Toast.LENGTH_SHORT).show();
+                /* Canviem de fragment al que conté la llista d'amics */
+                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.friends, new UserFragment());
+                fragmentTransaction.commit();
+            }
+        });
 
         // set up the RecyclerView
         RecyclerView recyclerView = binding.friendsList;
@@ -94,6 +108,7 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
             }
 
         });
+
         return root;
     }
 

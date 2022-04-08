@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +38,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         String user = mData.get(position);
         holder.myTextView.setText(user);
         //holder.acceptButton.setVisibility(View.INVISIBLE);
-        holder.denyButton.setVisibility(View.VISIBLE);
+        holder.selectButton.setVisibility(View.VISIBLE);
 
     }
 
@@ -52,14 +53,12 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
-        ImageView acceptButton;
-        ImageView denyButton;
+        RadioButton selectButton;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.Text);
-            acceptButton = itemView.findViewById(R.id.accept_tick);
-            denyButton = itemView.findViewById(R.id.deny_cross);
+            myTextView = itemView.findViewById(R.id.name);
+            selectButton = itemView.findViewById(R.id.friend_SEL);
             itemView.setOnClickListener(this);
         }
 

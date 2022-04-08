@@ -22,10 +22,9 @@ public class HomeFragment extends Fragment {
     private ViewPager viewPager_categoria;
     private FragmentHomeBinding binding;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -49,12 +48,17 @@ public class HomeFragment extends Fragment {
         //li afegim un listener
         viewPager_categoria.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout_categoria));
 
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+
+        /*
+        * homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
         });
+        * */
+        //afegim les dades de homevViewModel a la llista d'observed, si hi ha algun canvi es mostrara el missatge per pantalla
+
         return root;
     }
 
