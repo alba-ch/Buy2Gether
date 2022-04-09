@@ -1,12 +1,16 @@
 package com.pis.buy2gether.ui.friends;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
@@ -19,6 +23,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     private List<String> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    int row_idx = -1;
 
     // data is passed into the constructor
     FriendsListAdapter(Context context, List<String> data) {
@@ -62,12 +67,24 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             itemView.setOnClickListener(this);
         }
 
-
-
-
-
         @Override
         public void onClick(View view) {
+            if(view.getId() == -1){
+                selectButton.setChecked(!selectButton.isChecked());
+                // change item background color
+                if(selectButton.isChecked()){
+                    itemView.setBackgroundColor(Color.parseColor("#E7D3F4"));
+                    selectButton.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+                    myTextView.setTextColor(Color.BLACK);
+                }
+                else{
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {itemView.setBackground(itemView.getForeground());}
+                    else{itemView.setBackgroundColor(Color.TRANSPARENT);}
+                    selectButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
+                    myTextView.setTextColor(Color.parseColor("#707070"));
+                }
+            }
+
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
