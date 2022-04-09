@@ -61,7 +61,7 @@
                 android:text="AMICS"
                 android:textColor="@color/cardview_dark_background"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/textView"
+                android:layout_height="wrap_content" android:id="@+id/name"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="38dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" android:autoText="false"
@@ -78,7 +78,7 @@
                 android:requiresFadingEdge="vertical"
                 tools:listitem="@layout/fragment_friend_list_item" tools:itemCount="13"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/name"
                 android:layout_marginTop="30dp">
 
         </androidx.recyclerview.widget.RecyclerView>

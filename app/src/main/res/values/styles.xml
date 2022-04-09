@@ -15,5 +15,13 @@
         <item name="android:textAlignment">textStart</item>
         <item name="fontFamily">Montserrat</item>
     </style>
+
+    <style name="roundImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+        <item name="color">@color/white</item>
+
+
+    </style>
 </resources>
 
