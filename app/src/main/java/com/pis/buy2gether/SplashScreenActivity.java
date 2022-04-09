@@ -1,8 +1,11 @@
 package com.pis.buy2gether;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Pair;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -44,12 +47,18 @@ public class SplashScreenActivity extends AppCompatActivity {
             Intent i;
             if (login) {
                 i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
             else {
                 i = new Intent(SplashScreenActivity.this, Log_in_view.class);
+                Pair[] pairs = new Pair[2];
+                pairs[0] = new Pair<View, String>(image, "image");
+                pairs[1] = new Pair<View, String>(name, "text");
+
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this, pairs);
+                startActivity(i, options.toBundle());
             }
-            startActivity(i);
-            finish();
         }, SPLASH_TIME_OUT);
     }
 
