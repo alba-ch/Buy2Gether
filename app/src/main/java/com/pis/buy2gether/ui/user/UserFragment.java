@@ -94,7 +94,7 @@ public class UserFragment extends Fragment {
                 /* Canviem de fragment al que conté la llista d'amics */
                 FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.useropt, new FriendsFragment());
-                fragmentTransaction.commit();
+                fragmentTransaction.addToBackStack("user-options").commit();
             }
         });
 

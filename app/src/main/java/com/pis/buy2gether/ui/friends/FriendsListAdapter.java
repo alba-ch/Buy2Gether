@@ -89,5 +89,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
+
+        void onClick(View view);
     }
 }
