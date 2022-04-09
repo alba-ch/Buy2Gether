@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.pis.buy2gether.activities.Log_in_view;
 import com.pis.buy2gether.activities.Product_view;
 
 public class SplashScreenActivity extends AppCompatActivity {
+    public static boolean login = false;
     private static int SPLASH_TIME_OUT = 1500;
     private Animation topAnim, bottomAnim;
     private ImageView image;
@@ -39,7 +41,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         name.setAnimation(topAnim);
 
         new Handler().postDelayed(() -> {
-            Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+            Intent i;
+            if (login) {
+                i = new Intent(SplashScreenActivity.this, MainActivity.class);
+            }
+            else {
+                i = new Intent(SplashScreenActivity.this, Log_in_view.class);
+            }
             startActivity(i);
             finish();
         }, SPLASH_TIME_OUT);

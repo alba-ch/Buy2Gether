@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_color"
+    tools:context=".ui.login.LoginFragment">
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/largeButton"
+        android:layout_width="300dp"
+        android:layout_height="66dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/btn_reglog"
+        android:focusable="auto"
+        android:keepScreenOn="false"
+        android:text="@string/login"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.396"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/purple_200" />
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+
+        android:layout_marginBottom="15dp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/img_logo"
+        app:layout_constraintBottom_toTopOf="@+id/blanco"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.525"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_appname"
+        tools:ignore="ImageContrastCheck" />
+
+    <View
+        android:id="@+id/blanco"
+        android:layout_width="268dp"
+        android:layout_height="161dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/fondo_blanco"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_username"
+        android:layout_width="220dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:textColorHint="@color/colorHint"
+        app:layout_constraintEnd_toEndOf="@+id/blanco"
+        app:layout_constraintStart_toStartOf="@+id/blanco"
+        app:layout_constraintTop_toTopOf="@+id/blanco">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtin_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/username"
+            android:textColor="@color/colorHint"
+            android:textColorHint="@color/colorHint" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_psw"
+        android:layout_width="217dp"
+        android:layout_height="50dp"
+        android:textColorHint="@color/colorHint"
+        app:layout_constraintBottom_toBottomOf="@+id/blanco"
+        app:layout_constraintEnd_toEndOf="@+id/blanco"
+        app:layout_constraintStart_toStartOf="@+id/blanco"
+        app:layout_constraintTop_toBottomOf="@+id/txt_username">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtin_psw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/password"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintVertical_bias="0.591" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/img_appname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/menu"
+        android:text="BUY \n 2GETHER"
+        android:textAlignment="center"
+        android:textColor="#6F4FC9"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/img_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

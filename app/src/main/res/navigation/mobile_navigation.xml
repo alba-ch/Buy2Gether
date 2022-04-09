@@ -29,6 +29,11 @@
             android:name="com.pis.buy2gether.ui.user.UserFragment"
             tools:layout="@layout/fragment_user"/>
 
+    <fragment
+            android:id="@+id/navigation_settings"
+            android:name="com.pis.buy2gether.ui.historial.HistorialFragment"
+            tools:layout="@layout/fragment_historial"/>
+
 
 
 </navigation>
