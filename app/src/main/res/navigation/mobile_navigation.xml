@@ -30,9 +30,9 @@
             tools:layout="@layout/fragment_user"/>
 
     <fragment
-            android:id="@+id/navigation_settings"
+            android:id="@+id/navigation_historial"
             android:name="com.pis.buy2gether.ui.historial.HistorialFragment"
-            tools:layout="@layout/fragment_historial"/>
+            tools:layout="@layout/fragment_historial_list_item"/>
 
 
 

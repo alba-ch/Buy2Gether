@@ -1,121 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/marcoPrincipal"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/transparent"
-    tools:context=".ui.historial.HistorialFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/comanda"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/marcoPrincipal"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@drawable/textview_background"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/transparent"
+        tools:context=".ui.historial.HistorialFragment">
 
-        <Button
-            android:id="@+id/back"
-            android:layout_width="30dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/comanda"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/textview_background"
+            app:layout_constraintTop_toTopOf="parent">
 
-            android:layout_height="30dp"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/arrow_left"
-            android:backgroundTint="@color/transparent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            <Button
+                android:id="@+id/back"
+                android:layout_width="30dp"
+
+                android:layout_height="30dp"
+                android:layout_marginStart="30dp"
+                android:background="@drawable/arrow_left"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+
+
+                android:id="@+id/titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:fontFamily="@font/regular"
+                android:text="COMANDES"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menus"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/textview_background"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/comanda">
 
-        <TextView
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:backgroundTint="@color/transparent"
+                android:fontFamily="@font/light"
+                android:text="TOTES"
+                android:textColor="#707070"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/transparent"
+                android:fontFamily="@font/light"
+                android:text="EN PROCÈS"
+                android:textColor="#707070"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintStart_toEndOf="@+id/button3"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            android:id="@+id/titulo"
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="@color/transparent"
+                android:fontFamily="@font/light"
+                android:text="VALORADES"
+                android:textColor="#707070"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/historial_list"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:fontFamily="@font/regular"
-            android:text="COMANDES"
-            android:textColor="#000000"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/menus"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/textview_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comanda">
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:background="empty"
-            android:backgroundTint="@color/transparent"
-            android:fontFamily="@font/light"
-            android:text="TOTES"
-            android:textColor="#707070"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="empty"
-            android:backgroundTint="@color/transparent"
-            android:fontFamily="@font/light"
-            android:text="EN PROCÈS"
-            android:textColor="#707070"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button2"
-            app:layout_constraintStart_toEndOf="@+id/button3"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:background="empty"
-            android:backgroundTint="@color/transparent"
-            android:fontFamily="@font/light"
-            android:text="VALORADES"
-            android:textColor="#707070"
+            android:layout_height="0dp"
+            android:layout_marginBottom="100dp"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="70dp"
+            android:fillViewport="false"
+            android:paddingHorizontal="10dp"
+            android:requiresFadingEdge="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/menus"
+            tools:itemCount="13"
+            tools:listitem="@layout/fragment_historial_list_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/friends_list"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="100dp"
-        android:fadingEdge="horizontal"
-        android:fadingEdgeLength="70dp"
-        android:fillViewport="false"
-        android:paddingHorizontal="10dp"
-        android:requiresFadingEdge="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menus"
-        tools:itemCount="13"
-        tools:listitem="@layout/fragment_historial_list_item">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>

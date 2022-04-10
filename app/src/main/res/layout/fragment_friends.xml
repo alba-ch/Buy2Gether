@@ -21,67 +21,78 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_background"
-            android:layout_width="match_parent"
-            android:layout_height="678dp"
-            android:background="@drawable/corners_shape"
-            android:backgroundTint="@color/colorBg"
-            app:layout_constraintHeight_percent="0.1"
-
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_pfpBruno" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="-60dp"
+        android:background="@drawable/corners_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_useropt"
+        app:layout_constraintVertical_bias="0.0">
         <!-- Plus button -->
         <!-- Return button -->
         <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_amics"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                app:srcCompat="@drawable/ic_plus"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
-                android:clickable="true"
-                android:scaleType="fitXY"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="44dp" android:layout_marginEnd="44dp"/>
+            android:id="@+id/btn_amics"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="44dp"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:foreground="@drawable/ripple_button_effect"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_plus" />
+
         <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_return"
-                android:layout_width="24dp"
-                android:layout_height="40dp"
-                app:srcCompat="@drawable/ic_arrow_left"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
-                android:clickable="true"
-                android:scaleType="fitXY"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginTop="36dp" android:layout_marginStart="28dp"/>
+            android:id="@+id/btn_return"
+            android:layout_width="24dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/transparent"
+            android:clickable="true"
+            android:foreground="@drawable/ripple_button_effect"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_arrow_left" />
+
         <TextView
-                android:text="AMICS"
-                android:textColor="@color/cardview_dark_background"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="38dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" android:autoText="false"
-                android:textSize="25sp" app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autoText="false"
+            android:text="AMICS"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <!-- Recycler view -->
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/friends_list"
-                android:layout_width="wrap_content"
-                android:paddingHorizontal="10dp"
-                android:layout_height="584dp"
-                android:fadingEdge="horizontal"
-                android:fadingEdgeLength="70dp"
-                android:fillViewport="false"
-                android:requiresFadingEdge="vertical"
-                tools:listitem="@layout/fragment_friend_list_item"
+            android:id="@+id/friends_list"
+            android:layout_width="wrap_content"
+            android:layout_height="584dp"
+            android:layout_marginTop="110dp"
             android:background="@drawable/backgroud_friends"
-                tools:itemCount="13"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/name"
-                android:layout_marginTop="30dp">
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="70dp"
+            android:fillViewport="false"
+            android:paddingHorizontal="10dp"
+            android:requiresFadingEdge="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="13"
+            tools:listitem="@layout/fragment_friend_list_item">
 
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
