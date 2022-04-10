@@ -29,8 +29,9 @@
         android:id="@+id/scroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="-60dp"
+        android:layout_marginTop="-55dp"
         android:background="@drawable/corners_shape"
+        android:backgroundTint="@color/colorBg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -42,7 +43,6 @@
             android:id="@+id/constraintLayout_background"
             android:layout_width="match_parent"
             android:layout_height="678dp"
-
             android:backgroundTint="@color/colorBg"
             app:layout_constraintHeight_percent="0.1">
 
@@ -93,7 +93,7 @@
                 android:id="@+id/btn_comandes"
                 android:layout_width="343dp"
                 android:layout_height="88dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:background="@color/transparent"
                 android:clickable="true"
                 android:foreground="@drawable/ripple_button_effect"
