@@ -1,5 +1,6 @@
 package com.pis.buy2gether.activities;
 
+import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
@@ -17,7 +18,7 @@ import com.pis.buy2gether.R;
 import com.pis.buy2gether.SplashScreenActivity;
 
 public class Log_in_view extends AppCompatActivity {
-    private Button log;
+    private ImageButton log;
     private Button sign;
     private TextView name;
     private ImageView image;
