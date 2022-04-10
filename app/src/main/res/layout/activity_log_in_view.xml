@@ -8,6 +8,20 @@
     android:backgroundTint="#FCF9FE"
     tools:context=".ui.login.LoginFragment">
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.register.RegisterFragment">
     <Button
         android:id="@+id/btn_login"
         style="@style/largeButton"
@@ -132,22 +146,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/contenedor" />
 
-    <Button
-        android:id="@+id/registrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="60dp"
-        android:background="@color/white"
-        android:fontFamily="@font/light"
-        android:text="Registrat"
-        android:textColor="#707070"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/contenedor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/no_compte"
-        app:layout_constraintTop_toTopOf="@+id/contenedor"
-     />
+            <Button
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/light"
+                android:text="Registrat"
+                android:textColor="#707070"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/contenedor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/no_compte"
+                app:layout_constraintTop_toTopOf="@+id/contenedor" />
 
     <View
         android:id="@+id/contenedor"
@@ -159,4 +172,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
+            <View
+                android:id="@+id/white_space"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contenedor" />
+
+            <Button
+                android:id="@+id/invitado"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
+                android:text="Entra com a convidat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contenedor" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

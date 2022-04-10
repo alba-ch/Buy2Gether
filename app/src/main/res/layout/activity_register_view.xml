@@ -7,83 +7,193 @@
     android:layout_height="match_parent"
     android:background="@color/colorBg"
     tools:context=".ui.register.RegisterFragment">
-    <TextView
-        android:text=""
-        android:background="@drawable/shp_logreg_box"
-        android:layout_width="276dp"
-        android:layout_height="236dp" android:id="@+id/txt_shp_reg"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.644" app:layout_constraintHorizontal_bias="0.495"
-        />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:src="@drawable/img_logo" android:id="@+id/img_logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.108"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="ImageContrastCheck"
-        android:contentDescription="@string/app_name"/>
-    <ImageView
-        android:src="@drawable/img_appname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:id="@+id/img_appname"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.353" app:layout_constraintHorizontal_bias="0.546"
-        android:contentDescription="@string/app_name"/>
-    <Button
-        android:layout_width="310dp"
-        android:layout_height="68dp" android:id="@+id/btn_register"
-        style="@style/largeButton"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.493" app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.861"
-        android:background="@drawable/btn_reglog" android:text="@string/register"
-        android:textColor="@color/colorAccent"/>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="217dp"
-        android:layout_height="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.598" android:id="@+id/txt_psw"
-        android:textColorHint="@color/colorHint">
 
-        <com.google.android.material.textfield.TextInputEditText
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="@string/password"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintVertical_bias="0.591"
-            android:id="@+id/txtin_psw"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="220dp"
-        android:layout_height="49dp"
-        android:textColorHint="@color/colorHint"
-        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.497" app:layout_constraintVertical_bias="0.511"
-        android:id="@+id/txt_username"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorHint"
-            android:hint="@string/username" android:id="@+id/txtin_username" android:textColorHint="@color/colorHint"/>
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="219dp"
-        android:layout_height="59dp"
-        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.696" android:id="@+id/txt_tel" android:textColorHint="@color/colorHint">
+            tools:context=".ui.register.RegisterFragment">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/phone" android:id="@+id/txtin_tel"/>
-    </com.google.android.material.textfield.TextInputLayout>
 
+            <TextView
+                android:id="@+id/txt_shp_reg"
+                android:layout_width="276dp"
+                android:layout_height="236dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shp_logreg_box"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_appname" />
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:contentDescription="@string/app_name"
+                android:gravity="center"
+                android:src="@drawable/img_logo"
+                android:transitionName="image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.525"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ImageContrastCheck" />
+
+            <TextView
+                android:id="@+id/img_appname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/menu"
+                android:gravity="center"
+                android:text="BUY \n 2GETHER"
+                android:textAlignment="center"
+                android:textColor="#6F4FC9"
+                android:textSize="40dp"
+                android:transitionName="text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.518"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+
+            <Button
+                android:id="@+id/btn_register"
+                style="@style/largeButton"
+                android:layout_width="310dp"
+                android:layout_height="68dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/btn_reglog"
+                android:text="@string/register"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_shp_reg" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_psw"
+                android:layout_width="217dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:textColorHint="@color/colorHint"
+                app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg"
+                app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
+                app:layout_constraintTop_toBottomOf="@+id/txt_username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtin_psw"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/password"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintVertical_bias="0.591" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_username"
+                android:layout_width="220dp"
+                android:layout_height="49dp"
+                android:layout_marginTop="25dp"
+                android:textColorHint="@color/colorHint"
+                app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg"
+                app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
+                app:layout_constraintTop_toTopOf="@+id/txt_shp_reg">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtin_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/username"
+                    android:textColor="@color/colorHint"
+                    android:textColorHint="@color/colorHint" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_tel"
+                android:layout_width="219dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="15dp"
+                android:textColorHint="@color/colorHint"
+                app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg"
+                app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
+                app:layout_constraintTop_toBottomOf="@+id/txt_psw">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtin_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/no_compte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:fontFamily="@font/light"
+                android:text="Ja tens un compte?"
+                app:layout_constraintBottom_toBottomOf="@+id/contenedor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/contenedor" />
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="60dp"
+                android:background="@color/transparent"
+                android:fontFamily="@font/light"
+                android:text="Log in"
+                android:textColor="#707070"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/contenedor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/no_compte"
+                app:layout_constraintTop_toTopOf="@+id/contenedor" />
+
+            <View
+                android:id="@+id/contenedor"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+
+            <Button
+                android:id="@+id/invitado"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
+                android:text="Entra com a convidat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/contenedor"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

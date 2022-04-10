@@ -60,6 +60,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 startActivity(i, options.toBundle());
             }
         }, SPLASH_TIME_OUT);
+
     }
 
 

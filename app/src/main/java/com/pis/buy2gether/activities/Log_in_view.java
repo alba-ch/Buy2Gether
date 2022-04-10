@@ -2,10 +2,15 @@ package com.pis.buy2gether.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.pis.buy2gether.MainActivity;
 import com.pis.buy2gether.R;
@@ -14,6 +19,8 @@ import com.pis.buy2gether.SplashScreenActivity;
 public class Log_in_view extends AppCompatActivity {
     private Button log;
     private Button sign;
+    private TextView name;
+    private ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +29,10 @@ public class Log_in_view extends AppCompatActivity {
 
 
         log = findViewById(R.id.btn_login);
-        sign = findViewById(R.id.registrar);
+        sign = findViewById(R.id.login);
+
+        name = findViewById(R.id.img_appname);
+        image = findViewById(R.id.img_logo);
 
         log.setOnClickListener(v -> {
             // Check data
@@ -35,6 +45,13 @@ public class Log_in_view extends AppCompatActivity {
         sign.setOnClickListener(v -> {
             Intent i;
             i = new Intent(Log_in_view.this, Register_view.class);
+            /*
+            Pair[] pairs = new Pair[2];
+            pairs[0] = new Pair<View, String>(image, "image");
+            pairs[1] = new Pair<View, String>(name, "text");
+
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Log_in_view.this, pairs);
+            startActivity(i, options.toBundle());*/
             startActivity(i);
             finish();
         } );
