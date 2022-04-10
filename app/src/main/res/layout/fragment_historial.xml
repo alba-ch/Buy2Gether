@@ -5,8 +5,18 @@
         android:id="@+id/marcoPrincipal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/transparent"
+        android:backgroundTint="@color/colorBg"
         tools:context=".ui.historial.HistorialFragment">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/comanda"

@@ -14,83 +14,51 @@ import android.widget.TextView;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.ui.friends.FriendsListAdapter;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class HistorialListAdapter extends RecyclerView.Adapter<HistorialListAdapter.ViewHolder> {
 
-    private List<String> mData;
-    private LayoutInflater mInflater;
-    private HistorialListAdapter.ItemClickListener mClickListener;
 
-    HistorialListAdapter(Context context, List<String> data) {
-        this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+
+
+    private ArrayList<String> mData;
+
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        TextView product;
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            product = itemView.findViewById(R.id.pd_name);
+        }
+
+        public void asignarNombre(String nombre){
+            product.setText(nombre);
+        }
     }
-    // inflates the row layout from xml when needed
+
+    public HistorialListAdapter(ArrayList<String> mData) {
+        this.mData = mData;
+    }
+
+    @NonNull
     @Override
-    public HistorialListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.fragment_historial, parent, false);
-        return new HistorialListAdapter.ViewHolder(view);
+    public HistorialListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_historial_list_item, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull HistorialListAdapter.ViewHolder holder, int position) {
-        String product = mData.get(position);
-        holder.myTextView.setText(product);
-        holder.checked.setChecked(false);
-
+    public void onBindViewHolder(@NonNull HistorialListAdapter.ViewHolder holder, int position) {
+        holder.asignarNombre(mData.get(position));
     }
 
-
-    // total number of rows
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
 
-    // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
-        RadioButton checked;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            myTextView = itemView.findViewById(R.id.Text);
-            checked = itemView.findViewById(R.id.favorite_SEL);
-            myTextView.setClickable(true);
-            myTextView.setOnClickListener(this);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if(view.getId() == -1)
-                checked.setChecked(!checked.isChecked());
-            else
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
-    }
-
-    // convenience method for getting data at click position
-    String getItem(int id) {
-        return mData.get(id);
-    }
-
-    // allows clicks events to be caught
-    void setClickListener(HistorialListAdapter.ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
-
-    public void swipe(FriendsListAdapter.ViewHolder viewHolder) {
-        mData.remove(viewHolder.getAdapterPosition());
-        notifyItemRemoved(viewHolder.getAdapterPosition());
-    }
 
 }

@@ -30,78 +30,65 @@ import java.util.ArrayList;
 /**
  * A fragment representing a list of Items.
  */
-public class HistorialFragment extends Fragment implements HistorialListAdapter.ItemClickListener{
-    private HistorialViewModel friendsViewModel;
-    private HistorialListAdapter friendsListAdapter;
-    private FragmentHistorialBinding binding;
-    private ArrayList<ClipData.Item> list;
+public class HistorialFragment extends Fragment {
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        friendsViewModel = new ViewModelProvider(this).get(HistorialViewModel.class);
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
 
-        binding = FragmentHistorialBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+    public HistorialFragment() {
+        // Required empty public constructor
+    }
 
-        View view = inflater.inflate(R.layout.fragment_historial,container,false);
-
-
-
-
-        ArrayList<String> items = new ArrayList<>();
-
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = binding.historialList;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        friendsListAdapter = new HistorialListAdapter(getContext(), items);
-        recyclerView.setAdapter(friendsListAdapter);
-        friendsListAdapter.setClickListener(this);
-        binding.historialList.setAdapter(friendsListAdapter);
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                friendsListAdapter.swipe((FriendsListAdapter.ViewHolder) viewHolder);
-            }
-        });
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-        friendsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                // data to populate the RecyclerView with
-            }
-
-        });
-
-        return root;
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment HistorialFragment2.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static HistorialFragment newInstance(String param1, String param2) {
+        HistorialFragment fragment = new HistorialFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + friendsListAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-
-    public void onClick(View view) {
-        boolean process = view.getId() != R.id.shareDummy;
-        switch (view.getId()) {
-            case R.id.btn_return:
-                Toast.makeText(getActivity(), "RETURN", Toast.LENGTH_SHORT).show();
-                getParentFragmentManager().beginTransaction().replace(R.id.friends, new UserFragment()).commit();
-                break;
-            default:
-                break;
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_historial, container, false);
+
+        ArrayList<String> lista = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            lista.add("Elemento " + i);
+        }
+        RecyclerView recycler = view.findViewById(R.id.historial_list);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        HistorialListAdapter adapter = new HistorialListAdapter(lista);
+        recycler.setAdapter(adapter);
+        return view;
+    }
+
+
+
+
+
 }
