@@ -76,7 +76,9 @@
                 android:fadingEdgeLength="70dp"
                 android:fillViewport="false"
                 android:requiresFadingEdge="vertical"
-                tools:listitem="@layout/fragment_friend_list_item" tools:itemCount="13"
+                tools:listitem="@layout/fragment_friend_list_item"
+            android:background="@drawable/backgroud_friends"
+                tools:itemCount="13"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/name"
                 android:layout_marginTop="30dp">

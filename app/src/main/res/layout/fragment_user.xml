@@ -9,170 +9,190 @@
         android:id="@+id/useropt"
         tools:context=".ui.user.UserFragment">
 
+
     <ImageView
-            android:id="@+id/img_useropt"
-            android:layout_width="431dp"
-            android:layout_height="174dp"
-            android:background="@drawable/img_useropt"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintVertical_bias="0.001"
+        android:id="@+id/img_useropt"
+        android:layout_width="431dp"
+        android:layout_height="174dp"
+        android:layout_marginBottom="-60dp"
+        android:background="@drawable/img_useropt"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="NotSibling" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="-60dp"
+        android:background="@drawable/corners_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_useropt"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout_background"
             android:layout_width="match_parent"
             android:layout_height="678dp"
-            android:background="@drawable/corners_shape"
-            android:backgroundTint="@color/colorBg"
-            app:layout_constraintHeight_percent="0.1"
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_pfpBruno" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-        <androidx.appcompat.widget.AppCompatImageButton
+            android:backgroundTint="@color/colorBg"
+            app:layout_constraintHeight_percent="0.1">
+
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_amics"
                 android:layout_width="343dp"
                 android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_amics"
+                android:layout_marginTop="20dp"
                 android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
                 android:clickable="true"
+                android:foreground="@drawable/ripple_button_effect"
                 android:scaleType="fitXY"
-                app:layout_constraintTop_toBottomOf="@+id/btn_ajuda"
-                android:layout_marginTop="24dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:context=".ui.user.UserFragment"
-        />
-        <androidx.appcompat.widget.AppCompatImageButton
+                app:layout_constraintTop_toBottomOf="@+id/btn_ajuda"
+                app:srcCompat="@drawable/btn_amics"
+                tools:context=".ui.user.UserFragment" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_ajuda"
                 android:layout_width="343dp"
                 android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_ajuda"
+                android:layout_marginTop="20dp"
                 android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
                 android:clickable="true"
+                android:foreground="@drawable/ripple_button_effect"
                 android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_historial"
-                android:layout_marginTop="20dp" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"/>
-        <androidx.appcompat.widget.AppCompatImageButton
+                app:srcCompat="@drawable/btn_ajuda" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_adreces"
                 android:layout_width="343dp"
                 android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_adreces"
+                android:layout_marginTop="20dp"
                 android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
                 android:clickable="true"
+                android:foreground="@drawable/ripple_button_effect"
                 android:scaleType="fitXY"
-                app:layout_constraintBottom_toTopOf="@+id/btn_historial"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="16dp"/>
-        <androidx.appcompat.widget.AppCompatImageButton
-                app:srcCompat="@drawable/btn_comandes"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_comandes"
+                app:srcCompat="@drawable/btn_adreces" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_comandes"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
-                android:clickable="true"
-                android:scaleType="fitXY"
                 android:layout_width="343dp"
                 android:layout_height="88dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/transparent"
+                android:clickable="true"
+                android:foreground="@drawable/ripple_button_effect"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/btn_adreces" app:layout_constraintVertical_bias="0.772"
-                app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
-        <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="343dp"
-                android:layout_height="88dp"
-                app:srcCompat="@drawable/btn_historial"
-                android:background="@color/transparent"
-                android:foreground="@drawable/ripple_button_effect"
-                android:clickable="true"
-                android:scaleType="fitXY"
+                app:srcCompat="@drawable/btn_comandes" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_historial"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.432"
-                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
-                android:contentDescription="@string/username"/>
+                android:layout_width="343dp"
+                android:layout_height="88dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/transparent"
+                android:clickable="true"
+                android:contentDescription="@string/username"
+                android:foreground="@drawable/ripple_button_effect"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_adreces"
+                app:srcCompat="@drawable/btn_historial" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/contenedor"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_amics" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <ImageView
-            android:id="@+id/img_pfpBruno"
-            android:layout_width="77dp"
-            android:layout_height="76dp"
-            app:srcCompat="@drawable/img_bruno"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.03"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+        android:id="@+id/img_pfpBruno"
+        android:layout_width="77dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_bruno" />
 
     <TextView
-            android:id="@+id/txt_user"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="AA"
-            style="@style/text"
-            app:layout_constraintHorizontal_bias="0.35"
-            app:layout_constraintVertical_bias="0.05"
+        android:id="@+id/txt_user"
+        style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginTop="30dp"
+        android:text="AA"
+        app:layout_constraintStart_toEndOf="@+id/img_pfpBruno"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-            android:id="@+id/txt_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="EEE"
-            style="@style/text"
-            app:layout_constraintHorizontal_bias="0.35"
-            app:layout_constraintVertical_bias="0.08"
+        android:id="@+id/txt_desc"
+        style="@style/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
 
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+        android:layout_marginTop="5dp"
+        android:text="EEE"
+        app:layout_constraintStart_toEndOf="@+id/img_pfpBruno"
+        app:layout_constraintTop_toBottomOf="@+id/txt_user" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_settings"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            app:srcCompat="@drawable/ic_settings"
-            android:background="@color/transparent"
-            android:foreground="@drawable/ripple_button_effect"
-            android:clickable="true"
-            android:scaleType="fitXY"
-            app:layout_constraintHorizontal_bias="0.956"
-            app:layout_constraintVertical_bias="0.02"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        android:id="@+id/btn_settings"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/transparent"
+        android:clickable="true"
+        android:foreground="@drawable/ripple_button_effect"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_settings" />
 
     <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_lan"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            app:srcCompat="@drawable/ic_lan_sp"
-            android:background="@color/transparent"
-            android:foreground="@drawable/ripple_button_effect"
-            android:clickable="true"
-            android:scaleType="fitXY"
-            app:layout_constraintHorizontal_bias="0.869"
-            app:layout_constraintVertical_bias="0.02"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        android:id="@+id/btn_lan"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/transparent"
+        android:clickable="true"
+        android:foreground="@drawable/ripple_button_effect"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/btn_settings"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_lan_sp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

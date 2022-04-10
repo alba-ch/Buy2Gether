@@ -4,27 +4,40 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../../layout/custom_preview.xml" value="0.115625" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/backgroud_friends.xml" value="0.178" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/background_friends.xml" value="0.1185" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/fondo_blanco.xml" value="0.1295" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/fondo_borroso.xml" value="0.123" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/full_border.xml" value="0.1295" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/ic_menu_camera.xml" value="0.1295" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.1295" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/ic_menu_slideshow.xml" value="0.1295" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/menu_view_background.xml" value="0.1" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/notification_item_border.xml" value="0.1295" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/product_custom.xml" value="0.1" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/product_view_background.xml" value="0.1" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/ripple_button_effect.xml" value="0.1295" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/scrollview_background.xml" value="0.123" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/textview_background.xml" value="0.1295" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_log_in_view.xml" value="0.4865403788634098" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_historial_navigation.xml" value="0.1490036231884058" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_log_in_view.xml" value="0.27561475409836067" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_product_view.xml" value="0.264" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_register_view.xml" value="0.264" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_splash_screen.xml" value="0.16" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/app_bar_historial_navigation.xml" value="0.1490036231884058" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/content_historial_navigation.xml" value="0.1490036231884058" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/custom_notification_badge.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/electronica_tab_fragment.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_cart.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_favorite_list.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_favorite_list_item.xml" value="0.12360688956433637" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_friend_list_item.xml" value="0.12360688956433637" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_friends.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_friend_list_item.xml" value="0.2" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_friends.xml" value="0.28197064989517817" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_gallery.xml" value="0.1490036231884058" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_group_creation.xml" value="0.14990942028985507" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_historial.xml" value="0.11096014492753623" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_historial.xml" value="0.2" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_historial_list_item.xml" value="0.536" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_home.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_home_rv_item.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_login.xml" value="0.12360688956433637" />
@@ -35,12 +48,16 @@
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_register.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_share_group.xml" value="0.14945652173913043" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_share_group_item.xml" value="0.12360688956433637" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_user.xml" value="0.176" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_slideshow.xml" value="0.1490036231884058" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_user.xml" value="0.2" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/informatica_tab_fragment.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/mascota_tab_fragment.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/moda_tab_fragment.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/nav_header_historial_navigation.xml" value="0.1490036231884058" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/product_view.xml" value="0.176" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/products_view.xml" value="0.264" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/menu/activity_main_drawer.xml" value="0.196875" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/menu/historial_navigation.xml" value="0.196875" />
         <entry key="app/src/main/res/drawable/corners_shape.xml" value="0.11979166666666667" />
         <entry key="app/src/main/res/drawable/edit_text_shape.xml" value="0.11979166666666667" />
         <entry key="app/src/main/res/drawable/full_border.xml" value="0.11875" />
