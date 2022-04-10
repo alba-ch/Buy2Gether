@@ -22,7 +22,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.register.RegisterFragment">
-    <Button
+
+    <androidx.appcompat.widget.AppCompatImageButton
+           android:id="@+id/btn_login"
+           style="@style/largeButton"
+           android:layout_width="332dp"
+           android:layout_height="88dp"
+           android:layout_marginTop="15dp"
+           android:focusable="auto"
+           android:gravity="center"
+           android:scaleType="fitCenter"
+           android:background="@color/transparent"
+           android:clickable="true"
+           android:foreground="@drawable/ripple_button_effect_reglog"
+           app:srcCompat="@drawable/btn_login"
+           android:keepScreenOn="false"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintHorizontal_bias="0.495"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/blanco"/>
+    <!--<Button
         android:id="@+id/btn_login"
         style="@style/largeButton"
         android:layout_width="300dp"
@@ -41,7 +60,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blanco"
-        app:rippleColor="@color/purple_200" />
+        app:rippleColor="@color/purple_200" />-->
 
     <ImageView
         android:id="@+id/img_logo"
@@ -63,7 +82,7 @@
     <View
         android:id="@+id/blanco"
         android:layout_width="268dp"
-        android:layout_height="161dp"
+        android:layout_height="180dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/fondo_blanco"
         android:gravity="center"
@@ -90,6 +109,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/light"
             android:hint="@string/username"
+            android:backgroundTint="@color/transparent"
             android:textColor="@color/colorHint"
             android:textColorHint="@color/colorHint" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -108,6 +128,7 @@
             android:id="@+id/txtin_psw"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/transparent"
             android:fontFamily="@font/light"
             android:hint="@string/password"
             app:layout_constraintHorizontal_bias="0.494"

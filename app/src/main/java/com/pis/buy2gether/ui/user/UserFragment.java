@@ -14,6 +14,7 @@ import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentUserBinding;
 import com.pis.buy2gether.ui.friends.FriendsFragment;
 import com.pis.buy2gether.ui.historial.HistorialFragment;
+import com.pis.buy2gether.ui.settings.SettingsFragment;
 
 import java.util.Objects;
 
@@ -35,7 +36,7 @@ public class UserFragment extends Fragment {
         /*
             CODI INTELLIJ
 
-        * userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        * userViewModel = new ViewModelProvider(this).get(SettingsViewModel.class);
 
         binding = FragmentUserBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -109,6 +110,10 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"SETTINGS",Toast.LENGTH_SHORT).show();
+                /* Canviem de fragment al de configuracions */
+                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.useropt, new SettingsFragment());
+                fragmentTransaction.addToBackStack("user-options").commit();
             }
         });
 
