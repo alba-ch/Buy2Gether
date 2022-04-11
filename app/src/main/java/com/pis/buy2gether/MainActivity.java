@@ -1,7 +1,7 @@
 package com.pis.buy2gether;
 
 import android.os.Bundle;
-import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,9 +9,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import com.google.android.material.tabs.TabLayout;
+
 import com.pis.buy2gether.databinding.ActivityMainBinding;
-import com.pis.buy2gether.ui.home.CategoriaAdapter;
 
 public class MainActivity extends AppCompatActivity {
 

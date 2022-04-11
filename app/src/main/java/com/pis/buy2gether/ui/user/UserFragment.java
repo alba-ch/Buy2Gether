@@ -89,7 +89,7 @@ public class UserFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"AMICS",Toast.LENGTH_SHORT).show();
                 /* Canviem de fragment al que conté la llista d'amics */
-                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.useropt, new FriendsFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
             }
@@ -100,9 +100,11 @@ public class UserFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"HISTORIAL",Toast.LENGTH_SHORT).show();
                 /* Canviem de fragment al que conté la llista d'amics */
-                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+
+                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.useropt, new HistorialFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
+
             }
         });
 
@@ -111,7 +113,7 @@ public class UserFragment extends Fragment {
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"SETTINGS",Toast.LENGTH_SHORT).show();
                 /* Canviem de fragment al de configuracions */
-                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.useropt, new SettingsFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
             }

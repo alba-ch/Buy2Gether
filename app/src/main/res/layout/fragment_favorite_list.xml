@@ -8,16 +8,18 @@
         android:fillViewport="true"
         android:layout_marginBottom="50dp"
         tools:context=".ui.favorite.FavoriteFragment">
+
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/favorite_list"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="0dp"
-                android:fadingEdge="horizontal"
-                android:fadingEdgeLength="70dp"
-                android:fillViewport="false"
-                android:requiresFadingEdge="vertical"
-                tools:listitem="@layout/fragment_favorite_list_item" tools:itemCount="13">
+            android:id="@+id/favorite_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:fadingEdge="horizontal"
+            android:fadingEdgeLength="70dp"
+            android:fillViewport="false"
+            android:requiresFadingEdge="vertical"
+            tools:itemCount="13"
+            tools:listitem="@layout/fragment_favorite_list_item">
 
         </androidx.recyclerview.widget.RecyclerView>
         <com.google.android.material.button.MaterialButton

@@ -14,39 +14,44 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentHomeBinding;
+import com.pis.buy2gether.ui.adaptadoresUniversales.SeccionesAdapter;
+
+import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private SeccionesAdapter adapter_categoria;
     private TabLayout tabLayout_categoria;
     private ViewPager viewPager_categoria;
-    private FragmentHomeBinding binding;
+    //private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        //binding = FragmentHomeBinding.inflate(inflater, container, false);
+        View root = inflater.inflate(R.layout.fragment_home, container, false);;
 
-        final TextView textView = binding.textHome;
+        final TextView textView = root.findViewById(R.id.textHome);
 
         //inicialitzem els components del fragment home
-        tabLayout_categoria = binding.tabLayout;
-        viewPager_categoria = binding.viewPager;
-        //títols dels tablayouts
-        tabLayout_categoria.addTab(tabLayout_categoria.newTab().setText("Moda"));
-        tabLayout_categoria.addTab(tabLayout_categoria.newTab().setText("Electrònica"));
-        tabLayout_categoria.addTab(tabLayout_categoria.newTab().setText("Informàtica"));
-        tabLayout_categoria.addTab(tabLayout_categoria.newTab().setText("Mascotes"));
-        //estiguin repartits entre ells
-        tabLayout_categoria.setTabGravity(tabLayout_categoria.GRAVITY_FILL);
+        tabLayout_categoria = root.findViewById(R.id.tab_layout);
+        viewPager_categoria = root.findViewById(R.id.viewPager);
+
         //instanciem l'adaptador per viewpager de home_fragment
-        final CategoriaAdapter adapter_categoria= new CategoriaAdapter(getParentFragmentManager(),getParentFragment().getContext(),tabLayout_categoria.getTabCount());
+
+        adapter_categoria= new SeccionesAdapter(getChildFragmentManager());
+        // Solución temporal para que funcione el viewpager
+        adapter_categoria.addFragment(new ModaTabFragment(), "Moda");
+        adapter_categoria.addFragment(new ElectronicaTabFragment(), "Electrònica");
+        adapter_categoria.addFragment(new InformaticaTabFragment(), "Informàtica");
+        adapter_categoria.addFragment(new MascotesTabFragment(), "Mascotes");
+
+
         //adaptem el viewPager amb l'adaptador que acabem de crear
         viewPager_categoria.setAdapter(adapter_categoria);
-        //li afegim un listener
-        viewPager_categoria.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout_categoria));
+        tabLayout_categoria.setupWithViewPager(viewPager_categoria);
 
 
         /*
@@ -65,6 +70,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
 }

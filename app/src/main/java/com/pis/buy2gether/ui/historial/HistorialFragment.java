@@ -1,32 +1,23 @@
 package com.pis.buy2gether.ui.historial;
 
-import android.content.ClipData;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.databinding.FragmentHistorialBinding;
-import com.pis.buy2gether.ui.friends.FriendsListAdapter;
+import com.pis.buy2gether.ui.adaptadoresUniversales.SeccionesAdapter;
+import com.pis.buy2gether.ui.historial.pestanyes_fragments.EnProcesFragment;
+import com.pis.buy2gether.ui.historial.pestanyes_fragments.TotsFragment;
+import com.pis.buy2gether.ui.historial.pestanyes_fragments.ValoratsFragment;
 import com.pis.buy2gether.ui.user.UserFragment;
-
-
-import org.jetbrains.annotations.NotNull;
-
-import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -41,7 +32,12 @@ public class HistorialFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private Button back;
+    private ImageButton back;
+
+    private View view;
+    private TabLayout menu;
+    private ViewPager viewpager;
+    private SeccionesAdapter viewPageAdapter;
 
     public HistorialFragment() {
         // Required empty public constructor
@@ -77,9 +73,24 @@ public class HistorialFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_historial, container, false);
+
+        System.out.println("onCreateView");
+        view = inflater.inflate(R.layout.fragment_historial, container, false);
+
 
         back = view.findViewById(R.id.back);
+        menu = view.findViewById(R.id.menus);
+        viewpager = view.findViewById(R.id.historial_menus);
+        viewPageAdapter = new SeccionesAdapter(getChildFragmentManager());
+        viewPageAdapter.addFragment(new TotsFragment(), "Tots");
+        viewPageAdapter.addFragment(new EnProcesFragment(), "En procès");
+        viewPageAdapter.addFragment(new ValoratsFragment(), "Valorats");
+        menu.setScrollPosition(0,0f,true);
+        viewpager.setCurrentItem(0);
+        viewpager.setAdapter(viewPageAdapter);
+        menu.setupWithViewPager(viewpager);
+
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,20 +99,12 @@ public class HistorialFragment extends Fragment {
             }
         });
 
-        ArrayList<String> lista = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            lista.add("Elemento " + i);
-        }
 
-        RecyclerView recycler = view.findViewById(R.id.historial_list);
-        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        HistorialListAdapter adapter = new HistorialListAdapter(lista);
-        recycler.setAdapter(adapter);
         return view;
     }
 
-
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }
