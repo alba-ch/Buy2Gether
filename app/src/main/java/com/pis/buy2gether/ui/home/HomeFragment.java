@@ -33,7 +33,6 @@ public class HomeFragment extends Fragment {
         //binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = inflater.inflate(R.layout.fragment_home, container, false);;
 
-        final TextView textView = root.findViewById(R.id.textHome);
 
         //inicialitzem els components del fragment home
         tabLayout_categoria = root.findViewById(R.id.tab_layout);
