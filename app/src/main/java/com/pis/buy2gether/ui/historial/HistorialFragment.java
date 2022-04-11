@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.pis.buy2gether.R;
@@ -39,6 +40,8 @@ public class HistorialFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button back;
 
     public HistorialFragment() {
         // Required empty public constructor
@@ -76,10 +79,20 @@ public class HistorialFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_historial, container, false);
 
+        back = view.findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "RETURN", Toast.LENGTH_SHORT).show();
+                getParentFragmentManager().beginTransaction().replace(R.id.useropt, new UserFragment()).commit();
+            }
+        });
+
         ArrayList<String> lista = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             lista.add("Elemento " + i);
         }
+
         RecyclerView recycler = view.findViewById(R.id.historial_list);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         HistorialListAdapter adapter = new HistorialListAdapter(lista);

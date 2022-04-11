@@ -7,8 +7,10 @@
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
         android:id="@+id/settings" tools:context=".ui.settings.SettingsFragment">
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/configuracions"
+            android:id="@+id/configuracion"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:backgroundTint="@color/colorHint"
@@ -16,16 +18,17 @@
             app:layout_constraintTop_toTopOf="parent" tools:layout_editor_absoluteX="0dp">
 
         <ImageButton
-                android:id="@+id/btn_return"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="2dp"
-                android:backgroundTint="@color/colorHint"
-                android:background="@drawable/ic_return"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            android:id="@+id/btn_return"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/ic_return"
+            android:backgroundTint="@color/colorHint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
                 android:id="@+id/titulo"
                 android:layout_width="wrap_content"
@@ -41,91 +44,139 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.511"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <TextView
-            android:text=" Foto de perfil"
-            android:background="@drawable/textview_background"
-            android:backgroundTint="@color/gris"
-            android:layout_width="350dp"
-            android:layout_height="40dp" android:id="@+id/text_pfp"
-            android:layout_marginTop="60dp"
-            app:layout_constraintTop_toBottomOf="@+id/configuracions" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:text=" Nom d'usuari"
-            android:background="@drawable/textview_background"
-            android:backgroundTint="@color/gris"
-            android:layout_width="350dp"
-            android:layout_height="40dp" android:id="@+id/text_username"
-            app:layout_constraintTop_toBottomOf="@+id/text_pfp"
-            android:layout_marginTop="30dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:text=" Ciutat"
-            android:background="@drawable/textview_background"
-            android:backgroundTint="@color/gris"
-            android:layout_width="350dp"
-            android:layout_height="40dp" android:id="@+id/text_city"
-            app:layout_constraintTop_toBottomOf="@+id/text_username"
-            android:layout_marginTop="30dp" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-    <TextView
-            android:text=" Canvi de contrasenya"
-            android:background="@drawable/textview_background"
-            android:backgroundTint="@color/gris"
-            android:layout_width="350dp"
-            android:layout_height="40dp" android:id="@+id/text_psw"
-            app:layout_constraintTop_toBottomOf="@+id/text_city"
-            android:layout_marginTop="30dp" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-    <androidx.appcompat.widget.AppCompatImageButton
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:background="@color/transparent"
-            android:clickable="true"
-            android:layout_marginRight="10dp"
-            android:foreground="@drawable/ripple_button_effect"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/img_bruno"
-            android:id="@+id/btn_edit_pfp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintTop_toBottomOf="@+id/configuracions" app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintHorizontal_bias="0.915"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Rocío"
-            android:layout_marginRight="20dp"
-            android:textAlignment="viewEnd"
-            android:background="@color/transparent"
-            android:ems="10"
-            android:id="@+id/edit_username"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_pfp" android:layout_marginTop="20dp"
-            app:layout_constraintHorizontal_bias="0.805"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:text="Barcelona"
-            android:layout_marginRight="20dp"
-            android:textAlignment="viewEnd"
-            android:background="@color/transparent"
-            android:ems="10"
-            android:id="@+id/edit_city"
-            app:layout_constraintTop_toBottomOf="@+id/text_username" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="20dp"
-            app:layout_constraintHorizontal_bias="0.805"/>
-    <ImageButton
-            android:text=""
-            android:layout_marginRight="20dp"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:id="@+id/btn_change_psw"
-            android:background="@drawable/ic_arrow_right"
-            android:backgroundTint="@color/gris"
-            app:layout_constraintTop_toBottomOf="@+id/text_city" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="28dp"
-            app:layout_constraintHorizontal_bias="0.923"/>
 
+    <ScrollView
+        android:id="@+id/fondo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/configuracion"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/panel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/colorHint"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                android:id="@+id/text_pfp"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/textview_background"
+                android:backgroundTint="@color/gris"
+                android:gravity="center_vertical"
+                android:text=" Foto de perfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_username"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/textview_background"
+                android:backgroundTint="@color/gris"
+                android:text=" Nom d'usuari"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.508"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_pfp" />
+
+            <TextView
+                android:id="@+id/text_city"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/textview_background"
+                android:backgroundTint="@color/gris"
+                android:text=" Ciutat"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_username" />
+
+            <TextView
+                android:id="@+id/text_psw"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/textview_background"
+                android:backgroundTint="@color/gris"
+                android:text=" Canvi de contrasenya"
+                android:gravity="center_vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_city" />
+
+            <TextView
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_psw" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_edit_pfp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="-15dp"
+                android:background="@color/transparent"
+                android:clickable="true"
+                android:foreground="@drawable/ripple_button_effect"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="@+id/text_pfp"
+                app:layout_constraintEnd_toEndOf="@+id/text_pfp"
+                app:layout_constraintTop_toTopOf="@+id/text_pfp"
+                app:srcCompat="@drawable/img_bruno" />
+
+            <EditText
+                android:id="@+id/edit_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Rocío"
+                android:textAlignment="viewEnd"
+                app:layout_constraintBottom_toBottomOf="@+id/text_username"
+                app:layout_constraintEnd_toEndOf="@+id/text_username"
+                app:layout_constraintTop_toTopOf="@+id/text_username" />
+
+            <EditText
+                android:id="@+id/edit_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Barcelona"
+                android:textAlignment="viewEnd"
+                app:layout_constraintBottom_toBottomOf="@+id/text_city"
+                app:layout_constraintEnd_toEndOf="@+id/text_city"
+                app:layout_constraintTop_toTopOf="@+id/text_city" />
+
+            <ImageButton
+                android:id="@+id/btn_change_psw"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/ic_arrow_right"
+                android:backgroundTint="@color/gris"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="@+id/text_psw"
+                app:layout_constraintEnd_toEndOf="@+id/text_psw"
+                app:layout_constraintTop_toTopOf="@+id/text_psw" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
