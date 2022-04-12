@@ -54,7 +54,7 @@ public class ElectronicaTabFragment extends Fragment {
         products.add(new TypeTabModel(R.drawable.home_comp19,"Comp19"));
 
         recyclerView = binding.rvTab2;
-        typeRvAdapter = new TypeRvAdapter(products);
+        typeRvAdapter = new TypeRvAdapter(products, getActivity());
 
         recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         recyclerView.setAdapter(typeRvAdapter);

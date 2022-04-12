@@ -59,7 +59,7 @@ public class MascotesTabFragment extends Fragment {
         products.add(new TypeTabModel(R.drawable.home_ma22,"mascota22"));
 
         recyclerView = binding.rvTab4;
-        typeRvAdapter = new TypeRvAdapter(products);
+        typeRvAdapter = new TypeRvAdapter(products, getActivity());
 
         recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         recyclerView.setAdapter(typeRvAdapter);
