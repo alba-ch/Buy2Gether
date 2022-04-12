@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="25dp"
+        android:background="@drawable/shp_address">
+
+    <TextView
+            android:id="@+id/txt_num_address"
+            android:text="Adreça 1"
+            android:layout_width="156dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textColor="#606060"
+            android:fontFamily="@font/negrita"
+            android:maxLines="1"
+            android:textSize="18sp" android:layout_marginTop="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"/>
+    <TextView
+            android:text="Gran Via de les Corts Catalanes, 585,  Barcelona "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_address"
+            android:layout_marginStart="30dp"
+            android:textColor="#606060"
+            android:fontFamily="@font/regular"
+            android:maxLines="1"
+            android:textSize="13sp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/txt_name_address"/>
+    <TextView
+            android:text="934 02 11 00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_tel"
+            android:layout_marginStart="30dp"
+            android:textColor="#606060"
+            android:fontFamily="@font/regular"
+            android:maxLines="1"
+            android:textSize="13sp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/txt_address"/>
+    <TextView
+            android:text="08007"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_postal_code"
+            android:layout_marginStart="30dp"
+            android:textColor="#606060"
+            android:fontFamily="@font/regular"
+            android:maxLines="1"
+            android:textSize="13sp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/txt_tel"/>
+    <TextView
+            android:text="Casa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_name_address"
+            android:layout_marginStart="30dp"
+            android:textColor="#606060"
+            android:fontFamily="@font/regular"
+            android:maxLines="1"
+            android:textSize="15sp"
+            android:layout_marginTop="9dp"
+            android:layout_below="@+id/txt_num_address"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_edit" android:id="@+id/btn_edit"
+            android:background="@color/transparent"
+            android:foreground="@drawable/ripple_button_effect"
+            android:layout_alignParentBottom="true" android:layout_marginBottom="10dp"
+            android:layout_alignParentEnd="true" android:layout_marginEnd="25dp"/>
+    <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/ic_cancel" android:id="@+id/btn_delete"
+            android:background="@color/transparent"
+            android:foreground="@drawable/ripple_button_effect"
+            android:layout_marginTop="0dp" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"/>
+</RelativeLayout>
