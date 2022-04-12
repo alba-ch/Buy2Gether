@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_color"
+        android:id="@+id/settings">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ajuda"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:backgroundTint="@color/colorHint"
+            android:background="@drawable/textview_background"
+            app:layout_constraintTop_toTopOf="parent" tools:layout_editor_absoluteX="0dp">
+
+        <ImageButton
+                android:id="@+id/btn_return"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="2dp"
+                android:backgroundTint="@color/colorHint"
+                android:background="@drawable/ic_return"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+                android:id="@+id/titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/regular"
+                android:text="AJUDA"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintVertical_bias="0.511"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+            android:id="@+id/fondo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ajuda"
+            app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/panel"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:backgroundTint="@color/colorHint"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
+            <TextView
+                    android:text="PREGUNTES FREQÜENTS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/regular"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:id="@+id/txt_titol"
+                    android:textColor="@color/colorAccent"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                      android:text="Producte trencat o fet malbé"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content" android:id="@+id/txt_q1"
+                      app:layout_constraintTop_toBottomOf="@+id/txt_titol"
+                      android:gravity="center_vertical"
+                      android:layout_marginTop="20dp"
+                      android:layout_marginStart="20dp"
+                      android:layout_marginEnd="20dp"
+                      android:paddingTop="15dp"
+                      android:background="@drawable/friend_item_border"
+                      android:fontFamily="@font/negrita"
+                      android:textStyle="bold"
+                      android:textSize="18sp"
+                      app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.045"/>
+
+            <TextView
+                    android:text="Si has rebut un producte trencat, te'n reemborsarem l'import. Si te n'adones abans que marxi el repartidor, entrega-l'hi i farà la solicitud de reemborsament."
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp" android:id="@+id/txt_r_q1"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/regular"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorHint"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_q1" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.329"/>
+
+            <TextView
+                      android:text="Canviar la contrasenya"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content" android:id="@+id/txt_q2"
+                      app:layout_constraintTop_toBottomOf="@+id/txt_r_q1"
+                      android:gravity="center_vertical"
+                      android:layout_marginTop="20dp"
+                      android:layout_marginStart="20dp"
+                      android:layout_marginEnd="20dp"
+                      android:paddingTop="15dp"
+                      android:background="@drawable/friend_item_border"
+                      android:fontFamily="@font/negrita"
+                      android:textStyle="bold"
+                      android:textSize="18sp"
+                      app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.045"/>
+
+            <TextView
+                    android:text="Per canviar la contrasenya actual, accedeix a Compte > Configuracions > Canvi de contrasenya.
+                                    \n\nT'arribarà un enllaç per correu electrònic i la podràs canviar seguint els passos."
+                    android:layout_width="match_parent"
+                    android:layout_height="51dp" android:id="@+id/txt_r_q2"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/regular"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorHint"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_q2" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.329"/>
+
+            <TextView
+                    android:text="M'he d'identificar per poder realitzar comandes?"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/txt_q3"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_r_q2"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingTop="15dp"
+                    android:background="@drawable/friend_item_border"
+                    android:fontFamily="@font/negrita"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.045"/>
+
+            <TextView
+                    android:text="Si, per fer les comandes, cal que d'identifiquis. \n\nSense identificar-te, pot visitar-la online, veure els productes i afegir-los al carretó. Et podràs identificar clicant a tramitar una comanda i segueix els passos que t'indiquen."
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/txt_r_q3"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/regular"
+                    android:textStyle="bold"
+                    android:textSize="14sp"
+                    android:textColor="@color/colorHint"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_q3" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.329"/>
+            <androidx.appcompat.widget.AppCompatButton
+                    android:text="Read terms and conditions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorHint"
+                    android:textAllCaps="false"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/friend_item_border"
+                    android:backgroundTint="@color/gris"
+                    android:id="@+id/btn_terms"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/txt_r_q3"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
