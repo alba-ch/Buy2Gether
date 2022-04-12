@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
@@ -15,6 +19,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentHomeBinding;
 import com.pis.buy2gether.ui.adaptadoresUniversales.SeccionesAdapter;
+import com.pis.buy2gether.ui.help.HelpFragment;
+import com.pis.buy2gether.ui.home.search.SearchFragment;
 
 import java.util.ArrayList;
 
@@ -24,6 +30,7 @@ public class HomeFragment extends Fragment {
     private SeccionesAdapter adapter_categoria;
     private TabLayout tabLayout_categoria;
     private ViewPager viewPager_categoria;
+    private EditText search_bar;
     //private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +44,7 @@ public class HomeFragment extends Fragment {
         //inicialitzem els components del fragment home
         tabLayout_categoria = root.findViewById(R.id.tab_layout);
         viewPager_categoria = root.findViewById(R.id.viewPager);
+        search_bar = root.findViewById(R.id.search_bar);
 
         //instanciem l'adaptador per viewpager de home_fragment
 
@@ -62,6 +70,16 @@ public class HomeFragment extends Fragment {
         });
         * */
         //afegim les dades de homevViewModel a la llista d'observed, si hi ha algun canvi es mostrara el missatge per pantalla
+        search_bar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(),"CERCA",Toast.LENGTH_SHORT).show();
+                /* Canviem de fragment al d'ajuda */
+                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new SearchFragment());
+                fragmentTransaction.addToBackStack("home").commit();
+            }
+        });
 
         return root;
     }
