@@ -1,7 +1,5 @@
 package com.pis.buy2gether.ui.home;
 
-import static java.security.AccessController.getContext;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -13,11 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.pis.buy2gether.MainActivity;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.SplashScreenActivity;
-import com.pis.buy2gether.activities.Log_in_view;
-import com.pis.buy2gether.activities.Product_view;
+import com.pis.buy2gether.activities.product_view.Product_view;
 
 import org.jetbrains.annotations.NotNull;
 

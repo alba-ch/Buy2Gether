@@ -15,7 +15,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.pis.buy2gether.activities.Log_in_view;
-import com.pis.buy2gether.activities.Product_view;
 
 public class SplashScreenActivity extends AppCompatActivity {
     public static boolean login = false;

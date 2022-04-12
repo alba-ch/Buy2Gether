@@ -16,7 +16,7 @@
             android:name=".activities.Log_in_view"
             android:exported="false" />
         <activity
-            android:name=".activities.Product_view"
+            android:name=".activities.product_view.Product_view"
             android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
