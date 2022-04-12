@@ -74,6 +74,8 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"CERCA",Toast.LENGTH_SHORT).show();
+                /* Ocultem el menú inferior */
+                getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
                 /* Canviem de fragment al d'ajuda */
                 FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new SearchFragment());

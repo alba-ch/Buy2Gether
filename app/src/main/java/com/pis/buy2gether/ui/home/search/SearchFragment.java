@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentSearchBinding;
 
@@ -41,7 +42,8 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 /* User prem enter */
-                binding.searchView.clearFocus();
+                search_bar.setQuery(query,false);
+                search_bar.clearFocus();
                 if(items.contains(query)){
                     searchAdapter.getFilter().filter(query);
                 }
@@ -54,13 +56,17 @@ public class SearchFragment extends Fragment {
                 searchAdapter.getFilter().filter(newText);
                 return false;
             }
+
+
         });
         return view;
     }
 
     @Override
     public void onDestroyView() {
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
         super.onDestroyView();
         binding = null;
     }
+
 }
