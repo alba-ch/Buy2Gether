@@ -1,6 +1,6 @@
 package com.pis.buy2gether.activities.product_view;
 
-import static java.security.AccessController.getContext;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
