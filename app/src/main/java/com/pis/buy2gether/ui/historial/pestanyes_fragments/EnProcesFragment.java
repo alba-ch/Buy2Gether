@@ -74,7 +74,7 @@ public class EnProcesFragment extends Fragment {
         }
         RecyclerView recycler = view.findViewById(R.id.historial_list);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        HistorialListAdapter adapter = new HistorialListAdapter(lista);
+        HistorialListAdapter adapter = new HistorialListAdapter(lista, getActivity());
         recycler.setAdapter(adapter);
         return view;
     }

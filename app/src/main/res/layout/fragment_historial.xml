@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/comanda"
+            android:id="@+id/panel_principal"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:background="@drawable/textview_background"
@@ -63,7 +63,7 @@
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/comanda">
+            app:layout_constraintTop_toBottomOf="@+id/panel_principal">
 
         </com.google.android.material.tabs.TabLayout>
 
