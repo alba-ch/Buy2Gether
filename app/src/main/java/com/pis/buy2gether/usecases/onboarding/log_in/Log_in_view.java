@@ -30,6 +30,7 @@ import com.pis.buy2gether.R;
 
 public class Log_in_view extends AppCompatActivity {
 
+    private int GOOGLE_SIGN_IN = 100;
 
     private ImageButton log;
     private Button sign;
@@ -38,6 +39,7 @@ public class Log_in_view extends AppCompatActivity {
     private TextInputEditText userEditText;
     private TextInputEditText pswEditText;
     private Button guest;
+    private ImageButton google_signin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class Log_in_view extends AppCompatActivity {
 
         log = findViewById(R.id.btn_login);
         sign = findViewById(R.id.login);
-
+        google_signin = findViewById(R.id.btn_google_signin);
         guest = findViewById(R.id.invitado);
 
         userEditText = findViewById(R.id.txtin_username);
@@ -85,6 +87,16 @@ public class Log_in_view extends AppCompatActivity {
             showHome("guest", ProviderType.GUEST);
         });
 
+        google_signin.setOnClickListener(v -> {
+            GoogleSignInOptions googleConf = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(getString(R.string.default_web_client_id))
+                    .requestEmail().build();
+
+            GoogleSignInClient googleClient = GoogleSignIn.getClient(this,googleConf);
+            googleClient.signOut();
+            /* Realitzem l'intent amb el ID de GOOGLE_SIGN_IN */
+            startActivityForResult(googleClient.getSignInIntent(), GOOGLE_SIGN_IN);
+        });
     }
 
     private void showAlert(){
@@ -120,4 +132,25 @@ public class Log_in_view extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /* Si la resposta retornada és igual l'ID de GOOGLE_SIGN_IN, la resposta d'aquest activity correspon al de Google */
+        if(requestCode == GOOGLE_SIGN_IN){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            GoogleSignInAccount account = task.getResult();
+
+            /* Finalitzem autentificant-nos a Firebase com a Login normal, amb email i contrasenya */
+            if(account != null) {
+                AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+                FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(t -> {
+                    if(t.isSuccessful()){
+                        showHome(account.getEmail(), ProviderType.GOOGLE);
+                    }else{
+                        showAlert();
+                    }
+                });
+            }
+        }
+    }
 }
