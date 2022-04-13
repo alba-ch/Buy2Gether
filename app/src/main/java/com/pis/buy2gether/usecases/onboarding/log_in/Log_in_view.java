@@ -27,6 +27,7 @@ public class Log_in_view extends AppCompatActivity {
     private ImageView image;
     private TextInputEditText userEditText;
     private TextInputEditText pswEditText;
+    private Button guest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,7 @@ public class Log_in_view extends AppCompatActivity {
 
         log = findViewById(R.id.btn_login);
         sign = findViewById(R.id.login);
+        guest = findViewById(R.id.invitado);
 
         userEditText = findViewById(R.id.txtin_username);
         pswEditText = findViewById(R.id.txtin_psw);
@@ -62,16 +64,13 @@ public class Log_in_view extends AppCompatActivity {
         sign.setOnClickListener(v -> {
             Intent i;
             i = new Intent(Log_in_view.this, Register_view.class);
-            /*
-            Pair[] pairs = new Pair[2];
-            pairs[0] = new Pair<View, String>(image, "image");
-            pairs[1] = new Pair<View, String>(name, "text");
-
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(Log_in_view.this, pairs);
-            startActivity(i, options.toBundle());*/
             startActivity(i);
             finish();
         } );
+
+        guest.setOnClickListener(v -> {
+            showHome("guest", ProviderType.GUEST);
+        });
     }
 
     private void showAlert(){

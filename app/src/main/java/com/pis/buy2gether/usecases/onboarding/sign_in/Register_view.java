@@ -22,6 +22,7 @@ import com.pis.buy2gether.usecases.onboarding.log_in.Log_in_view;
 public class Register_view extends AppCompatActivity {
     private Button sign;
     private Button log;
+    private Button guest;
     private TextInputEditText userEditText;
     private TextInputEditText pswEditText;
     private TextInputEditText telEditText;
@@ -32,6 +33,8 @@ public class Register_view extends AppCompatActivity {
 
         sign = findViewById(R.id.btn_register);
         log = findViewById(R.id.login);
+        guest = findViewById(R.id.invitado);
+
         userEditText = findViewById(R.id.txtin_username);
         pswEditText = findViewById(R.id.txtin_psw);
         telEditText = findViewById(R.id.txtin_tel);
@@ -57,6 +60,10 @@ public class Register_view extends AppCompatActivity {
             startActivity(i);
             finish();
         } );
+
+        guest.setOnClickListener(v -> {
+            showHome("guest", ProviderType.GUEST);
+        });
     }
 
     private void showAlert(){
