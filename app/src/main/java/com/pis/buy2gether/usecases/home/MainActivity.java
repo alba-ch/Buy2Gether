@@ -1,5 +1,7 @@
 package com.pis.buy2gether.usecases.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.google.android.material.badge.BadgeDrawable;
@@ -38,10 +40,19 @@ public class MainActivity extends AppCompatActivity {
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-
         int menuItemId = navView.getMenu().getItem(0).getItemId();
         BadgeDrawable badge = navView.getOrCreateBadge(menuItemId);
         badge.setNumber(2);
+
+        // setup (temporal)
+        Bundle bundle = getIntent().getExtras();
+        String email = bundle.getString("email");
+        String provider = bundle.getString("provider");
+
+        // Guardado de datos,temporal -> pasar a model
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        prefs.edit().putString("email",email).apply();
+        prefs.edit().putString("provider",provider).apply();
 
     }
 

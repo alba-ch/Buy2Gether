@@ -1,8 +1,11 @@
 package com.pis.buy2gether.usecases.onboarding.log_in;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.*;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,14 +13,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.pis.buy2gether.usecases.home.ProviderType;
 import com.pis.buy2gether.usecases.onboarding.sign_in.Register_view;
 import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.R;
 
 public class Log_in_view extends AppCompatActivity {
+
+
     private ImageButton log;
     private Button sign;
     private TextView name;
@@ -25,7 +38,6 @@ public class Log_in_view extends AppCompatActivity {
     private TextInputEditText userEditText;
     private TextInputEditText pswEditText;
     private Button guest;
-    private ImageButton google_signin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +45,12 @@ public class Log_in_view extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in_view);
 
+        /* Comprovem si ja hi ha una sessió loguejada a l'app */
+        session();
 
         log = findViewById(R.id.btn_login);
         sign = findViewById(R.id.login);
-        google_signin = findViewById(R.id.btn_google_signin);
+
         guest = findViewById(R.id.invitado);
 
         userEditText = findViewById(R.id.txtin_username);
@@ -70,6 +84,7 @@ public class Log_in_view extends AppCompatActivity {
         guest.setOnClickListener(v -> {
             showHome("guest", ProviderType.GUEST);
         });
+
     }
 
     private void showAlert(){
@@ -93,4 +108,16 @@ public class Log_in_view extends AppCompatActivity {
         shake.setInterpolator(new CycleInterpolator(7));
         return shake;
     }
+
+    /* Comprovem si ja hi ha una sessió guardada */
+    private void session(){
+        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        String email = prefs.getString("email",null);
+        String provider = prefs.getString("provider",null);
+
+        if(email != null && provider != null){
+            showHome(email, ProviderType.valueOf(provider));
+        }
+    }
+
 }

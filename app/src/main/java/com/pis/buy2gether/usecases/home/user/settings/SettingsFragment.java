@@ -1,5 +1,7 @@
 package com.pis.buy2gether.usecases.home.user.settings;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +46,12 @@ public class SettingsFragment extends Fragment {
         signout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                // Eliminem dades guardades localment de l'usuari (email i contrasenya)
+                SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                prefs.edit().clear().apply();
+                // Tanquem sessió
                 FirebaseAuth.getInstance().signOut();
+                // Mostrem missatge d'èxit per confirmar que s'ha tancat sessió
                 showSuccessAlert();
             }
         });

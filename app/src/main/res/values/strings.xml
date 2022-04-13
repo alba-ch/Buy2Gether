@@ -16,6 +16,7 @@
     <string name="username">Nom</string>
     <string name="password">Contrasenya</string>
     <string name="phone">Telèfon</string>
+    <string name="prefs_file">com.pis.buy2gether.provider.preferences.PREFERENCE_FILE_KEY</string>
     <string name="enlla_del_producte">Enllaç del producte</string>
     <string name="tipus_de_producte">Tipus de producte</string>
     <string name="buy_n_2gether">BUY \n 2GETHER</string>
