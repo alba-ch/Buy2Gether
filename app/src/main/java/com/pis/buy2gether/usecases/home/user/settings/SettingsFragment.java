@@ -6,10 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentSettingsBinding;
 import com.pis.buy2gether.databinding.FragmentUserBinding;
@@ -27,6 +30,7 @@ public class SettingsFragment extends Fragment {
     ImageButton btn_edit_pfp;
     EditText edit_username;
     EditText edit_city;
+    TextView signout;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_settings,container,false);
@@ -35,7 +39,15 @@ public class SettingsFragment extends Fragment {
         btn_edit_pfp = view.findViewById(R.id.btn_edit_pfp);
         edit_username = view.findViewById(R.id.edit_username);
         edit_city = view.findViewById(R.id.edit_city);
+        signout = view.findViewById(R.id.text_signout);
 
+        signout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+                showSuccessAlert();
+            }
+        });
         btn_return.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,5 +65,13 @@ public class SettingsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    public void showSuccessAlert(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Sessió tancada amb èxit");
+        builder.setPositiveButton("Acceptar",null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
