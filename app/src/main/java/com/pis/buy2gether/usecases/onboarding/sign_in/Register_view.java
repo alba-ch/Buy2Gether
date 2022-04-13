@@ -45,6 +45,9 @@ public class Register_view extends AppCompatActivity {
                         showAlert();
                     }
                 });
+            }else{
+                userEditText.startAnimation(shakeError());
+                pswEditText.startAnimation(shakeError());
             }
         } );
 
@@ -71,5 +74,10 @@ public class Register_view extends AppCompatActivity {
         finish();
     }
 
-
+    public TranslateAnimation shakeError() {
+        TranslateAnimation shake = new TranslateAnimation(0, 0, 0, 20);
+        shake.setDuration(1000);
+        shake.setInterpolator(new CycleInterpolator(7));
+        return shake;
+    }
 }
