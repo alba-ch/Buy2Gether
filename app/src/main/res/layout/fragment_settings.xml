@@ -104,25 +104,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_username" />
 
             <TextView
-                android:id="@+id/text_psw"
-                android:layout_width="350dp"
-                android:layout_height="70dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/textview_background"
-                android:backgroundTint="@color/gris"
-                android:text=" Canvi de contrasenya"
-                android:gravity="center_vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_city" />
+                    android:id="@+id/text_psw"
+                    android:layout_width="350dp"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/textview_background"
+                    android:backgroundTint="@color/gris"
+                    android:text=" Canvi de contrasenya"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_city"/>
 
             <TextView
-                android:layout_width="350dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@color/transparent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_psw" />
+                    android:id="@+id/text_signout"
+                    android:layout_width="350dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/textview_background"
+                    android:backgroundTint="@color/gris"
+                    android:text=" Tancar sessió"
+                    android:gravity="center_vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.524" app:layout_constraintTop_toBottomOf="@+id/text_psw"
+                    android:layout_marginTop="20dp"/>
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_edit_pfp"
