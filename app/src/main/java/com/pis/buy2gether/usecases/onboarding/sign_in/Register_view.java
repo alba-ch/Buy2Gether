@@ -25,7 +25,7 @@ public class Register_view extends AppCompatActivity {
     private Button guest;
     private TextInputEditText userEditText;
     private TextInputEditText pswEditText;
-    private TextInputEditText telEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +37,7 @@ public class Register_view extends AppCompatActivity {
 
         userEditText = findViewById(R.id.txtin_username);
         pswEditText = findViewById(R.id.txtin_psw);
-        telEditText = findViewById(R.id.txtin_tel);
+
 
         sign.setOnClickListener(v -> {
             if(!(userEditText.getText().toString().isEmpty()) && !(pswEditText.getText().toString().isEmpty())){
