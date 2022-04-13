@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentUserBinding;
+import com.pis.buy2gether.ui.address.AddressFragment;
 import com.pis.buy2gether.ui.friends.FriendsFragment;
 import com.pis.buy2gether.ui.help.HelpFragment;
 import com.pis.buy2gether.ui.historial.HistorialFragment;
@@ -75,6 +76,10 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getActivity(),"ADRECES",Toast.LENGTH_SHORT).show();
+                /* Canviem de fragment al d'adreces */
+                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.useropt, new AddressFragment());
+                fragmentTransaction.addToBackStack("user-options").commit();
             }
         });
 
