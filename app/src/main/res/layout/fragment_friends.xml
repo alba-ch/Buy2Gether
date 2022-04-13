@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:background="@color/colorAccent"
         android:layout_height="match_parent"
-        android:id="@+id/friends" tools:context=".ui.friends.FriendsFragment">
+        android:id="@+id/friends" tools:context=".usecases.home.user.friends.FriendsFragment">
 
     <ImageView
         android:id="@+id/img_useropt"

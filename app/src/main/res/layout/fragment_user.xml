@@ -7,7 +7,7 @@
         android:background="@color/colorAccent"
         android:layout_height="match_parent"
         android:id="@+id/useropt"
-        tools:context=".ui.user.UserFragment">
+        tools:context=".usecases.home.user.UserFragment">
 
 
     <ImageView
@@ -59,20 +59,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btn_ajuda"
                 app:srcCompat="@drawable/btn_amics"
-                tools:context=".ui.user.UserFragment" />
+                tools:context=".usecases.home.user.UserFragment" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_ajuda"
                 android:layout_width="343dp"
                 android:layout_height="88dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:background="@color/transparent"
                 android:clickable="true"
                 android:foreground="@drawable/ripple_button_effect"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_historial"
+                app:layout_constraintTop_toBottomOf="@+id/btn_adreces"
                 app:srcCompat="@drawable/btn_ajuda" />
 
             <androidx.appcompat.widget.AppCompatImageButton
@@ -102,21 +102,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/btn_comandes" />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_historial"
-                android:layout_width="343dp"
-                android:layout_height="88dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/transparent"
-                android:clickable="true"
-                android:contentDescription="@string/username"
-                android:foreground="@drawable/ripple_button_effect"
-                android:scaleType="fitXY"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_adreces"
-                app:srcCompat="@drawable/btn_historial" />
 
             <View
                 android:id="@+id/contenedor"

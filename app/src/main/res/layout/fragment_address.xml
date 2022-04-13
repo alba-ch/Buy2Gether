@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
-        android:id="@+id/address" tools:context=".ui.address.AddressFragment">
+        android:id="@+id/address" tools:context=".usecases.home.user.address.AddressFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_color"
-        android:id="@+id/help" tools:context=".ui.help.HelpFragment">
+        android:id="@+id/help" tools:context=".usecases.home.user.help.HelpFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ajuda"

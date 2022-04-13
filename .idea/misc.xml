@@ -21,7 +21,7 @@
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/scrollview_background.xml" value="0.123" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/textview_background.xml" value="0.1295" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/drawable/white_corners.xml" value="0.1885" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_comanda_view.xml" value="0.4" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_comanda_view.xml" value="0.176" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_historial_navigation.xml" value="0.1490036231884058" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_log_in_view.xml" value="0.27561475409836067" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/activity_main.xml" value="0.264" />
@@ -32,15 +32,17 @@
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/content_historial_navigation.xml" value="0.1490036231884058" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/custom_notification_badge.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/electronica_tab_fragment.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_address_list_item.xml" value="0.16875" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_blank.xml" value="0.1490036231884058" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_cart.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_en_proces.xml" value="0.1109375" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_favorite_list.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_favorite_list.xml" value="0.264" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_favorite_list_item.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_friend_list_item.xml" value="0.2" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_friends.xml" value="0.3312597200622084" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_gallery.xml" value="0.1490036231884058" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_group_creation.xml" value="0.14990942028985507" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_group_creation.xml" value="0.264" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_help.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_historial.xml" value="0.264" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_historial2.xml" value="0.1490036231884058" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_historial_list.xml" value="0.2" />
@@ -56,12 +58,14 @@
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_payment_wall.xml" value="0.14990942028985507" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_profile.xml" value="0.23822463768115942" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_register.xml" value="0.12360688956433637" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_settings.xml" value="0.31140350877192985" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_share_group.xml" value="0.14945652173913043" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_share_group_item.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_slideshow.xml" value="0.1490036231884058" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_tab.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_tots.xml" value="0.1109375" />
-        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_user.xml" value="0.2" />
+        <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_user.xml" value="0.10400000000000001" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_valoracions_list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/fragment_valorats.xml" value="0.1" />
         <entry key="..\:/Users/li471/StudioProjects/Buy2Gether-Def/app/src/main/res/layout/historial_fragment.xml" value="0.1490036231884058" />
@@ -115,7 +119,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="jbr-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -6,7 +6,7 @@
               android:orientation="vertical"
               android:id="@+id/search"
               android:background="@color/colorBg"
-              tools:context=".ui.home.search.SearchFragment">
+              tools:context=".usecases.home.home.search.SearchFragment">
     <SearchView
             android:id="@+id/searchView"
             android:layout_width="384dp"

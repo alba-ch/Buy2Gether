@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:backgroundTint="@color/colorBg"
-        tools:context=".ui.historial.HistorialFragment">
+        tools:context=".usecases.home.user.comanda.HistorialFragment">
 
     <TextView
         android:id="@+id/textView"

@@ -6,16 +6,18 @@
         android:layout_width="match_parent"
         android:paddingTop="75dp"
         android:layout_height="match_parent"
-        tools:context=".ui.group.creation.GroupCreationFragment">
+        tools:context=".usecases.home.home.product_view.group.creation.GroupCreationFragment">
 
     <ImageView
-            android:layout_width="wrap_content"
-            android:maxHeight="100dp"
-            android:maxWidth="100dp"
-            android:layout_height="wrap_content" android:src="@drawable/avatar_1" android:id="@+id/imageView"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" android:contentDescription="@string/productpicturedesc"
-    />
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/productpicturedesc"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:src="@drawable/avatar_1" />
     <TextView
             android:text="@string/tipus_de_producte"
             android:layout_width="wrap_content"
@@ -87,27 +89,43 @@
             android:id="@+id/originalPrice"
             android:layout_below="@id/usersLimit" android:layout_alignParentEnd="true"
             android:layout_marginEnd="44dp" android:minHeight="48dp" android:layout_marginTop="4dp"/>
+
     <Button
-            android:text="@string/privat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/privateButton"
-            android:layout_toStartOf="@id/hiddenButton" android:layout_marginStart="133dp"
-            android:layout_marginEnd="50dp" android:layout_alignTop="@+id/hiddenButton"
-            android:layout_marginTop="0dp" android:background="#00FFFFFF" android:textColor="#000000"/>
+        android:id="@+id/privateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/hiddenButton"
+        android:layout_marginStart="133dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="50dp"
+        android:layout_toStartOf="@id/hiddenButton"
+        android:background="#00FFFFFF"
+        android:text="@string/privat"
+        android:textColor="#000000" />
+
     <Button
-            android:text="@string/ocult"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/hiddenButton"
-            android:layout_below="@id/originalPrice" android:layout_marginTop="69dp"
-            android:background="#00FFFFFF" android:textColor="#000000"/>
+        android:id="@+id/hiddenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/originalPrice"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
+        android:background="#00FFFFFF"
+        android:text="@string/ocult"
+        android:textColor="#000000" />
+
     <Button
-            android:text="@string/p_blic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/publicButton"
-            android:layout_toEndOf="@id/hiddenButton" android:layout_marginEnd="12dp"
-            android:layout_marginStart="50dp" android:layout_alignTop="@+id/hiddenButton"
-            android:layout_marginTop="2dp" android:background="#00FFFFFF" android:textColor="#000000"/>
+        android:id="@+id/publicButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/hiddenButton"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="12dp"
+        android:layout_toEndOf="@id/hiddenButton"
+        android:background="#00FFFFFF"
+        android:text="@string/p_blic"
+        android:textColor="#000000" />
     <com.google.android.material.button.MaterialButton
             android:theme="@style/Theme.MaterialComponents"
             app:strokeColor="@color/black"
@@ -119,7 +137,12 @@
             android:layout_height="wrap_content" android:id="@+id/submitButton"
             android:layout_below="@id/hiddenButton"
             android:layout_marginTop="43dp"/>
-    <include layout="@layout/fragment_share_group" android:id="@+id/group_popup" android:visibility="invisible"
-             android:layout_width="290dp" android:layout_height="275dp"
-             android:layout_centerInParent="true"/>
+
+    <include
+        android:id="@+id/group_popup"
+        layout="@layout/fragment_share_group"
+        android:layout_width="290dp"
+        android:layout_height="275dp"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
 </RelativeLayout>

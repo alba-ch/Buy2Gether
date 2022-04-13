@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    tools:context=".activities.product_view.ValoracionsAdapter">
+    tools:context=".usecases.home.home.product_view.ValoracionsAdapter">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/profile_image"

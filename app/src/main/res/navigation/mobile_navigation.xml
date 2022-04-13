@@ -7,31 +7,31 @@
 
     <fragment
             android:id="@+id/navigation_home"
-            android:name="com.pis.buy2gether.ui.home.HomeFragment"
+            android:name="com.pis.buy2gether.usecases.home.home.HomeFragment"
             android:label="@string/title_home"
             tools:layout="@layout/fragment_home"/>
 
     <fragment
             android:id="@+id/navigation_notifications"
-            android:name="com.pis.buy2gether.ui.notifications.NotificationsFragment"
+            android:name="com.pis.buy2gether.usecases.home.notifications.NotificationsFragment"
             android:label="@string/title_notifications"
             tools:layout="@layout/fragment_notifications"/>
 
     <fragment
             android:id="@+id/navigation_cart"
-            android:name="com.pis.buy2gether.ui.paymentWall.PaymentWallFragment"
+            android:name="com.pis.buy2gether.usecases.home.paymentWall.PaymentWallFragment"
             android:label="@string/title_cart"
             tools:layout="@layout/fragment_payment_wall"/>
 
 
     <fragment
             android:id="@+id/navigation_profile"
-            android:name="com.pis.buy2gether.ui.user.UserFragment"
+            android:name="com.pis.buy2gether.usecases.home.user.UserFragment"
             tools:layout="@layout/fragment_user"/>
 
     <fragment
             android:id="@+id/navigation_historial"
-            android:name="com.pis.buy2gether.ui.historial.HistorialFragment"
+            android:name="com.pis.buy2gether.usecases.home.user.comanda.HistorialFragment"
             tools:layout="@layout/fragment_historial"/>
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Comanda_view">
+    tools:context=".usecases.home.user.comanda.comanda_view.Comanda_view">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/comanda"
