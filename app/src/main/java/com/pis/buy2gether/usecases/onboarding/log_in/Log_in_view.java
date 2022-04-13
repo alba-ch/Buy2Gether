@@ -2,16 +2,13 @@ package com.pis.buy2gether.usecases.onboarding.log_in;
 
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.widget.ImageButton;
+import android.widget.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +25,7 @@ public class Log_in_view extends AppCompatActivity {
     private TextInputEditText userEditText;
     private TextInputEditText pswEditText;
     private Button guest;
+    private ImageButton google_signin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,7 @@ public class Log_in_view extends AppCompatActivity {
 
         log = findViewById(R.id.btn_login);
         sign = findViewById(R.id.login);
+        google_signin = findViewById(R.id.btn_google_signin);
         guest = findViewById(R.id.invitado);
 
         userEditText = findViewById(R.id.txtin_username);
