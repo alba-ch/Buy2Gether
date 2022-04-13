@@ -101,6 +101,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/password"
+                    android:fontFamily="@font/light"
+                    android:background="@color/colorAccentUltraLight"
                     app:layout_constraintHorizontal_bias="0.494"
                     app:layout_constraintVertical_bias="0.591" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -120,6 +122,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/username"
+                    android:fontFamily="@font/light"
+                    android:background="@color/colorAccentUltraLight"
                     android:textColor="@color/colorHint"
                     android:textColorHint="@color/colorHint" />
             </com.google.android.material.textfield.TextInputLayout>

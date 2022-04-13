@@ -80,8 +80,8 @@
 
             <View
                     android:id="@+id/blanco"
-                    android:layout_width="268dp"
-                    android:layout_height="217dp"
+                    android:layout_width="270dp"
+                    android:layout_height="226dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/fondo_blanco"
                     android:gravity="center"
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/light"
             android:hint="@string/username"
-            android:backgroundTint="@color/transparent"
+            android:background="@color/colorAccentUltraLight"
             android:textColor="@color/colorHint"
             android:textColorHint="@color/colorHint" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -130,7 +130,7 @@
                         android:id="@+id/txtin_psw"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@color/transparent"
+                        android:background="@color/colorAccentUltraLight"
                         android:fontFamily="@font/light"
                         android:hint="@string/password"
                 />
@@ -206,11 +206,10 @@
                 android:id="@+id/invitado"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:text="Entra com a convidat"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/contenedor" />
             <ImageButton
