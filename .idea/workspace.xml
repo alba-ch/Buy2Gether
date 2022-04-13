@@ -9,30 +9,16 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="NONE" />
+    <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="Refactoring home menu, redesigning the menu, and add new features, such as the connection with product view.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/activities/product_view/ValoracionsAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_valoracions_list_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/SplashScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/activities/Product_view.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/activities/product_view/Product_view.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/home/TypeRvAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/home/TypeRvAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/scrollview_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/scrollview_background.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tots.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tots.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
-    </list>
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\li471\.android\avd\Nexus_5X_API_31.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RZ8N81BXFTB]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -48,17 +34,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Buy2Gether" type="f1a62948:ProjectNode" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -70,9 +45,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile" />
         <option value="Class" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -96,71 +71,41 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="26VWaQAlUuKyDDOGBmtuZinTXxR" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="BundleExportedModule" value="Buy2Gether.app" />
-    <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android-custom-view/Users/victorjimenezrugama/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_RecyclerView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-view/Users/victorjimenezrugama/.gradle/caches/modules-2/files-2.1/androidx.recyclerview/recyclerview/1.1.0/f2bdf79e1977939817f54a9d3e2f6bc52b63bdd0/recyclerview-1.1.0-sources.jar!/androidx/recyclerview/widget/RecyclerView.java_SELECTED" value="RecyclerView" />
-    <property name="cidr.known.project.marker" value="true" />
-    <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/font" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/paymentWall" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="android.template.313858937">
-      <recent name="com.pis.buy2gether" />
-    </key>
-    <key name="android.template.-663382421">
-      <recent name="com.pis.buy2gether.ui.historial" />
-      <recent name="com.pis.buy2gether.historial" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\li471\StudioProjects\Buy2Gether-Def\app\src\main\res\font" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/paymentWall" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/group/share" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/favorites" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\li471\StudioProjects\Buy2Gether-Def\app\src\main\res\font" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui" />
-    </key>
-    <key name="android.template.137378671">
-      <recent name="com.pis.buy2gether" />
-    </key>
-    <key name="android.template.-1340738031">
-      <recent name="com.pis.buy2gether.activities" />
-    </key>
-    <key name="android.template.748639058">
-      <recent name="com.pis.buy2gether.carpetadepruebas" />
-    </key>
-    <key name="android.template.-1987148215">
-      <recent name="com.pis.buy2gether.ui.historial" />
-      <recent name="com.pis.buy2gether.historial" />
-      <recent name="com.pis.buy2gether.ui.friends" />
-      <recent name="com.pis.buy2gether.ui.user" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.pis.buy2gether.ui.group.share" />
@@ -183,33 +128,9 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
@@ -243,7 +164,7 @@
       <workItem from="1649174494930" duration="13096000" />
       <workItem from="1649237988410" duration="22827000" />
       <workItem from="1649281218099" duration="181000" />
-      <workItem from="1649315829431" duration="4142000" />
+      <workItem from="1649315829431" duration="4216000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -364,91 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649317988898</updated>
     </task>
-    <task id="LOCAL-00018" summary="New version of the Splash Screen.&#10;Adapting and implementing the product view to the current project.">
-      <created>1649527873182</created>
+    <task id="LOCAL-00018" summary="Implemented payment methods">
+      <created>1649320262163</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1649527873182</updated>
+      <updated>1649320262163</updated>
     </task>
-    <task id="LOCAL-00019" summary="Refactoring Log In">
-      <created>1649531683710</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1649531683710</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Refactoring Log In">
-      <created>1649534270293</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1649534270293</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Add animations to Log In">
-      <created>1649536566099</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1649536566099</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Refactoring Sign in and add listeners to buttons.">
-      <created>1649585149087</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1649585149087</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Implementació de fragment historial / no funciona encara">
-      <created>1649611004180</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1649611004180</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Implementació de fragment historial / no funciona be encara">
-      <created>1649617919679</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1649617919679</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Implementació de fragment historial / ja es mostra bé al ui">
-      <created>1649634630666</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1649634630666</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Fix setting menu superpositions, add go back to the main menu functionality in historial menu.">
-      <created>1649636485289</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1649636485289</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu. (There are things to delete in the new created Fragments)">
-      <created>1649720307091</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1649720307091</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Fixed Objects in Home Fragment.">
-      <created>1649720757860</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1649720757860</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Refactoring home menu, redesigning the menu, and add new features, such as the connection with product view.">
-      <created>1649723813116</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1649723813116</updated>
-    </task>
-    <option name="localTasksCounter" value="30" />
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,10 +308,14 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Commiting all initial files" />
+    <MESSAGE value="Project Data" />
+    <MESSAGE value="Do it" />
+    <MESSAGE value="Added bottom tab menu" />
+    <MESSAGE value="Defined Notifications RecyclerView List Adapter" />
+    <MESSAGE value="Added default avatar (for test purposes)" />
     <MESSAGE value="Implemented notifications" />
     <MESSAGE value="Added Notification Badges" />
     <MESSAGE value="Fixed group creation position arrengements" />
@@ -479,32 +327,8 @@
     <MESSAGE value="Implemented share with friends list" />
     <MESSAGE value="Fixed bug that would cause some fields not to be selectable in the creation fragment after creating grup" />
     <MESSAGE value="Added product type dropdown list elements" />
-    <MESSAGE value="New version of the Splash Screen.&#10;Adapting and implementing the product view to the current project." />
-    <MESSAGE value="Refactoring Log In" />
-    <MESSAGE value="Add animations to Log In" />
-    <MESSAGE value="Refactoring Sign in and add listeners" />
-    <MESSAGE value="Refactoring Sign in and add listeners to buttons." />
-    <MESSAGE value="Implementació de fragment historial" />
-    <MESSAGE value="Implementació de fragment historial / no funciona encara" />
-    <MESSAGE value="Implementació de fragment historial / no funciona be encara" />
-    <MESSAGE value="Implementació de fragment historial / ja es mostra bé al ui" />
-    <MESSAGE value="Fix setting menu superpositions, add go back to the main menu functionality in historial menu." />
-    <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu." />
-    <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu. (There are things to delete in the new created Fragments)" />
-    <MESSAGE value="Fixed Objects in Home Fragment." />
-    <MESSAGE value="Refactoring home menu, redesigning the menu, and add new features, such as the connection with product view." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring home menu, redesigning the menu, and add new features, such as the connection with product view." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/home/HomeFragment.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Implemented payment methods" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented payment methods" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
