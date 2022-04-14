@@ -13,7 +13,7 @@
             android:title="@null"/>
 
     <item
-            android:id="@+id/navigation_cart"
+            android:id="@+id/navigation_favorite_list"
             android:icon="@drawable/ic_favorites_empty"
             android:title="@null"/>
 

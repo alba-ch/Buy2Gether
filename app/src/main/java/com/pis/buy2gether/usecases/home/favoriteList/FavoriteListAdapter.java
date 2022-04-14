@@ -56,7 +56,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.Text);
+            myTextView = itemView.findViewById(R.id.txt_favorite_product);
             checked = itemView.findViewById(R.id.rdbtn_favorite_SEL);
             myTextView.setClickable(true);
             myTextView.setOnClickListener(this);
