@@ -7,7 +7,7 @@ import android.view.animation.TranslateAnimation;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModel;
 import com.pis.buy2gether.usecases.home.MainActivity;
-import com.pis.buy2gether.usecases.home.ProviderType;
+import com.pis.buy2gether.provider.ProviderType;
 
 class RegisterViewModel extends ViewModel {
 

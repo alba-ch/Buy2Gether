@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class SettingsFragment extends Fragment {
 
-    private SettingsViewModel settingsViewModel;
+    private SettingsViewModel viewModel;
     private FragmentSettingsBinding binding;
 
     ImageButton btn_return;
@@ -43,12 +43,14 @@ public class SettingsFragment extends Fragment {
         edit_city = view.findViewById(R.id.edit_city);
         signout = view.findViewById(R.id.text_signout);
 
+        viewModel = new SettingsViewModel(getContext());
+
         signout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 // Eliminem dades guardades localment de l'usuari (email i contrasenya)
                 SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-                prefs.edit().clear().apply();
+                viewModel.clearSession();
                 // Tanquem sessió
                 FirebaseAuth.getInstance().signOut();
                 // Mostrem missatge d'èxit per confirmar que s'ha tancat sessió

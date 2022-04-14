@@ -10,7 +10,7 @@ import android.widget.Button;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.usecases.home.ProviderType;
+import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity {

@@ -14,6 +14,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.ActivityMainBinding;
+import com.pis.buy2gether.model.session.Session;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,17 +43,21 @@ public class MainActivity extends AppCompatActivity {
         badge.setNumber(2);
 
         // setup (temporal)
+        setup();
+
+        // Guardado de datos,temporal -> pasar a model
+        /*SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        prefs.edit().putString("email",email).apply();
+        prefs.edit().putString("provider",provider).apply();*/
+    }
+
+    private void setup(){
         Bundle bundle = getIntent().getExtras();
         String email = bundle.getString("email");
         String provider = bundle.getString("provider");
-
-        // Guardado de datos,temporal -> pasar a model
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        prefs.edit().putString("email",email).apply();
-        prefs.edit().putString("provider",provider).apply();
-
+        Session.INSTANCE.setDataSession(this,"email",email);
+        Session.INSTANCE.setDataSession(this,"provider",provider);
     }
-
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();

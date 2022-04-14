@@ -1,19 +1,20 @@
 package com.pis.buy2gether.usecases.home.user.settings;
 
+import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.pis.buy2gether.model.session.Session;
 
 public class SettingsViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private Context context;
 
-    public SettingsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is user fragment");
+    public SettingsViewModel(Context context) {
+        this.context = context;
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public void clearSession(){
+        Session.INSTANCE.clearDataSession(context);
     }
 }

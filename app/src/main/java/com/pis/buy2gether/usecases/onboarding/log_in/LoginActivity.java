@@ -2,11 +2,8 @@ package com.pis.buy2gether.usecases.onboarding.log_in;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.TranslateAnimation;
 import android.widget.*;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -22,7 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.pis.buy2gether.usecases.home.ProviderType;
+import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.usecases.onboarding.sign_in.RegisterActivity;
 import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.R;
@@ -103,9 +100,8 @@ public class LoginActivity extends AppCompatActivity {
 
     /* Comprovem si ja hi ha una sessió guardada */
     private void session(){
-        SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        String email = prefs.getString("email",null);
-        String provider = prefs.getString("provider",null);
+        String email = viewModel.getSession(this, "email");
+        String provider = viewModel.getSession(this,"provider");
 
         if(email != null && provider != null){
             showHome(email, ProviderType.valueOf(provider));

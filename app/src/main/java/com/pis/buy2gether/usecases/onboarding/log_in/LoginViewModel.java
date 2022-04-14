@@ -1,13 +1,14 @@
 package com.pis.buy2gether.usecases.onboarding.log_in;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModel;
-import com.pis.buy2gether.usecases.home.MainActivity;
-import com.pis.buy2gether.usecases.home.ProviderType;
+import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
 
 class LoginViewModel extends ViewModel {
     private Context context;
@@ -28,5 +29,9 @@ class LoginViewModel extends ViewModel {
         shake.setDuration(1000);
         shake.setInterpolator(new CycleInterpolator(7));
         return shake;
+    }
+
+    String getSession(Context context, String key){
+        return Session.INSTANCE.getDataSession(context,key);
     }
 }
