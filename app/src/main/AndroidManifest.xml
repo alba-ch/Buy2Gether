@@ -13,10 +13,10 @@
             android:name=".usecases.home.user.comanda.comanda_view.Comanda_view"
             android:exported="false" />
         <activity
-            android:name=".usecases.onboarding.sign_in.Register_view"
+            android:name=".usecases.onboarding.sign_in.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".usecases.onboarding.log_in.Log_in_view"
+            android:name=".usecases.onboarding.log_in.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".usecases.home.home.product_view.Product_view"
