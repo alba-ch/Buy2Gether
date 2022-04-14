@@ -1,4 +1,4 @@
-package com.pis.buy2gether.usecases.home;
+package com.pis.buy2gether.provider;
 
 public enum ProviderType {
     BASIC,
