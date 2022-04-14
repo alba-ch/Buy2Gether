@@ -7,15 +7,12 @@
     android:background="#FCF9FE">
 
     <View
-
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-
-
         android:background="@drawable/product_view_background"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/share"
+        android:id="@+id/share_product"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginTop="30dp"
@@ -42,30 +39,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/grupo"
-        android:layout_width="122dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="Comprar Sol"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/solo" />
-
-    <Button
-        android:id="@+id/solo"
-        android:layout_width="122dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="#FFFFFF"
-        android:text="Buscar Grups"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/scroll"
@@ -201,30 +174,62 @@
     </ScrollView>
 
     <View
-        android:id="@+id/lowMenu"
-        android:layout_width="match_parent"
-        android:layout_height="85dp"
+            android:id="@+id/lowMenu"
+            android:layout_width="match_parent"
+            android:layout_height="85dp"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintVertical_bias="1"
+            android:background="@drawable/shp_nav"
 
-        android:background="@drawable/shp_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view"/>
 
-    <ImageView
-        android:id="@+id/carrito"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/grupo"
-        app:layout_constraintStart_toStartOf="@+id/lowMenu"
-        app:srcCompat="@drawable/car" />
+
+    <ImageButton
+            android:id="@+id/btn_favorite"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/ic_favorites_empty"
+            android:layout_marginStart="10dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scroll"
+            app:layout_constraintEnd_toStartOf="@+id/btn_comprar_sol"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+            android:id="@+id/btn_comprar_sol"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="Comprar Sol"
+            android:textColor="#000000"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/btn_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scroll"
+            app:layout_constraintEnd_toStartOf="@+id/btn_comprar_grup"/>
+
+    <Button
+            android:id="@+id/btn_comprar_grup"
+            android:layout_width="110dp"
+            android:layout_height="55dp"
+            android:backgroundTint="#FFFFFF"
+            android:text="Buscar Grups"
+            android:textSize="10sp"
+            android:textColor="#000000"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintVertical_bias="0.5"
+
+            app:layout_constraintTop_toBottomOf="@+id/scroll"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/lowMenu"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
 
     <View
-
         android:id="@+id/lowMenu_share"
         android:layout_width="match_parent"
         android:layout_height="200dp"

@@ -14,7 +14,7 @@
 
     <item
             android:id="@+id/navigation_cart"
-            android:icon="@drawable/ic_nav_cart"
+            android:icon="@drawable/ic_favorites_empty"
             android:title="@null"/>
 
     <item
