@@ -1,4 +1,4 @@
-package com.pis.buy2gether.elementos_sin_clasificar.favorite;
+package com.pis.buy2gether.usecases.home.favoriteList;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

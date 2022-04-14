@@ -1,4 +1,4 @@
-package com.pis.buy2gether.elementos_sin_clasificar.favorite;
+package com.pis.buy2gether.usecases.home.favoriteList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -57,7 +57,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.Text);
-            checked = itemView.findViewById(R.id.favorite_SEL);
+            checked = itemView.findViewById(R.id.rdbtn_favorite_SEL);
             myTextView.setClickable(true);
             myTextView.setOnClickListener(this);
             itemView.setOnClickListener(this);

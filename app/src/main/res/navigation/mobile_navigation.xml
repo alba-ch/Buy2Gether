@@ -18,11 +18,10 @@
             tools:layout="@layout/fragment_notifications"/>
 
     <fragment
-            android:id="@+id/navigation_cart"
-            android:name="com.pis.buy2gether.usecases.home.paymentWall.PaymentWallFragment"
-            android:label="@string/title_cart"
-            tools:layout="@layout/fragment_payment_wall"/>
-
+            android:id="@+id/navigation_favorite_list"
+            android:name="com.pis.buy2gether.usecases.home.favoriteList.FavoriteFragment"
+            android:label="@string/title_favorites"
+            tools:layout="@layout/fragment_favorite_list"/>
 
     <fragment
             android:id="@+id/navigation_profile"

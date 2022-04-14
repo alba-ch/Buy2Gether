@@ -1,4 +1,4 @@
-package com.pis.buy2gether.elementos_sin_clasificar.favorite;
+package com.pis.buy2gether.usecases.home.favoriteList;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.databinding.FragmentFavoriteListBinding;
-import com.pis.buy2gether.databinding.FragmentNotificationsBinding;
 
 import java.util.ArrayList;
 

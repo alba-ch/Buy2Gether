@@ -7,7 +7,7 @@
         android:gravity="center|bottom"
         android:fillViewport="true"
         android:layout_marginBottom="50dp"
-        tools:context=".elementos_sin_clasificar.favorite.FavoriteFragment">
+        tools:context=".usecases.home.favoriteList.FavoriteFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favorite_list"

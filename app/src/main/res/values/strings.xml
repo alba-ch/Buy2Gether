@@ -4,6 +4,8 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_cart">Cart</string>
     <string name="title_profile">Profile</string>
+    <string name="title_favorites">Favorites</string>
+
     <string name="preu_original">Preu Original</string>
     <string name="l_mit_d_usuaris">Límit d\'usuaris</string>
     <string name="privat">Privat</string>

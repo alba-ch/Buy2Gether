@@ -63,10 +63,6 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
             itemView.setOnClickListener(this);
         }
 
-
-
-
-
         @Override
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
