@@ -65,6 +65,17 @@ public class SettingsFragment extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        btn_edit_pfp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setView(R.layout.alert_dialog_avatar);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
         return view;
     }
 

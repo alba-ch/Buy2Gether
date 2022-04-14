@@ -15,7 +15,8 @@
             android:layout_height="80dp"
             android:backgroundTint="@color/colorHint"
             android:background="@drawable/textview_background"
-            app:layout_constraintTop_toTopOf="parent" tools:layout_editor_absoluteX="0dp">
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
 
         <ImageButton
                 android:id="@+id/btn_return"
