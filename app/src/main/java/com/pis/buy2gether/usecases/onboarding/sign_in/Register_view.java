@@ -4,6 +4,7 @@ import android.view.animation.Animation;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
+import android.widget.ImageButton;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,7 +21,7 @@ import com.pis.buy2gether.usecases.home.ProviderType;
 import com.pis.buy2gether.usecases.onboarding.log_in.Log_in_view;
 
 public class Register_view extends AppCompatActivity {
-    private Button sign;
+    private ImageButton sign;
     private Button log;
     private Button guest;
     private TextInputEditText userEditText;

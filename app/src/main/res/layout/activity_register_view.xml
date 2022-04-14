@@ -73,15 +73,15 @@
                 app:layout_constraintTop_toBottomOf="@+id/img_logo" />
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/btn_register"
-                style="@style/largeButton"
                 android:layout_width="310dp"
                 android:layout_height="68dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/btn_reglog"
-                android:text="@string/register"
-                android:textColor="@color/white"
+                app:srcCompat="@drawable/btn_register"
+                android:scaleType="fitCenter"
+                android:foreground="@drawable/ripple_button_effect_reglog"
+                android:background="@color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_shp_reg" />
