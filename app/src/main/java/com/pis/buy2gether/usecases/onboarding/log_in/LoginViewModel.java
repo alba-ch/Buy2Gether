@@ -1,4 +1,4 @@
-package com.pis.buy2gether.usecases.onboarding.sign_in;
+package com.pis.buy2gether.usecases.onboarding.log_in;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,11 +9,10 @@ import androidx.lifecycle.ViewModel;
 import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.usecases.home.ProviderType;
 
-class RegisterViewModel extends ViewModel {
-
+class LoginViewModel extends ViewModel {
     private Context context;
 
-    RegisterViewModel(Context context){ this.context = context; }
+    LoginViewModel(Context context){ this.context = context; }
 
     void showAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -22,11 +21,6 @@ class RegisterViewModel extends ViewModel {
         builder.setPositiveButton("Acceptar",null);
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
-
-    void showHome(String email, ProviderType provider){
-        Intent i = new Intent(context, MainActivity.class).putExtra("provider",provider.name()).putExtra("email",email);
-        context.startActivity(i);
     }
 
     public TranslateAnimation shakeError() {

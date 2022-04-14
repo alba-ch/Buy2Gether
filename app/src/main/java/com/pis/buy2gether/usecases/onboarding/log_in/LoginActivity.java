@@ -17,18 +17,19 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.pis.buy2gether.usecases.home.ProviderType;
-import com.pis.buy2gether.usecases.onboarding.sign_in.Register_view;
+import com.pis.buy2gether.usecases.onboarding.sign_in.RegisterActivity;
 import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.R;
 
-public class Log_in_view extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
+
+    private LoginViewModel viewModel;
 
     private int GOOGLE_SIGN_IN = 100;
 
@@ -46,39 +47,34 @@ public class Log_in_view extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_log_in_view);
-
+        viewModel = new LoginViewModel(this);
         /* Comprovem si ja hi ha una sessió loguejada a l'app */
         session();
 
-        log = findViewById(R.id.btn_login);
-        sign = findViewById(R.id.login);
-        google_signin = findViewById(R.id.btn_google_signin);
-        guest = findViewById(R.id.invitado);
-
-        userEditText = findViewById(R.id.txtin_username);
-        pswEditText = findViewById(R.id.txtin_psw);
-
-        name = findViewById(R.id.img_appname);
-        image = findViewById(R.id.img_logo);
+        /* Recuperem els widgets */
+        setup();
 
         log.setOnClickListener(v -> {
-            if(!(userEditText.getText().toString().isEmpty()) && !(pswEditText.getText().toString().isEmpty())){
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(userEditText.getText().toString(),pswEditText.getText().toString()).addOnCompleteListener(task -> {
+            String email = userEditText.getText().toString();
+            String psw = pswEditText.getText().toString();
+
+            /* Check if user filled both email and password text fields. */
+            if(!(email.isEmpty()) && !(psw.isEmpty())){
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(email,psw).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
                     }else{
-                        showAlert();
+                        viewModel.showAlert();
                     }
                 });
             }else{
-                userEditText.startAnimation(shakeError());
-                pswEditText.startAnimation(shakeError());
+                userEditText.startAnimation(viewModel.shakeError());
+                pswEditText.startAnimation(viewModel.shakeError());
             }
         } );
 
         sign.setOnClickListener(v -> {
-            Intent i;
-            i = new Intent(Log_in_view.this, Register_view.class);
+            Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
             startActivity(i);
             finish();
         } );
@@ -99,26 +95,10 @@ public class Log_in_view extends AppCompatActivity {
         });
     }
 
-    private void showAlert(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Error");
-        builder.setMessage("S'ha produït un error autentificant l'usuari.");
-        builder.setPositiveButton("Acceptar",null);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
     private void showHome(String email, ProviderType provider){
-        Intent i = new Intent(Log_in_view.this, MainActivity.class).putExtra("provider",provider.name()).putExtra("email",email);
+        Intent i = new Intent(LoginActivity.this, MainActivity.class).putExtra("provider",provider.name()).putExtra("email",email);
         startActivity(i);
         finish();
-    }
-
-    public TranslateAnimation shakeError() {
-        TranslateAnimation shake = new TranslateAnimation(0, 0, 0, 20);
-        shake.setDuration(1000);
-        shake.setInterpolator(new CycleInterpolator(7));
-        return shake;
     }
 
     /* Comprovem si ja hi ha una sessió guardada */
@@ -147,10 +127,23 @@ public class Log_in_view extends AppCompatActivity {
                     if(t.isSuccessful()){
                         showHome(account.getEmail(), ProviderType.GOOGLE);
                     }else{
-                        showAlert();
+                        viewModel.showAlert();
                     }
                 });
             }
         }
+    }
+
+    private void setup(){
+        log = findViewById(R.id.btn_login);
+        sign = findViewById(R.id.login);
+        google_signin = findViewById(R.id.btn_google_signin);
+        guest = findViewById(R.id.invitado);
+
+        userEditText = findViewById(R.id.txtin_username);
+        pswEditText = findViewById(R.id.txtin_psw);
+
+        name = findViewById(R.id.img_appname);
+        image = findViewById(R.id.img_logo);
     }
 }

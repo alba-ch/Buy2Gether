@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_view);
 
-        viewModel = new RegisterViewModel();
+        viewModel = new RegisterViewModel(this);
 
         setup();
 
@@ -40,10 +40,10 @@ public class RegisterActivity extends AppCompatActivity {
             if(!(email.isEmpty()) && !(psw.isEmpty())){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,psw).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        viewModel.showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC,this);
+                        viewModel.showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
                         finish();
                     }else{
-                        viewModel.showAlert(this);
+                        viewModel.showAlert();
                     }
                 });
             }else{
@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         } );
 
         guest.setOnClickListener(v -> {
-            viewModel.showHome("guest", ProviderType.GUEST, this);
+            viewModel.showHome("guest", ProviderType.GUEST);
             finish();
         });
     }
