@@ -18,14 +18,13 @@ import com.pis.buy2gether.usecases.home.user.help.HelpFragment;
 import com.pis.buy2gether.usecases.home.user.comanda.HistorialFragment;
 import com.pis.buy2gether.usecases.home.user.settings.SettingsFragment;
 
-public class UserFragment extends Fragment {
+public class UserFragment extends Fragment implements View.OnClickListener {
 
-    private UserViewModel userViewModel;
-    private FragmentUserBinding binding;
+    //private UserViewModel userViewModel;
+    //private FragmentUserBinding binding;
 
     ImageButton btn_comandes;
     ImageButton btn_adreces;
-    ImageButton btn_historial;
     ImageButton btn_ajuda;
     ImageButton btn_amics;
     ImageButton btn_settings;
@@ -58,77 +57,59 @@ public class UserFragment extends Fragment {
         btn_settings = view.findViewById(R.id.btn_settings);
         btn_lan = view.findViewById(R.id.btn_lan);
 
+        btn_comandes.setOnClickListener(this);
+        btn_adreces.setOnClickListener(this);
+        btn_ajuda.setOnClickListener(this);
+        btn_amics.setOnClickListener(this);
+        btn_settings.setOnClickListener(this);
+        btn_lan.setOnClickListener(this);
 
-        /**
-         * codi repetitiu -> crear classe interna
-         */
-        btn_comandes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"COMANDES",Toast.LENGTH_SHORT).show();
-                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+        switch(view.getId()){
+
+            case R.id.btn_comandes:
                 fragmentTransaction.replace(R.id.useropt, new HistorialFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
-            }
-        });
-
-        btn_adreces.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"ADRECES",Toast.LENGTH_SHORT).show();
-                /* Canviem de fragment al d'adreces */
-                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                break;
+            case R.id.btn_adreces:
+                //change to address Fragment
                 fragmentTransaction.replace(R.id.useropt, new AddressFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
-            }
-        });
-
-        btn_ajuda.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"AJUDA",Toast.LENGTH_SHORT).show();
-                /* Canviem de fragment al d'ajuda */
-                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                break;
+            case R.id.btn_ajuda:
+                //change to help Fragment
                 fragmentTransaction.replace(R.id.useropt, new HelpFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
-            }
-        });
-
-        btn_amics.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"AMICS",Toast.LENGTH_SHORT).show();
-                /* Canviem de fragment al que conté la llista d'amics */
-                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                break;
+            case R.id.btn_amics:
+                //change to friends list Fragment
                 fragmentTransaction.replace(R.id.useropt, new FriendsFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
-            }
-        });
-
-
-        btn_settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"SETTINGS",Toast.LENGTH_SHORT).show();
-                /* Canviem de fragment al de configuracions */
-                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                break;
+            case R.id.btn_settings:
+                //change to settings Fragment
                 fragmentTransaction.replace(R.id.useropt, new SettingsFragment());
                 fragmentTransaction.addToBackStack("user-options").commit();
-            }
-        });
-
-        btn_lan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.btn_lan:
                 Toast.makeText(getActivity(),"LANGUAGE",Toast.LENGTH_SHORT).show();
-            }
-        });
-        return view;
+                break;
+            default:
+                break;
+
+        }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        binding = null;
+        //binding = null;
     }
+
+
 }
