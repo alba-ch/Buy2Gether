@@ -201,11 +201,9 @@
     </ScrollView>
 
     <View
-
         android:id="@+id/lowMenu"
         android:layout_width="match_parent"
         android:layout_height="85dp"
-
 
         android:background="@drawable/shp_nav"
         app:layout_constraintBottom_toBottomOf="parent"

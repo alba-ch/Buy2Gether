@@ -1,20 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:fillViewport="true"
-android:paddingTop="5dp"
-tools:context=".usecases.home.notifications.NotificationsFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/notifications_list"
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_color"
+        android:id="@+id/notifications"
+        tools:context=".usecases.home.notifications.NotificationsFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/address_header"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:backgroundTint="@color/gris"
+                android:background="@drawable/textview_background"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                        android:id="@+id/ic_notifications"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:backgroundTint="@color/colorHint"
+                        android:background="@drawable/ic_nav_notifications"
+                        app:layout_constraintHorizontal_bias="0.1"
+                        app:layout_constraintVertical_bias="0.5"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+                <TextView
+                        android:id="@+id/titulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/regular"
+                        android:text="NOTIFICACIONS"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintVertical_bias="0.5"
+                        app:layout_constraintHorizontal_bias="0.3"
+
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="50dp"
-                tools:listitem="@layout/fragment_notification_item" tools:itemCount="13">
+                android:fillViewport="true"
+                android:layout_marginTop="80dp"
+                android:layout_marginBottom="70dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/address_header">
 
-        </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/notifications_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/fragment_notification_item" tools:itemCount="13">
 
-</LinearLayout>
+                </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
