@@ -5,11 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentUserBinding;
 import com.pis.buy2gether.usecases.home.user.address.AddressFragment;
@@ -30,39 +32,15 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     ImageButton btn_settings;
     ImageButton btn_lan;
 
+    TextView username;
+    TextView description;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        /*
-            CODI INTELLIJ
-
-        * userViewModel = new ViewModelProvider(this).get(HelpViewModel.class);
-
-        binding = FragmentUserBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-
-        userViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-
-            }
-        });
-        return root;
-        * */
-
         View view = inflater.inflate(R.layout.fragment_user,container,false);
-        btn_comandes = view.findViewById(R.id.btn_comandes);
-        btn_adreces = view.findViewById(R.id.btn_adreces);
-        btn_ajuda = view.findViewById(R.id.btn_ajuda);
-        btn_amics = view.findViewById(R.id.btn_amics);
-        btn_settings = view.findViewById(R.id.btn_settings);
-        btn_lan = view.findViewById(R.id.btn_lan);
 
-        btn_comandes.setOnClickListener(this);
-        btn_adreces.setOnClickListener(this);
-        btn_ajuda.setOnClickListener(this);
-        btn_amics.setOnClickListener(this);
-        btn_settings.setOnClickListener(this);
-        btn_lan.setOnClickListener(this);
+        setup(view);
+
 
         return view;
     }
@@ -109,6 +87,34 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     public void onDestroyView() {
         super.onDestroyView();
         //binding = null;
+    }
+
+    private void setup(View view){
+        btn_comandes = view.findViewById(R.id.btn_comandes);
+        btn_adreces = view.findViewById(R.id.btn_adreces);
+        btn_ajuda = view.findViewById(R.id.btn_ajuda);
+        btn_amics = view.findViewById(R.id.btn_amics);
+        btn_settings = view.findViewById(R.id.btn_settings);
+        btn_lan = view.findViewById(R.id.btn_lan);
+
+        btn_comandes.setOnClickListener(this);
+        btn_adreces.setOnClickListener(this);
+        btn_ajuda.setOnClickListener(this);
+        btn_amics.setOnClickListener(this);
+        btn_settings.setOnClickListener(this);
+        btn_lan.setOnClickListener(this);
+
+        setupUserInfo(view);
+    }
+
+    private void setupUserInfo(View view){
+        username = view.findViewById(R.id.txt_user);
+        description = view.findViewById(R.id.txt_desc);
+
+        if(!FirebaseAuth.getInstance().getCurrentUser().isAnonymous()) {
+            username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            description.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+        }
     }
 
 
