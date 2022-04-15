@@ -10,23 +10,22 @@ import java.util.HashMap;
 public enum FirebaseRDBService {
     INSTANCE;
 
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     public void save(String collectionPath, String doc, HashMap data){
-        db().collection(collectionPath).document(doc).set(data);
+        db.collection(collectionPath).document(doc).set(data);
     }
 
     private void save(String collectionPath, String doc, String data){
-        db().collection(collectionPath).document(doc).set(data);
+        db.collection(collectionPath).document(doc).set(data);
     }
 
     public void delete(String collectionPath, String doc){
-        db().collection(collectionPath).document(doc).delete();
+        db.collection(collectionPath).document(doc).delete();
     }
 
     public Task<DocumentSnapshot> get(String collectionPath, String doc){
-        return db().collection(collectionPath).document(doc).get();
+        return db.collection(collectionPath).document(doc).get();
     }
 
-    public FirebaseFirestore db(){
-        return FirebaseFirestore.getInstance();
-    }
 }

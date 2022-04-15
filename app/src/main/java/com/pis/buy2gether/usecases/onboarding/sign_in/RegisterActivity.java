@@ -21,6 +21,7 @@ public class RegisterActivity extends AppCompatActivity {
     private Button log;
     private Button guest;
     private TextInputEditText userEditText;
+    private TextInputEditText usernameEditText;
     private TextInputEditText pswEditText;
 
     @Override
@@ -34,12 +35,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         sign.setOnClickListener(v -> {
             String email = userEditText.getText().toString();
+            String username = usernameEditText.getText().toString();
             String psw = pswEditText.getText().toString();
 
             /* Check if user filled both email and password text fields. */
             if(!(email.isEmpty()) && !(psw.isEmpty())){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,psw).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
+                        viewModel.saveUserInfo(email,username,ProviderType.BASIC);
                         viewModel.showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
                         finish();
                     }else{
@@ -48,6 +51,7 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             }else{
                 userEditText.startAnimation(viewModel.shakeError());
+                usernameEditText.startAnimation(viewModel.shakeError());
                 pswEditText.startAnimation(viewModel.shakeError());
             }
         } );
@@ -69,7 +73,8 @@ public class RegisterActivity extends AppCompatActivity {
         log = findViewById(R.id.login);
         guest = findViewById(R.id.invitado);
 
-        userEditText = findViewById(R.id.txtin_username);
+        usernameEditText = findViewById(R.id.txtin_username);
+        userEditText = findViewById(R.id.txtin_email);
         pswEditText = findViewById(R.id.txtin_psw);
     }
 }

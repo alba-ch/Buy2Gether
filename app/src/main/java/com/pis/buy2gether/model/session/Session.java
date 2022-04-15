@@ -1,11 +1,8 @@
 package com.pis.buy2gether.model.session;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.pis.buy2gether.R;
-import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.provider.preferences.PreferencesProvider;
 import com.pis.buy2gether.provider.services.FirebaseRDBService;
 
