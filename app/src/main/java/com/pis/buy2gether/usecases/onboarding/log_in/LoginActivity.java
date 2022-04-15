@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
                 FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(t -> {
                     if(t.isSuccessful()){
+                        viewModel.saveUserInfo(account.getEmail(),account.getDisplayName(),ProviderType.GOOGLE);
                         showHome(account.getEmail(), ProviderType.GOOGLE);
                     }else{
                         viewModel.showAlert();

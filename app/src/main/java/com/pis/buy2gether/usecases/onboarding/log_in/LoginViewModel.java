@@ -10,6 +10,8 @@ import com.pis.buy2gether.R;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
 
+import java.util.HashMap;
+
 class LoginViewModel extends ViewModel {
     private Context context;
 
@@ -33,5 +35,13 @@ class LoginViewModel extends ViewModel {
 
     String getSession(Context context, String key){
         return Session.INSTANCE.getDataSession(context,key);
+    }
+
+    public void saveUserInfo(String email, String username, ProviderType provider){
+        HashMap userInfo = new HashMap();
+        userInfo.put("email",email);
+        userInfo.put("username",username);
+        userInfo.put("provider",provider);
+        Session.INSTANCE.saveDB("users",email, userInfo);
     }
 }
