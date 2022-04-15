@@ -28,7 +28,7 @@
             <TextView
                     android:id="@+id/txt_shp_reg"
                     android:layout_width="271dp"
-                    android:layout_height="167dp"
+                    android:layout_height="220dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/shp_logreg_box"
                     android:text=""
@@ -86,49 +86,48 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_shp_reg" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_psw"
-                android:layout_width="217dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="15dp"
-                android:textColorHint="@color/colorHint"
-                app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg"
-                app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
-                app:layout_constraintTop_toBottomOf="@+id/txt_username">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtin_psw"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/password"
-                    android:fontFamily="@font/light"
-                    android:background="@color/colorAccentUltraLight"
-                    app:layout_constraintHorizontal_bias="0.494"
-                    app:layout_constraintVertical_bias="0.591" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txt_username"
-                android:layout_width="220dp"
-                android:layout_height="49dp"
-                android:layout_marginTop="25dp"
-                android:textColorHint="@color/colorHint"
-                app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg"
-                app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
-                app:layout_constraintTop_toTopOf="@+id/txt_shp_reg">
+                    android:id="@+id/txt_psw"
+                    android:layout_width="217dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="12dp"
+                    android:textColorHint="@color/colorHint"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg"
+                    app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_user"
+            >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtin_username"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/username"
-                    android:fontFamily="@font/light"
-                    android:background="@color/colorAccentUltraLight"
-                    android:textColor="@color/colorHint"
-                    android:textColorHint="@color/colorHint" />
+                        android:id="@+id/txtin_psw"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/password"
+                        android:fontFamily="@font/light"
+                        android:background="@color/colorAccentUltraLight"
+                />
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/txt_user"
+                    android:layout_width="220dp"
+                    android:layout_height="49dp"
+                    android:layout_marginTop="88dp"
+                    android:textColorHint="@color/colorHint"
+                    app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
+                    app:layout_constraintTop_toTopOf="@+id/txt_shp_reg" app:layout_constraintHorizontal_bias="0.549"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg">
 
-
+                <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtin_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Email"
+                        android:fontFamily="@font/light"
+                        android:background="@color/colorAccentUltraLight"
+                        android:textColor="@color/colorHint"
+                        android:textColorHint="@color/colorHint"
+                />
+            </com.google.android.material.textfield.TextInputLayout>
             <TextView
                 android:id="@+id/no_compte"
                 android:layout_width="wrap_content"
@@ -179,6 +178,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/contenedor"
 
                 />
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="220dp"
+                    android:layout_height="49dp"
+                    android:textColorHint="@color/colorHint"
+                    android:layout_marginBottom="13dp"
+                    app:layout_constraintBottom_toTopOf="@id/txt_user"
+                    android:id="@+id/txt_username" app:layout_constraintStart_toStartOf="@+id/txt_shp_reg"
+                    app:layout_constraintEnd_toEndOf="@+id/txt_shp_reg">
+
+                <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="220dp"
+                        android:layout_height="49dp"
+                        android:id="@+id/txtin_username"
+                        android:fontFamily="@font/light"
+                        android:textColorHint="@color/colorHint"
+                        android:background="@color/colorAccentUltraLight"
+                        android:hint="Nom"
+                        tools:layout_editor_absoluteX="97dp" app:layout_constraintBottom_toTopOf="@+id/txt_user"
+                        android:layout_marginBottom="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

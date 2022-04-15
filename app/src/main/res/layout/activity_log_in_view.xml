@@ -107,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/light"
-            android:hint="@string/username"
+            android:hint="Email"
             android:background="@color/colorAccentUltraLight"
             android:textColor="@color/colorHint"
             android:textColorHint="@color/colorHint" />
