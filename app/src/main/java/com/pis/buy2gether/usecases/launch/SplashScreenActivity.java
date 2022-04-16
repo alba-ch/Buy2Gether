@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.usecases.onboarding.log_in.Log_in_view;
+import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
     public static boolean login = false;
@@ -52,7 +52,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 finish();
             }
             else {
-                i = new Intent(SplashScreenActivity.this, Log_in_view.class);
+                i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(image, "image");
                 pairs[1] = new Pair<View, String>(name, "text");
