@@ -32,6 +32,10 @@ public enum Session {
         RDB.save(coll,doc,data);
     }
 
+    public void saveAddressDB(String doc, HashMap data){
+        RDB.saveAddress(doc,data);
+    }
+
     public void deleteDB(String coll, String doc){
         RDB.delete(coll,doc);
     }

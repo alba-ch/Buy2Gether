@@ -20,6 +20,10 @@ public enum FirebaseRDBService {
         db.collection(collectionPath).document(doc).set(data);
     }
 
+    public void saveAddress(String doc, HashMap data){
+        db.collection("users").document(doc).collection("Addresses").document(data.get("Address name").toString()).set(data);
+    }
+
     public void delete(String collectionPath, String doc){
         db.collection(collectionPath).document(doc).delete();
     }

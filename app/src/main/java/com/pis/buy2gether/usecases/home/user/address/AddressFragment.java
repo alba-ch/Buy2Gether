@@ -105,11 +105,11 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
     public void onClick(View view) {
         boolean process = view.getId() != R.id.shareDummy;
         switch (view.getId()) {
+            case R.id.btn_add: addAddress(); break;
             case R.id.btn_return:
                 Toast.makeText(getActivity(), "RETURN", Toast.LENGTH_SHORT).show();
                 getParentFragmentManager().beginTransaction().replace(R.id.address, new UserFragment()).commit();
             break;
-            case R.id.btn_add: addAddress(); break;
             default:
                 break;
         }
@@ -144,6 +144,6 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
     }
 
     private void saveAddress(){
-
+        addressViewModel.saveAddressDB(popup_name.getText().toString(),popup_address.getText().toString(),popup_phone.getText().toString(),popup_postalcode.getText().toString());
     }
 }
