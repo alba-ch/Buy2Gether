@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:paddingBottom="15dp"
+            android:paddingTop="25dp"
+            android:background="@drawable/shp_address"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+                android:id="@+id/popup_txt_num"
+                android:text="Adreça 1"
+                android:layout_width="156dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:textColor="#606060"
+                android:fontFamily="@font/negrita"
+                android:maxLines="1"
+                android:textSize="18sp" android:layout_marginTop="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"/>
+        <EditText
+                android:hint="Adreça completa"
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/popup_address"
+                android:layout_marginStart="30dp"
+                android:textColor="#606060"
+                android:fontFamily="@font/regular"
+                android:maxLines="1"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/popup_name"/>
+        <EditText
+                android:hint="Telèfon"
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/popup_phone"
+                android:layout_marginStart="30dp"
+                android:textColor="#606060"
+                android:fontFamily="@font/regular"
+                android:maxLines="1"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/popup_address"/>
+        <EditText
+                android:hint="Codi postal"
+                android:background="@color/transparent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/popup_postalcode"
+                android:layout_marginStart="30dp"
+                android:textColor="#606060"
+                android:fontFamily="@font/regular"
+                android:maxLines="1"
+                android:textSize="13sp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/popup_phone"/>
+        <EditText
+                android:hint="Títol de l'adreça"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/popup_name"
+                android:layout_marginStart="30dp"
+                android:background="@color/transparent"
+                android:textColor="#606060"
+                android:fontFamily="@font/regular"
+                android:maxLines="1"
+                android:textSize="15sp"
+                android:layout_marginTop="9dp"
+                android:layout_below="@+id/popup_txt_num"/>
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/ic_cancel"
+                android:id="@+id/btn_cancel_address_dialog"
+                android:background="@color/transparent"
+                android:foreground="@drawable/ripple_button_effect"
+                android:layout_marginTop="0dp" android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
+                android:layout_marginEnd="25dp"/>
+        <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" app:srcCompat="@drawable/ic_save"
+                android:id="@+id/btn_add_address_dialog"
+                android:background="@color/transparent"
+                android:tint="@color/colorHint"
+                android:foreground="@drawable/ripple_button_effect"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="22dp" android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"/>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

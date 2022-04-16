@@ -17,6 +17,7 @@
     <color name="colorBg">#FCF9FE</color>
 
     <color name="transparent">#00D1D0D0</color>
+    <color name="shadowed">#80000000</color>
     <color name="gris">#D1D0D0</color>
 
 

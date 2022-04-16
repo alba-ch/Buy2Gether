@@ -110,11 +110,11 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     private void setupUserInfo(View view){
         username = view.findViewById(R.id.txt_user);
         description = view.findViewById(R.id.txt_desc);
-
+        /*
         if(!FirebaseAuth.getInstance().getCurrentUser().isAnonymous()) {
             username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
             description.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        }
+        }*/
     }
 
 
