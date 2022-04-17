@@ -5,21 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<Map> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    AddressListAdapter(Context context, List<String> data) {
+    AddressListAdapter(Context context, List<Map> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -34,11 +37,10 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         holder.num_address.setText("Adreça "+(position+1));
-        holder.name_address.setText("Casa");
-        holder.address.setText("Carrer Pla de Fornells, 30, bj. 1a, Barcelona");
-        holder.postal_code.setText("08042");
-        holder.tel.setText("603 60 89 91");
-
+        holder.name_address.setText(mData.get(position).get("Address name").toString());
+        holder.address.setText(mData.get(position).get("Full address").toString());
+        holder.postal_code.setText(mData.get(position).get("Zip code").toString());
+        holder.tel.setText(mData.get(position).get("Telephone").toString());
     }
 
 
@@ -72,11 +74,6 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
         public void onClick(View view) {
             if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
-    }
-
-    // convenience method for getting data at click position
-    String getItem(int id) {
-        return mData.get(id);
     }
 
     // allows clicks events to be caught

@@ -3,6 +3,8 @@ package com.pis.buy2gether.provider.services;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 
@@ -30,6 +32,11 @@ public enum FirebaseRDBService {
 
     public Task<DocumentSnapshot> get(String collectionPath, String doc){
         return db.collection(collectionPath).document(doc).get();
+    }
+
+    public Task<QuerySnapshot> getAddresses(String doc){
+        Query q = db.collection("users").document(doc).collection("Addresses");
+        return q.get();
     }
 
 }

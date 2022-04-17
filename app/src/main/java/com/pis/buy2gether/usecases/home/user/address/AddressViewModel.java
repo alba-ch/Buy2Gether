@@ -4,6 +4,7 @@ import android.text.Editable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.model.session.Session;
 
@@ -44,5 +45,13 @@ public class AddressViewModel extends ViewModel {
         addressInfo.put("Telephone",tel);
         addressInfo.put("Zip code",cp);
         return addressInfo;
+    }
+
+    public Task getAddresses(){
+        String emailUser = "unknown";
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            emailUser = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+        }
+        return Session.INSTANCE.getAddressesDB(emailUser);
     }
 }

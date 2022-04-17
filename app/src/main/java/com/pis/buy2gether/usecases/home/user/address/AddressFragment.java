@@ -17,17 +17,25 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentAddressBinding;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class AddressFragment extends Fragment implements AddressListAdapter.ItemClickListener {
 
     private AddressViewModel addressViewModel;
     private AddressListAdapter addressListAdapter;
+    private RecyclerView recyclerView;
     private FragmentAddressBinding binding;
     private ArrayList<ClipData.Item> list;
 
@@ -38,7 +46,6 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         addressViewModel = new ViewModelProvider(this).get(AddressViewModel.class);
-
         binding = FragmentAddressBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -49,50 +56,17 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
         binding.btnReturn.setOnClickListener(this::onClick);
         binding.btnAdd.setOnClickListener(this::onClick);
 
-        ArrayList<String> items = new ArrayList<>();
-        items.add("iPad");
-        items.add("iPod");
-        items.add("Mac");
-        items.add("PlayStation");
-        items.add("Xbox");
-        items.add("LG TV");
-        items.add("Despacito");
-        items.add("Golfo");
-
-        // set up the RecyclerView
-        RecyclerView recyclerView = binding.addressList;
+        // set up list of addresses from current user
+        recyclerView = binding.addressList;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        addressListAdapter = new AddressListAdapter(getContext(), items);
-        recyclerView.setAdapter(addressListAdapter);
-        addressListAdapter.setClickListener(this);
-        binding.addressList.setAdapter(addressListAdapter);
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                addressListAdapter.swipe((AddressListAdapter.ViewHolder) viewHolder);
-            }
-        });
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-        addressViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                // data to populate the RecyclerView with
-            }
-
-        });
+        setList();
 
         return root;
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + addressListAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "You clicked smth " + position, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -145,5 +119,25 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
 
     private void saveAddress(){
         addressViewModel.saveAddressDB(popup_name.getText().toString(),popup_address.getText().toString(),popup_phone.getText().toString(),popup_postalcode.getText().toString());
+    }
+
+    private void setList(){
+        ArrayList<Map> items = new ArrayList<>();
+        Task task = addressViewModel.getAddresses().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    items.add(documentSnapshot.getData());
+                    Toast.makeText(getContext(), "DATA: " + documentSnapshot.getData().get("Address name") + items.size(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).addOnCompleteListener(new OnCompleteListener() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task task) {
+                addressListAdapter = new AddressListAdapter(getContext(), items);
+                recyclerView.setAdapter(addressListAdapter);
+                binding.addressList.setAdapter(addressListAdapter);
+            }
+        });
     }
 }
