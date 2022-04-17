@@ -91,7 +91,7 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
 
     private void addAddress(){
         AlertDialog dialog = setupAddressPopup();
-        btn_save.setOnClickListener(v -> {saveAddress();});
+        btn_save.setOnClickListener(v -> {saveAddress(); setList();});
         btn_cancel.setOnClickListener(v -> {dialog.dismiss();});
     }
 
@@ -128,7 +128,6 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
                     items.add(documentSnapshot.getData());
-                    Toast.makeText(getContext(), "DATA: " + documentSnapshot.getData().get("Address name") + items.size(), Toast.LENGTH_SHORT).show();
                 }
             }
         }).addOnCompleteListener(new OnCompleteListener() {
