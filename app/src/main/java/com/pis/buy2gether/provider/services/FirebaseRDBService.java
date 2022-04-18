@@ -62,4 +62,12 @@ public enum FirebaseRDBService {
     public void SaveInviteDB(String uuidString, HashMap inviteInfo) {
         save("Invites",uuidString,inviteInfo);
     }
+
+    public void addFriend(String uuidString, HashMap<String,String> friendship) {
+        save("Friendships",uuidString,friendship);
+    }
+
+    public void joinGroup(String uuidString, HashMap<String, String> membership) {
+        save("Memberships",uuidString,membership);
+    }
 }

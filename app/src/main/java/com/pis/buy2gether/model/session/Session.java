@@ -46,7 +46,12 @@ public enum Session {
     public void deleteDB(String coll, String doc){
         RDB.delete(coll,doc);
     }
-
+    public void deleteGroupInvite(String id){
+        RDB.delete("Invites",id);
+    }
+    public void deleteFriendRequest(String id){
+        RDB.delete("Requests",id);
+    }
     public void deleteAddressDB(String user, String doc){
         RDB.deleteAddress(user,doc);
     }
@@ -69,6 +74,17 @@ public enum Session {
     public void CreateInvite(HashMap inviteInfo) {
         String UUIDString = UUID.randomUUID().toString();
         RDB.SaveInviteDB(UUIDString,inviteInfo);
+    }
+
+    public void addFriendship(HashMap<String,String> friendship) {
+
+        String UUIDString = UUID.randomUUID().toString();
+        RDB.addFriend(UUIDString,friendship);
+    }
+
+    public void joinGroup(HashMap<String, String> membership) {
+        String UUIDString = UUID.randomUUID().toString();
+        RDB.joinGroup(UUIDString,membership);
     }
 
     /*public ArrayList<HashMap> getUserAllAddress(String user){

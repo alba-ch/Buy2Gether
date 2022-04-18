@@ -34,37 +34,17 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
         ArrayList<String> items = new ArrayList<>();
         items.add("Horse");
-        items.add("Cow");
-        items.add("Camel");
-        items.add("Sheep");
-        items.add("Chen");
-        items.add("Tula");
-        items.add("Chica");
-        items.add("Golfo");
-        items.add("Juanjo");
-        items.add("Tumama");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Sheep");
-        items.add("Sheep");
-        items.add("Goat");
-        items.add("Goat");
 
 
         // set up the RecyclerView
         RecyclerView recyclerView = binding.notificationsList;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        notificationsListAdapter = new NotificationsListAdapter(getContext(), items);
+        notificationsListAdapter = new NotificationsListAdapter(getContext(), this);
         recyclerView.setAdapter(notificationsListAdapter);
         notificationsListAdapter.setClickListener(this);
         binding.notificationsList.setAdapter(notificationsListAdapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
                 return false;
@@ -73,22 +53,53 @@ public class NotificationsFragment extends Fragment implements NotificationsList
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 notificationsListAdapter.swipe((NotificationsListAdapter.ViewHolder) viewHolder);
+                switch(swipeDir){
+                    case ItemTouchHelper.LEFT:
+                        denyNoti(notificationsListAdapter.getNotiType(viewHolder.getAdapterPosition()), notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()));
+                        break;
+                    case ItemTouchHelper.RIGHT:
+                        acceptNoti(notificationsListAdapter.getNotiType(viewHolder.getAdapterPosition()), notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), notificationsListAdapter.getExtraID(viewHolder.getAdapterPosition()));
+                        break;
+                    default:
+                        break;
+                }
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                // data to populate the RecyclerView with
-            }
-
-        });
+       
         return root;
+    }
+
+    private void acceptNoti(NotificationsListAdapter.notiType notiType, String notiID, String extraID) {
+        switch(notiType){
+            case GROUP_INVITE:
+                notificationsViewModel.joinGroup(notificationsViewModel.getUser(),extraID);
+                notificationsViewModel.removeGroupInvite(notiID);
+                break;
+            case FRIEND_REQUEST:
+                notificationsViewModel.addFriend(notificationsViewModel.getUser(),extraID);
+                notificationsViewModel.removeFriendRequest(notiID);
+                break;
+            default:
+                break;
+        }
+    }
+    private void denyNoti(NotificationsListAdapter.notiType notiType, String notiID) {
+        switch(notiType){
+            case GROUP_INVITE:
+                notificationsViewModel.removeGroupInvite(notiID);
+                break;
+            case FRIEND_REQUEST:
+                notificationsViewModel.removeFriendRequest(notiID);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + notificationsListAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
