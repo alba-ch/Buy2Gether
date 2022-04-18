@@ -89,6 +89,7 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onDestroyView() {
+        getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
         super.onDestroyView();
         binding = null;
     }
@@ -192,4 +193,5 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
             }
         }
     }
+
 }
