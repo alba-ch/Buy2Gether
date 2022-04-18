@@ -37,6 +37,13 @@ public class GroupCreationViewModel extends ViewModel {
         return Session.INSTANCE.CreateGroupDB(groupInfo);
     }
 
+    public void SendInvite(String userID, String groupID) {
+        HashMap inviteInfo = new HashMap();
+        inviteInfo.put("UserID",userID);
+        inviteInfo.put("GroupID",groupID);
+
+        Session.INSTANCE.CreateInvite(inviteInfo);
+    }
     public Task<DocumentSnapshot> getUserName(String id){
         return Session.INSTANCE.getUserByID(id);
     }

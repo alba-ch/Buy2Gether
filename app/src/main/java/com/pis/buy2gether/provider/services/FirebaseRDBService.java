@@ -59,4 +59,7 @@ public enum FirebaseRDBService {
         return q.get();
     }
 
+    public void SaveInviteDB(String uuidString, HashMap inviteInfo) {
+        save("Invites",uuidString,inviteInfo);
+    }
 }

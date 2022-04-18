@@ -66,6 +66,11 @@ public enum Session {
         return RDB.getFriends(userID);
     }
 
+    public void CreateInvite(HashMap inviteInfo) {
+        String UUIDString = UUID.randomUUID().toString();
+        RDB.SaveInviteDB(UUIDString,inviteInfo);
+    }
+
     /*public ArrayList<HashMap> getUserAllAddress(String user){
         RDB.get("users",user).addOnCompleteListener(it -> {
             if (it.isSuccessful()) {

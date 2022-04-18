@@ -28,7 +28,7 @@ import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendList
 import static android.content.Context.CLIPBOARD_SERVICE;
 
 
-public class GroupCreationFragment extends Fragment implements View.OnClickListener {
+public class GroupCreationFragment extends Fragment implements View.OnClickListener, FriendListAdapter.ItemClickListener {
     private FriendListAdapter friendListAdapter;
     private GroupCreationViewModel groupCreationViewModel;
     private FragmentGroupCreationBinding binding;
@@ -72,11 +72,16 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         binding.groupPopup.shareDummy.setOnClickListener(this);
         return root;
     }
+    @Override
+    public void onItemClick(View view, int position) {
+        groupCreationViewModel.SendInvite(friendListAdapter.getUserID(position),groupID);
+        Toast.makeText(getActivity(), friendListAdapter.getUserID(position),Toast.LENGTH_SHORT).show();
+    }
 
     private void setList(){
         RecyclerView recyclerView = binding.groupPopup.friendList;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        friendListAdapter = new FriendListAdapter(getContext());
+        friendListAdapter = new FriendListAdapter(getContext(),this);
         recyclerView.setAdapter(friendListAdapter);
         binding.groupPopup.friendList.setAdapter(friendListAdapter);
         Task<QuerySnapshot> task = groupCreationViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
