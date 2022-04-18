@@ -11,18 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private LinkedHashMap<String,String> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public FriendListAdapter(Context context, List<String> data) {
+    public FriendListAdapter(Context context) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        this.mData = new LinkedHashMap<>();
     }
 
     // inflates the row layout from xml when needed
@@ -34,11 +36,15 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        String user = mData.get(position);
+        String user = (String) mData.keySet().toArray()[position];
         holder.myTextView.setText(user);
 
     }
 
+    public void addUser(String userID, String Username){
+        mData.put(Username,userID);
+        notifyItemInserted(mData.size());
+    }
 
     // total number of rows
     @Override
@@ -65,7 +71,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    String getUserID(String id) {
         return mData.get(id);
     }
 

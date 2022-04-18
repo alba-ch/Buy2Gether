@@ -19,8 +19,7 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseRDBService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseRDBService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_share_group.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_share_group.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/share/FriendListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/share/FriendListAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,6 +144,7 @@
       <recent name="com.pis.buy2gether.ui.user" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.pis.buy2gether.usecases.home.home.product_view.group.share" />
       <recent name="com.pis.buy2gether.ui.group.share" />
     </key>
   </component>
@@ -204,7 +204,8 @@
       <workItem from="1649315829431" duration="4142000" />
       <workItem from="1650278801293" duration="4350000" />
       <workItem from="1650283226806" duration="916000" />
-      <workItem from="1650284185862" duration="2859000" />
+      <workItem from="1650284185862" duration="11131000" />
+      <workItem from="1650298087118" duration="1989000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -437,7 +438,21 @@
       <option name="project" value="LOCAL" />
       <updated>1650285010085</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Finished implementing group Creation, fixed a couple of bugs, implemented copy invitation code button">
+      <created>1650287175226</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1650287175226</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Changed registration so that the document name is now the UID, this will facilitate further features">
+      <created>1650296300442</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1650296300442</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,8 +471,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented notifications swiping" />
-    <MESSAGE value="Implemented favorite list" />
     <MESSAGE value="Implemented sharing-popup" />
     <MESSAGE value="Implemented share with friends list" />
     <MESSAGE value="Fixed bug that would cause some fields not to be selectable in the creation fragment after creating grup" />
@@ -481,7 +494,9 @@
     <MESSAGE value="Fixed Notifications and Favorite View top margin" />
     <MESSAGE value="Linked group creation button to Group Creation Fragment" />
     <MESSAGE value="Implemented Group Creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Group Creation" />
+    <MESSAGE value="Finished implementing group Creation, fixed a couple of bugs, implemented copy invitation code button" />
+    <MESSAGE value="Changed registration so that the document name is now the UID, this will facilitate further features" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed registration so that the document name is now the UID, this will facilitate further features" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

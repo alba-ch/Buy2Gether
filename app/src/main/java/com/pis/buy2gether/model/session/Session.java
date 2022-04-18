@@ -55,8 +55,15 @@ public enum Session {
         return RDB.get(coll,doc);
     }
 
+    public Task<DocumentSnapshot> getUserByID(String id){
+        return RDB.getUserByID(id);
+    }
+
     public Task<QuerySnapshot> getAddressesDB(String doc){
         return RDB.getAddresses(doc);
+    }
+    public Task<QuerySnapshot> getFriendsDB(String userID){
+        return RDB.getFriends(userID);
     }
 
     /*public ArrayList<HashMap> getUserAllAddress(String user){

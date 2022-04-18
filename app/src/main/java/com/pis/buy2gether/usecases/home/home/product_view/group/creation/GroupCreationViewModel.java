@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.model.session.Session;
 
 import java.util.HashMap;
@@ -35,8 +37,15 @@ public class GroupCreationViewModel extends ViewModel {
         return Session.INSTANCE.CreateGroupDB(groupInfo);
     }
 
+    public Task<DocumentSnapshot> getUserName(String id){
+        return Session.INSTANCE.getUserByID(id);
+    }
+
+    public Task<QuerySnapshot> getFriends(){
+        return Session.INSTANCE.getFriendsDB(getUser());
+    }
     public String getUser(){
-        return "rugamajimenezvictor@gmail.com";
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
 }

@@ -2,7 +2,8 @@ package com.pis.buy2gether.usecases.home.home.product_view.group.creation;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
-import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,23 +16,27 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentGroupCreationBinding;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
-
-import java.util.ArrayList;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
 
 
 public class GroupCreationFragment extends Fragment implements View.OnClickListener {
-
     private FriendListAdapter friendListAdapter;
     private GroupCreationViewModel groupCreationViewModel;
     private FragmentGroupCreationBinding binding;
 
     private int groupVisibility = 0;
     private String groupID = "";
+    private String defaultMessage = "Acabo de crear un grup de Buy2Gether i m'agradaria que compréssim el producte junts!";
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,46 +53,49 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         binding.groupPopup.otherUsers.setFocusable(true);
         binding.groupPopup.otherUsers.setOnClickListener(this);
 
-        ArrayList<String> items = new ArrayList<>();
-        items.add("Horse");
-        items.add("Cow");
-        items.add("Camel");
-        items.add("Sheep");
-        items.add("Chen");
-        items.add("Tula");
-        items.add("Chica");
-        items.add("Golfo");
-        items.add("Juanjo");
-        items.add("Tumama");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Sheep");
-        items.add("Sheep");
-        items.add("Goat");
-        items.add("Goat");
 
 
         // set up the RecyclerView
-        RecyclerView recyclerView = binding.groupPopup.friendList;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        friendListAdapter = new FriendListAdapter(getContext(), items);
-        recyclerView.setAdapter(friendListAdapter);
-        binding.groupPopup.friendList.setAdapter(friendListAdapter);
+        setList();
+        //recyclerView.setAdapter(friendListAdapter);
+        //binding.groupPopup.friendList.setAdapter(friendListAdapter);
         binding.publicButton.setOnClickListener(this);
         binding.privateButton.setOnClickListener(this);
         binding.hiddenButton.setOnClickListener(this);
         binding.groupPopup.codiImage.setOnClickListener(this);
+        binding.groupPopup.moreinformation.setOnClickListener(this);
+        binding.groupPopup.sharemessages.setOnClickListener(this);
 
         binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
 
 
         binding.groupPopup.shareDummy.setOnClickListener(this);
         return root;
+    }
+
+    private void setList(){
+        RecyclerView recyclerView = binding.groupPopup.friendList;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        friendListAdapter = new FriendListAdapter(getContext());
+        recyclerView.setAdapter(friendListAdapter);
+        binding.groupPopup.friendList.setAdapter(friendListAdapter);
+        Task<QuerySnapshot> task = groupCreationViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    String[] id = documentSnapshot.getData().keySet().toArray(new String[0]);
+                    String friendID = id[0].equals(groupCreationViewModel.getUser()) ? id[1] : id[0];
+                    Task<DocumentSnapshot> task = groupCreationViewModel.getUserName(friendID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                friendListAdapter.addUser(friendID,documentSnapshot.get("username").toString());
+
+                        }
+                    });
+                }
+            }
+        });
+
     }
 
     @Override
@@ -128,10 +136,7 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 String userLimit = binding.usersLimit.getText().toString();
                 String originalPrice = binding.originalPrice.getText().toString();
                 if(!(prodName.isEmpty()) && !(prodLink.isEmpty()) && !(userLimit.isEmpty()) && !(originalPrice.isEmpty()) ){
-
-
                     groupID = groupCreationViewModel.createGroupDB(prodName, prodLink, binding.type.getSelectedItem().toString(),Integer.parseInt(userLimit), Double.parseDouble(originalPrice),groupVisibility,groupCreationViewModel.getUser());
-
                 }else {
                     if(prodName.isEmpty())
                         binding.Name.startAnimation(groupCreationViewModel.shakeError());
@@ -148,6 +153,24 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 ClipData clip = ClipData.newPlainText("GroupCode", groupID);
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(getActivity(),"Codi copiat",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.moreinformation:
+
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, defaultMessage+groupID);
+                startActivity(Intent.createChooser(intent, "Share via"));
+                break;
+            case R.id.sharemessages:
+
+                Intent intentSMS = new Intent();
+                intentSMS.setAction(Intent.ACTION_SENDTO);
+
+                intentSMS.setType("text/plain");
+                intentSMS.setData(Uri.parse("smsto:"));
+                intentSMS.putExtra("sms_body",defaultMessage+groupID);
+                startActivity(intentSMS);
                 break;
             default:
                 break;
