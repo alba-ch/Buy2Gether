@@ -1,6 +1,7 @@
 package com.pis.buy2gether.usecases.home.user.address;
 
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
@@ -46,7 +47,7 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
     TextView popup_num;
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
-        addressViewModel = new ViewModelProvider(this).get(AddressViewModel.class);
+        addressViewModel = new AddressViewModel();
         binding = FragmentAddressBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -67,8 +68,21 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
 
     @Override
     public void onDeleteClick(String address) {
-        addressViewModel.deleteAddressDB(address);
-        setList();
+        deleteWarning(address);
+    }
+
+    private void deleteWarning(String nom){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Segur que vols eliminar aquesta adreça?");
+        builder.setNegativeButton("Cancelar",null);
+        builder.setPositiveButton("Acceptar",new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                addressViewModel.deleteAddressDB(nom);
+                setList();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override

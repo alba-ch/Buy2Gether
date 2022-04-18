@@ -1,6 +1,10 @@
 package com.pis.buy2gether.usecases.home.user.address;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.text.Editable;
+import android.view.View;
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,17 +15,6 @@ import com.pis.buy2gether.model.session.Session;
 import java.util.HashMap;
 
 public class AddressViewModel extends ViewModel {
-
-    private MutableLiveData<String> mText;
-
-    public AddressViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is friends fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
-    }
 
     void saveAddressDB(String nom, String address, String tel, String cp){
         HashMap addressInfo = new HashMap();
