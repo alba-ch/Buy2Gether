@@ -30,12 +30,19 @@ public class AddressViewModel extends ViewModel {
         addressInfo.put("Telephone",tel);
         addressInfo.put("Zip code",cp);
 
+        Session.INSTANCE.saveAddressDB(getUser(),addressInfo);
+    }
+
+    private String getUser(){
         String emailUser = "unknown";
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
             emailUser = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         }
+        return emailUser;
+    }
 
-        Session.INSTANCE.saveAddressDB(emailUser,addressInfo);
+    void deleteAddressDB(String nom){
+        Session.INSTANCE.deleteAddressDB(getUser(),nom);
     }
 
     public HashMap addressInfo(String nom, String address, String tel, String cp){

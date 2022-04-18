@@ -30,6 +30,10 @@ public enum FirebaseRDBService {
         db.collection(collectionPath).document(doc).delete();
     }
 
+    public void deleteAddress(String user, String doc){
+        db.collection("users").document(user).collection("Addresses").document(doc).delete();
+    }
+
     public Task<DocumentSnapshot> get(String collectionPath, String doc){
         return db.collection(collectionPath).document(doc).get();
     }

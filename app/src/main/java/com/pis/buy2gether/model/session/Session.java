@@ -39,6 +39,10 @@ public enum Session {
         RDB.delete(coll,doc);
     }
 
+    public void deleteAddressDB(String user, String doc){
+        RDB.deleteAddress(user,doc);
+    }
+
     public Task<DocumentSnapshot> getDB(String coll, String doc){
         return RDB.get(coll,doc);
     }

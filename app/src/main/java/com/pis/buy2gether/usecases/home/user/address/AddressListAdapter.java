@@ -80,7 +80,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
         public void onClick(View view) {
             switch(view.getId()) {
                 case R.id.btn_delete:
-                    if (mClickListener != null) mClickListener.onDeleteClick(view, mData.get(getAdapterPosition()));
+                    if (mClickListener != null) mClickListener.onDeleteClick(mData.get(getAdapterPosition()).get("Address name").toString());
                     break;
                 case R.id.btn_edit:
                     if (mClickListener != null) mClickListener.onEditClick(view, mData.get(getAdapterPosition()));
@@ -104,7 +104,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onDeleteClick(View view, Map data);
+        void onDeleteClick(String address);
         void onEditClick(View view, Map data);
         void onClick(View view);
     }

@@ -66,9 +66,9 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
     }
 
     @Override
-    public void onDeleteClick(View view, Map data) {
-        Toast.makeText(getActivity(), "DELETE", Toast.LENGTH_SHORT).show();
-        editAddress(view,data);
+    public void onDeleteClick(String address) {
+        addressViewModel.deleteAddressDB(address);
+        setList();
     }
 
     @Override
@@ -126,7 +126,7 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
     public void onClick(View view) {
         boolean process = view.getId() != R.id.shareDummy;
         switch (view.getId()) {
-            case R.id.btn_add: addAddress(); break;
+            case R.id.btn_add: addAddress(); setList(); break;
             case R.id.btn_return:
                 Toast.makeText(getActivity(), "RETURN", Toast.LENGTH_SHORT).show();
                 getParentFragmentManager().beginTransaction().replace(R.id.address, new UserFragment()).commit();
