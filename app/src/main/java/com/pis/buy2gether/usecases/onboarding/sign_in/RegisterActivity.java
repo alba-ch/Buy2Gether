@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
             if(!(email.isEmpty()) && !(psw.isEmpty())){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,psw).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
-                        viewModel.saveUserInfo(email,username,ProviderType.BASIC);
+                        viewModel.saveUserInfo(FirebaseAuth.getInstance().getUid(),email,username,ProviderType.BASIC);
                         viewModel.showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
                         finish();
                     }else{
