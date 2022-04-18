@@ -41,6 +41,7 @@ public class GroupCreationViewModel extends ViewModel {
         HashMap inviteInfo = new HashMap();
         inviteInfo.put("UserID",userID);
         inviteInfo.put("GroupID",groupID);
+        inviteInfo.put("fromUser",getUser());
 
         Session.INSTANCE.CreateInvite(inviteInfo);
     }
