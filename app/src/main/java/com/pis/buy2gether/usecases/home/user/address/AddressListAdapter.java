@@ -4,11 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.usecases.home.user.comanda.HistorialFragment;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -53,6 +55,7 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        ImageButton btn_delete, btn_edit;
         TextView num_address;
         TextView name_address;
         TextView address;
@@ -61,18 +64,31 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
 
         ViewHolder(View itemView) {
             super(itemView);
+            btn_delete = itemView.findViewById(R.id.btn_delete);
+            btn_edit = itemView.findViewById(R.id.btn_edit);
             num_address = itemView.findViewById(R.id.txt_num_address);
             name_address = itemView.findViewById(R.id.txt_name_address);
             address = itemView.findViewById(R.id.txt_address);
             postal_code = itemView.findViewById(R.id.txt_postal_code);
             tel = itemView.findViewById(R.id.txt_tel);
 
-            itemView.setOnClickListener(this);
+            btn_delete.setOnClickListener(this);
+            btn_edit.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            switch(view.getId()) {
+                case R.id.btn_delete:
+                    if (mClickListener != null) mClickListener.onDeleteClick(view, mData.get(getAdapterPosition()));
+                    break;
+                case R.id.btn_edit:
+                    if (mClickListener != null) mClickListener.onEditClick(view, mData.get(getAdapterPosition()));
+                    break;
+                default:
+                    break;
+            }
+
         }
     }
 
@@ -85,10 +101,11 @@ public class AddressListAdapter extends RecyclerView.Adapter<AddressListAdapter.
         mData.remove(viewHolder.getAdapterPosition());
         notifyItemRemoved(viewHolder.getAdapterPosition());
     }
+
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
-
+        void onDeleteClick(View view, Map data);
+        void onEditClick(View view, Map data);
         void onClick(View view);
     }
 }

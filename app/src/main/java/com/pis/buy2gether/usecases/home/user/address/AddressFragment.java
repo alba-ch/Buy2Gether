@@ -2,6 +2,7 @@ package com.pis.buy2gether.usecases.home.user.address;
 
 import android.content.ClipData;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -65,8 +66,54 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
     }
 
     @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked smth " + position, Toast.LENGTH_SHORT).show();
+    public void onDeleteClick(View view, Map data) {
+        Toast.makeText(getActivity(), "DELETE", Toast.LENGTH_SHORT).show();
+        editAddress(view,data);
+    }
+
+    @Override
+    public void onEditClick(View view, Map data) {
+        Toast.makeText(getActivity(), "EDIT", Toast.LENGTH_SHORT).show();
+        editAddress(view,data);
+    }
+
+    private void editAddress(View view, Map data){
+        AlertDialog dialog = setupEditAddressPopup(view, data);
+        btn_save.setOnClickListener(v -> {
+            saveAddress();
+            setList();});
+        btn_cancel.setOnClickListener(v -> {dialog.dismiss();});
+    }
+
+    private AlertDialog setupEditAddressPopup(View view, Map data){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View addressPopupView = getLayoutInflater().inflate(R.layout.alert_dialog_address,null);
+        popup_num = addressPopupView.findViewById(R.id.popup_txt_num);
+        popup_num.setText("Adreça "+1);
+
+        popup_address = addressPopupView.findViewById(R.id.popup_address);
+        popup_address.setText(data.get("Full address").toString());
+
+        popup_name = addressPopupView.findViewById(R.id.popup_name);
+        popup_name.setText(data.get("Address name").toString());
+        popup_name.setEnabled(false);
+        popup_name.setTypeface(null, Typeface.BOLD_ITALIC);
+
+        popup_phone = addressPopupView.findViewById(R.id.popup_phone);
+        popup_phone.setText(data.get("Telephone").toString());
+
+        popup_postalcode = addressPopupView.findViewById(R.id.popup_postalcode);
+        popup_postalcode.setText(data.get("Zip code").toString());
+
+        btn_save = addressPopupView.findViewById(R.id.btn_add_address_dialog);
+        btn_cancel = addressPopupView.findViewById(R.id.btn_cancel_address_dialog);
+
+        builder.setView(addressPopupView);
+        AlertDialog dialog = builder.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        return dialog;
     }
 
     @Override
@@ -134,9 +181,14 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
             @Override
             public void onComplete(@NonNull @NotNull Task task) {
                 addressListAdapter = new AddressListAdapter(getContext(), items);
-                recyclerView.setAdapter(addressListAdapter);
-                binding.addressList.setAdapter(addressListAdapter);
+                setAdapter();
             }
         });
+    }
+
+    private void setAdapter(){
+        recyclerView.setAdapter(addressListAdapter);
+        binding.addressList.setAdapter(addressListAdapter);
+        addressListAdapter.setClickListener(this);
     }
 }
