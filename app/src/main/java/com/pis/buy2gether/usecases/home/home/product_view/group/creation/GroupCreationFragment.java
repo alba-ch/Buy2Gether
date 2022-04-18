@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -13,11 +14,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentGroupCreationBinding;
+import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
 
 import java.util.ArrayList;
+
 
 public class GroupCreationFragment extends Fragment implements View.OnClickListener {
 
@@ -78,12 +82,6 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
 
 
         binding.groupPopup.shareDummy.setOnClickListener(this);
-         groupCreationViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-
-            }
-        });
         return root;
     }
 
@@ -115,6 +113,28 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
                 binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 process = false;
+                break;
+            case R.id.submitButton:
+                String prodName = binding.Name.getText().toString();
+                String prodLink = binding.productLink.getText().toString();
+                String userLimit = binding.usersLimit.getText().toString();
+                String originalPrice = binding.originalPrice.getText().toString();
+                if(!(prodName.isEmpty()) && !(prodLink.isEmpty()) && !(userLimit.isEmpty()) && !(originalPrice.isEmpty()) ){
+
+                    Toast.makeText(getActivity(),prodName+","+prodLink+","+binding.type.getSelectedItem().toString()+","+userLimit+","+originalPrice,Toast.LENGTH_SHORT).show();
+
+                    groupCreationViewModel.createGroupDB(prodName, prodLink, binding.type.getSelectedItem().toString(),Integer.parseInt(userLimit), Double.parseDouble(originalPrice));
+                    
+                }else {
+                    if(binding.Name.toString().isEmpty())
+                        binding.Name.startAnimation(groupCreationViewModel.shakeError());
+                    if(binding.productLink.toString().isEmpty())
+                        binding.productLink.startAnimation(groupCreationViewModel.shakeError());
+                    if(binding.usersLimit.toString().isEmpty())
+                        binding.usersLimit.startAnimation(groupCreationViewModel.shakeError());
+                    if(binding.originalPrice.toString().isEmpty())
+                        binding.originalPrice.startAnimation(groupCreationViewModel.shakeError());
+                }
                 break;
             default:
                 break;

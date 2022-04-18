@@ -34,11 +34,12 @@
     <ImageView android:src="@drawable/link_copy"
                android:id="@+id/linkImage"
                android:scaleType="fitXY"
+               android:background="@color/white"
                android:layout_height="50dp"
-               android:layout_marginStart="235dp"
+               android:layout_marginStart="225dp"
                android:layout_marginTop="120dp"
                android:layout_marginEnd="0dp"
-               android:layout_width="60dp">
+               android:layout_width="50dp">
     </ImageView>
     <TextView android:text="Enllaç d'invitació"
               android:id="@+id/linkInvitacio"

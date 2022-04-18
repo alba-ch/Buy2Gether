@@ -8,6 +8,7 @@ import com.pis.buy2gether.provider.preferences.PreferencesProvider;
 import com.pis.buy2gether.provider.services.FirebaseRDBService;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 /* Class for user data persistence and write/read database info (only user session data)*/
 public enum Session {
@@ -34,7 +35,14 @@ public enum Session {
     public void saveAddressDB(String doc, HashMap data){
         RDB.saveAddress(doc,data);
     }
-
+    public String CreateGroupDB(HashMap data){
+        String UUIDString = UUID.randomUUID().toString();
+        this.SaveGroupDB(UUIDString,data);
+        return UUIDString;
+    }
+    public void SaveGroupDB(String UUIDString, HashMap data){
+        this.saveDB("Groups",UUIDString,data);
+    }
     public void deleteDB(String coll, String doc){
         RDB.delete(coll,doc);
     }

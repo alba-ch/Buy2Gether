@@ -6,6 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="AutoImportSettings">
@@ -13,11 +14,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/link_copy.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/link_copy.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_share_group.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_share_group.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,15 +95,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="android.template.313858937">
       <recent name="com.pis.buy2gether" />
@@ -120,8 +123,8 @@
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/favorites" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\li471\StudioProjects\Buy2Gether-Def\app\src\main\res\font" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="C:\Users\li471\StudioProjects\Buy2Gether-Def\app\src\main\res\font" />
       <recent name="$PROJECT_DIR$/app/src/main/res" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui" />
@@ -199,7 +202,9 @@
       <workItem from="1649237988410" duration="22827000" />
       <workItem from="1649281218099" duration="181000" />
       <workItem from="1649315829431" duration="4142000" />
-      <workItem from="1650278801293" duration="2902000" />
+      <workItem from="1650278801293" duration="4350000" />
+      <workItem from="1650283226806" duration="916000" />
+      <workItem from="1650284185862" duration="780000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -418,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650279946041</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Linked group creation button to Group Creation Fragment">
+      <created>1650281797818</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1650281797818</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,7 +449,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Finished implementing group creation" />
     <MESSAGE value="Changed notification items UI" />
     <MESSAGE value="Implemented notifications swiping" />
     <MESSAGE value="Implemented favorite list" />
@@ -462,7 +473,8 @@
     <MESSAGE value="Add product_view valoraciones recycle view" />
     <MESSAGE value="Restructure project and change home view tabs." />
     <MESSAGE value="Fixed Notifications and Favorite View top margin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed Notifications and Favorite View top margin" />
+    <MESSAGE value="Linked group creation button to Group Creation Fragment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Linked group creation button to Group Creation Fragment" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

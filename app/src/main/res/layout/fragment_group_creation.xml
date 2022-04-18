@@ -133,6 +133,7 @@
             app:strokeWidth="2dp"
             app:backgroundTint="@android:color/transparent"
             android:text="@string/crear_grup"
+
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/submitButton"
@@ -140,10 +141,9 @@
             android:layout_marginTop="43dp"/>
 
     <include
-        android:id="@+id/group_popup"
-        layout="@layout/fragment_share_group"
-        android:layout_width="290dp"
-        android:layout_height="275dp"
-        android:layout_centerInParent="true"
-        android:visibility="invisible" />
+            android:id="@+id/group_popup"
+            layout="@layout/fragment_share_group"
+            android:layout_width="290dp"
+            android:layout_height="275dp"
+            android:visibility="invisible" android:layout_centerInParent="true"/>
 </RelativeLayout>
