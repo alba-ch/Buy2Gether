@@ -98,7 +98,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     Task<DocumentSnapshot> task = notificationsViewModel.getGroup((String)documentSnapshot.get("GroupID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot1) {
-                                Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String) documentSnapshot.getData().get("fromID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String) documentSnapshot.getData().get("fromUser")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot2) {
                                     notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.GROUP_INVITE,documentSnapshot.getId(),(String)documentSnapshot2.get("username"),(String)documentSnapshot1.get("Product Name"),documentSnapshot1.getId());
