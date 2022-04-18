@@ -112,9 +112,11 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         this.mClickListener = itemClickListener;
     }
 
-    public void swipe(ViewHolder viewHolder) {
-        fromUserName.remove(viewHolder.getAdapterPosition());
-        notifyItemRemoved(viewHolder.getAdapterPosition());
+    public void swipe(String notiID, int adapterPosition) {
+        fromUserName.remove(notiID);
+        fromUserName.remove(notiID);
+        fromUserName.remove(notiID);
+        notifyItemRemoved(adapterPosition);
     }
 
 

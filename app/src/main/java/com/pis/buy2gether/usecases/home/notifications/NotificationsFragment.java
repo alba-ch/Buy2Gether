@@ -63,7 +63,6 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                notificationsListAdapter.swipe((NotificationsListAdapter.ViewHolder) viewHolder);
                 switch(swipeDir){
                     case ItemTouchHelper.LEFT:
                         denyNoti(notificationsListAdapter.getNotiType(viewHolder.getAdapterPosition()), notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()));
@@ -74,6 +73,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     default:
                         break;
                 }
+                notificationsListAdapter.swipe(notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -127,6 +127,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
         }
     }
     private void denyNoti(NotificationsListAdapter.notiType notiType, String notiID) {
+        Toast.makeText(getContext(), "denying noti" + notiID, Toast.LENGTH_SHORT).show();
         switch(notiType){
             case GROUP_INVITE:
                 notificationsViewModel.removeGroupInvite(notiID);

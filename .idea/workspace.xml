@@ -16,6 +16,8 @@
     <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsViewModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +206,7 @@
       <workItem from="1650298087118" duration="4970000" />
       <workItem from="1650303163681" duration="866000" />
       <workItem from="1650304099572" duration="897000" />
-      <workItem from="1650305011424" duration="833000" />
+      <workItem from="1650305011424" duration="1276000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -486,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650305769725</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Fixed bug that would cause the app to crash when loading groups">
+      <created>1650305859278</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1650305859278</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -505,7 +514,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="New version of the Splash Screen.&#10;Adapting and implementing the product view to the current project." />
     <MESSAGE value="Refactoring Log In" />
     <MESSAGE value="Add animations to Log In" />
     <MESSAGE value="Refactoring Sign in and add listeners" />
@@ -530,7 +538,8 @@
     <MESSAGE value="Implemented Group Invites" />
     <MESSAGE value="Implemented Friend Requests and Group Invites" />
     <MESSAGE value="Implemented Notifications" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Notifications" />
+    <MESSAGE value="Fixed bug that would cause the app to crash when loading groups" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug that would cause the app to crash when loading groups" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

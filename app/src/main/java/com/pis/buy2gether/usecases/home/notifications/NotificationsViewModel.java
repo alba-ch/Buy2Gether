@@ -32,10 +32,10 @@ public class NotificationsViewModel extends ViewModel {
     }
 
     public void joinGroup(String user, String extraID) {
-        HashMap<String,String> friendShip = new HashMap<>();
-        friendShip.put("UserID",user);
-        friendShip.put("GroupID",extraID);
-        Session.INSTANCE.joinGroup(friendShip);
+        HashMap<String,String> membership = new HashMap<>();
+        membership.put("UserID",user);
+        membership.put("GroupID",extraID);
+        Session.INSTANCE.joinGroup(membership);
     }
 
     public Task<DocumentSnapshot> getGroup(String id) {
