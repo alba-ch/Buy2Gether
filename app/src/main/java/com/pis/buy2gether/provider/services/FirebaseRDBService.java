@@ -12,6 +12,7 @@ import java.util.HashMap;
 public enum FirebaseRDBService {
     INSTANCE;
 
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public void save(String collectionPath, String doc, HashMap data){
@@ -24,6 +25,11 @@ public enum FirebaseRDBService {
 
     public void saveAddress(String doc, HashMap data){
         db.collection("users").document(doc).collection("Addresses").document(data.get("Address name").toString()).set(data);
+    }
+
+
+    public void saveGroup(String doc, HashMap data){
+        db.collection("Groups");
     }
 
     public void delete(String collectionPath, String doc){

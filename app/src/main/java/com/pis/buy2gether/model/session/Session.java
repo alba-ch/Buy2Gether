@@ -41,7 +41,7 @@ public enum Session {
         return UUIDString;
     }
     public void SaveGroupDB(String UUIDString, HashMap data){
-        this.saveDB("Groups",UUIDString,data);
+        RDB.saveGroup(UUIDString,data);
     }
     public void deleteDB(String coll, String doc){
         RDB.delete(coll,doc);

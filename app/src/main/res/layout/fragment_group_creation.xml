@@ -105,15 +105,15 @@
         android:textColor="#000000" />
 
     <Button
-        android:id="@+id/hiddenButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/originalPrice"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="69dp"
-        android:background="#00FFFFFF"
-        android:text="@string/ocult"
-        android:textColor="#000000" />
+            android:id="@+id/hiddenButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/originalPrice"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="69dp"
+            android:background="#00FFFFFF"
+            android:text="@string/ocult"
+            android:textColor="#000000"/>
 
     <Button
         android:id="@+id/publicButton"

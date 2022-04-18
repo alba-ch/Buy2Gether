@@ -22,15 +22,21 @@ public class GroupCreationViewModel extends ViewModel {
         return shake;
     }
 
-    public String createGroupDB(String productName, String productURL, String type, int userLimit, double originalPrice){
+    public String createGroupDB(String productName, String productURL, String type, int userLimit, double originalPrice, int groupVisibility, String adminUser){
         HashMap groupInfo = new HashMap();
         groupInfo.put("Product Name",productName);
         groupInfo.put("Product URL",productURL);
         groupInfo.put("Type",type);
         groupInfo.put("User Limit",userLimit);
         groupInfo.put("Original Price",originalPrice);
+        groupInfo.put("Group Visibility",groupVisibility);
+        groupInfo.put("Admin User",adminUser);
 
         return Session.INSTANCE.CreateGroupDB(groupInfo);
+    }
+
+    public String getUser(){
+        return "rugamajimenezvictor@gmail.com";
     }
 
 }

@@ -15,7 +15,7 @@
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:id="@+id/shareDummy" android:clickable="true"
                     android:focusable="true"/>
-    <EditText android:text="https://ChenDameTuCo.site"
+    <EditText android:text=""
               android:id="@+id/linkText"
               android:layout_width="match_parent"
               android:layout_height="30dp"
@@ -32,7 +32,7 @@
               android:inputType="none"/>
 
     <ImageView android:src="@drawable/link_copy"
-               android:id="@+id/linkImage"
+               android:id="@+id/codi_image"
                android:scaleType="fitXY"
                android:background="@color/white"
                android:layout_height="50dp"
@@ -41,8 +41,8 @@
                android:layout_marginEnd="0dp"
                android:layout_width="50dp">
     </ImageView>
-    <TextView android:text="Enllaç d'invitació"
-              android:id="@+id/linkInvitacio"
+    <TextView android:text="Codi d'invitació"
+              android:id="@+id/codi_invitacio"
               android:layout_width="wrap_content"
               android:textSize="17dp"
               android:layout_marginStart="30dp"

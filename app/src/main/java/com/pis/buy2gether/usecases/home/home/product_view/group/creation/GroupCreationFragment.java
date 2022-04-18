@@ -1,5 +1,8 @@
 package com.pis.buy2gether.usecases.home.home.product_view.group.creation;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,20 +10,18 @@ import android.view.ViewGroup;
 
 import android.widget.Toast;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentGroupCreationBinding;
-import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
 
 import java.util.ArrayList;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
 
 
 public class GroupCreationFragment extends Fragment implements View.OnClickListener {
@@ -28,6 +29,9 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
     private FriendListAdapter friendListAdapter;
     private GroupCreationViewModel groupCreationViewModel;
     private FragmentGroupCreationBinding binding;
+
+    private int groupVisibility = 0;
+    private String groupID = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +81,7 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         binding.publicButton.setOnClickListener(this);
         binding.privateButton.setOnClickListener(this);
         binding.hiddenButton.setOnClickListener(this);
+        binding.groupPopup.codiImage.setOnClickListener(this);
 
         binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
 
@@ -100,41 +105,49 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
                 binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                groupVisibility = 0;
                 process = false;
                 break;
             case R.id.hiddenButton:
                 binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
                 binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                groupVisibility = 1;
                 process = false;
                 break;
             case R.id.publicButton:
                 binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
                 binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                groupVisibility = 2;
                 process = false;
                 break;
             case R.id.submitButton:
                 String prodName = binding.Name.getText().toString();
-                String prodLink = binding.productLink.getText().toString();
+                String prodLink = binding.link.getText().toString();
                 String userLimit = binding.usersLimit.getText().toString();
                 String originalPrice = binding.originalPrice.getText().toString();
                 if(!(prodName.isEmpty()) && !(prodLink.isEmpty()) && !(userLimit.isEmpty()) && !(originalPrice.isEmpty()) ){
 
-                    Toast.makeText(getActivity(),prodName+","+prodLink+","+binding.type.getSelectedItem().toString()+","+userLimit+","+originalPrice,Toast.LENGTH_SHORT).show();
 
-                    groupCreationViewModel.createGroupDB(prodName, prodLink, binding.type.getSelectedItem().toString(),Integer.parseInt(userLimit), Double.parseDouble(originalPrice));
-                    
+                    groupID = groupCreationViewModel.createGroupDB(prodName, prodLink, binding.type.getSelectedItem().toString(),Integer.parseInt(userLimit), Double.parseDouble(originalPrice),groupVisibility,groupCreationViewModel.getUser());
+
                 }else {
-                    if(binding.Name.toString().isEmpty())
+                    if(prodName.isEmpty())
                         binding.Name.startAnimation(groupCreationViewModel.shakeError());
-                    if(binding.productLink.toString().isEmpty())
-                        binding.productLink.startAnimation(groupCreationViewModel.shakeError());
-                    if(binding.usersLimit.toString().isEmpty())
+                    if(prodLink.isEmpty())
+                        binding.link.startAnimation(groupCreationViewModel.shakeError());
+                    if(userLimit.isEmpty())
                         binding.usersLimit.startAnimation(groupCreationViewModel.shakeError());
-                    if(binding.originalPrice.toString().isEmpty())
+                    if(originalPrice.isEmpty())
                         binding.originalPrice.startAnimation(groupCreationViewModel.shakeError());
                 }
+                break;
+            case R.id.codi_image:
+                ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("GroupCode", groupID);
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(getActivity(),"Codi copiat",Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
@@ -146,10 +159,10 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
 
                 binding.groupPopup.sharemessages.setClickable(false);
                 binding.groupPopup.sharemessages.setFocusable(false);
-                binding.groupPopup.linkImage.setClickable(false);
-                binding.groupPopup.linkImage.setFocusable(false);
-                binding.groupPopup.linkInvitacio.setClickable(false);
-                binding.groupPopup.linkInvitacio.setFocusable(false);
+                binding.groupPopup.codiImage.setClickable(false);
+                binding.groupPopup.codiImage.setFocusable(false);
+                binding.groupPopup.codiInvitacio.setClickable(false);
+                binding.groupPopup.codiInvitacio.setFocusable(false);
                 binding.groupPopup.linkText.setClickable(false);
                 binding.groupPopup.linkText.setFocusable(false);
                 binding.groupPopup.moreinformation.setClickable(false);
@@ -161,12 +174,12 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 binding.groupPopup.shareDummy.setFocusable(false);
                 binding.groupPopup.getRoot().setVisibility(View.INVISIBLE);
             } else if (view.getId() == binding.groupPopup.otherUsers.getId()) {
-                binding.groupPopup.linkImage.setVisibility(View.INVISIBLE);
-                binding.groupPopup.linkImage.setClickable(false);
-                binding.groupPopup.linkImage.setFocusable(false);
-                binding.groupPopup.linkInvitacio.setVisibility(View.INVISIBLE);
-                binding.groupPopup.linkInvitacio.setClickable(false);
-                binding.groupPopup.linkInvitacio.setFocusable(false);
+                binding.groupPopup.codiImage.setVisibility(View.INVISIBLE);
+                binding.groupPopup.codiImage.setClickable(false);
+                binding.groupPopup.codiImage.setFocusable(false);
+                binding.groupPopup.codiInvitacio.setVisibility(View.INVISIBLE);
+                binding.groupPopup.codiInvitacio.setClickable(false);
+                binding.groupPopup.codiInvitacio.setFocusable(false);
                 binding.groupPopup.linkText.setVisibility(View.INVISIBLE);
                 binding.groupPopup.linkText.setClickable(false);
                 binding.groupPopup.linkText.setFocusable(false);
@@ -182,7 +195,7 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 binding.groupPopup.friendList.setVisibility(View.VISIBLE);
                 binding.groupPopup.friendList.setFocusable(true);
                 binding.groupPopup.friendList.setClickable(true);
-            } else {
+            } else if (!groupID.isEmpty()){
                 binding.groupPopup.shareDummy.setClickable(true);
                 binding.groupPopup.shareDummy.setFocusable(true);
 
@@ -193,12 +206,13 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 binding.groupPopup.sharemessages.setVisibility(View.VISIBLE);
                 binding.groupPopup.sharemessages.setClickable(true);
                 binding.groupPopup.sharemessages.setFocusable(true);
-                binding.groupPopup.linkImage.setVisibility(View.VISIBLE);
-                binding.groupPopup.linkImage.setClickable(true);
-                binding.groupPopup.linkImage.setFocusable(true);
-                binding.groupPopup.linkInvitacio.setVisibility(View.VISIBLE);
-                binding.groupPopup.linkInvitacio.setClickable(true);
-                binding.groupPopup.linkInvitacio.setFocusable(true);
+                binding.groupPopup.codiImage.setVisibility(View.VISIBLE);
+                binding.groupPopup.codiImage.setClickable(true);
+                binding.groupPopup.codiImage.setFocusable(true);
+                binding.groupPopup.codiInvitacio.setVisibility(View.VISIBLE);
+                binding.groupPopup.codiInvitacio.setClickable(true);
+                binding.groupPopup.codiInvitacio.setFocusable(true);
+                binding.groupPopup.linkText.setText(groupID);
                 binding.groupPopup.linkText.setVisibility(View.VISIBLE);
                 binding.groupPopup.linkText.setClickable(true);
                 binding.groupPopup.linkText.setFocusable(true);
