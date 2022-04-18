@@ -44,19 +44,20 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="580dp"
+                app:layout_constraintBottom_toBottomOf="@+id/titulo"
+                android:layout_marginTop="100dp"
+                android:layout_height="match_parent"
                 android:background="@drawable/corners_shape"
                 app:layout_constraintVertical_bias="1"
 
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/notifications_list"
                         android:layout_width="match_parent"
-                        android:layout_height="570dp"
+                        android:layout_height="match_parent"
                         android:fadingEdge="horizontal"
                         android:fadingEdgeLength="70dp"
                         android:fillViewport="false"
