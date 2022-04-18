@@ -3,7 +3,10 @@ package com.pis.buy2gether.usecases.home.notifications;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.model.session.Session;
 
 import java.util.HashMap;
@@ -33,5 +36,20 @@ public class NotificationsViewModel extends ViewModel {
         friendShip.put("UserID",user);
         friendShip.put("GroupID",extraID);
         Session.INSTANCE.joinGroup(friendShip);
+    }
+
+    public Task<DocumentSnapshot> getGroup(String id) {
+        return Session.INSTANCE.getGroup(id);
+    }
+
+    public Task<DocumentSnapshot> getUserName(String id) {
+        return Session.INSTANCE.getUserByID(id);
+    }
+
+    public Task<QuerySnapshot> getFriendRequests() {
+        return Session.INSTANCE.getFriendRequests(getUser());
+    }
+    public Task<QuerySnapshot> getGroupInvites() {
+        return Session.INSTANCE.getGroupInvites(getUser());
     }
 }

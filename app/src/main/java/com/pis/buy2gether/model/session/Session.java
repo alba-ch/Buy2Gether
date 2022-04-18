@@ -63,6 +63,9 @@ public enum Session {
     public Task<DocumentSnapshot> getUserByID(String id){
         return RDB.getUserByID(id);
     }
+    public Task<DocumentSnapshot> getGroup(String id){
+        return RDB.getGroup(id);
+    }
 
     public Task<QuerySnapshot> getAddressesDB(String doc){
         return RDB.getAddresses(doc);
@@ -85,6 +88,14 @@ public enum Session {
     public void joinGroup(HashMap<String, String> membership) {
         String UUIDString = UUID.randomUUID().toString();
         RDB.joinGroup(UUIDString,membership);
+    }
+
+    public Task<QuerySnapshot> getFriendRequests(String user) {
+        return RDB.getFriendRequests(user);
+    }
+
+    public Task<QuerySnapshot> getGroupInvites(String user) {
+        return RDB.getGroupInvites(user);
     }
 
     /*public ArrayList<HashMap> getUserAllAddress(String user){

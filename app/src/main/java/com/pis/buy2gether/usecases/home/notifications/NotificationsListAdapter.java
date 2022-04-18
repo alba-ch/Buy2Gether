@@ -9,18 +9,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public class NotificationsListAdapter extends RecyclerView.Adapter<NotificationsListAdapter.ViewHolder> {
 
 
     enum notiType {FRIEND_REQUEST,GROUP_INVITE,PURCHASE_REVIEW}
-    private LinkedHashMap<String,String> mData;
-    private LinkedHashMap<String,String> info;
+    private LinkedHashMap<String,String> fromUserName;
+    private LinkedHashMap<String,String> groupName;
+    private LinkedHashMap<String,String> specialID;
     private LinkedHashMap<String,notiType> mType;
 
     private LayoutInflater mInflater;
@@ -29,8 +28,10 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     // data is passed into the constructor
     NotificationsListAdapter(Context context, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = new LinkedHashMap<>();
+        this.fromUserName = new LinkedHashMap<>();
         this.mType = new LinkedHashMap<>();
+        this.groupName = new LinkedHashMap<>();
+        this.specialID = new LinkedHashMap<>();
         this.mClickListener = itemClickListener;
     }
 
@@ -43,14 +44,14 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        String id = (String) mData.keySet().toArray()[position];
+        String id = (String) fromUserName.keySet().toArray()[position];
 
         switch (mType.get(id)){
             case GROUP_INVITE:
-                holder.myTextView.setText(mData.get(id) + " has invited you to group: " + info.get(id));
+                holder.myTextView.setText(fromUserName.get(id) + " has invited you to group: " + groupName.get(id));
                 break;
             case FRIEND_REQUEST:
-                holder.myTextView.setText(mData.get(id) + " has requested to be your friend");
+                holder.myTextView.setText(fromUserName.get(id) + " has requested to be your friend");
                 break;
             default:
                 break;
@@ -61,21 +62,23 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     }
 
 
-    public void addNotification(notiType type, String id, String fromUser, String information){
+    public void addNotification(notiType type, String id, String fromUser, String information, String specialIDStr){
 
-        mData.put(id,fromUser);
+        fromUserName.put(id,fromUser);
 
-        info.put(id,information);
+        groupName.put(id,information);
+        specialID.put(id,specialIDStr);
+
 
         mType.put(id,type);
 
-        notifyItemInserted(mData.size());
+        notifyItemInserted(fromUserName.size());
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return fromUserName.size();
     }
 
 
@@ -101,7 +104,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return mData.get(id);
+        return fromUserName.get(id);
     }
 
     // allows clicks events to be caught
@@ -110,14 +113,14 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     }
 
     public void swipe(ViewHolder viewHolder) {
-        mData.remove(viewHolder.getAdapterPosition());
+        fromUserName.remove(viewHolder.getAdapterPosition());
         notifyItemRemoved(viewHolder.getAdapterPosition());
     }
 
 
     public String getExtraID(int adapterPosition) {
 
-        return (String) info.values().toArray()[adapterPosition];
+        return (String) specialID.values().toArray()[adapterPosition];
     }
 
     public notiType getNotiType(int position) {

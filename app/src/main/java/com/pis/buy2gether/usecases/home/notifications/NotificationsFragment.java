@@ -13,10 +13,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.databinding.FragmentNotificationsBinding;
+import com.pis.buy2gether.usecases.home.user.address.AddressListAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NotificationsFragment extends Fragment implements NotificationsListAdapter.ItemClickListener {
 
@@ -31,11 +40,13 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        ArrayList<String> items = new ArrayList<>();
-        items.add("Horse");
+        setList();
 
 
+        return root;
+    }
+
+    private void setList(){
         // set up the RecyclerView
         RecyclerView recyclerView = binding.notificationsList;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -66,10 +77,41 @@ public class NotificationsFragment extends Fragment implements NotificationsList
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
-       
-        return root;
-    }
 
+        Task task = notificationsViewModel.getFriendRequests().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String)documentSnapshot.get("fromID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot1) {
+                                notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
+                        }
+                    });
+                }
+            }
+        });
+        task = notificationsViewModel.getGroupInvites().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    Task<DocumentSnapshot> task = notificationsViewModel.getGroup((String)documentSnapshot.get("GroupID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot1) {
+                                Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String) documentSnapshot.getData().get("fromID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot2) {
+                                    notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.GROUP_INVITE,documentSnapshot.getId(),(String)documentSnapshot2.get("username"),(String)documentSnapshot1.get("Product Name"),documentSnapshot1.getId());
+                                }
+                            });
+
+                        }
+                    });
+
+                }
+            }
+        });
+    }
     private void acceptNoti(NotificationsListAdapter.notiType notiType, String notiID, String extraID) {
         switch(notiType){
             case GROUP_INVITE:

@@ -205,7 +205,10 @@
       <workItem from="1650278801293" duration="4350000" />
       <workItem from="1650283226806" duration="916000" />
       <workItem from="1650284185862" duration="11131000" />
-      <workItem from="1650298087118" duration="4934000" />
+      <workItem from="1650298087118" duration="4970000" />
+      <workItem from="1650303163681" duration="866000" />
+      <workItem from="1650304099572" duration="897000" />
+      <workItem from="1650305011424" duration="430000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -466,7 +469,14 @@
       <option name="project" value="LOCAL" />
       <updated>1650301018486</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Implemented Friend Requests and Group Invites">
+      <created>1650303058149</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1650303058149</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,7 +495,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fixed bug that would cause some fields not to be selectable in the creation fragment after creating grup" />
     <MESSAGE value="Added product type dropdown list elements" />
     <MESSAGE value="New version of the Splash Screen.&#10;Adapting and implementing the product view to the current project." />
     <MESSAGE value="Refactoring Log In" />
@@ -510,7 +519,8 @@
     <MESSAGE value="Changed registration so that the document name is now the UID, this will facilitate further features" />
     <MESSAGE value="Implemented friend list invite" />
     <MESSAGE value="Implemented Group Invites" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Group Invites" />
+    <MESSAGE value="Implemented Friend Requests and Group Invites" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Friend Requests and Group Invites" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

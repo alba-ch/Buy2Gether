@@ -50,6 +50,10 @@ public enum FirebaseRDBService {
         return db.collection("users").document(id).get();
     }
 
+    public Task<DocumentSnapshot> getGroup(String id){
+        return db.collection("Groups").document(id).get();
+    }
+
     public Task<QuerySnapshot> getFriends(String userID){
         Query q = db.collection("Friendships").whereNotEqualTo(userID,null);
         return q.get();
@@ -69,5 +73,15 @@ public enum FirebaseRDBService {
 
     public void joinGroup(String uuidString, HashMap<String, String> membership) {
         save("Memberships",uuidString,membership);
+    }
+
+    public Task<QuerySnapshot> getFriendRequests(String user) {
+        Query q = db.collection("Requests").whereEqualTo("toID",user);
+        return q.get();
+    }
+
+    public Task<QuerySnapshot> getGroupInvites(String user) {
+        Query q = db.collection("Invites").whereEqualTo("UserID",user);
+        return q.get();
     }
 }
