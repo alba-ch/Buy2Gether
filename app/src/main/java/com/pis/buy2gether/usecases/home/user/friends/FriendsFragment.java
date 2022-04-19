@@ -15,17 +15,27 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentFriendsBinding;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
+import com.pis.buy2gether.usecases.home.user.address.AddressListAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class FriendsFragment extends Fragment implements FriendsListAdapter.ItemClickListener {
 
     private FriendsViewModel friendsViewModel;
     private FriendsListAdapter friendsListAdapter;
+    private RecyclerView recyclerView;
     private FragmentFriendsBinding binding;
     private ArrayList<ClipData.Item> list;
 
@@ -50,56 +60,9 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
 
         binding.btnReturn.setOnClickListener(this::onClick);
 
-        ArrayList<String> items = new ArrayList<>();
-        items.add("Horse");
-        items.add("Cow");
-        items.add("Camel");
-        items.add("Sheep");
-        items.add("Chen");
-        items.add("Tula");
-        items.add("Chica");
-        items.add("Golfo");
-        items.add("Juanjo");
-        items.add("Tupapa");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Sheep");
-        items.add("Sheep");
-        items.add("Goat");
-        items.add("Goat");
-
         // set up the RecyclerView
-        RecyclerView recyclerView = binding.friendsList;
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        friendsListAdapter = new FriendsListAdapter(getContext(), items);
-        recyclerView.setAdapter(friendsListAdapter);
-        friendsListAdapter.setClickListener(this);
-        binding.friendsList.setAdapter(friendsListAdapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
-                friendsListAdapter.swipe((FriendsListAdapter.ViewHolder) viewHolder);
-            }
-        });
-        itemTouchHelper.attachToRecyclerView(recyclerView);
-        friendsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                // data to populate the RecyclerView with
-            }
-
-        });
+        setList();
 
         return root;
     }
@@ -126,5 +89,31 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
             default:
                 break;
         }
+    }
+
+    private void setList(){
+        recyclerView = binding.friendsList;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        friendsListAdapter = new FriendsListAdapter(getContext(),this);
+        recyclerView.setAdapter(friendsListAdapter);
+        binding.friendsList.setAdapter(friendsListAdapter);
+        friendsListAdapter.setClickListener(this);
+
+        Task task = friendsViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    String[] id = documentSnapshot.getData().keySet().toArray(new String[0]);
+                    String friendID = id[0].equals(friendsViewModel.getUserID()) ? id[1] : id[0];
+                    Task<DocumentSnapshot> task = friendsViewModel.getUserName(friendID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                            friendsListAdapter.addFriend(friendID,documentSnapshot.get("username").toString());
+
+                        }
+                    });
+                }
+            }
+        });
     }
 }

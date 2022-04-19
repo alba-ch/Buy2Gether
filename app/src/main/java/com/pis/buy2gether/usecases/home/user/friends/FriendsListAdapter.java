@@ -15,19 +15,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private LinkedHashMap<String,String> usernameFriend;
+    private LinkedHashMap<String,String> pfpFriend;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     int row_idx = -1;
 
     // data is passed into the constructor
-    FriendsListAdapter(Context context, List<String> data) {
+    FriendsListAdapter(Context context, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        this.usernameFriend = new LinkedHashMap<>();
+        this.pfpFriend = new LinkedHashMap<>();
+        this.mClickListener = itemClickListener;
     }
 
     // inflates the row layout from xml when needed
@@ -39,18 +44,24 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        String user = mData.get(position);
-        holder.myTextView.setText(user);
+        String id = (String) usernameFriend.keySet().toArray()[position];
+
+        holder.myTextView.setText(usernameFriend.get(id));
+        // Modifiquem la foto de perfil (per implementar)
+
         //holder.acceptButton.setVisibility(View.INVISIBLE);
         holder.selectButton.setVisibility(View.VISIBLE);
-
     }
 
+    public void addFriend(String id, String friendName){
+        usernameFriend.put(id,friendName);
+        notifyItemInserted(usernameFriend.size());
+    }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return usernameFriend.size();
     }
 
 
@@ -90,7 +101,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return mData.get(id);
+        return usernameFriend.get(id);
     }
 
     // allows clicks events to be caught
@@ -98,14 +109,13 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         this.mClickListener = itemClickListener;
     }
 
-    public void swipe(ViewHolder viewHolder) {
-        mData.remove(viewHolder.getAdapterPosition());
+    /*public void swipe(ViewHolder viewHolder) {
+        usernameFriend.remove(viewHolder.getAdapterPosition());
         notifyItemRemoved(viewHolder.getAdapterPosition());
-    }
+    }*/
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
-
         void onClick(View view);
     }
 }
