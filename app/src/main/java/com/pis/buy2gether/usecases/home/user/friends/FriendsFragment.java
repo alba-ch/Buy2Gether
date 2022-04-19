@@ -51,7 +51,6 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
 
     //ImageButton btn_return;
     ImageButton btn_amics,btn_settings,btn_lan,btn_return;
-    Button btn_delete;
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         friendsViewModel = new ViewModelProvider(this).get(FriendsViewModel.class);
@@ -66,7 +65,6 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         //setupUserInfo(view);
 
         btn_amics = view.findViewById(R.id.btn_amics);
-        btn_delete= view.findViewById(R.id.btn_delete);
         btn_return = view.findViewById(R.id.btn_return);
         btn_settings = view.findViewById(R.id.btn_settings);
         btn_lan = view.findViewById(R.id.btn_lan);
@@ -97,7 +95,6 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
 
     @Override
     public void onItemClick(View view, String friendshipID) {
-        btn_delete.setVisibility(View.VISIBLE);
         friendsViewModel.deleteFriend(friendshipID);
         setList();
     }

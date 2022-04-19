@@ -122,8 +122,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
             Session.INSTANCE.getUserByID(currentUser).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    username.setText(documentSnapshot.get("username").toString());
-                    description.setText(documentSnapshot.get("email").toString());
+                    //if(documentSnapshot.get("username").toString() != null) username.setText(documentSnapshot.get("username").toString());
+                    //description.setText(documentSnapshot.get("email").toString());
                 }
             });
         }
