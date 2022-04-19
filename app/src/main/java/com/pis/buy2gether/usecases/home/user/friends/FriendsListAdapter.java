@@ -53,8 +53,8 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         holder.selectButton.setVisibility(View.VISIBLE);
     }
 
-    public void addFriend(String id, String friendName){
-        usernameFriend.put(id,friendName);
+    public void addFriend(String friendshipID, String friendID, String friendName){
+        usernameFriend.put(friendshipID,friendName);
         notifyItemInserted(usernameFriend.size());
     }
 
@@ -74,6 +74,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             super(itemView);
             myTextView = itemView.findViewById(R.id.name);
             selectButton = itemView.findViewById(R.id.friend_SEL);
+            selectButton.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
@@ -95,7 +96,9 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
                 }
             }
 
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            if(view.getId() == R.id.friend_SEL){
+                if (mClickListener != null) mClickListener.onItemClick(view, (String) usernameFriend.keySet().toArray()[getAdapterPosition()]);
+            }
         }
     }
 
@@ -115,7 +118,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     }*/
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, String friendshipID);
         void onClick(View view);
     }
 }

@@ -52,6 +52,9 @@ public enum Session {
     public void deleteFriendRequest(String id){
         RDB.delete("Requests",id);
     }
+    public void deleteFriend(String id){
+        RDB.delete("Friendships",id);
+    }
     public void deleteAddressDB(String user, String doc){
         RDB.deleteAddress(user,doc);
     }

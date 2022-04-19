@@ -1,11 +1,14 @@
 package com.pis.buy2gether.usecases.home.user.friends;
 
 import android.content.ClipData;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +27,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentFriendsBinding;
+import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
 import com.pis.buy2gether.usecases.home.user.address.AddressListAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -39,11 +44,11 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
     private FragmentFriendsBinding binding;
     private ArrayList<ClipData.Item> list;
 
+    TextView username,description;
+
     //ImageButton btn_return;
-    ImageButton btn_amics;
-    ImageButton btn_settings;
-    ImageButton btn_lan;
-    ImageButton btn_return;
+    ImageButton btn_amics,btn_settings,btn_lan,btn_return;
+    Button btn_delete;
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
         friendsViewModel = new ViewModelProvider(this).get(FriendsViewModel.class);
@@ -52,24 +57,44 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         View root = binding.getRoot();
 
         View view = inflater.inflate(R.layout.fragment_friends,container,false);
+
+        username = view.findViewById(R.id.txt_user);
+        description = view.findViewById(R.id.txt_desc);
+        //setupUserInfo(view);
+
         btn_amics = view.findViewById(R.id.btn_amics);
+        btn_delete= view.findViewById(R.id.btn_delete);
         btn_return = view.findViewById(R.id.btn_return);
         btn_settings = view.findViewById(R.id.btn_settings);
         btn_lan = view.findViewById(R.id.btn_lan);
 
-
         binding.btnReturn.setOnClickListener(this::onClick);
 
         // set up the RecyclerView
-
         setList();
 
         return root;
     }
 
+    /*private void setupUserInfo(View view){
+        String provider = Session.INSTANCE.getDataSession(getContext(),"provider");
+        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
+            Session.INSTANCE.getUserByID(currentUser).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    username.setText(documentSnapshot.get("username").toString());
+                    description.setText(documentSnapshot.get("email").toString());
+                }
+            });
+        }
+    }*/
+
     @Override
-    public void onItemClick(View view, int position) {
-        Toast.makeText(getContext(), "You clicked " + friendsListAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+    public void onItemClick(View view, String friendshipID) {
+        btn_delete.setVisibility(View.VISIBLE);
+        friendsViewModel.deleteFriend(friendshipID);
+        setList();
     }
 
     @Override
@@ -107,8 +132,8 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
                     String friendID = id[0].equals(friendsViewModel.getUserID()) ? id[1] : id[0];
                     Task<DocumentSnapshot> task = friendsViewModel.getUserName(friendID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            friendsListAdapter.addFriend(friendID,documentSnapshot.get("username").toString());
+                        public void onSuccess(DocumentSnapshot documentSnapshot2) {
+                            friendsListAdapter.addFriend(documentSnapshot.getId(),friendID,documentSnapshot2.get("username").toString());
 
                         }
                     });

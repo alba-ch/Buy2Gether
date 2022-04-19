@@ -25,4 +25,10 @@ public class FriendsViewModel extends ViewModel {
     public Task<DocumentSnapshot> getUserName(String id) {
         return Session.INSTANCE.getUserByID(id);
     }
+    /*public Task<DocumentSnapshot> getFriendshipID(String friendID) {
+        return Session.INSTANCE.getFriendshipID(getUserID(), friendID);
+    }*/
+    public void deleteFriend(String id){
+        Session.INSTANCE.deleteFriend(id);
+    }
 }
