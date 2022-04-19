@@ -1,6 +1,7 @@
 package com.pis.buy2gether.usecases.home.user.friends;
 
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,10 +38,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class FriendsFragment extends Fragment implements FriendsListAdapter.ItemClickListener {
+public class FriendsFragment extends Fragment implements FriendsListAdapter.ItemClickListener,UsersListAdapter.ItemClickListener {
 
     private FriendsViewModel friendsViewModel;
     private FriendsListAdapter friendsListAdapter;
+    private UsersListAdapter usersListAdapter;
     private RecyclerView recyclerView;
     private FragmentFriendsBinding binding;
     private ArrayList<ClipData.Item> list;
@@ -69,8 +72,10 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         btn_lan = view.findViewById(R.id.btn_lan);
 
         binding.btnReturn.setOnClickListener(this::onClick);
+        binding.btnAmics.setOnClickListener(this::onClick);
 
         // set up the RecyclerView
+        setListUsers();
         setList();
 
         return root;
@@ -111,6 +116,10 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
                 Toast.makeText(getActivity(), "RETURN", Toast.LENGTH_SHORT).show();
                 getParentFragmentManager().beginTransaction().replace(R.id.friends, new UserFragment()).commit();
             break;
+            case R.id.btn_amics:
+                Toast.makeText(getActivity(), "CERCA D'AMICS", Toast.LENGTH_SHORT).show();
+                setListUsers();
+                break;
             default:
                 break;
         }
@@ -140,5 +149,37 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
                 }
             }
         });
+    }
+
+    private void setListUsers(){
+        recyclerView = binding.friendsList;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        usersListAdapter = new UsersListAdapter(getContext(),this);
+        recyclerView.setAdapter(usersListAdapter);
+        binding.friendsList.setAdapter(usersListAdapter);
+        usersListAdapter.setClickListener(this);
+
+        Task task = friendsViewModel.getUsers().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                    usersListAdapter.addUser(documentSnapshot.getId(), documentSnapshot.get("username").toString());
+                }
+            }
+        });
+    }
+
+    public void sendRequest(View view, String toID){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Enviar sol·licitud d'amistad");
+        builder.setNegativeButton("NO",null);
+        builder.setPositiveButton("SÍ",new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                friendsViewModel.sendRequest(toID);
+                setList();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

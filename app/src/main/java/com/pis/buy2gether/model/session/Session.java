@@ -63,6 +63,9 @@ public enum Session {
         return RDB.get(coll,doc);
     }
 
+    public Task<QuerySnapshot> getUsers(){
+        return RDB.getUsers();
+    }
     public Task<DocumentSnapshot> getUserByID(String id){
         return RDB.getUserByID(id);
     }
@@ -80,6 +83,11 @@ public enum Session {
     public void CreateInvite(HashMap inviteInfo) {
         String UUIDString = UUID.randomUUID().toString();
         RDB.SaveInviteDB(UUIDString,inviteInfo);
+    }
+
+    public void CreateFriendRequest(HashMap inviteInfo) {
+        String UUIDString = UUID.randomUUID().toString();
+        RDB.SaveFriendRequestDB(UUIDString,inviteInfo);
     }
 
     public void addFriendship(HashMap<String,String> friendship) {

@@ -8,10 +8,16 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.pis.buy2gether.model.session.Session;
 
+import java.util.HashMap;
+
 public class FriendsViewModel extends ViewModel {
 
     public Task getFriends(){
         return Session.INSTANCE.getFriendsDB(getUserID());
+    }
+
+    public Task getUsers(){
+        return Session.INSTANCE.getUsers();
     }
 
     public String getUserID(){
@@ -30,5 +36,13 @@ public class FriendsViewModel extends ViewModel {
     }*/
     public void deleteFriend(String id){
         Session.INSTANCE.deleteFriend(id);
+    }
+
+    public void sendRequest(String toID) {
+        HashMap inviteInfo = new HashMap();
+        inviteInfo.put("fromID",getUserID());
+        inviteInfo.put("toID",toID);
+
+        Session.INSTANCE.CreateFriendRequest(inviteInfo);
     }
 }

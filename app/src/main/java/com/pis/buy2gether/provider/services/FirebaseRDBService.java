@@ -1,7 +1,6 @@
 package com.pis.buy2gether.provider.services;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -49,6 +48,9 @@ public enum FirebaseRDBService {
     public Task<DocumentSnapshot> getUserByID(String id){
         return db.collection("users").document(id).get();
     }
+    public Task<QuerySnapshot> getUsers(){
+        return db.collection("users").get();
+    }
 
     public Task<DocumentSnapshot> getGroup(String id){
         return db.collection("Groups").document(id).get();
@@ -65,6 +67,10 @@ public enum FirebaseRDBService {
 
     public void SaveInviteDB(String uuidString, HashMap inviteInfo) {
         save("Invites",uuidString,inviteInfo);
+    }
+
+    public void SaveFriendRequestDB(String uuidString, HashMap inviteInfo) {
+        save("Requests",uuidString,inviteInfo);
     }
 
     public void addFriend(String uuidString, HashMap<String,String> friendship) {
