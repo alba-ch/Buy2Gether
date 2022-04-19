@@ -11,9 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentUserBinding;
+import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.usecases.home.user.address.AddressFragment;
 import com.pis.buy2gether.usecases.home.user.friends.FriendsFragment;
 import com.pis.buy2gether.usecases.home.user.help.HelpFragment;
@@ -110,11 +115,18 @@ public class UserFragment extends Fragment implements View.OnClickListener {
     private void setupUserInfo(View view){
         username = view.findViewById(R.id.txt_user);
         description = view.findViewById(R.id.txt_desc);
-        /*
-        if(!FirebaseAuth.getInstance().getCurrentUser().isAnonymous()) {
-            username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-            description.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        }*/
+
+        String provider = Session.INSTANCE.getDataSession(getContext(),"provider");
+        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
+            Session.INSTANCE.getUserByID(currentUser).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    username.setText(documentSnapshot.get("username").toString());
+                    description.setText(documentSnapshot.get("email").toString());
+                }
+            });
+        }
     }
 
 
