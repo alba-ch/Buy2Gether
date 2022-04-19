@@ -29,7 +29,7 @@ public class AddressViewModel extends ViewModel {
     private String getUser(){
         String emailUser = "unknown";
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            emailUser = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            emailUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
         }
         return emailUser;
     }
@@ -48,10 +48,6 @@ public class AddressViewModel extends ViewModel {
     }
 
     public Task getAddresses(){
-        String emailUser = "unknown";
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            emailUser = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-        }
-        return Session.INSTANCE.getAddressesDB(emailUser);
+        return Session.INSTANCE.getAddressesDB(getUser());
     }
 }
