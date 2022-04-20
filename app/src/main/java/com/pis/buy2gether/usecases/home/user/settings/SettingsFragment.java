@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.databinding.FragmentAddressBinding;
 import com.pis.buy2gether.databinding.FragmentSettingsBinding;
 import com.pis.buy2gether.databinding.FragmentUserBinding;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
@@ -27,13 +26,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private SettingsViewModel viewModel;
     private FragmentSettingsBinding binding;
 
-    ImageButton btn_return;
-    ImageButton btn_change_psw;
-    ImageButton btn_edit_pfp;
-    EditText edit_username;
-    EditText edit_city;
-    TextView signout;
-
     Button btn_check_image,btn_change_image,btn_cancel_avatar_dialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,20 +35,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        View view = inflater.inflate(R.layout.fragment_settings,container,false);
-
-        btn_return = view.findViewById(R.id.btn_return);
-        btn_change_psw = view.findViewById(R.id.btn_change_psw);
-        btn_edit_pfp = view.findViewById(R.id.btn_edit_pfp);
-        edit_username = view.findViewById(R.id.edit_username);
-        edit_city = view.findViewById(R.id.edit_city);
-        signout = view.findViewById(R.id.text_signout);
-
         binding.btnReturn.setOnClickListener(this::onClick);
         binding.btnEditPfp.setOnClickListener(this::onClick);
         binding.btnChangePsw.setOnClickListener(this::onClick);
         binding.textSignout.setOnClickListener(this::onClick);
-
 
         return root;
     }
@@ -83,7 +65,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         return dialog;
     }
 
-    private void chek_image(){
+    private void check_image(){
 
     }
 
@@ -105,7 +87,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         dialog.show();
     }
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -119,6 +100,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 showSuccessAlert();
                 break;
             case R.id.btn_return:
+                Toast.makeText(getActivity(),"RETURN",Toast.LENGTH_SHORT).show();
                 /* Canviem de fragment a user options */
                 FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.settings, new UserFragment());
