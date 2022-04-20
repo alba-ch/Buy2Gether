@@ -35,7 +35,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.fragment_friend_list_item, parent, false);
+        View view = mInflater.inflate(R.layout.fragment_user_list_item, parent, false);
         return new ViewHolder(view);
     }
 
@@ -81,7 +81,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                 // change item background color
                 if(selectButton.isChecked()){
                     itemView.setBackgroundColor(Color.parseColor("#E7D3F4"));
-                    selectButton.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
+                    selectButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
                     myTextView.setTextColor(Color.BLACK);
                 }
                 else{

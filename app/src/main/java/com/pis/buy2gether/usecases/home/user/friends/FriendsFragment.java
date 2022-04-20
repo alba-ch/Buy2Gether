@@ -193,6 +193,7 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         binding.searchViewFriends.setVisibility(View.VISIBLE);
         binding.btnAmics.setVisibility(View.GONE);
         binding.name.setVisibility(View.INVISIBLE);
+
     }
 
     private void hideSearch(){
