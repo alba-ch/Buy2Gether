@@ -9,6 +9,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.pis.buy2gether.model.session.Session;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class FriendsViewModel extends ViewModel {
 
@@ -16,8 +17,8 @@ public class FriendsViewModel extends ViewModel {
         return Session.INSTANCE.getFriendsDB(getUserID());
     }
 
-    public Task getUsers(){
-        return Session.INSTANCE.getUsers();
+    public Task getUsers(List friends){
+        return Session.INSTANCE.getUsers(friends);
     }
 
     public String getUserID(){

@@ -8,6 +8,7 @@ import com.pis.buy2gether.provider.preferences.PreferencesProvider;
 import com.pis.buy2gether.provider.services.FirebaseRDBService;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 /* Class for user data persistence and write/read database info (only user session data)*/
@@ -63,8 +64,8 @@ public enum Session {
         return RDB.get(coll,doc);
     }
 
-    public Task<QuerySnapshot> getUsers(){
-        return RDB.getUsers();
+    public Task<QuerySnapshot> getUsers(List friends){
+        return RDB.getUsers(friends);
     }
     public Task<DocumentSnapshot> getUserByID(String id){
         return RDB.getUserByID(id);

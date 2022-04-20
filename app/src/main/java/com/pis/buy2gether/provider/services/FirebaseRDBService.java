@@ -1,12 +1,10 @@
 package com.pis.buy2gether.provider.services;
 
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 /* Write or read data from Firebase Database */
 public enum FirebaseRDBService {
@@ -48,7 +46,9 @@ public enum FirebaseRDBService {
     public Task<DocumentSnapshot> getUserByID(String id){
         return db.collection("users").document(id).get();
     }
-    public Task<QuerySnapshot> getUsers(){
+
+    public Task<QuerySnapshot> getUsers(List friends){
+        if(!friends.isEmpty()){ return db.collection("users").whereNotIn(FieldPath.documentId(),friends).get(); }
         return db.collection("users").get();
     }
 

@@ -36,6 +36,7 @@ import com.pis.buy2gether.usecases.home.user.address.AddressListAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class FriendsFragment extends Fragment implements FriendsListAdapter.ItemClickListener,UsersListAdapter.ItemClickListener {
@@ -156,12 +157,25 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         binding.friendsList.setAdapter(usersListAdapter);
         usersListAdapter.setClickListener(this);
 
-        Task task = friendsViewModel.getUsers().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        /* Generate list of users available to send Friend request */
+        List friendIDs = new ArrayList<>();
+        Task t = friendsViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    usersListAdapter.addUser(documentSnapshot.getId(), documentSnapshot.get("username").toString());
+                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
+                    String[] id = documentSnapshot.getData().keySet().toArray(new String[0]);
+                    String friendID = id[0].equals(friendsViewModel.getUserID()) ? id[1] : id[0];
+                    friendIDs.add(friendID); // Exclude friends
                 }
+                friendIDs.add(friendsViewModel.getUserID()); // Exclude current user
+                Task task = friendsViewModel.getUsers(friendIDs).addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshotsUsers) {
+                        for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshotsUsers) {
+                            usersListAdapter.addUser(documentSnapshot.getId(), documentSnapshot.get("username").toString());
+                        }
+                    }
+                });
             }
         });
     }
