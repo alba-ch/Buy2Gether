@@ -36,6 +36,16 @@ public enum Session {
     public void saveAddressDB(String doc, HashMap data){
         RDB.saveAddress(doc,data);
     }
+
+    /**
+     * ens guarda el nom de l'usuari en base de dades
+     * @param doc
+     * @param data
+     */
+    public void saveUserNameDB(String doc, HashMap data){
+        RDB.saveUserName(doc,data);
+    }
+
     public String CreateGroupDB(HashMap data){
         String UUIDString = UUID.randomUUID().toString();
         this.SaveGroupDB(UUIDString,data);

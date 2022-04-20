@@ -25,6 +25,14 @@ public enum FirebaseRDBService {
         db.collection("users").document(doc).collection("Addresses").document(data.get("Address name").toString()).set(data);
     }
 
+    /**
+     * ens guarda el nom de l'usuari segons l'email a base de dades
+     * @param doc (email de l'usuari)
+     * @param data
+     */
+    public void saveUserName(String doc, HashMap data){
+        db.collection("users").document(doc).set(data);
+    }
 
     public void saveGroup(String doc, HashMap data){
         db.collection("Groups").document(doc).set(data);
