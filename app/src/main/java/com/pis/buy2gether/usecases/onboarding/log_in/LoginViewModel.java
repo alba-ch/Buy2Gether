@@ -6,6 +6,7 @@ import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModel;
+import com.google.android.gms.tasks.Task;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
@@ -17,10 +18,10 @@ class LoginViewModel extends ViewModel {
 
     LoginViewModel(Context context){ this.context = context; }
 
-    void showAlert(){
+    void showAlert(Task task){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Error");
-        builder.setMessage("S'ha produït un error autentificant l'usuari.");
+        builder.setMessage("S'ha produït un error autentificant l'usuari.\n" + task.getException());
         builder.setPositiveButton("Acceptar",null);
         AlertDialog dialog = builder.create();
         dialog.show();

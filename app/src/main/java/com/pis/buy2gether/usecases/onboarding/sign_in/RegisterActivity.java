@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
                         viewModel.showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
                         finish();
                     }else{
-                        viewModel.showAlert();
+                        viewModel.showAlert(task);
                     }
                 });
             }else{

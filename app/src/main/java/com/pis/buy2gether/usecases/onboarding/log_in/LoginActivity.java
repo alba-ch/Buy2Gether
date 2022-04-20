@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(task.isSuccessful()){
                         showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
                     }else{
-                        viewModel.showAlert();
+                        viewModel.showAlert(task);
                     }
                 });
             }else{
@@ -125,7 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                         viewModel.saveUserInfo(FirebaseAuth.getInstance().getCurrentUser().getUid(),account.getEmail(),account.getDisplayName(),ProviderType.GOOGLE);
                         showHome(account.getEmail(), ProviderType.GOOGLE);
                     }else{
-                        viewModel.showAlert();
+                        viewModel.showAlert(t);
                     }
                 });
             }

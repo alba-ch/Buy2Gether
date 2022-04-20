@@ -117,13 +117,14 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         description = view.findViewById(R.id.txt_desc);
 
         String provider = Session.INSTANCE.getDataSession(getContext(),"provider");
-        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
+            String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
             Session.INSTANCE.getUserByID(currentUser).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    //if(documentSnapshot.get("username").toString() != null) username.setText(documentSnapshot.get("username").toString());
-                    //description.setText(documentSnapshot.get("email").toString());
+                    if(documentSnapshot.get("username").toString() != null) username.setText(documentSnapshot.get("username").toString());
+                    description.setText(documentSnapshot.get("email").toString());
                 }
             });
         }

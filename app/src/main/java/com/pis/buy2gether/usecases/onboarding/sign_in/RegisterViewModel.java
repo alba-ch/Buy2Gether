@@ -20,10 +20,10 @@ class RegisterViewModel extends ViewModel {
 
     RegisterViewModel(Context context){ this.context = context; }
 
-    void showAlert(){
+    void showAlert(Task task){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Error");
-        builder.setMessage("S'ha produït un error autentificant l'usuari.");
+        builder.setMessage("S'ha produït un error autentificant l'usuari." + task.getException());
         builder.setPositiveButton("Acceptar",null);
         AlertDialog dialog = builder.create();
         dialog.show();

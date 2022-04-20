@@ -93,6 +93,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             case R.id.text_signout:
                 // Eliminem dades guardades localment de l'usuari (email i contrasenya)
                 SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+                prefs.edit().clear().apply();
+
                 viewModel.clearSession();
                 // Tanquem sessió
                 FirebaseAuth.getInstance().signOut();
