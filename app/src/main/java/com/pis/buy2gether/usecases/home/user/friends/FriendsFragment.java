@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SearchView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -49,6 +51,7 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
     private ArrayList<ClipData.Item> list;
 
     TextView username,description;
+    android.widget.SearchView searchView;
 
     //ImageButton btn_return;
     ImageButton btn_amics,btn_settings,btn_lan,btn_return;
@@ -63,6 +66,7 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
 
         username = view.findViewById(R.id.txt_user);
         description = view.findViewById(R.id.txt_desc);
+        searchView = view.findViewById(R.id.searchViewFriends);
         //setupUserInfo(view);
 
         btn_amics = view.findViewById(R.id.btn_amics);
@@ -131,6 +135,8 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         binding.friendsList.setAdapter(friendsListAdapter);
         friendsListAdapter.setClickListener(this);
 
+        hideSearch();
+
         Task task = friendsViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -157,6 +163,8 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         binding.friendsList.setAdapter(usersListAdapter);
         usersListAdapter.setClickListener(this);
 
+        showSearch();
+
         /* Generate list of users available to send Friend request */
         List friendIDs = new ArrayList<>();
         Task t = friendsViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -172,12 +180,25 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshotsUsers) {
                         for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshotsUsers) {
-                            usersListAdapter.addUser(documentSnapshot.getId(), documentSnapshot.get("username").toString());
+                            String username = documentSnapshot.get("username")== null ? "unknown" : documentSnapshot.get("username").toString();
+                            usersListAdapter.addUser(documentSnapshot.getId(), username);
                         }
                     }
                 });
             }
         });
+    }
+
+    private void showSearch(){
+        binding.searchViewFriends.setVisibility(View.VISIBLE);
+        binding.btnAmics.setVisibility(View.GONE);
+        binding.name.setVisibility(View.INVISIBLE);
+    }
+
+    private void hideSearch(){
+        binding.searchViewFriends.setVisibility(View.GONE);
+        binding.btnAmics.setVisibility(View.VISIBLE);
+        binding.name.setVisibility(View.VISIBLE);
     }
 
     public void sendRequest(View view, String toID){

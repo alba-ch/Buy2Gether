@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
             String psw = pswEditText.getText().toString();
 
             /* Check if user filled both email and password text fields. */
-            if(!(email.isEmpty()) && !(psw.isEmpty())){
+            if(!(email.isEmpty()) && !(psw.isEmpty()) && !(username.isEmpty())){
                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,psw).addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
                         viewModel.saveUserInfo(FirebaseAuth.getInstance().getUid(),email,username,ProviderType.BASIC);
