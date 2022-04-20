@@ -50,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:backgroundTint="@color/transparent"
+        android:layout_margin="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -145,30 +146,56 @@
                 app:srcCompat="@drawable/img_bruno" />
 
             <EditText
-                android:id="@+id/edit_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Rocío"
-                android:textAlignment="viewEnd"
-                app:layout_constraintBottom_toBottomOf="@+id/text_username"
-                app:layout_constraintEnd_toEndOf="@+id/text_username"
-                app:layout_constraintTop_toTopOf="@+id/text_username" />
+                    android:id="@+id/edit_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:hint="Rocío"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintHorizontal_bias="0.6"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_username"
+                    app:layout_constraintEnd_toEndOf="@+id/text_username"
+                    app:layout_constraintTop_toTopOf="@+id/text_username"
+                    app:layout_constraintStart_toStartOf="@+id/text_username"/>
+
+            <Button
+                    android:id="@+id/btn_confirm_username"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/btn_tick"
+                    app:layout_constraintHorizontal_bias="0.95"
+                    app:layout_constraintEnd_toEndOf="@+id/text_username"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_username"
+                    app:layout_constraintTop_toTopOf="@+id/text_username"
+                    app:layout_constraintStart_toStartOf="@+id/text_username"/>
 
             <EditText
-                android:id="@+id/edit_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Barcelona"
-                android:textAlignment="viewEnd"
-                app:layout_constraintBottom_toBottomOf="@+id/text_city"
-                app:layout_constraintEnd_toEndOf="@+id/text_city"
-                app:layout_constraintTop_toTopOf="@+id/text_city" />
+                    android:id="@+id/edit_city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    app:layout_constraintHorizontal_bias="0.6"
+                    android:hint="Barcelona"
+                    android:textAlignment="viewEnd"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_city"
+                    app:layout_constraintEnd_toEndOf="@+id/text_city"
+                    app:layout_constraintTop_toTopOf="@+id/text_city"
+                    app:layout_constraintStart_toStartOf="@+id/text_city"/>
+
+            <Button
+                    android:id="@+id/btn_confirm_usercity"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/btn_tick"
+                    app:layout_constraintHorizontal_bias="0.95"
+                    app:layout_constraintEnd_toEndOf="@+id/text_city"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_city"
+                    app:layout_constraintTop_toTopOf="@+id/text_city"
+                    app:layout_constraintStart_toStartOf="@+id/text_city"/>
 
             <ImageButton
                 android:id="@+id/btn_change_psw"

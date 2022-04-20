@@ -26,7 +26,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private SettingsViewModel viewModel;
     private FragmentSettingsBinding binding;
 
-    Button btn_check_image,btn_change_image,btn_cancel_avatar_dialog;
+    Button btn_check_image,btn_change_image,btn_cancel_avatar_dialog,btn_confirm_username,btn_confirm_usercity;
+    EditText userName;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -39,6 +40,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         binding.btnEditPfp.setOnClickListener(this::onClick);
         binding.btnChangePsw.setOnClickListener(this::onClick);
         binding.textSignout.setOnClickListener(this::onClick);
+        binding.btnConfirmUsername.setOnClickListener(this::onClick);
+        binding.btnConfirmUsercity.setOnClickListener(this::onClick);
+        userName = binding.editUsername;
 
         return root;
     }
@@ -65,12 +69,19 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         return dialog;
     }
 
-    private void check_image(){
+    private void check_Userimage(){
 
     }
 
-    private void change_image(){
+    private void change_Userimage(){
 
+    }
+
+    /**
+     * mètode que canvia el nom de l'usuari
+     */
+    private void change_Username(String nom){
+        viewModel.saveNameUserDB(nom);
     }
 
     @Override
@@ -122,6 +133,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.btn_change_psw:
                 Toast.makeText(getActivity(), "CANVI CONTRASENYA", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.btn_confirm_username:
+                Toast.makeText(getActivity(), "change username", Toast.LENGTH_SHORT).show();
+                change_Username(userName.getText().toString());
                 break;
             default:
                 break;
