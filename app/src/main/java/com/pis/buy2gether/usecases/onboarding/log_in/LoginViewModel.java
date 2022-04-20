@@ -37,11 +37,11 @@ class LoginViewModel extends ViewModel {
         return Session.INSTANCE.getDataSession(context,key);
     }
 
-    public void saveUserInfo(String email, String username, ProviderType provider){
+    public void saveUserInfo(String userID, String email, String username, ProviderType provider){
         HashMap userInfo = new HashMap();
         userInfo.put("email",email);
         userInfo.put("username",username);
         userInfo.put("provider",provider);
-        Session.INSTANCE.saveDB("users",email, userInfo);
+        Session.INSTANCE.saveDB("users",userID, userInfo);
     }
 }

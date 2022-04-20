@@ -111,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         /* Si la resposta retornada és igual l'ID de GOOGLE_SIGN_IN, la resposta d'aquest activity correspon al de Google */
         if(requestCode == GOOGLE_SIGN_IN){
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
@@ -121,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                 AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
                 FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(t -> {
                     if(t.isSuccessful()){
-                        viewModel.saveUserInfo(account.getEmail(),account.getDisplayName(),ProviderType.GOOGLE);
+                        viewModel.saveUserInfo(FirebaseAuth.getInstance().getCurrentUser().getUid(),account.getEmail(),account.getDisplayName(),ProviderType.GOOGLE);
                         showHome(account.getEmail(), ProviderType.GOOGLE);
                     }else{
                         viewModel.showAlert();
