@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_color"
         android:id="@+id/home"
         tools:context=".usecases.home.home.HomeFragment">
 
@@ -14,7 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:background="@drawable/edit_text_shape"
+        android:foreground="@drawable/edit_text_shape"
         android:hint="Search"
+        android:backgroundTint="@color/white"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
@@ -69,7 +72,7 @@
             android:layout_height="30dp"
             android:src="@drawable/cloud_upload"
             android:elevation="8dp"
-
+            android:tint="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="@+id/cloud_upload"
             app:layout_constraintBottom_toBottomOf="@+id/cloud_upload"
             app:layout_constraintStart_toStartOf="@+id/cloud_upload"
@@ -83,7 +86,9 @@
         android:background="@color/transparent"
         android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-
+        app:tabMode="scrollable"
+        android:paddingStart="10dp"
+        app:tabTextAppearance="@style/TabLayoutStyle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_bar"
         app:tabIndicatorColor="@color/purple_500"
