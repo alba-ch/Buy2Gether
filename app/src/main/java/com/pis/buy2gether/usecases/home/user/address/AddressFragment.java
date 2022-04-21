@@ -143,6 +143,7 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
             case R.id.btn_add: addAddress(); setList(); break;
             case R.id.btn_return:
                 Toast.makeText(getActivity(), "RETURN", Toast.LENGTH_SHORT).show();
+                binding.btnAdd.setVisibility(View.GONE);
                 getParentFragmentManager().beginTransaction().replace(R.id.address, new UserFragment()).commit();
             break;
             default:
