@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentSettingsBinding;
-import com.pis.buy2gether.databinding.FragmentUserBinding;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
 
 import java.util.Objects;
@@ -27,7 +26,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private FragmentSettingsBinding binding;
 
     Button btn_check_image,btn_change_image,btn_cancel_avatar_dialog,btn_confirm_username,btn_confirm_usercity;
-    EditText userName;
+    EditText userName,userCity;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -43,6 +42,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         binding.btnConfirmUsername.setOnClickListener(this::onClick);
         binding.btnConfirmUsercity.setOnClickListener(this::onClick);
         userName = binding.editUsername;
+        userCity = binding.editCity;
 
         return root;
     }
@@ -78,10 +78,19 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
-     * mètode que canvia el nom de l'usuari
+     * actualitza eel nom de l'usuari
+     * @param nom
      */
     private void change_Username(String nom){
-        viewModel.saveNameUserDB(nom);
+        viewModel.change_Username(nom);
+    }
+
+    /**
+     * actualitza la localització de l'usuari
+     * @param ciutat
+     */
+    private void change_Usercity(String ciutat){
+        viewModel.change_UserCity(ciutat);
     }
 
     @Override
@@ -135,11 +144,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 Toast.makeText(getActivity(), "CANVI CONTRASENYA", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_confirm_username:
-                Toast.makeText(getActivity(), "change username", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Username changed", Toast.LENGTH_SHORT).show();
                 change_Username(userName.getText().toString());
+                break;
+            case R.id.btn_confirm_usercity:
+                Toast.makeText(getActivity(), "City changed", Toast.LENGTH_SHORT).show();
+                change_Usercity(userCity.getText().toString());
                 break;
             default:
                 break;
         }
     }
+
 }
