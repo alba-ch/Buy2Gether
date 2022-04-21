@@ -190,8 +190,8 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
                     Task<DocumentSnapshot> task = friendsViewModel.getUserName(friendID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot2) {
-                            friendsListAdapter.addFriend(documentSnapshot.getId(),friendID,documentSnapshot2.get("username").toString());
-
+                            String username = documentSnapshot.get("username")== null ? "unknown" : documentSnapshot.get("username").toString();
+                            friendsListAdapter.addFriend(documentSnapshot.getId(),friendID,username);
                         }
                     });
                 }
