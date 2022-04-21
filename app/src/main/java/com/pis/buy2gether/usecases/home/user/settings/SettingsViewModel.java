@@ -1,11 +1,15 @@
 package com.pis.buy2gether.usecases.home.user.settings;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 
 public class SettingsViewModel extends ViewModel {
