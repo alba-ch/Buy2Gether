@@ -40,6 +40,7 @@ public class SettingsViewModel extends ViewModel {
         Session.INSTANCE.updateUser(getUser(),"username",nom);
     }
 
+
     /**
      * obtenim uid de l'usuari
      * @return
