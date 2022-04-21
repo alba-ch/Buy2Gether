@@ -7,14 +7,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -79,6 +75,29 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
 
         // set up the RecyclerView
         setListUsers();
+
+        binding.searchViewFriends.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                /* User prem enter */
+                Toast.makeText(getActivity(), "SUBMITTED "+query, Toast.LENGTH_SHORT).show();
+                searchView.setQuery(query,false);
+                searchView.clearFocus();
+                if(usersListAdapter.getList().contains(query)){
+                    usersListAdapter.getFilter().filter(query);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                /* User prem una lletra qualsevol*/
+                Toast.makeText(getActivity(),  newText, Toast.LENGTH_SHORT).show();
+                usersListAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
         setList();
 
         return root;

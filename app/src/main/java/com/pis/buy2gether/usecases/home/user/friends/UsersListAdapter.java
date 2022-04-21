@@ -7,19 +7,20 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
-import android.widget.TextView;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.LinkedHashMap;
+import java.util.*;
 
-public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.ViewHolder> {
+public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.ViewHolder> implements Filterable {
 
     private LinkedHashMap<String,String> user;
+    private LinkedHashMap<String,String> allUsers;
     private LinkedHashMap<String,String> pfp;
+    private ArrayList<String> users;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     int row_idx = -1;
@@ -28,6 +29,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     UsersListAdapter(Context context, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.user= new LinkedHashMap<>();
+        this.allUsers= new LinkedHashMap<>();
         this.pfp = new LinkedHashMap<>();
         this.mClickListener = itemClickListener;
     }
@@ -52,6 +54,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
 
     public void addUser(String userID, String username){
         user.put(userID,username);
+        allUsers.put(userID,username);
         notifyItemInserted(user.size());
     }
 
@@ -59,6 +62,39 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     @Override
     public int getItemCount() {
         return user.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        Filter filter = new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                LinkedHashMap<String,String> filteredUsernameList = new LinkedHashMap<String,String>();
+                LinkedHashMap<String,String> filteredPfpList = new LinkedHashMap<String,String>();
+                if (charSequence.toString().isEmpty()) {
+                    filteredUsernameList.putAll(allUsers);
+                } else {
+                    for (String idUser : allUsers.keySet()) {
+                        if (allUsers.get(idUser).toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                            filteredUsernameList.put(idUser,allUsers.get(idUser));
+                            filteredPfpList.put(idUser,pfp.get(idUser));
+                        }
+                    }
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredUsernameList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                user.clear();
+                user.putAll((Map<? extends String, ? extends String>) filterResults.values);
+
+                notifyDataSetChanged();
+            }
+        };
+        return filter;
     }
 
 
@@ -98,6 +134,11 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     // convenience method for getting data at click position
     String getItem(int id) {
         return user.get(id);
+    }
+
+    // convenience method for getting all the usernames
+    List<String> getList(){
+        return  Arrays.asList(user.values().toString());
     }
 
     // allows clicks events to be caught
