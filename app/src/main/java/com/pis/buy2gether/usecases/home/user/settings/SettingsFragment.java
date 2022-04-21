@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -38,6 +41,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.Objects;
+import java.util.concurrent.Executor;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -48,9 +52,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     private int TAKE_IMAGE_CODE = 10001;
 
-    Button btn_change_image, btn_check_image, btn_cancel_avatar_dialog,btn_confirm_username,btn_confirm_usercity;
+    Button btn_change_image, btn_check_image, btn_cancel_avatar_dialog;
+    ImageButton btn_cancel_changepsw_dialog,btn_save_change_psw;
     ShapeableImageView btn_edit_pfp;
-    EditText userName,userCity;
+    EditText userName,userCity,new_psw,confirm_psw;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -65,8 +70,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         binding.textSignout.setOnClickListener(this::onClick);
         binding.btnConfirmUsername.setOnClickListener(this::onClick);
         binding.btnConfirmUsercity.setOnClickListener(this::onClick);
+        binding.btnChangePsw.setOnClickListener(this::onClick);
+
         userName = binding.editUsername;
         userCity = binding.editCity;
+
 
         setUserPfp();
 
@@ -94,7 +102,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
 
     /**
      * creem l'alert dialog per configurar la imatge de l'avatar
-     * @return
+     * @return avatar dialog
      */
     private AlertDialog setupAvatarConfigurationPopup(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -111,6 +119,30 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         dialog.show();
 
         return dialog;
+    }
+
+    /**
+     * creem l'alert dialog per configurar la contrasenya
+     * @return change_psw dialog
+     */
+    private AlertDialog setupChangePswPopup(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        View changePswPopupView = getLayoutInflater().inflate(R.layout.alert_dialog_change_psw,null);
+
+        btn_cancel_changepsw_dialog = changePswPopupView.findViewById(R.id.btn_cancel_psw_dialog);
+        btn_cancel_changepsw_dialog = changePswPopupView.findViewById(R.id.btn_cancel_psw_dialog);
+        new_psw = changePswPopupView.findViewById(R.id.edtxt_nova_psw);
+        confirm_psw = changePswPopupView.findViewById(R.id.edtxt_confirm_nova_psw);
+        btn_save_change_psw = changePswPopupView.findViewById(R.id.btn_save_change_psw);
+
+
+        builder.setView(changePswPopupView);
+
+        AlertDialog changePsw_dialog = builder.create();
+        changePsw_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        changePsw_dialog.show();
+
+        return changePsw_dialog;
     }
 
     private void check_Userimage(){
@@ -198,6 +230,36 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         viewModel.change_UserCity(ciutat);
     }
 
+    /**
+     * actualitza la contrasenya del compte de l'usuari
+     * @param nova_psw
+     */
+    private void change_UserPassword(String nova_psw){
+        FirebaseAuth.getInstance().getCurrentUser().updatePassword(nova_psw).addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull @NotNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Password updated successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("Password Update", task.getException() + "");
+                    Toast.makeText(getActivity(), "Password update failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void sign_out(){
+        // Eliminem dades guardades localment de l'usuari (email i contrasenya)
+        SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
+        prefs.edit().clear().apply();
+
+        viewModel.clearSession();
+        // Tanquem sessió
+        FirebaseAuth.getInstance().signOut();
+        // Mostrem missatge d'èxit per confirmar que s'ha tancat sessió
+        showSuccessAlert();
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -224,15 +286,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.text_signout:
-                // Eliminem dades guardades localment de l'usuari (email i contrasenya)
-                SharedPreferences prefs = getActivity().getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-                prefs.edit().clear().apply();
-
-                viewModel.clearSession();
-                // Tanquem sessió
-                FirebaseAuth.getInstance().signOut();
-                // Mostrem missatge d'èxit per confirmar que s'ha tancat sessió
-                showSuccessAlert();
+                sign_out();
                 break;
             case R.id.btn_return:
                 Toast.makeText(getActivity(),"RETURN",Toast.LENGTH_SHORT).show();
@@ -255,7 +309,33 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                 });
                 break;
             case R.id.btn_change_psw:
-                Toast.makeText(getActivity(), "CANVI CONTRASENYA", Toast.LENGTH_SHORT).show();
+                AlertDialog changePsw_alert_dialog = setupChangePswPopup();
+                btn_cancel_changepsw_dialog.setOnClickListener(v->{
+                    changePsw_alert_dialog.dismiss();
+                });
+                btn_save_change_psw.setOnClickListener(v->{
+
+                    String nova_contrasenya = new_psw.getText().toString();
+                    String confirm_contrasenya = confirm_psw.getText().toString();
+
+                    //comprovem si algun dels camps està buit
+                    if(nova_contrasenya.isEmpty() && confirm_contrasenya.isEmpty()){
+                        Toast.makeText(getActivity(), "Els camps no poden estar buits!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        //si les dues contrasenyes no coincideixen
+                        if(!nova_contrasenya.equals(confirm_contrasenya)){
+                            Toast.makeText(getActivity(), "Les contrasenyes han de ser les mateixes!", Toast.LENGTH_SHORT).show();
+                        //canviem la contrasenya
+                        }else{
+                            change_UserPassword(confirm_contrasenya);
+                            //sortim de sessio
+                            sign_out();
+                        }
+                    }
+                    //?
+                    changePsw_alert_dialog.dismiss();
+                });
+
                 break;
             case R.id.btn_confirm_username:
                 Toast.makeText(getActivity(), "Username changed", Toast.LENGTH_SHORT).show();
