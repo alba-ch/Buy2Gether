@@ -60,10 +60,9 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
 
         View view = inflater.inflate(R.layout.fragment_friends,container,false);
 
-        username = view.findViewById(R.id.txt_user);
-        description = view.findViewById(R.id.txt_desc);
         searchView = view.findViewById(R.id.searchViewFriends);
-        //setupUserInfo(view);
+
+        setupUserInfo(view);
 
         btn_amics = view.findViewById(R.id.btn_amics);
         btn_return = view.findViewById(R.id.btn_return);
@@ -80,7 +79,6 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
             @Override
             public boolean onQueryTextSubmit(String query) {
                 /* User prem enter */
-                Toast.makeText(getActivity(), "SUBMITTED "+query, Toast.LENGTH_SHORT).show();
                 searchView.setQuery(query,false);
                 searchView.clearFocus();
                 if(usersListAdapter.getList().contains(query)){
@@ -92,7 +90,6 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
             @Override
             public boolean onQueryTextChange(String newText) {
                 /* User prem una lletra qualsevol*/
-                Toast.makeText(getActivity(),  newText, Toast.LENGTH_SHORT).show();
                 usersListAdapter.getFilter().filter(newText);
                 return false;
             }
@@ -103,19 +100,20 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         return root;
     }
 
-    /*private void setupUserInfo(View view){
+    private void setupUserInfo(View view){
         String provider = Session.INSTANCE.getDataSession(getContext(),"provider");
-        String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
         if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
+            String currentUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
             Session.INSTANCE.getUserByID(currentUser).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    username.setText(documentSnapshot.get("username").toString());
-                    description.setText(documentSnapshot.get("email").toString());
+                    binding.txtUser.setText(documentSnapshot.get("username").toString());
+                    binding.txtDesc.setText(documentSnapshot.get("email").toString());
                 }
             });
         }
-    }*/
+    }
 
     @Override
     public void onItemClick(View view, String friendshipID) {
