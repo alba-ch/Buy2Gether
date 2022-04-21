@@ -1,6 +1,7 @@
 package com.pis.buy2gether.usecases.home.user.settings;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -40,6 +41,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
@@ -51,6 +53,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private FragmentSettingsBinding binding;
 
     private int TAKE_IMAGE_CODE = 10001;
+    private int GALLERY_IMAGE_CODE = 1000;
 
     Button btn_change_image, btn_check_image, btn_cancel_avatar_dialog;
     ImageButton btn_cancel_changepsw_dialog,btn_save_change_psw;
@@ -150,11 +153,34 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     }
 
     private void change_Userimage(){
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if(intent.resolveActivity(getContext().getPackageManager()) != null){
-            startActivityForResult(intent, TAKE_IMAGE_CODE);
-        }
+        showMediaDialog();
 
+    }
+
+    private void showMediaDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setNeutralButton("CÀMERA",new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if(intent.resolveActivity(getContext().getPackageManager()) != null){
+                    startActivityForResult(intent, TAKE_IMAGE_CODE);
+                }
+            }
+        });
+
+        builder.setPositiveButton("GALERIA",new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if(intent.resolveActivity(getContext().getPackageManager()) != null){
+                    startActivityForResult(intent, GALLERY_IMAGE_CODE);
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setLayout(650, 250);
     }
 
     void saveUserImageDB(Bitmap bitmap){
@@ -211,6 +237,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
                     Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                     binding.btnEditPfp.setImageBitmap(bitmap);
                     saveUserImageDB(bitmap);
+                    break;
+            }
+        }
+        if(requestCode == GALLERY_IMAGE_CODE){
+            binding.btnEditPfp.setImageURI(data.getData());
+            try {
+                saveUserImageDB((MediaStore.Images.Media.getBitmap(this.requireContext().getContentResolver(), data.getData())));
+            } catch (IOException e) {
+                Toast.makeText(getActivity(),"Error: La imatge no s'ha pogut carregar\n"+e,Toast.LENGTH_SHORT).show();
             }
         }
     }
