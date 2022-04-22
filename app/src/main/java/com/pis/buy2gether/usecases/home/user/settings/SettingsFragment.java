@@ -216,7 +216,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-        dialog.getWindow().setLayout(650, 250);
+        dialog.getWindow().setLayout(700, 300);
     }
 
     void saveUserImageDB(Bitmap bitmap){
