@@ -55,8 +55,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     private SettingsViewModel viewModel;
     private FragmentSettingsBinding binding;
 
-    private int TAKE_IMAGE_CODE = 10001;
-    private int GALLERY_IMAGE_CODE = 1000;
+    private final int TAKE_IMAGE_CODE = 10001;
+    private final int GALLERY_IMAGE_CODE = 1000;
 
     Button btn_change_image, btn_check_image, btn_cancel_avatar_dialog;
     ImageButton btn_cancel_changepsw_dialog,btn_save_change_psw,btn_cancel_check_img;
