@@ -117,6 +117,9 @@ public enum Session {
         return RDB.getFriendRequests(user);
     }
 
+    public Task<DocumentSnapshot> getFavorite(String user) {
+        return RDB.getFavorite(user);
+    }
     public Task<QuerySnapshot> getGroupInvites(String user) {
         return RDB.getGroupInvites(user);
     }

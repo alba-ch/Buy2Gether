@@ -1,5 +1,7 @@
 package com.pis.buy2gether.usecases.home.favoriteList;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,11 +12,25 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.databinding.FragmentFavoriteListBinding;
+import com.pis.buy2gether.usecases.home.notifications.NotificationsListAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class FavoriteFragment extends Fragment implements FavoriteListAdapter.ItemClickListener {
 
@@ -31,47 +47,80 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         View root = binding.getRoot();
 
         ArrayList<String> items = new ArrayList<>();
-        items.add("iPad");
-        items.add("iPod");
-        items.add("Mac");
-        items.add("PlayStation");
-        items.add("Xbox");
-        items.add("LG TV");
-        items.add("Despacito");
-        items.add("Golfo");
-        items.add("Juanjo");
-        items.add("Tumama");
-        items.add("This is a sample long list where we try to maximize the amount of words we can fit but it is just a test");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Goat");
-        items.add("Sheep");
-        items.add("Sheep");
-        items.add("Goat");
-        items.add("Goat");
 
 
         // set up the RecyclerView
-        RecyclerView recyclerView = binding.favoriteList;
+        /*RecyclerView recyclerView = binding.favoriteList;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         favoriteListAdapter = new FavoriteListAdapter(getContext(), items);
         recyclerView.setAdapter(favoriteListAdapter);
         favoriteListAdapter.setClickListener(this);
-        binding.favoriteList.setAdapter(favoriteListAdapter);
+        binding.favoriteList.setAdapter(favoriteListAdapter);*/
 
-        favoriteViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                // data to populate the RecyclerView with
-            }
-
-        });
+        setList();
         return root;
     }
 
+    private void setList(){
+        // set up the RecyclerView
+        RecyclerView recyclerView = binding.favoriteList;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        favoriteListAdapter = new FavoriteListAdapter(getContext());
+        recyclerView.setAdapter(favoriteListAdapter);
+        favoriteListAdapter.setClickListener(this);
+        binding.favoriteList.setAdapter(favoriteListAdapter);
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                switch(swipeDir){
+                    case ItemTouchHelper.LEFT:
+                        break;
+                    case ItemTouchHelper.RIGHT:
+                        break;
+                    default:
+                        break;
+                }
+                //favoriteListAdapter.swipe(notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
+        Task<DocumentSnapshot> task = favoriteViewModel.getFavorite().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                ;
+                ArrayList<String> favoriteList = new ArrayList<>(((List<String>) documentSnapshot.get("Favorite")));
+                for(String groupID : favoriteList) {
+                    Task<DocumentSnapshot> task = favoriteViewModel.getGroup(groupID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        @Override
+                        public void onSuccess(DocumentSnapshot documentSnapshot1) {
+                            StorageReference mImageRef = FirebaseStorage.getInstance().getReference("groupImages/"+ groupID+".jpeg");
+                            final long ONE_MEGABYTE = 1024 * 1024;
+                            mImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                @Override
+                                public void onSuccess(byte[] bytes) {
+                                    Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                    favoriteListAdapter.addGroup(bm,groupID,documentSnapshot1.get("Product Name").toString());
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    Toast.makeText(getActivity(),"Error al carregar l'imatge de group\n"+exception,Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
+
+    }
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(getContext(), "You clicked " + favoriteListAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();

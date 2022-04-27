@@ -97,6 +97,11 @@ public enum FirebaseRDBService {
         return q.get();
     }
 
+    public Task<DocumentSnapshot> getFavorite(String user) {
+        Task<DocumentSnapshot> q = db.collection("users").document(user).get();
+        return q;
+    }
+
     public Task<QuerySnapshot> getGroupInvites(String user) {
         Query q = db.collection("Invites").whereEqualTo("UserID",user);
         return q.get();

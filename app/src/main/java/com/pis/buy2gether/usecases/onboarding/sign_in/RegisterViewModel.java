@@ -46,6 +46,7 @@ class RegisterViewModel extends ViewModel {
         userInfo.put("email",email);
         userInfo.put("username",username);
         userInfo.put("provider",provider);
+        userInfo.put("Favorite","");
         Session.INSTANCE.saveDB("users",uid, userInfo);
     }
 }

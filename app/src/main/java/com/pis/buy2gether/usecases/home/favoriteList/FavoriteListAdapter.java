@@ -1,9 +1,11 @@
 package com.pis.buy2gether.usecases.home.favoriteList;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -12,20 +14,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private LinkedHashMap<String,String> groups;
+    private LinkedHashMap<String,Bitmap> groupImage;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    FavoriteListAdapter(Context context, List<String> data) {
+    FavoriteListAdapter(Context context) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        groups = new LinkedHashMap<>();
+        groupImage = new LinkedHashMap<>();
     }
 
+    public void addGroup(Bitmap bitmap, String group, String ID) {
+        groups.put(ID,group);
+        groupImage.put(ID,bitmap);
+        notifyItemInserted(getItemCount());
+
+    }
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,9 +49,11 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        String product = mData.get(position);
-        holder.myTextView.setText(product);
+        String ID = (String) groups.keySet().toArray()[position];
+        holder.myTextView.setText(groups.get(ID));
         holder.checked.setChecked(false);
+        holder.imageView.setImageBitmap(groupImage.get(ID));
+
 
     }
 
@@ -45,19 +61,21 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return groups.size();
     }
 
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
+        ImageView imageView;
         RadioButton checked;
 
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.txt_favorite_product);
             checked = itemView.findViewById(R.id.rdbtn_favorite_SEL);
+            imageView = itemView.findViewById(R.id.img_favorite_product);
             myTextView.setClickable(true);
             myTextView.setOnClickListener(this);
             itemView.setOnClickListener(this);
@@ -74,7 +92,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     // convenience method for getting data at click position
     String getItem(int id) {
-        return mData.get(id);
+        return groups.get(id);
     }
 
     // allows clicks events to be caught
