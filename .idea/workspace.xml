@@ -13,11 +13,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="">
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="Fixed a couple of bugs that would cause the app to crash when accepting/denying requests">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +206,9 @@
       <workItem from="1650298087118" duration="4970000" />
       <workItem from="1650303163681" duration="866000" />
       <workItem from="1650304099572" duration="897000" />
-      <workItem from="1650305011424" duration="1276000" />
+      <workItem from="1650305011424" duration="6079000" />
+      <workItem from="1650874006466" duration="4245000" />
+      <workItem from="1651045574455" duration="871000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -495,7 +497,21 @@
       <option name="project" value="LOCAL" />
       <updated>1650305859278</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Fixed a couple of bugs that would cause the app to crash when accepting/denying requests">
+      <created>1650306479603</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1650306479603</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Changed to final">
+      <created>1650874422650</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1650874422650</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -514,8 +530,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Refactoring Log In" />
-    <MESSAGE value="Add animations to Log In" />
     <MESSAGE value="Refactoring Sign in and add listeners" />
     <MESSAGE value="Refactoring Sign in and add listeners to buttons." />
     <MESSAGE value="Implementació de fragment historial" />
@@ -539,7 +553,9 @@
     <MESSAGE value="Implemented Friend Requests and Group Invites" />
     <MESSAGE value="Implemented Notifications" />
     <MESSAGE value="Fixed bug that would cause the app to crash when loading groups" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed bug that would cause the app to crash when loading groups" />
+    <MESSAGE value="Fixed a couple of bugs that would cause the app to crash when accepting/denying requests" />
+    <MESSAGE value="Changed to final" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed to final" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -2,29 +2,47 @@ package com.pis.buy2gether.usecases.home.home.product_view.group.creation;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentGroupCreationBinding;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
+import org.jetbrains.annotations.NotNull;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.CLIPBOARD_SERVICE;
 
 
@@ -33,6 +51,8 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
     private GroupCreationViewModel groupCreationViewModel;
     private FragmentGroupCreationBinding binding;
 
+    private final int TAKE_IMAGE_CODE = 10001;
+    private final int GALLERY_IMAGE_CODE = 1000;
     private int groupVisibility = 0;
     private String groupID = "";
     private String defaultMessage = "Acabo de crear un grup de Buy2Gether i m'agradaria que compréssim el producte junts!";
@@ -52,6 +72,9 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         binding.groupPopup.otherUsers.setClickable(true);
         binding.groupPopup.otherUsers.setFocusable(true);
         binding.groupPopup.otherUsers.setOnClickListener(this);
+
+        binding.imageView.setClickable(true);
+        binding.imageView.setOnClickListener(this);
 
 
 
@@ -111,6 +134,89 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode,resultCode,data);
+        //foto des de càmera
+        if(requestCode == TAKE_IMAGE_CODE){
+            switch (resultCode){
+                case RESULT_OK:
+                    //get image captured
+                    Bitmap bitmap = Bitmap.createScaledBitmap((Bitmap) data.getExtras().get("data"), binding.imageView.getWidth(), binding.imageView.getHeight(), true);
+                    binding.imageView.setImageBitmap(bitmap);
+                    break;
+            }
+        }
+        //foto des de galeria
+        if(requestCode == GALLERY_IMAGE_CODE){
+            try {
+                binding.imageView.setImageBitmap(Bitmap.createScaledBitmap((MediaStore.Images.Media.getBitmap(this.requireContext().getContentResolver(), data.getData())), binding.imageView.getWidth(), binding.imageView.getHeight(), true));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+    public void showFailureAlert(Exception e){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("ERROR: Imatge no guardada\n"+e);
+        builder.setPositiveButton("Acceptar",null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    void saveGroupImageDB(Bitmap bitmap){
+        //create an outputstream that in which the data is written to a byte array
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference()
+                .child("groupImages")
+                .child(groupID+".jpeg");
+
+        //upload taks that asynchronously upload byte data to this storageRef creating a byte array and copy the valid content to buffer
+        storageRef.putBytes(baos.toByteArray()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                //getDownloadURL(storageRef);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                showFailureAlert(e);
+            }
+        });
+    }
+
+    private void showMediaDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setNeutralButton("CÀMERA",new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                //ACTION_IMAGE_CAPTURE:intent action to have the camera application to capture image and return to it
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if(intent.resolveActivity(getContext().getPackageManager()) != null){
+                    startActivityForResult(intent, TAKE_IMAGE_CODE);
+                }
+            }
+        });
+
+        builder.setPositiveButton("GALERIA",new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                //ACTION PICK: pick the item in data and return
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                //we choose a concret data to sent
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if(intent.resolveActivity(getContext().getPackageManager()) != null){
+                    startActivityForResult(intent, GALLERY_IMAGE_CODE);
+                }
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        dialog.getWindow().setLayout(700, 300);
+    }
+    @Override
     public void onClick(View view) {
         boolean process = view.getId() != R.id.shareDummy;
         switch (view.getId()){
@@ -142,6 +248,7 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 String originalPrice = binding.originalPrice.getText().toString();
                 if(!(prodName.isEmpty()) && !(prodLink.isEmpty()) && !(userLimit.isEmpty()) && !(originalPrice.isEmpty()) ){
                     groupID = groupCreationViewModel.createGroupDB(prodName, prodLink, binding.type.getSelectedItem().toString(),Integer.parseInt(userLimit), Double.parseDouble(originalPrice),groupVisibility,groupCreationViewModel.getUser());
+                    saveGroupImageDB(((BitmapDrawable) binding.imageView.getDrawable()).getBitmap());
                 }else {
                     if(prodName.isEmpty())
                         binding.Name.startAnimation(groupCreationViewModel.shakeError());
@@ -152,6 +259,7 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                     if(originalPrice.isEmpty())
                         binding.originalPrice.startAnimation(groupCreationViewModel.shakeError());
                 }
+
                 break;
             case R.id.codi_image:
                 ClipboardManager clipboard = (ClipboardManager) getContext().getSystemService(CLIPBOARD_SERVICE);
@@ -176,6 +284,9 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 intentSMS.setData(Uri.parse("smsto:"));
                 intentSMS.putExtra("sms_body",defaultMessage+groupID);
                 startActivity(intentSMS);
+                break;
+            case R.id.imageView:
+                showMediaDialog();
                 break;
             default:
                 break;

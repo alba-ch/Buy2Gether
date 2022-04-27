@@ -10,15 +10,15 @@
         tools:context=".usecases.home.home.product_view.group.creation.GroupCreationFragment">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/productpicturedesc"
-        android:maxWidth="100dp"
-        android:maxHeight="100dp"
-        android:src="@drawable/avatar_1" />
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="@string/productpicturedesc"
+            android:maxWidth="100dp"
+            android:maxHeight="100dp"
+            android:src="@drawable/avatar_1"/>
     <TextView
             android:text="@string/tipus_de_producte"
             android:layout_width="wrap_content"
