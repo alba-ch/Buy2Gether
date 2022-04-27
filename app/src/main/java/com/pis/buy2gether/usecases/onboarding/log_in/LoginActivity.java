@@ -2,6 +2,7 @@ package com.pis.buy2gether.usecases.onboarding.log_in;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.drawable.AnimationDrawable;
 import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.WindowManager;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -49,6 +51,9 @@ public class LoginActivity extends AppCompatActivity {
 
         /* Recuperem els widgets */
         setup();
+
+        /* Afegim el background animat */
+        animateBackground();
 
         log.setOnClickListener(v -> {
             String email = userEditText.getText().toString();
@@ -149,5 +154,14 @@ public class LoginActivity extends AppCompatActivity {
         name = findViewById(R.id.img_appname);
         image = findViewById(R.id.img_logo);
         forgotPassword = findViewById(R.id.btn_rememberpsw);
+    }
+
+    private void animateBackground(){
+        ConstraintLayout cl = findViewById(R.id.login_layout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) cl.getBackground();
+
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
     }
 }

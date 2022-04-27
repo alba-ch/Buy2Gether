@@ -1,6 +1,7 @@
 package com.pis.buy2gether.usecases.onboarding.log_in.forgot_psw;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +28,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_remember_psw);
+
+        animateBackground();
 
         //Hooks
         email = findViewById(R.id.txtin_email);
@@ -69,5 +73,12 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         finish();
     }
 
+    private void animateBackground(){
+        ConstraintLayout cl = findViewById(R.id.remember_psw_layout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) cl.getBackground();
 
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
+    }
 }

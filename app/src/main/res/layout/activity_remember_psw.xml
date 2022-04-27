@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBg"
-    android:backgroundTint="#FCF9FE">
+    android:id="@+id/remember_psw_layout"
+    android:background="@drawable/bg_animated">
 
     <ScrollView
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorBg"
+            android:background="@color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,20 +23,20 @@
                 android:layout_height="match_parent"
                 tools:context=".elementos_sin_clasificar.register.RegisterFragment">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_remember"
         style="@style/largeButton"
         android:layout_width="230dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/btn_reglog"
         android:focusable="auto"
         android:fontFamily="@font/regular"
         android:foreground="@drawable/ripple_button_effect"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:keepScreenOn="false"
         android:text="RECUPERAR"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +67,7 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/fondo_blanco"
                     android:gravity="center"
+                    android:alpha="0.5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +91,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/light"
                         android:hint="Email"
+                        android:alpha="0.5"
                         android:background="@color/colorAccentUltraLight"
-                        android:textColor="@color/colorHint"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/colorHint"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -107,7 +109,7 @@
                     android:text="RECUPERA LA CONTRASENYA"
                     android:textAlignment="center"
                     android:transitionName="text"
-                    android:textColor="#6F4FC9"
+                    android:textColor="@color/white"
                     android:textSize="19dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.518"

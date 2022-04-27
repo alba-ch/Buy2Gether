@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBg"
-    android:backgroundTint="#FCF9FE">
+    android:background="@drawable/bg_animated"
+    android:id="@+id/login_layout">
 
     <ScrollView
             android:id="@+id/scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorBg"
+            android:background="@color/transparent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +85,8 @@
                     android:layout_marginTop="15dp"
                     android:background="@drawable/fondo_blanco"
                     android:gravity="center"
+                    android:alpha="0.5"
+                    android:backgroundTint="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.496"
                     app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +95,7 @@
             <com.google.android.material.textfield.TextInputLayout
 
                     android:id="@+id/txt_username"
-                    android:layout_width="220dp"
+                    android:layout_width="217dp"
                     android:layout_height="49dp"
                     android:layout_marginTop="20dp"
                     android:textColorHint="@color/colorHint"
@@ -108,8 +110,9 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/light"
                         android:hint="Email"
+                        android:alpha="0.5"
                         android:background="@color/colorAccentUltraLight"
-                        android:textColor="@color/colorHint"
+                        android:textColor="@color/black"
                         android:textColorHint="@color/colorHint"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,7 +135,9 @@
                         android:layout_height="match_parent"
                         android:background="@color/colorAccentUltraLight"
                         android:fontFamily="@font/light"
+                        android:alpha="0.5"
                         android:hint="@string/password"
+                        android:textColor="@color/black"
                 />
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
@@ -147,7 +152,7 @@
                     android:text="BUY \n 2GETHER"
                     android:textAlignment="center"
                     android:transitionName="text"
-                    android:textColor="#6F4FC9"
+                    android:textColor="@color/white"
                     android:textSize="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.518"
@@ -160,6 +165,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="60dp"
                     android:fontFamily="@font/light"
+                    android:textColor="@color/white"
+                    android:alpha="0.8"
                     android:text="No tens un compte?"
                     app:layout_constraintBottom_toBottomOf="@+id/contenedor"
                     app:layout_constraintStart_toStartOf="parent"
@@ -174,7 +181,8 @@
                     android:background="@color/transparent"
                     android:fontFamily="@font/light"
                     android:text="Registrat"
-                    android:textColor="#707070"
+                    android:alpha="0.8"
+                    android:textColor="@color/white"
                     android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@+id/contenedor"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -202,7 +210,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/contenedor"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/invitado"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
@@ -211,7 +219,9 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/contenedor"/>
+                    app:layout_constraintTop_toBottomOf="@+id/contenedor"
+                    android:textColor="#E9FFFFFF"
+                    android:background="#3B000000"/>
             <ImageButton
                     android:layout_width="219dp"
                     android:layout_height="54dp" app:srcCompat="@drawable/btn_google_signin"
@@ -228,7 +238,8 @@
                     android:layout_height="wrap_content" android:id="@+id/btn_rememberpsw"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:textColor="@color/colorHint"
+                    android:textColor="@color/white"
+                    android:alpha="0.8"
                     app:layout_constraintHorizontal_bias="0.701" app:layout_constraintTop_toBottomOf="@+id/blanco"
                     android:layout_marginTop="5dp"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
