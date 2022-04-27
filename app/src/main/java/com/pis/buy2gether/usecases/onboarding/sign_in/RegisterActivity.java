@@ -1,5 +1,6 @@
 package com.pis.buy2gether.usecases.onboarding.sign_in;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
@@ -32,6 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
         viewModel = new RegisterViewModel(this);
 
         setup();
+
+        animateBackground();
 
         sign.setOnClickListener(v -> {
             String email = userEditText.getText().toString();
@@ -76,5 +80,14 @@ public class RegisterActivity extends AppCompatActivity {
         usernameEditText = findViewById(R.id.txtin_username);
         userEditText = findViewById(R.id.txtin_email);
         pswEditText = findViewById(R.id.txtin_psw);
+    }
+
+    private void animateBackground(){
+        ConstraintLayout cl = findViewById(R.id.register_layout);
+        AnimationDrawable animationDrawable = (AnimationDrawable) cl.getBackground();
+
+        animationDrawable.setEnterFadeDuration(2500);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
     }
 }
