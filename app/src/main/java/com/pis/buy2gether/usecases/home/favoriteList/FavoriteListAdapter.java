@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
@@ -24,6 +25,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     private LinkedHashMap<String,String> groups;
     private LinkedHashMap<String,Bitmap> groupImage;
+    private LinkedHashMap<String,Boolean> groupChecked;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
@@ -32,13 +34,14 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         this.mInflater = LayoutInflater.from(context);
         groups = new LinkedHashMap<>();
         groupImage = new LinkedHashMap<>();
+        groupChecked = new LinkedHashMap<>();
     }
 
-    public void addGroup(Bitmap bitmap, String group, String ID) {
+    public void addGroup(Bitmap bitmap, String ID, String group) {
         groups.put(ID,group);
         groupImage.put(ID,bitmap);
+        groupChecked.put(ID,false);
         notifyItemInserted(getItemCount());
-
     }
     // inflates the row layout from xml when needed
     @Override
@@ -53,8 +56,6 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         holder.myTextView.setText(groups.get(ID));
         holder.checked.setChecked(false);
         holder.imageView.setImageBitmap(groupImage.get(ID));
-
-
     }
 
 
@@ -63,7 +64,6 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
     public int getItemCount() {
         return groups.size();
     }
-
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -83,16 +83,27 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
         @Override
         public void onClick(View view) {
-            if(view.getId() == -1)
+            if(view.getId() == -1) {
                 checked.setChecked(!checked.isChecked());
-            else
+                groupChecked.put(getItem(getAdapterPosition()),checked.isChecked());
+            } else
                 if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
         }
     }
 
+    public void removeGroup(String ID, int position){
+        groups.remove(ID);
+        groupImage.remove(ID);
+        groupChecked.remove(ID);
+        notifyItemRemoved(position);
+    }
+    boolean isChecked(int position) {
+        return (boolean) groupChecked.values().toArray()[position];
+    }
+
     // convenience method for getting data at click position
-    String getItem(int id) {
-        return groups.get(id);
+    String getItem(int position) {
+        return (String) groups.keySet().toArray()[position];
     }
 
     // allows clicks events to be caught

@@ -32,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FavoriteFragment extends Fragment implements FavoriteListAdapter.ItemClickListener {
+public class FavoriteFragment extends Fragment implements FavoriteListAdapter.ItemClickListener, View.OnClickListener {
 
     private FavoriteViewModel favoriteViewModel;
     private FavoriteListAdapter favoriteListAdapter;
@@ -45,8 +45,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
 
         binding = FragmentFavoriteListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-        ArrayList<String> items = new ArrayList<>();
+        binding.btnSubmit.setOnClickListener(this);
 
 
         // set up the RecyclerView
@@ -61,6 +60,11 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         return root;
     }
 
+    public void deleteFavorite(int position) {
+        String ID = favoriteListAdapter.getItem(position);
+        favoriteViewModel.delete(ID);
+        favoriteListAdapter.removeGroup(ID,position);
+    }
     private void setList(){
         // set up the RecyclerView
         RecyclerView recyclerView = binding.favoriteList;
@@ -80,13 +84,12 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 switch(swipeDir){
                     case ItemTouchHelper.LEFT:
-                        break;
                     case ItemTouchHelper.RIGHT:
+                        deleteFavorite(viewHolder.getAdapterPosition());
                         break;
                     default:
                         break;
                 }
-                //favoriteListAdapter.swipe(notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -130,5 +133,14 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == binding.btnSubmit.getId()){
+            for(int i  = 0; i < favoriteListAdapter.getItemCount(); i ++) {
+                deleteFavorite(i);
+            }
+        }
     }
 }

@@ -106,4 +106,8 @@ public enum FirebaseRDBService {
         Query q = db.collection("Invites").whereEqualTo("UserID",user);
         return q.get();
     }
+
+    public void deleteFav(String uid, String id) {
+        db.collection("users").document(uid).update("Favorite",FieldValue.arrayRemove(id));
+    }
 }

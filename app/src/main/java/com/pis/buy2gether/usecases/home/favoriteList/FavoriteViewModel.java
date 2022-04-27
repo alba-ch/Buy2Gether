@@ -28,4 +28,7 @@ public class FavoriteViewModel extends ViewModel {
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
+    public void delete(String id) {
+        Session.INSTANCE.deleteFav(getUser(),id);
+    }
 }

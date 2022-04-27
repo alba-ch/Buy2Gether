@@ -114,8 +114,8 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
 
     public void swipe(String notiID, int adapterPosition) {
         fromUserName.remove(notiID);
-        fromUserName.remove(notiID);
-        fromUserName.remove(notiID);
+        groupName.remove(notiID);
+        specialID.remove(notiID);
         notifyItemRemoved(adapterPosition);
     }
 

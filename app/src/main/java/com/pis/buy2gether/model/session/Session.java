@@ -124,6 +124,10 @@ public enum Session {
         return RDB.getGroupInvites(user);
     }
 
+    public void deleteFav(String UserID, String id) {
+        RDB.deleteFav(UserID, id);
+    }
+
     /*public ArrayList<HashMap> getUserAllAddress(String user){
         RDB.get("users",user).addOnCompleteListener(it -> {
             if (it.isSuccessful()) {
