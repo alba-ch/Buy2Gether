@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.session.Session;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashMap;
@@ -66,15 +67,26 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     }
 
     public void setUserPfp(String friend, @NonNull @NotNull ViewHolder holder){
-        StorageReference mImageRef = FirebaseStorage.getInstance().getReference("profileImages/"+ idFriend.get(friend) + ".jpeg");
         final long ONE_MEGABYTE = 1024 * 1024;
-        mImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+
+        Session.INSTANCE.getPfpImageRef(idFriend.get(friend)).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                if(bm!=null) holder.pfp.setImageBitmap(bm);
+                if(bm!=null){ holder.pfp.setImageBitmap(bm); }
             }
-        });
+        });/*.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                Session.INSTANCE.getUnknownImageRef().getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Bitmap unknown  = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        holder.pfp.setImageBitmap(unknown);
+                    }
+                });
+            }
+        });*/
     }
 
     public void addFriend(String friendshipID, String friendID, String friendName){

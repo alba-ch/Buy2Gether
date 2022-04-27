@@ -33,6 +33,10 @@ public enum Session {
         return storage.getReference("profileImages/"+id+".jpeg");
     }
 
+    /*public StorageReference getUnknownImageRef(){
+        return storage.getReference("profileImages/unknown.jpg");
+    }*/
+
     public StorageReference getCurrentUserPfpImageRef(){
         return storage.getReference("profileImages/"+getCurrentUserID()+".jpeg");
     }

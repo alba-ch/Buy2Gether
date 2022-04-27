@@ -12,11 +12,13 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.session.Session;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -60,15 +62,27 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     }
 
     public void setUserPfp(String id, @NonNull @NotNull UsersListAdapter.ViewHolder holder){
-        StorageReference mImageRef = FirebaseStorage.getInstance().getReference("profileImages/"+ id + ".jpeg");
         final long ONE_MEGABYTE = 1024 * 1024;
-        mImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+
+        Session.INSTANCE.getPfpImageRef(id).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
                 Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                if(bm!=null) holder.pfp.setImageBitmap(bm);
+                if(bm!=null){ holder.pfp.setImageBitmap(bm); }
+
             }
-        });
+        });/*.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull @NotNull Exception e) {
+                Session.INSTANCE.getUnknownImageRef().getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        Bitmap unknown  = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                        holder.pfp.setImageBitmap(unknown);
+                    }
+                });
+            }
+        });*/
     }
 
     public void addUser(String userID, String username){
