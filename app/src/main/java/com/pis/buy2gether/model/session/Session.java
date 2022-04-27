@@ -2,8 +2,12 @@ package com.pis.buy2gether.model.session;
 
 import android.content.Context;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.provider.preferences.PreferencesProvider;
 import com.pis.buy2gether.provider.services.FirebaseRDBService;
 
@@ -15,8 +19,25 @@ import java.util.UUID;
 public enum Session {
     INSTANCE;
 
-    private FirebaseRDBService RDB = FirebaseRDBService.INSTANCE;
+    private FirebaseRDBService RDB = FirebaseRDBService.INSTANCE; // Link with Firestore Firebase database
+    private FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser(); // Link with Firebase Authentication
+    private FirebaseStorage storage = FirebaseStorage.getInstance(); // Link with Firebase Storage
 
+    /* ----- Current User Data ----- */
+    public String getCurrentUserID(){
+        return currentUser.getUid();
+    }
+
+    /* ----- Storage Data ----- */
+    public StorageReference getPfpImageRef(String id){
+        return storage.getReference("profileImages/"+id+".jpeg");
+    }
+
+    public StorageReference getCurrentUserPfpImageRef(){
+        return storage.getReference("profileImages/"+getCurrentUserID()+".jpeg");
+    }
+
+    /* ----- Preferences Data ----- */
     public String getDataSession(Context context, String key){
         return PreferencesProvider.string(context, key);
     }
@@ -29,6 +50,7 @@ public enum Session {
         PreferencesProvider.clear(context);
     }
 
+    /* ----- Database ----- */
     public void saveDB(String coll, String doc, HashMap data){
         RDB.save(coll,doc,data);
     }
@@ -128,23 +150,4 @@ public enum Session {
         RDB.deleteFav(UserID, id);
     }
 
-    /*public ArrayList<HashMap> getUserAllAddress(String user){
-        RDB.get("users",user).addOnCompleteListener(it -> {
-            if (it.isSuccessful()) {
-
-            }
-        });
-    }*
-
-    public String getUsername(String user){
-        RDB.get("users",user).addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot document = task.getResult();
-                if (document.exists()) {
-                   return document.getString("username");
-                }
-            }
-            return "unknown";
-        });
-    }*/
 }
