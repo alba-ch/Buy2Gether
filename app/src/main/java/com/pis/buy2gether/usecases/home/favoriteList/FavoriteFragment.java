@@ -98,27 +98,31 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 ;
-                ArrayList<String> favoriteList = new ArrayList<>(((List<String>) documentSnapshot.get("Favorite")));
-                for(String groupID : favoriteList) {
-                    Task<DocumentSnapshot> task = favoriteViewModel.getGroup(groupID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot1) {
-                            StorageReference mImageRef = FirebaseStorage.getInstance().getReference("groupImages/"+ groupID+".jpeg");
-                            final long ONE_MEGABYTE = 1024 * 1024;
-                            mImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                                @Override
-                                public void onSuccess(byte[] bytes) {
-                                    Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                                    favoriteListAdapter.addGroup(bm,groupID,documentSnapshot1.get("Product Name").toString());
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception exception) {
-                                    Toast.makeText(getActivity(),"Error al carregar l'imatge de group\n"+exception,Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                    });
+                if(documentSnapshot.get("Favorite") != null) {
+                    ArrayList<String> favoriteList = new ArrayList<>((List<String>) documentSnapshot.get("Favorite"));
+
+                    for (String groupID : favoriteList) {
+                        Task<DocumentSnapshot> task = favoriteViewModel.getGroup(groupID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot1) {
+                                StorageReference mImageRef = FirebaseStorage.getInstance().getReference("groupImages/" + groupID + ".jpeg");
+                                final long ONE_MEGABYTE = 1024 * 1024;
+                                mImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                    @Override
+                                    public void onSuccess(byte[] bytes) {
+                                        Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        favoriteListAdapter.addGroup(bm, groupID, documentSnapshot1.get("Product Name").toString());
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception exception) {
+                                        Toast.makeText(getActivity(), "Error al carregar l'imatge de group\n" + exception, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
+                    }
                 }
             }
         });
