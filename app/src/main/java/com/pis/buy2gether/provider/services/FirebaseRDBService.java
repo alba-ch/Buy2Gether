@@ -110,4 +110,5 @@ public enum FirebaseRDBService {
     public void deleteFav(String uid, String id) {
         db.collection("users").document(uid).update("Favorite",FieldValue.arrayRemove(id));
     }
+
 }

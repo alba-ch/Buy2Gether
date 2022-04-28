@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
 
@@ -40,6 +42,14 @@ public class SettingsViewModel extends ViewModel {
         Session.INSTANCE.updateUser(getUser(),"username",nom);
     }
 
+
+    /**
+     * obtenim les dades de l'usuari
+     * @return
+     */
+    Task<DocumentSnapshot> update_UserInformation(){
+        return Session.INSTANCE.getUserInformation(getUser());
+    }
 
     /**
      * obtenim uid de l'usuari

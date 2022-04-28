@@ -28,6 +28,11 @@ public enum Session {
         return currentUser.getUid();
     }
 
+
+    public Task<DocumentSnapshot> getUserInformation(String user){
+        return RDB.get("users",user);
+    }
+
     /* ----- Storage Data ----- */
     public StorageReference getPfpImageRef(String id){
         return storage.getReference("profileImages/"+id+".jpeg");
