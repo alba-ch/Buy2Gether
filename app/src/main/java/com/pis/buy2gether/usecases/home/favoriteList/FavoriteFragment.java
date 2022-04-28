@@ -62,7 +62,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
 
     public void deleteFavorite(int position) {
         String ID = favoriteListAdapter.getItem(position);
-        favoriteViewModel.delete(ID);
+        //favoriteViewModel.delete(ID);
         favoriteListAdapter.removeGroup(ID,position);
     }
     private void setList(){
@@ -97,10 +97,8 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         Task<DocumentSnapshot> task = favoriteViewModel.getFavorite().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                ;
                 if(documentSnapshot.get("Favorite") != null) {
-                    ArrayList<String> favoriteList = new ArrayList<>((List<String>) documentSnapshot.get("Favorite"));
-
+                    ArrayList<String> favoriteList = new ArrayList<>(((List<String>) documentSnapshot.get("Favorite")));
                     for (String groupID : favoriteList) {
                         Task<DocumentSnapshot> task = favoriteViewModel.getGroup(groupID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
@@ -121,7 +119,6 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
                                 });
                             }
                         });
-
                     }
                 }
             }
@@ -141,9 +138,13 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
 
     @Override
     public void onClick(View view) {
+        int offset = 0, size = favoriteListAdapter.getItemCount();
         if(view.getId() == binding.btnSubmit.getId()){
-            for(int i  = 0; i < favoriteListAdapter.getItemCount(); i ++) {
-                deleteFavorite(i);
+            for(int i  = 0; i < size; i ++) {
+                if(favoriteListAdapter.isChecked(i-offset)) {
+                    deleteFavorite(i - offset);
+                    offset++;
+                }
             }
         }
     }
