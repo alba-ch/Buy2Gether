@@ -44,9 +44,9 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
     public void onBindViewHolder(@NonNull @NotNull TypeRvViewHolder holder, int position) {
         //assign values to components when initializing and sliding recyclerView
         TypeTabModel currentItem = products.get(position);
-        holder.imageView.setImageResource(currentItem.getProduct_image());
-        holder.textView.setText(currentItem.getProduct_name());
-
+        holder.product_image.setImageResource(currentItem.getProduct_image());
+        holder.product_name.setText(currentItem.getProduct_name());
+        holder.product_price.setText(currentItem.getProduct_price());
 
     }
 
@@ -60,23 +60,24 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
      */
     public static class TypeRvViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageView;
-        TextView textView;
-        AppCompatImageButton button;
+        ImageView product_image;
+        TextView product_name;
+        AppCompatImageButton product_button;
+        TextView product_price;
 
         public TypeRvViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.img_product);
-            textView = itemView.findViewById(R.id.name_product);
-            button = itemView.findViewById(R.id.boton);
+            product_image = itemView.findViewById(R.id.img_product);
+            product_name = itemView.findViewById(R.id.name_product);
+            product_button = itemView.findViewById(R.id.boton);
+            product_price = itemView.findViewById(R.id.price_product);
 
-            button.setOnClickListener(new View.OnClickListener() {
+            product_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(act, Product_view.class);
                     act.startActivity(i);}
             });
-
         }
     }
 }
