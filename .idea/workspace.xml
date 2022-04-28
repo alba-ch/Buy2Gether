@@ -14,8 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,14 +211,7 @@
       <workItem from="1650305011424" duration="6079000" />
       <workItem from="1650874006466" duration="4245000" />
       <workItem from="1651045574455" duration="2716000" />
-      <workItem from="1651049177173" duration="12205000" />
-    </task>
-    <task id="LOCAL-00001" summary="Commiting all initial files">
-      <created>1647509951038</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1647509951038</updated>
+      <workItem from="1651049177173" duration="12352000" />
     </task>
     <task id="LOCAL-00002" summary="Project Data">
       <created>1648111240400</created>
@@ -557,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651130565953</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Simplified connected if else">
+      <created>1651134950819</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1651134950820</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +575,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix setting menu superpositions, add go back to the main menu functionality in historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu. (There are things to delete in the new created Fragments)" />
     <MESSAGE value="Fixed Objects in Home Fragment." />
@@ -601,7 +599,8 @@
     <MESSAGE value="Fixed Favorite Deletion Bugs" />
     <MESSAGE value="Uncomment line" />
     <MESSAGE value="Close app if we lose the network connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Close app if we lose the network connection" />
+    <MESSAGE value="Simplified connected if else" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplified connected if else" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

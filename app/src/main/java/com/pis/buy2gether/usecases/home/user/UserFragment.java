@@ -58,6 +58,8 @@ public class UserFragment extends Fragment implements View.OnClickListener {
         binding.btnAmics.setOnClickListener(this::onClick);
         binding.btnSettings.setOnClickListener(this::onClick);
         binding.btnLan.setOnClickListener(this::onClick);
+        binding.btnLan.setEnabled(false);
+        binding.btnLan.setVisibility(View.INVISIBLE);
     }
 
     @Override
