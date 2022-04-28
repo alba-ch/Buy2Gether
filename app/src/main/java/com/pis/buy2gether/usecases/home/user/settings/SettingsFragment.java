@@ -38,7 +38,10 @@ import com.google.firebase.storage.UploadTask;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentSettingsBinding;
 import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
+import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
+import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
@@ -381,6 +384,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         FirebaseAuth.getInstance().signOut();
         // Mostrem missatge d'èxit per confirmar que s'ha tancat sessió
         showSuccessAlert();
+        Intent i = new Intent(getActivity(), MainActivity.class);
+        startActivity(i);
+        this.getActivity().finish();
+
     }
 
     @Override
