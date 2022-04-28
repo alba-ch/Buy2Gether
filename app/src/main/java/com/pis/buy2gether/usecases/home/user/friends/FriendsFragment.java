@@ -87,7 +87,7 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         friendsListAdapter.setClickListener(this);
         usersListAdapter.setClickListener(this);
 
-        viewModel.setList();
+        viewModel.setList(friendsListAdapter);
 
         return root;
     }
@@ -118,7 +118,8 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
     @Override
     public void onItemClick(View view, String friendshipID) {
         viewModel.deleteFriend(friendshipID);
-        viewModel.setList();
+        friendsListAdapter = new FriendsListAdapter(getContext(),this);
+        viewModel.setList(friendsListAdapter);
     }
 
     @Override

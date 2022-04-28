@@ -116,6 +116,7 @@ public class FriendsViewModel extends ViewModel{
     }*/
     public void deleteFriend(String id){
         Session.INSTANCE.deleteFriend(id);
+        Toast.makeText(context, "Amic eliminat", Toast.LENGTH_SHORT).show();
     }
 
     public void sendRequest(String toID) {
@@ -126,7 +127,7 @@ public class FriendsViewModel extends ViewModel{
         Session.INSTANCE.CreateFriendRequest(inviteInfo);
     }
 
-    public void setList(){
+    public void setList(FriendsListAdapter friendsListAdapter){
 
         recyclerView.setAdapter(friendsListAdapter);
         binding.friendsList.setAdapter(friendsListAdapter);
@@ -191,7 +192,7 @@ public class FriendsViewModel extends ViewModel{
         builder.setPositiveButton("SÍ",new DialogInterface.OnClickListener() {
             @Override public void onClick(DialogInterface dialog, int which) {
                 sendRequest(toID);
-                setList();
+                setList(friendsListAdapter);
             }
         });
         AlertDialog dialog = builder.create();
