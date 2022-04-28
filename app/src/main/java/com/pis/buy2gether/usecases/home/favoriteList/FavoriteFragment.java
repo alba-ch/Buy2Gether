@@ -62,7 +62,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
 
     public void deleteFavorite(int position) {
         String ID = favoriteListAdapter.getItem(position);
-        //favoriteViewModel.delete(ID);
+        favoriteViewModel.delete(ID);
         favoriteListAdapter.removeGroup(ID,position);
     }
     private void setList(){
