@@ -13,6 +13,9 @@
             android:name=".usecases.home.user.comanda.comanda_view.Comanda_view"
             android:exported="false" />
         <activity
+                android:name=".usecases.home.user.settings.CheckImageActivity"
+                android:exported="false" />
+        <activity
             android:name=".usecases.onboarding.sign_in.RegisterActivity"
             android:exported="false" />
         <activity
