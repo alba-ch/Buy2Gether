@@ -3,6 +3,7 @@ package com.pis.buy2gether.usecases.onboarding.log_in;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
+import android.view.View;
 import android.widget.*;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,6 +101,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+        findViewById(R.id.invitado).setEnabled(false);
+        findViewById(R.id.invitado).setVisibility(View.INVISIBLE);
     }
 
     private void showHome(String email, ProviderType provider){
