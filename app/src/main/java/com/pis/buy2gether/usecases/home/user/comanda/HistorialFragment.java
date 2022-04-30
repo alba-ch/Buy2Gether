@@ -1,7 +1,9 @@
 package com.pis.buy2gether.usecases.home.user.comanda;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -16,63 +18,37 @@ import com.pis.buy2gether.R;
 import com.pis.buy2gether.usecases.common.adaptadoresUniversales.SeccionesAdapter;
 import com.pis.buy2gether.usecases.home.user.comanda.pestanyes_fragments.TotsFragment;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
+import com.pis.buy2gether.usecases.home.user.comanda.pestanyes_fragments.TotsViewModel;
+
+import java.util.HashMap;
 
 /**
  * A fragment representing a list of Items.
  */
-public class HistorialFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+public class HistorialFragment extends Fragment{
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private TotsViewModel viewModel;
+    private HashMap<String,TotsFragment> fragments;
     private ImageButton back;
-
     private View view;
     private TabLayout menu;
     private ViewPager viewpager;
     private SeccionesAdapter viewPageAdapter;
 
+
     public HistorialFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HistorialFragment2.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HistorialFragment newInstance(String param1, String param2) {
-        HistorialFragment fragment = new HistorialFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        System.out.println("onCreateView");
         view = inflater.inflate(R.layout.fragment_historial, container, false);
 
 
@@ -80,10 +56,18 @@ public class HistorialFragment extends Fragment {
         menu = view.findViewById(R.id.menus);
         viewpager = view.findViewById(R.id.historial_menus);
         viewPageAdapter = new SeccionesAdapter(getChildFragmentManager());
-        viewPageAdapter.addFragment(new TotsFragment(), "Tots");
-        viewPageAdapter.addFragment(new TotsFragment(), "En procès");
-        viewPageAdapter.addFragment(new TotsFragment(), "Valorats");
+
+        fragments = new HashMap<>();
+        fragments.put("Tots", new TotsFragment(-1));
+        fragments.put("En procès", new TotsFragment(-1));
+        fragments.put("Valorats", new TotsFragment(-1));
+
+        viewPageAdapter.addFragment(fragments.get("Tots"), "Tots");
+        viewPageAdapter.addFragment(fragments.get("En procès"), "En procès");
+        viewPageAdapter.addFragment(fragments.get("Valorats"), "Valorats");
+
         menu.setScrollPosition(0,0f,true);
+
         viewpager.setCurrentItem(0);
         viewpager.setAdapter(viewPageAdapter);
         menu.setupWithViewPager(viewpager);
@@ -97,7 +81,6 @@ public class HistorialFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -105,4 +88,10 @@ public class HistorialFragment extends Fragment {
     public void onResume() {
         super.onResume();
     }
+
+
+
+
+
+
 }

@@ -25,7 +25,7 @@
             android:name=".usecases.onboarding.log_in.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".usecases.home.home.product_view.Product_view"
+            android:name=".usecases.home.home.product_view.GrupActivity"
             android:exported="false" />
         <activity
             android:name=".usecases.launch.SplashScreenActivity"

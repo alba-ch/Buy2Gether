@@ -41,7 +41,7 @@ public class UserViewModel extends ViewModel {
         description = view.findViewById(R.id.txt_desc);
         img_pfp = view.findViewById(R.id.img_pfp);
 
-        setUserPfp();
+        //setUserPfp();
         setupUserInfo();
     }
 

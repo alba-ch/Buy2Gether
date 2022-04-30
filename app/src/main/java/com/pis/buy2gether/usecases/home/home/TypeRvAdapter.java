@@ -12,7 +12,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.usecases.home.home.product_view.Product_view;
+import com.pis.buy2gether.usecases.home.home.product_view.GrupActivity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -75,7 +75,7 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
             product_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(act, Product_view.class);
+                    Intent i = new Intent(act, GrupActivity.class);
                     act.startActivity(i);}
             });
         }

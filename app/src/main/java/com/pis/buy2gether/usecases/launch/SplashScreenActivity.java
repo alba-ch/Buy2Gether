@@ -30,8 +30,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
-
-
         //Animation
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
@@ -43,6 +41,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         //Set animation
         image.setAnimation(bottomAnim);
         name.setAnimation(topAnim);
+
+        //Test
 
         new Handler().postDelayed(() -> {
             Intent i;
@@ -63,6 +63,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         }, SPLASH_TIME_OUT);
 
     }
+
+
+
 
 
 }
