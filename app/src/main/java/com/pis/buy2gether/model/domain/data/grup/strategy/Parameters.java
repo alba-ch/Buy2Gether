@@ -1,4 +1,4 @@
-package com.pis.buy2gether.model.domain.data.Grup.strategy;
+package com.pis.buy2gether.model.domain.data.grup.strategy;
 
 import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 

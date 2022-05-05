@@ -1,7 +1,10 @@
 package com.pis.buy2gether.usecases.home.home.product_view;
 
+import android.graphics.Bitmap;
+
 import com.pis.buy2gether.model.domain.data.ComandasData;
-import com.pis.buy2gether.model.domain.data.Grup.GrupData;
+import com.pis.buy2gether.model.domain.data.grup.GrupData;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 
 public class GrupViewModel {
@@ -33,6 +36,15 @@ public class GrupViewModel {
         }else{
             return "Unirse-grup";
         }
+    }
+
+
+    public String getPrecio() {
+        return String.valueOf(grup.getPrice()) + " €";
+    }
+
+    public Bitmap getPhoto() {
+        return ImageData.INSTANCE.getGrupPhoto(grup.getId());
     }
 
 

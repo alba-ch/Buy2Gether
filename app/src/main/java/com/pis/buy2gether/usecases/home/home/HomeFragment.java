@@ -14,11 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.usecases.common.adaptadoresUniversales.SeccionesAdapter;
 import com.pis.buy2gether.usecases.home.home.product_view.group.creation.GroupCreationFragment;
 import com.pis.buy2gether.usecases.home.home.search.SearchFragment;
 
+import java.util.ArrayList;
+
 public class HomeFragment extends Fragment {
+
+    private Category [] categories = Category.values();
 
     private HomeViewModel homeViewModel;
     private SeccionesAdapter adapter_categoria;
@@ -47,10 +52,9 @@ public class HomeFragment extends Fragment {
 
         adapter_categoria= new SeccionesAdapter(getChildFragmentManager());
         // Solución temporal para que funcione el viewpager
-        adapter_categoria.addFragment(new TabFragment(), "Moda");
-        adapter_categoria.addFragment(new TabFragment(), "Electrònica");
-        adapter_categoria.addFragment(new TabFragment(), "Informàtica");
-        adapter_categoria.addFragment(new TabFragment(), "Mascotes");
+        for (Category category : categories) {
+            adapter_categoria.addFragment(new TabFragment(category), category.toString());
+        }
 
 
         //adaptem el viewPager amb l'adaptador que acabem de crear
@@ -93,7 +97,6 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.addToBackStack("home").commit();
             }
         });
-
         return root;
     }
 

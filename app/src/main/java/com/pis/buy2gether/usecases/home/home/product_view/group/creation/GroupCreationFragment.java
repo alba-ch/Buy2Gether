@@ -36,6 +36,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentGroupCreationBinding;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -186,6 +187,8 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 showFailureAlert(e);
             }
         });
+
+        //ImageData.INSTANCE.saveGrupPhoto(groupID,bitmap);
     }
 
     private void showMediaDialog(){

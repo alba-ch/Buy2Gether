@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
+import com.google.firebase.storage.FirebaseStorage;
 import com.pis.buy2gether.model.session.Session;
 
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.List;
 
 public class Firebase {
     protected final static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    protected final static FirebaseStorage st = FirebaseStorage.getInstance();
 
     public Firebase() {
 

@@ -31,6 +31,11 @@ public class GrupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            product_id = extras.getString("product_id");
+        }
+
         binding();
         addListeners();
 
@@ -38,11 +43,14 @@ public class GrupActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> finish());
         valoracion = findViewById(R.id.lista_valoraciones);
+        description = findViewById(R.id.descripcion);
+
 
         ArrayList<String> valoraciones = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             valoraciones.add("Hola" + i);
         }
+
         ValoracionsAdapter adapter = new ValoracionsAdapter(valoraciones);
         valoracion.setLayoutManager(new LinearLayoutManager(this));
         valoracion.setAdapter(adapter);
@@ -63,7 +71,10 @@ public class GrupActivity extends AppCompatActivity {
             viewModel.btn_action();
         } );
     }
-    private void observeView(GrupViewModel viewModel) {
 
+    private void observeView(GrupViewModel viewModel) {
+        description.setText(viewModel.getDescription());
+        precio.setText(viewModel.getPrecio());
+        image.setImageBitmap(viewModel.getPhoto());
     }
 }

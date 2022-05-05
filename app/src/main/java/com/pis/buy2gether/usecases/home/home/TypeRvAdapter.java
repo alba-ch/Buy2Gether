@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.usecases.home.home.product_view.GrupActivity;
 
 import org.jetbrains.annotations.NotNull;
@@ -20,10 +21,10 @@ import java.util.ArrayList;
 
 public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvViewHolder>{
 
-    private ArrayList<TypeTabModel> products;
+    private ArrayList<Grup> products;
     private static Activity act;
 
-    public TypeRvAdapter(ArrayList<TypeTabModel> products, Activity activity) {
+    public TypeRvAdapter(ArrayList<Grup> products, Activity activity) {
         this.products = products;
         act = activity;
     }
@@ -43,10 +44,12 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
     @Override
     public void onBindViewHolder(@NonNull @NotNull TypeRvViewHolder holder, int position) {
         //assign values to components when initializing and sliding recyclerView
-        TypeTabModel currentItem = products.get(position);
-        holder.product_image.setImageResource(currentItem.getProduct_image());
-        holder.product_name.setText(currentItem.getProduct_name());
-        holder.product_price.setText(currentItem.getProduct_price());
+
+        Grup grup = products.get(position);
+        holder.product_image.setImageBitmap(TypeRvViewModel.getPhoto(grup.getId()));
+        holder.product_name.setText(grup.getName());
+        holder.product_price.setText(String.valueOf(grup.getPrice()) + " €");
+        holder.setId(grup.getId());
 
     }
 
@@ -64,6 +67,7 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
         TextView product_name;
         AppCompatImageButton product_button;
         TextView product_price;
+        private String product_id;
 
         public TypeRvViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -71,13 +75,22 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
             product_name = itemView.findViewById(R.id.name_product);
             product_button = itemView.findViewById(R.id.boton);
             product_price = itemView.findViewById(R.id.price_product);
-
             product_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(act, GrupActivity.class);
+                    i.putExtra("ProductID", product_id);
                     act.startActivity(i);}
             });
         }
+
+        public void setId(String id){
+            product_id = id;
+        }
+
+        public String getId(){
+            return product_id;
+        }
+
     }
 }
