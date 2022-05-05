@@ -14,9 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
+
 
 import com.pis.buy2gether.model.domain.data.ComandasData;
 import com.pis.buy2gether.model.domain.data.grup.GrupData;
+import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.usecases.home.MainActivity;
@@ -51,6 +54,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         //Test
         //test();
+
+
         new Handler().postDelayed(() -> {
             Intent i;
             if (login) {
@@ -74,9 +79,9 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void test() {
         Log.e("UUID", Session.INSTANCE.getCurrentUserID());
-        ComandasData.INSTANCE.getComandes(-1);
         Grup grup = new Grup();
         String uuid = UUID.randomUUID().toString();
+        grup.setCat(Category.HOGAR);
         grup.setId(uuid);
         grup.setName("Grup de prova");
         grup.setDate("11-11-11");
@@ -85,34 +90,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         GrupData.INSTANCE.saveGrup(grup);
         ComandasData.INSTANCE.saveComanda(uuid);
 
-        GrupData.INSTANCE.getGrup(uuid);
-
-        if (GrupData.INSTANCE.getGrup(uuid) == null) {
-            Log.e("Devolucion", uuid + "null pointer");
-            Log.e("Grup", "No existeix");
-        }else{
-            Log.e("Grup SDSDS", grup.getId());
-        }
-
-        grup = new Grup();
-        uuid = UUID.randomUUID().toString();
-        grup.setId(UUID.randomUUID().toString());
-        grup.setName("Grup de prova_1");
-        grup.setDate("11-11-11");
-        grup.setProces(0);
-        grup.setPrice(10.65f);
-        GrupData.INSTANCE.saveGrup(grup);
-        ComandasData.INSTANCE.saveComanda(uuid);
-
-        grup = new Grup();
-        uuid = UUID.randomUUID().toString();
-        grup.setId(UUID.randomUUID().toString());
-        grup.setName("Grup de prova_2");
-        grup.setDate("11-11-11");
-        grup.setProces(1);
-        grup.setPrice(10.65f);
-        GrupData.INSTANCE.saveGrup(grup);
-        ComandasData.INSTANCE.saveComanda(uuid);
+        MutableLiveData<Grup> data = GrupData.INSTANCE.getGrup(uuid);
 
 
     }

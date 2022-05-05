@@ -1,18 +1,21 @@
 package com.pis.buy2gether.model.domain.data.grup.strategy;
 
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 
 import java.util.ArrayList;
 
 public class Search {
-    private ArrayList<Grup> grup;
+    private MutableLiveData<ArrayList<Grup>> grupList;
     private StrategySearch st;
 
     public Search() {
     }
 
-    public void setGrups(ArrayList<Grup> grup) {
-        this.grup = grup;
+    public void setGrups(MutableLiveData<ArrayList<Grup>> grup) {
+        this.grupList = grup;
     }
 
     public void setStrategy(StrategySearch strategy) {
@@ -20,7 +23,7 @@ public class Search {
     }
 
     public ArrayList<Grup> search() {
-        return st.search(grup);
+        return st.search(grupList);
     }
 
 }

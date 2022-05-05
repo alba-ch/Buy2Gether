@@ -4,33 +4,30 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
+import androidx.lifecycle.MutableLiveData;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.pis.buy2gether.R;
+
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 
 import java.util.ArrayList;
 
 
-public class TotsFragment extends Fragment implements LifecycleOwner{
+public class TotsFragment extends Fragment{
 
     private int state;
     private TotsListAdapter adapter;
     private TotsViewModel viewModel;
     private RecyclerView recyclerView;
 
-    Observer<ArrayList<Grup>> grupListUpdateObserver = new Observer<ArrayList<Grup>>() {
-        @Override
-        public void onChanged(ArrayList<Grup> userArrayList) {
-            adapter.updateUserList(userArrayList);
-        }
-    };
 
 
     public TotsFragment(int state) {
@@ -45,11 +42,16 @@ public class TotsFragment extends Fragment implements LifecycleOwner{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tots, container, false);
         viewModel = new TotsViewModel();
-        //viewModel.getUserMutableLiveData().observe(getViewLifecycleOwner(), grupListUpdateObserver);
+
+        MutableLiveData<ArrayList<Grup>> data = viewModel.getGrupList();
+        data.observe((LifecycleOwner) this, list ->{
+            adapter.updateList(list);
+        });
         recyclerView = view.findViewById(R.id.historial_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new TotsListAdapter(viewModel.getGrupList(),getActivity());
+        adapter = new TotsListAdapter(getActivity());
         recyclerView.setAdapter(adapter);
         return view;
     }
+
 }

@@ -77,7 +77,7 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
         this.act = act;
     }
 
-    public void updateUserList(final ArrayList<Grup> newData) {
+    public void updateList(final ArrayList<Grup> newData) {
         this.mData.clear();
         this.mData = newData;
         notifyDataSetChanged();

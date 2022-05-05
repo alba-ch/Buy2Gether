@@ -2,12 +2,14 @@ package com.pis.buy2gether.usecases.home.home;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
@@ -23,16 +25,31 @@ public class TabFragment extends Fragment {
     private RecyclerView recyclerView;
     private TypeRvAdapter typeRvAdapter;
     private Context context;
-    private ArrayList<Grup> list;
+    private MutableLiveData<ArrayList<Grup>> list;
 
     public TabFragment(){}
 
     public TabFragment(Category category) {
-        list = TypeRvViewModel.getGrupByCategory(category);
+
+        TypeRvViewModel TypeRvViewModel = new TypeRvViewModel();
+        MutableLiveData<ArrayList<Grup>> list = TypeRvViewModel.getGrupByCategory(category);
+        list.observe(this, newList -> {
+            if(newList != null && newList.size() > 0){
+                Log.e("TAB", "newList: " + newList.size());
+                typeRvAdapter.updateList(newList);
+            }
+        });
     }
 
     public TabFragment(String search){
-        list = TypeRvViewModel.getGrupBySearch(search);
+        TypeRvViewModel TypeRvViewModel = new TypeRvViewModel();
+        MutableLiveData<ArrayList<Grup>> list = TypeRvViewModel.getGrupBySearch(search);
+        list.observe(this, newList -> {
+            if(newList != null){
+                Log.e("TAB", "newList: " + newList.size());
+                typeRvAdapter.updateList(newList);
+            }
+        });
     }
 
     @Nullable
@@ -44,7 +61,7 @@ public class TabFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_tab, container, false);
         context = root.getContext();
         recyclerView = root.findViewById(R.id.rv_tab3);
-        typeRvAdapter = new TypeRvAdapter(list, getActivity());
+        typeRvAdapter = new TypeRvAdapter(new ArrayList<>(), getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         recyclerView.setAdapter(typeRvAdapter);
         return root;
