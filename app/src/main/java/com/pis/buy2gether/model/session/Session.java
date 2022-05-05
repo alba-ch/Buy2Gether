@@ -1,6 +1,8 @@
 package com.pis.buy2gether.model.session;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +29,18 @@ public enum Session {
     public String getCurrentUserID(){
         return currentUser.getUid();
     }
+
+    public FirebaseUser getCurrentUser(){
+        return currentUser;
+    }
+/*
+    public String getCurrentUserName(){
+        return RDB.getUserByID(getCurrentUserID()).get
+    }
+
+    public String getCurrentUserCity(){
+        return currentUser.getUid();
+    }*/
 
 
     public Task<DocumentSnapshot> getUserInformation(String user){
@@ -158,5 +172,4 @@ public enum Session {
     public void deleteFav(String UserID, String id) {
         RDB.deleteFav(UserID, id);
     }
-
 }

@@ -22,6 +22,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.usecases.onboarding.log_in.forgot_psw.ForgotPasswordActivity;
 import com.pis.buy2gether.usecases.onboarding.sign_in.RegisterActivity;
@@ -116,8 +117,10 @@ public class LoginActivity extends AppCompatActivity {
         String email = viewModel.getSession(this, "email");
         String provider = viewModel.getSession(this,"provider");
 
-        if(email != null && provider != null){
+        if(Session.INSTANCE.getCurrentUser() != null){
             showHome(email, ProviderType.valueOf(provider));
+        }else{
+            Toast.makeText(LoginActivity.this,"SON NULL",Toast.LENGTH_SHORT).show();
         }
     }
 

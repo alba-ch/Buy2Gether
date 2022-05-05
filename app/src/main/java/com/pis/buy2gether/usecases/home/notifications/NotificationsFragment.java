@@ -1,5 +1,7 @@
 package com.pis.buy2gether.usecases.home.notifications;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +22,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.databinding.FragmentNotificationsBinding;
+import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.usecases.home.user.address.AddressListAdapter;
+import com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -139,6 +143,8 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                 break;
         }
     }
+
+
 
     @Override
     public void onItemClick(View view, int position) {

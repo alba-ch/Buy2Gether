@@ -3,6 +3,7 @@ package com.pis.buy2gether.usecases.home.home.product_view.group.creation;
 import android.content.Context;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
+import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -53,6 +54,7 @@ public class GroupCreationViewModel extends ViewModel {
         return Session.INSTANCE.getFriendsDB(getUser());
     }
     public String getUser(){
+        //Toast.makeText(contex,"Error al carregar l'imatge de perfil\n",Toast.LENGTH_SHORT).show();
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 

@@ -19,7 +19,7 @@ import com.pis.buy2gether.R;
 import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    public static boolean login = false;
+    public static boolean login = true;
     private static int SPLASH_TIME_OUT = 1500;
     private Animation topAnim, bottomAnim;
     private ImageView image;
@@ -45,21 +45,13 @@ public class SplashScreenActivity extends AppCompatActivity {
         //Test
 
         new Handler().postDelayed(() -> {
-            Intent i;
-            if (login) {
-                i = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
-            }
-            else {
-                i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(image, "image");
                 pairs[1] = new Pair<View, String>(name, "text");
 
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this, pairs);
                 startActivity(i, options.toBundle());
-            }
         }, SPLASH_TIME_OUT);
 
     }

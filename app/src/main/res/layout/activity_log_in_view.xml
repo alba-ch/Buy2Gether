@@ -214,6 +214,7 @@
                     android:id="@+id/invitado"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:clickable="false"
                     android:layout_marginTop="15dp"
                     android:text="Entra com a convidat"
                     app:layout_constraintEnd_toEndOf="parent"

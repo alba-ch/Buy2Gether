@@ -8,8 +8,9 @@
         android:background="@color/white"
         android:layout_height="match_parent"
         tools:context=".usecases.home.home.product_view.group.creation.GroupCreationFragment">
-
-    <ImageView
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,11 +130,11 @@
         android:textColor="#000000" />
     <com.google.android.material.button.MaterialButton
             android:theme="@style/Theme.MaterialComponents"
-            app:strokeColor="@color/black"
+            app:strokeColor="@color/colorAccent"
             app:strokeWidth="2dp"
+            app:rippleColor="@color/colorAccentUltraLight"
             app:backgroundTint="@android:color/transparent"
             android:text="@string/crear_grup"
-
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/submitButton"
@@ -146,4 +147,6 @@
             android:layout_width="290dp"
             android:layout_height="275dp"
             android:visibility="invisible" android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

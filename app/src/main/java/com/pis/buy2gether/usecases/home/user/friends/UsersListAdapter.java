@@ -71,18 +71,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                 if(bm!=null){ holder.pfp.setImageBitmap(bm); }
 
             }
-        });/*.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                Session.INSTANCE.getUnknownImageRef().getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Bitmap unknown  = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        holder.pfp.setImageBitmap(unknown);
-                    }
-                });
-            }
-        });*/
+        });
     }
 
     public void addUser(String userID, String username){

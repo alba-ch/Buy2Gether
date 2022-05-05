@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.databinding.FragmentUserBinding;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class GrupActivity extends AppCompatActivity {
     private String product_id;
     private ImageButton back;
     private RecyclerView valoracion;
-    private GrupViewModel viewModel;
+    public GrupViewModel viewModel;
     private ShapeableImageView image;
     private TextView description;
     private TextView precio;
@@ -30,11 +31,12 @@ public class GrupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_product_view);
+        GrupViewModel viewModel = new GrupViewModel(product_id);
 
         binding();
         addListeners();
 
-        setContentView(R.layout.activity_product_view);
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> finish());
         valoracion = findViewById(R.id.lista_valoraciones);
@@ -46,13 +48,13 @@ public class GrupActivity extends AppCompatActivity {
         ValoracionsAdapter adapter = new ValoracionsAdapter(valoraciones);
         valoracion.setLayoutManager(new LinearLayoutManager(this));
         valoracion.setAdapter(adapter);
-        GrupViewModel viewModel = new GrupViewModel(product_id);
+
         observeView(viewModel);
     }
 
     private void binding() {
         image = findViewById(R.id.foto_producto);
-        unirse = findViewById(R.id.btn_unirse);
+        unirse = findViewById(R.id.btn_unirse_grup);
         unirse.setText(viewModel.btn_text());
         precio = findViewById(R.id.precios);
         description = findViewById(R.id.descripcion);
