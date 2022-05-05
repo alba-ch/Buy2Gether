@@ -1,4 +1,4 @@
-package com.pis.buy2gether.model.domain.data.Grup.strategy;
+package com.pis.buy2gether.model.domain.data.grup.strategy;
 
 import android.os.Build;
 
@@ -11,9 +11,12 @@ public class SearchByName implements StrategySearch {
 
     @Override
     public ArrayList<Grup> search(ArrayList<Grup> grups) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return grups.stream().filter(g -> g.getName().equals(Parameters.INSTANCE.filter)).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Grup> ret_cat = new ArrayList<>();
+        for (Grup grup : grups) {
+            if(grup.getName() == Parameters.INSTANCE.filter){
+                ret_cat.add(grup);
+            }
         }
-        return null;
+        return ret_cat;
     }
 }

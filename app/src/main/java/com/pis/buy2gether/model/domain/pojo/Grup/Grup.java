@@ -1,9 +1,11 @@
 package com.pis.buy2gether.model.domain.pojo.Grup;
 
+import android.graphics.Picture;
+
 import java.util.List;
-import java.util.UUID;
 
 public class Grup {
+
     private Category cat;
     private String id;
     private String name;
@@ -108,4 +110,5 @@ public class Grup {
     public void setCat(Category cat) {
         this.cat = cat;
     }
+
 }

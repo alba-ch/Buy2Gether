@@ -7,9 +7,11 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentSearchBinding;
+import com.pis.buy2gether.usecases.home.home.TabFragment;
 
 
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class SearchFragment extends Fragment {
         items.add("Chica");
         items.add("Golfo");
 
-        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,items);
+        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
 
         SearchView search_bar = view.findViewById(R.id.searchView);
         ListView historial_list = view.findViewById(R.id.historial_list);
@@ -47,6 +49,14 @@ public class SearchFragment extends Fragment {
                 if(items.contains(query)){
                     searchAdapter.getFilter().filter(query);
                 }
+
+                getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
+                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.viewPager, new TabFragment(query));
+                fragmentTransaction.addToBackStack("home").commit();
+
+
+
                 return false;
             }
 

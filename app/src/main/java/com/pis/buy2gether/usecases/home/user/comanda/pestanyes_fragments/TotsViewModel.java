@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.pis.buy2gether.model.domain.data.ComandasData;
-import com.pis.buy2gether.model.domain.data.Grup.GrupData;
+import com.pis.buy2gether.model.domain.data.grup.GrupData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.model.session.Session;
 

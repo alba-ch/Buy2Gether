@@ -1,6 +1,5 @@
-package com.pis.buy2gether.model.domain.data.Grup;
+package com.pis.buy2gether.model.domain.data.grup;
 
-import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,8 +8,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.pis.buy2gether.model.domain.data.Grup.strategy.Parameters;
-import com.pis.buy2gether.model.domain.data.Grup.strategy.Search;
+import com.pis.buy2gether.model.domain.data.grup.strategy.Parameters;
+import com.pis.buy2gether.model.domain.data.grup.strategy.Search;
+import com.pis.buy2gether.model.domain.data.grup.strategy.SearchByCategory;
+import com.pis.buy2gether.model.domain.data.grup.strategy.SearchByName;
 import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.provider.services.FirebaseFactory;
@@ -18,14 +19,13 @@ import com.pis.buy2gether.provider.services.FirebaseGrup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public enum GrupData {
     INSTANCE;
 
     FirebaseGrup firebaseGrup = (FirebaseGrup) FirebaseFactory.INSTANCE.getFirebase("FirebaseGrup");
     private Grup grup;
-    private ArrayList<Grup> grups;
+    private ArrayList<Grup> grups = new ArrayList<>();
     private Search searcher = new Search();
 
     public void saveGrup(Grup grup) {
@@ -33,6 +33,7 @@ public enum GrupData {
     }
 
     public Grup getGrup(String id) {
+        final ArrayList<Grup> data = new ArrayList<>();
         firebaseGrup.getGrup(id).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -41,13 +42,13 @@ public enum GrupData {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         Grup g = document.toObject(Grup.class);
-                        grup = g;
+                        data.add(g);
                     }
                 }
             }
         });
-        Log.e("myTag", "Grup: " + String.valueOf(grup == null));
-        return grup;
+        Log.e("myTag", "Grup: " + data.get(0).getName());
+        return data.get(0);
     }
 
     public ArrayList<Grup> getAllGrups() {
@@ -58,6 +59,7 @@ public enum GrupData {
     public ArrayList<Grup> getGrupByCategory(Category category) {
         updateGrups();
         searcher.setGrups(grups);
+        searcher.setStrategy(new SearchByCategory());
         Parameters.INSTANCE.category = category;
         return searcher.search();
     }
@@ -65,6 +67,7 @@ public enum GrupData {
     public ArrayList<Grup> getGrupByName(String name) {
         updateGrups();
         searcher.setGrups(grups);
+        searcher.setStrategy(new SearchByName());
         Parameters.INSTANCE.filter = name;
         return searcher.search();
     }
@@ -84,6 +87,8 @@ public enum GrupData {
             }
         });
     }
+
+
 
 
 }

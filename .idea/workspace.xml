@@ -13,40 +13,34 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ComandasData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/GrupData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/Parameters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/Search.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/SearchByCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/SearchByName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/StrategySearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Comanda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Grup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/SessionUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/Firebase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseComanda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseGrup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsListAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" afterDir="false" />
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix.">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/callback/GrupCallback.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ImageData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Busqueda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseImages.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/GrupData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/GrupData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/Parameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/Parameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/SearchByCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/SearchByCategory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/SearchByName.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/SearchByName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/Grup/strategy/StrategySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/StrategySearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Grup.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Grup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/Firebase.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/Firebase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/Product_view.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialListAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeTabModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/search/SearchFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/search/SearchFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/search/SearchViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/search/SearchViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_historial_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_historial_list_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,9 +87,9 @@
         <option value="valueResourceFile" />
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -594,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651067347850</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix.">
+      <created>1651356268727</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1651356268727</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -614,7 +615,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implementació de fragment historial" />
     <MESSAGE value="Implementació de fragment historial / no funciona encara" />
     <MESSAGE value="Implementació de fragment historial / no funciona be encara" />
     <MESSAGE value="Implementació de fragment historial / ja es mostra bé al ui" />
@@ -639,7 +639,8 @@
     <MESSAGE value="Changed to final" />
     <MESSAGE value="Upload Group Image" />
     <MESSAGE value="Implemented Favorite List" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Favorite List" />
+    <MESSAGE value="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
