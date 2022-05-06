@@ -7,11 +7,6 @@ title __POJO's Class Diagram__\n
       class com.pis.buy2gether.model.domain.pojo.Busqueda {
           - data : Date
           - searchContent : String
-          + Busqueda()
-          + getData()
-          + getSearchContent()
-          + setData()
-          + setSearchContent()
       }
     }
   }
@@ -26,23 +21,54 @@ title __POJO's Class Diagram__\n
           - stars : int
           - status : int
           - userID : String
-          + Comanda()
-          + Comanda()
-          + getData()
-          + getGrupID()
-          + getId()
-          + getStars()
-          + getStatus()
-          + getUserID()
-          + setData()
-          + setGrupID()
-          + setId()
-          + setStars()
-          + setStatus()
-          + setUserID()
       }
     }
   }
+
+   namespace com.pis.buy2gether {
+      namespace model.domain.pojo {
+        namespace Grup {
+          enum model.domain.pojo.Grup.Category {
+            ELECTRONICA
+            HOGAR
+            JUGUETES
+            MODA
+            MUEBLES
+            OTROS
+            ROPA
+            SALUD
+            TECNOLOGIA
+            VESTIDO
+            ZAPATOS
+          }
+        }
+      }
+    }
+
+
+    namespace com.pis.buy2gether {
+      namespace model.domain.pojo {
+        namespace Grup {
+          class com.pis.buy2gether.model.domain.pojo.Grup.Grup {
+              - date : String
+              - description : String
+              - id : String
+              - image : String
+              - membersIds : List<String>
+              - name : String
+              - owner : String
+              - price : float
+              - proces : int
+              - visibility : int
+          }
+        }
+      }
+    }
+
+
+    com.pis.buy2gether.model.domain.pojo.Grup.Grup o-- model.domain.pojo.Grup.Category : cat
+
+
   
 
 

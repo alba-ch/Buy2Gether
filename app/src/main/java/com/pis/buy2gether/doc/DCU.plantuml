@@ -1,0 +1,285 @@
+@startuml
+
+title __DATA's Class Diagram__\n
+
+  namespace com.pis.buy2gether {
+    namespace model.domain.data {
+      enum ComandasData {
+        comandas : ArrayList<Grup>
+        comandes_id : ArrayList<String>
+        firebaseComanda : FirebaseComanda
+
+        + getComandes()
+        - updateComandes()
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace model.domain.data {
+      enum ImageData {
+        firebaseImages : FirebaseImage
+        path_grup : String
+        path_profile : String
+
+        + saveGrupPhoto()
+        + saveProfilePhoto()
+        + getGrupPhoto()
+        + getProfilePhoto()
+      }
+    }
+  }
+
+  namespace com.pis.buy2gether {
+      namespace provider {
+        namespace services {
+          class com.pis.buy2gether.provider.services.Firebase {
+              {static} # db : FirebaseFirestore
+              {static} # st : FirebaseStorage
+              + getUserInfo()
+          }
+        }
+      }
+    }
+
+
+    namespace com.pis.buy2gether {
+      namespace provider {
+        namespace services {
+          class com.pis.buy2gether.provider.services.FirebaseComanda {
+              + deleteComanda()
+              + saveComanda()
+          }
+        }
+      }
+    }
+
+
+    namespace com.pis.buy2gether {
+      namespace provider {
+        namespace services {
+          enum FirebaseFactory {
+            firebaseMap : HashMap<String, Firebase>
+
+            + getFirebase()
+          }
+        }
+      }
+    }
+
+
+    namespace com.pis.buy2gether {
+      namespace provider {
+        namespace services {
+          class com.pis.buy2gether.provider.services.FirebaseGrup {
+              + getGrup()
+              + getGrup()
+              + saveGrup()
+          }
+        }
+      }
+    }
+
+
+    namespace com.pis.buy2gether {
+      namespace provider {
+        namespace services {
+          class com.pis.buy2gether.provider.services.FirebaseImages {
+              - ONE_MEGABYTE : long
+              + getImage()
+              + saveImageBitmap()
+              + saveImageUri()
+          }
+        }
+      }
+    }
+
+
+    namespace com.pis.buy2gether {
+      namespace provider {
+        namespace services {
+          enum FirebaseRDBService {
+            db
+          }
+        }
+      }
+    }
+
+
+
+      namespace com.pis.buy2gether {
+        namespace model.domain.data {
+          namespace grup {
+            enum GrupData {
+              firebaseGrup : FirebaseGrup
+              grups : ArrayList<Grup>
+              hashgrups : HashMap<String, Grup>
+              searcher : Search
+
+              + getGrup()
+              + getAllGrups()
+              + getGrupByCategory()
+              + getGrupByName()
+              - updateGrups()
+            }
+          }
+        }
+      }
+
+      namespace com.pis.buy2gether {
+          namespace model.domain.data {
+            namespace grup {
+              namespace strategy {
+                enum Parameters {
+                  category : Category
+                  filter : String
+                }
+              }
+            }
+          }
+        }
+
+
+        namespace com.pis.buy2gether {
+          namespace model.domain.data {
+            namespace grup {
+              namespace strategy {
+                class com.pis.buy2gether.model.domain.data.grup.strategy.Search {
+                    - grupList : MutableLiveData<ArrayList<Grup>>
+                    + Search()
+                    + search()
+                    + setGrups()
+                    + setStrategy()
+                }
+              }
+            }
+          }
+        }
+
+
+        namespace com.pis.buy2gether {
+          namespace model.domain.data {
+            namespace grup {
+              namespace strategy {
+                class com.pis.buy2gether.model.domain.data.grup.strategy.SearchByCategory {
+                    + search()
+                }
+              }
+            }
+          }
+        }
+
+
+        namespace com.pis.buy2gether {
+          namespace model.domain.data {
+            namespace grup {
+              namespace strategy {
+                class com.pis.buy2gether.model.domain.data.grup.strategy.SearchByName {
+                    + search()
+                }
+              }
+            }
+          }
+        }
+
+
+        namespace com.pis.buy2gether {
+          namespace model.domain.data {
+            namespace grup {
+              namespace strategy {
+                interface com.pis.buy2gether.model.domain.data.grup.strategy.StrategySearch {
+                    {abstract} + search()
+                }
+              }
+            }
+          }
+        }
+
+           namespace com.pis.buy2gether {
+              namespace model.domain.pojo {
+                namespace Grup {
+                  enum model.domain.pojo.Grup.Category {
+                    ELECTRONICA
+                    HOGAR
+                    JUGUETES
+                    MODA
+                    MUEBLES
+                    OTROS
+                    ROPA
+                    SALUD
+                    TECNOLOGIA
+                    VESTIDO
+                    ZAPATOS
+                  }
+                }
+              }
+            }
+
+
+            namespace com.pis.buy2gether {
+              namespace model.domain.pojo {
+                namespace Grup {
+                  class com.pis.buy2gether.model.domain.pojo.Grup.Grup {
+                      - date : String
+                      - description : String
+                      - id : String
+                      - image : String
+                      - membersIds : List<String>
+                      - name : String
+                      - owner : String
+                      - price : float
+                      - proces : int
+                      - visibility : int
+                  }
+                }
+              }
+            }
+
+            namespace com.pis.buy2gether {
+                namespace model.session {
+                  enum Session {
+                    RDB
+                    currentUser
+                    storage
+                  }
+                }
+              }
+
+
+
+              model.session.Session o-- com.pis.buy2gether.provider.services.FirebaseRDBService : RDB
+
+            com.pis.buy2gether.model.domain.pojo.Grup.Grup o-- model.domain.pojo.Grup.Category : cat
+
+        model.domain.data.grup.strategy.Parameters o-- model.domain.pojo.Grup.Category : category
+        com.pis.buy2gether.model.domain.data.grup.strategy.Search o-- com.pis.buy2gether.model.domain.data.grup.strategy.StrategySearch : st
+        com.pis.buy2gether.model.domain.data.grup.strategy.SearchByCategory .up.|> com.pis.buy2gether.model.domain.data.grup.strategy.StrategySearch
+        com.pis.buy2gether.model.domain.data.grup.strategy.SearchByName .up.|> com.pis.buy2gether.model.domain.data.grup.strategy.StrategySearch
+        com.pis.buy2gether.model.domain.data.grup.strategy.StrategySearch o-- model.domain.data.grup.strategy.Parameters : utilitza
+
+
+
+      model.domain.data.grup.GrupData o-- com.pis.buy2gether.provider.services.FirebaseFactory : firebaseGrup
+      model.domain.data.grup.GrupData o-- com.pis.buy2gether.model.domain.data.grup.strategy.Search : searcher
+
+     com.pis.buy2gether.provider.services.FirebaseFactory --o com.pis.buy2gether.provider.services.Firebase: genera
+
+    com.pis.buy2gether.provider.services.FirebaseComanda -up-|> com.pis.buy2gether.provider.services.Firebase
+    com.pis.buy2gether.provider.services.FirebaseGrup -up-|> com.pis.buy2gether.provider.services.Firebase
+    com.pis.buy2gether.provider.services.FirebaseImages -up-|> com.pis.buy2gether.provider.services.Firebase
+
+  com.pis.buy2gether.model.domain.pojo.Grup.Grup --o  model.domain.data.grup.GrupData: grups
+    com.pis.buy2gether.model.domain.pojo.Grup.Grup --o  model.domain.data.ComandasData: grups
+  model.domain.data.ComandasData o-- com.pis.buy2gether.provider.services.FirebaseFactory : firebaseComanda
+  model.domain.data.ImageData o-- com.pis.buy2gether.provider.services.FirebaseFactory : firebaseImages
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
