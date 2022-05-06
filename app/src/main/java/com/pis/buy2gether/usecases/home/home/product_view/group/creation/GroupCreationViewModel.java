@@ -11,6 +11,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.pis.buy2gether.model.domain.data.grup.GrupData;
+import com.pis.buy2gether.model.domain.pojo.Grup.Category;
+import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.model.session.Session;
 
 import java.util.HashMap;
@@ -35,6 +38,13 @@ public class GroupCreationViewModel extends ViewModel {
         groupInfo.put("Group Visibility",groupVisibility);
         groupInfo.put("Admin User",adminUser);
 
+        Grup grup = new Grup();
+
+        grup.setPrice((float) originalPrice);
+        grup.setName(productName);
+        grup.setCat(Category.valueOf(type));
+
+        GrupData.INSTANCE.saveGrup(grup);
         return Session.INSTANCE.CreateGroupDB(groupInfo);
     }
 

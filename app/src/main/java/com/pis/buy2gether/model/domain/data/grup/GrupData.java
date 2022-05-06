@@ -3,6 +3,8 @@ package com.pis.buy2gether.model.domain.data.grup;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,22 +20,28 @@ import com.pis.buy2gether.provider.services.FirebaseFactory;
 import com.pis.buy2gether.provider.services.FirebaseGrup;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public enum GrupData {
     INSTANCE;
 
     FirebaseGrup firebaseGrup = (FirebaseGrup) FirebaseFactory.INSTANCE.getFirebase("FirebaseGrup");
-    private Grup grup;
-    private ArrayList<Grup> grups = new ArrayList<>();
+    private MutableLiveData<ArrayList<Grup>> grups = new MutableLiveData<>();
+    private HashMap<String,Grup> hashgrups = new HashMap<>();
     private Search searcher = new Search();
 
     public void saveGrup(Grup grup) {
         firebaseGrup.saveGrup(grup);
     }
 
-    public Grup getGrup(String id) {
-        final ArrayList<Grup> data = new ArrayList<>();
+    public HashMap<String,Grup> getHashMap() {
+        updateGrups();
+        return hashgrups;
+    }
+
+    private void getGrup(String id, MutableLiveData<Grup> data_1) {
         firebaseGrup.getGrup(id).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -41,17 +49,36 @@ public enum GrupData {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
+                        Log.e("myTag", "Existe ops");
+                        try{
+                            Log.e("myTag", "L1");
                         Grup g = document.toObject(Grup.class);
-                        data.add(g);
+                            Log.e("myTag", "L2" + g.getName());
+                            data_1.setValue(g);
+                            Log.e("myTag", "L3");
+                            data_1.postValue(g);
+                            Log.e("myTag", "Existe " + g.getId());
+
+                        }
+                        catch (Exception e){
+                            Log.e("myTag", e.getMessage());
+                        }
+
                     }
                 }
             }
         });
-        Log.e("myTag", "Grup: " + data.get(0).getName());
-        return data.get(0);
     }
 
-    public ArrayList<Grup> getAllGrups() {
+    public MutableLiveData<Grup> getGrup(String id) {
+        MutableLiveData<Grup> data = new MutableLiveData<Grup>();
+        getGrup(id, data);
+        return data;
+    }
+
+
+
+    public MutableLiveData<ArrayList<Grup>> getAllGrups() {
         updateGrups();
         return grups;
     }
@@ -78,11 +105,13 @@ public enum GrupData {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     List<DocumentSnapshot> documents = task.getResult().getDocuments();
-                    grups = new ArrayList<>();
+                    ArrayList<Grup> data = new ArrayList<>();
                     for (DocumentSnapshot document : documents) {
                         Grup g = document.toObject(Grup.class);
-                        grups.add(g);
+                        data.add(g);
                     }
+                    grups.setValue(data);
+                    grups.postValue(data);
                 }
             }
         });

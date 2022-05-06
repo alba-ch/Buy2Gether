@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,6 +38,7 @@ import com.google.firebase.storage.UploadTask;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentGroupCreationBinding;
 import com.pis.buy2gether.model.domain.data.ImageData;
+import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
 import org.jetbrains.annotations.NotNull;
 
@@ -78,7 +80,13 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         binding.imageView.setOnClickListener(this);
 
 
+        String[] items = new String[Category.values().length];
 
+        for (Category category : Category.values()) {
+            items[category.ordinal()] = category.toString();
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
+        binding.type.setAdapter(adapter);
         // set up the RecyclerView
         setList();
         //recyclerView.setAdapter(friendListAdapter);

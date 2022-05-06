@@ -41,12 +41,18 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
         return typeRvViewHolder;
     }
 
+    public void updateList(ArrayList<Grup> products) {
+        this.products.clear();
+        this.products = products;
+        notifyDataSetChanged();
+    }
+
     @Override
     public void onBindViewHolder(@NonNull @NotNull TypeRvViewHolder holder, int position) {
         //assign values to components when initializing and sliding recyclerView
 
         Grup grup = products.get(position);
-        holder.product_image.setImageBitmap(TypeRvViewModel.getPhoto(grup.getId()));
+        //holder.product_image.setImageBitmap(TypeRvViewModel.getPhoto(grup.getId()));
         holder.product_name.setText(grup.getName());
         holder.product_price.setText(String.valueOf(grup.getPrice()) + " €");
         holder.setId(grup.getId());
