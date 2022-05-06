@@ -1,0 +1,204 @@
+@startuml
+
+title __FRIENDS's Class Diagram__\n
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          class com.pis.buy2gether.usecases.home.user.friends.FriendsFragment {
+              + onClick()
+              + onCreateView()
+              + onDestroyView()
+              + onItemClick()
+              + sendRequest()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          class com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter {
+              ~ row_idx : int
+              - idFriend : LinkedHashMap<String, String>
+              - mInflater : LayoutInflater
+              - pfpFriend : LinkedHashMap<String, String>
+              - usernameFriend : LinkedHashMap<String, String>
+              + addFriend()
+              + getItemCount()
+              + onBindViewHolder()
+              + onCreateViewHolder()
+              + setUserPfp()
+              ~ FriendsListAdapter()
+              ~ getItem()
+              ~ setClickListener()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          interface com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ItemClickListener {
+              {abstract} + onClick()
+              {abstract} + onItemClick()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          class com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ViewHolder {
+              ~ myTextView : TextView
+              ~ pfp : ShapeableImageView
+              ~ selectButton : RadioButton
+              + onClick()
+              ~ ViewHolder()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          class com.pis.buy2gether.usecases.home.user.friends.FriendsViewModel {
+              ~ searchView : SearchView
+              - context : Context
+              - list : ArrayList<Item>
+              - recyclerView : RecyclerView
+              + deleteFriend()
+              + getFriends()
+              + getUserID()
+              + getUserName()
+              + getUsers()
+              + queryTextChange()
+              + queryTextSubmit()
+              + sendRequest()
+              + sendRequest()
+              + setList()
+              + setListUsers()
+              + setup()
+              ~ FriendsViewModel()
+              - hideSearch()
+              - setUserPfp()
+              - setupUserInfo()
+              - showSearch()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          class com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter {
+              ~ row_idx : int
+              - allUsers : LinkedHashMap<String, String>
+              - mInflater : LayoutInflater
+              - pfp : LinkedHashMap<String, String>
+              - user : LinkedHashMap<String, String>
+              - users : ArrayList<String>
+              + addUser()
+              + getFilter()
+              + getItemCount()
+              + onBindViewHolder()
+              + onCreateViewHolder()
+              + setUserPfp()
+              ~ UsersListAdapter()
+              ~ getItem()
+              ~ getList()
+              ~ setClickListener()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          interface com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ItemClickListener {
+              {abstract} + onClick()
+              {abstract} + sendRequest()
+          }
+        }
+      }
+    }
+  }
+  
+
+  namespace com.pis.buy2gether {
+    namespace usecases.home {
+      namespace user {
+        namespace friends {
+          class com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ViewHolder {
+              ~ myTextView : TextView
+              ~ pfp : ShapeableImageView
+              ~ selectButton : RadioButton
+              + onClick()
+              ~ ViewHolder()
+          }
+        }
+      }
+    }
+  }
+  
+
+  com.pis.buy2gether.usecases.home.user.friends.FriendsFragment .up.|> com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ItemClickListener
+  com.pis.buy2gether.usecases.home.user.friends.FriendsFragment .up.|> com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ItemClickListener
+  com.pis.buy2gether.usecases.home.user.friends.FriendsFragment -up-|> androidx.fragment.app.Fragment
+  com.pis.buy2gether.usecases.home.user.friends.FriendsFragment o-- com.pis.buy2gether.databinding.FragmentFriendsBinding : binding
+  com.pis.buy2gether.usecases.home.user.friends.FriendsFragment o-- com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter : friendsListAdapter
+  com.pis.buy2gether.usecases.home.user.friends.FriendsFragment o-- com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter : usersListAdapter
+  com.pis.buy2gether.usecases.home.user.friends.FriendsFragment o-- com.pis.buy2gether.usecases.home.user.friends.FriendsViewModel : viewModel
+  com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter o-- com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ItemClickListener : mClickListener
+  com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter +-down- com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ItemClickListener
+  com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter +-down- com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ViewHolder
+  com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ViewHolder .up.|> android.view.View.OnClickListener
+  com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+  com.pis.buy2gether.usecases.home.user.friends.FriendsViewModel -up-|> androidx.lifecycle.ViewModel
+  com.pis.buy2gether.usecases.home.user.friends.FriendsViewModel o-- com.pis.buy2gether.databinding.FragmentFriendsBinding : binding
+  com.pis.buy2gether.usecases.home.user.friends.FriendsViewModel o-- com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter : friendsListAdapter
+  com.pis.buy2gether.usecases.home.user.friends.FriendsViewModel o-- com.pis.buy2gether.model.session.Session : session
+  com.pis.buy2gether.usecases.home.user.friends.FriendsViewModel o-- com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter : usersListAdapter
+  com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter .up.|> android.widget.Filterable
+  com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter -up-|> androidx.recyclerview.widget.RecyclerView.Adapter
+  com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter o-- com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ItemClickListener : mClickListener
+  com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter +-down- com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ItemClickListener
+  com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter +-down- com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ViewHolder
+  com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ViewHolder .up.|> android.view.View.OnClickListener
+  com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter.ViewHolder -up-|> androidx.recyclerview.widget.RecyclerView.ViewHolder
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml
