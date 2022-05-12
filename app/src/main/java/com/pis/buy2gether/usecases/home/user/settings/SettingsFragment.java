@@ -331,7 +331,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         Task<DocumentSnapshot> task = viewModel.update_UserInformation().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if(documentSnapshot.get("city").toString() != null) {
+                if(documentSnapshot.get("city") != null) {
                     binding.editCity.setText(documentSnapshot.get("city").toString());
                 }
             }
