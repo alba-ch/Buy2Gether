@@ -1,7 +1,5 @@
 package com.pis.buy2gether.model.domain.pojo.Grup;
 
-import android.graphics.Picture;
-
 import java.util.List;
 import java.util.UUID;
 

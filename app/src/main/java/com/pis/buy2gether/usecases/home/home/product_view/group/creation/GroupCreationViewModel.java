@@ -1,6 +1,7 @@
 package com.pis.buy2gether.usecases.home.home.product_view.group.creation;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import androidx.lifecycle.LiveData;

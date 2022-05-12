@@ -36,6 +36,7 @@ public class GrupActivity extends AppCompatActivity {
             product_id = extras.getString("product_id");
         }
 
+        viewModel = new GrupViewModel(product_id);
         binding();
         addListeners();
 
@@ -54,7 +55,6 @@ public class GrupActivity extends AppCompatActivity {
         ValoracionsAdapter adapter = new ValoracionsAdapter(valoraciones);
         valoracion.setLayoutManager(new LinearLayoutManager(this));
         valoracion.setAdapter(adapter);
-        GrupViewModel viewModel = new GrupViewModel(product_id);
         observeView(viewModel);
     }
 
