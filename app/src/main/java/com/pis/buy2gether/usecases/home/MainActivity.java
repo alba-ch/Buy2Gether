@@ -26,7 +26,9 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
+    private static ActivityMainBinding binding;
+    private static AppCompatActivity mainActivity;
+    private static int notiBadge = 0;
 
 
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
@@ -50,29 +52,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         executor.scheduleAtFixedRate(this::checkStatus, 0, 1, TimeUnit.SECONDS);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_notifications, R.id.navigation_favorite_list,R.id.navigation_profile)
                 .build();
+        mainActivity=this;
+        // setup (temporal)
+        setup();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.navView, navController);
+
+    }
+
+    public static int getNotificationBadge() {
+        return notiBadge;
+
+    }
+
+    public static void changeNotificationBadge(int number) {
+        BottomNavigationView navView = binding.navView;
+        NavController navController = Navigation.findNavController(mainActivity, R.id.nav_host_fragment_activity_main);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
         int menuItemId = navView.getMenu().getItem(0).getItemId();
         BadgeDrawable badge = navView.getOrCreateBadge(menuItemId);
-        badge.setNumber(2);
-
-        // setup (temporal)
-        setup();
-
-        // Guardado de datos,temporal -> pasar a model
-        /*SharedPreferences prefs = getSharedPreferences(getString(R.string.prefs_file), Context.MODE_PRIVATE);
-        prefs.edit().putString("email",email).apply();
-        prefs.edit().putString("provider",provider).apply();*/
+        badge.setNumber(number);
+        notiBadge = Math.max(number, 0);
     }
-
     private void setup(){
         Bundle bundle = getIntent().getExtras();
         String email = bundle.getString("email");

@@ -41,15 +41,6 @@ title __BUY2GETHER's Class Diagram__\n
     }
 
 
-    namespace com.pis.buy2gether {
-     namespace usecases.home {
-       namespace favoriteList {
-         interface com.pis.buy2gether.usecases.home.favoriteList.FavoriteListAdapter.ItemClickListener {
-             {abstract} + onItemClick()
-         }
-       }
-     }
-    }
 
 
     namespace com.pis.buy2gether {
@@ -123,18 +114,6 @@ title __BUY2GETHER's Class Diagram__\n
       }
 
 
-      namespace com.pis.buy2gether {
-        namespace usecases.home {
-          namespace user {
-            namespace friends {
-              interface com.pis.buy2gether.usecases.home.user.friends.FriendsListAdapter.ItemClickListener {
-                  {abstract} + onClick()
-                  {abstract} + onItemClick()
-              }
-            }
-          }
-        }
-      }
 
 
       namespace com.pis.buy2gether {
@@ -563,16 +542,11 @@ title __BUY2GETHER's Class Diagram__\n
     }
   }
 
-
-  com.pis.buy2gether.usecases.home.user.settings.CheckImageActivity -up-|> androidx.appcompat.app.AppCompatActivity
-  com.pis.buy2gether.usecases.home.user.settings.CheckImageActivity o-- com.pis.buy2gether.databinding.ActivityCheckImageBinding : binding
-  com.pis.buy2gether.usecases.home.user.settings.SettingsFragment .up.|> android.view.View.OnClickListener
-  com.pis.buy2gether.usecases.home.user.settings.SettingsFragment -up-|> androidx.fragment.app.Fragment
-  com.pis.buy2gether.usecases.home.user.settings.SettingsFragment o-- com.pis.buy2gether.databinding.FragmentSettingsBinding : binding
+  usecases.launch -[hidden]-> usecases.onboarding.log_in
+  usecases.onboarding.log_in -[hidden]-> usecases.onboarding.sign_in
   com.pis.buy2gether.usecases.home.user.settings.SettingsFragment o-- com.pis.buy2gether.usecases.home.user.settings.SettingsViewModel : viewModel
-  com.pis.buy2gether.usecases.home.user.settings.SettingsViewModel -up-|> androidx.lifecycle.ViewModel
-
-
+  com.pis.buy2gether.usecases.home.user.UserViewModel -[hidden]-> com.pis.buy2gether.usecases.home.user.UserFragment
+  com.pis.buy2gether.usecases.home.user.settings.SettingsViewModel -[hidden]-> com.pis.buy2gether.usecases.home.user.settings.CheckImageActivity
 
 right footer
 

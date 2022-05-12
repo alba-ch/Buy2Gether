@@ -109,6 +109,8 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
                                     @Override
                                     public void onSuccess(byte[] bytes) {
                                         Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                        if(documentSnapshot1.get("Product Name") != null)
+                                            return;
                                         favoriteListAdapter.addGroup(bm, groupID, documentSnapshot1.get("Product Name").toString());
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {

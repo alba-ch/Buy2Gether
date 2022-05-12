@@ -13,38 +13,23 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)">
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix.">
+      <change afterPath="$PROJECT_DIR$/app/doc/dcu.plantuml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/doc/dcu2.plantuml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/alert_dialog_check_image.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/elementos_sin_clasificar/cart/CartFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/elementos_sin_clasificar/cart/CartViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/elementos_sin_clasificar/profile/ProfileFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/elementos_sin_clasificar/profile/ProfileViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/callback/GrupCallback.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ComandasData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ComandasData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/GrupData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/GrupData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/Search.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/SearchByCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/SearchByCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/SearchByName.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/SearchByName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/StrategySearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/strategy/StrategySearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_group_creation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/doc/settings.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/app/doc/settings.plantuml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/notifications/NotificationsFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\li471\.android\avd\Nexus_5X_API_31.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[RZ8N81BXFTB]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -85,8 +70,8 @@
         <option value="layoutResourceFile" />
         <option value="resourceFile" />
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -130,12 +115,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/victorjimenezrugama/Desktop/Universitat/Semestre 6/Projecte Integrat de Software/Buy2Gether/app/doc",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="android.template.313858937">
       <recent name="com.pis.buy2gether" />
@@ -148,11 +138,11 @@
       <recent name="com.pis.buy2gether.historial" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/doc" />
       <recent name="C:\Users\li471\StudioProjects\Buy2Gether-Def\app\src\main\res\font" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/paymentWall" />
       <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/group/share" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/ui/favorites" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -198,33 +188,9 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
@@ -269,6 +235,11 @@
       <workItem from="1650874006466" duration="4245000" />
       <workItem from="1651045574455" duration="2716000" />
       <workItem from="1651049177173" duration="4428000" />
+      <workItem from="1651857928502" duration="283000" />
+      <workItem from="1651858261123" duration="1184000" />
+      <workItem from="1651859477762" duration="1836000" />
+      <workItem from="1651861361439" duration="2385000" />
+      <workItem from="1652337895318" duration="1619000" />
     </task>
     <task id="LOCAL-00001" summary="Commiting all initial files">
       <created>1647509951038</created>
@@ -592,14 +563,7 @@
       <option name="project" value="LOCAL" />
       <updated>1651356268727</updated>
     </task>
-    <task id="LOCAL-00047" summary="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)">
-      <created>1651711377963</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1651711377964</updated>
-    </task>
-    <option name="localTasksCounter" value="48" />
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,10 +579,10 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Implementació de fragment historial / no funciona encara" />
     <MESSAGE value="Implementació de fragment historial / no funciona be encara" />
     <MESSAGE value="Implementació de fragment historial / ja es mostra bé al ui" />
     <MESSAGE value="Fix setting menu superpositions, add go back to the main menu functionality in historial menu." />
@@ -643,8 +607,7 @@
     <MESSAGE value="Upload Group Image" />
     <MESSAGE value="Implemented Favorite List" />
     <MESSAGE value="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix." />
-    <MESSAGE value="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)" />
-    <option name="LAST_COMMIT_MESSAGE" value="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
