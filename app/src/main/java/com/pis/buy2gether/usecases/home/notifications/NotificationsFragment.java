@@ -1,7 +1,5 @@
 package com.pis.buy2gether.usecases.home.notifications;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +20,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.databinding.FragmentNotificationsBinding;
-import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.usecases.home.user.address.AddressListAdapter;
-import com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -90,6 +87,8 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot1) {
                                 notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
+
+                            MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
                         }
                     });
                 }
@@ -106,6 +105,8 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot2) {
                                     notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.GROUP_INVITE,documentSnapshot.getId(),(String)documentSnapshot2.get("username"),(String)documentSnapshot1.get("Product Name"),documentSnapshot1.getId());
+
+                                    MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
                                 }
                             });
 
@@ -129,6 +130,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
             default:
                 break;
         }
+        MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
     }
     private void denyNoti(NotificationsListAdapter.notiType notiType, String notiID) {
         Toast.makeText(getContext(), "denying noti" + notiID, Toast.LENGTH_SHORT).show();
@@ -142,9 +144,8 @@ public class NotificationsFragment extends Fragment implements NotificationsList
             default:
                 break;
         }
+        MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
     }
-
-
 
     @Override
     public void onItemClick(View view, int position) {

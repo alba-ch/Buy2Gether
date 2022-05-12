@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -32,22 +31,22 @@ import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentSettingsBinding;
-import com.pis.buy2gether.databinding.FragmentUserBinding;
 import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
+import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.usecases.home.user.UserFragment;
+import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Objects;
-import java.util.concurrent.Executor;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -84,6 +83,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         userCity = binding.editCity;
 
         setUserPfp();
+        update_Username();
+        update_UserCity();
 
         return root;
     }
@@ -131,6 +132,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         AlertDialog dialog = builder.create();
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
+
 
         return dialog;
     }
@@ -181,6 +183,16 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
          Drawable image = binding.btnEditPfp.getDrawable();
         //set image_view of alert dialog to image
         avatar.setImageDrawable(image);
+    }
+
+    /**
+     * CHECK IMAGE CREANT +NOVA ACTIVITAT
+     * Pass extraData containing image URI to CheckImageActivity and start it
+     */
+    private void showCheckImage(){
+        Intent intent = new Intent(getActivity(), CheckImageActivity.class);
+        intent.putExtra("imageUri",binding.btnEditPfp.toString());
+        startActivity(intent);
     }
 
     /**
@@ -302,6 +314,31 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     }
 
     /**
+     * actualitza el nom de l'usuari si auqest existeix en base de dades
+     */
+    private void update_Username(){
+        Task<DocumentSnapshot> task = viewModel.update_UserInformation().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.get("username").toString() != null) {
+                    binding.editUsername.setText(documentSnapshot.get("username").toString());
+                }
+            }
+        });
+    }
+
+    private void update_UserCity(){
+        Task<DocumentSnapshot> task = viewModel.update_UserInformation().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.get("city") != null) {
+                    binding.editCity.setText(documentSnapshot.get("city").toString());
+                }
+            }
+        });
+    }
+
+    /**
      * actualitza el nom de l'usuari
      * @param nom
      */
@@ -347,6 +384,10 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         FirebaseAuth.getInstance().signOut();
         // Mostrem missatge d'èxit per confirmar que s'ha tancat sessió
         showSuccessAlert();
+        Intent i = new Intent(getActivity(), MainActivity.class);
+        startActivity(i);
+        this.getActivity().finish();
+
     }
 
     @Override
