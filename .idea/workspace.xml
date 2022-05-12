@@ -13,11 +13,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="Fixed group creation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Grup.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Grup/Grup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" afterDir="false" />
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvAdapter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,14 +231,7 @@
       <workItem from="1651858261123" duration="1184000" />
       <workItem from="1651859477762" duration="1836000" />
       <workItem from="1651861361439" duration="2385000" />
-      <workItem from="1652337895318" duration="2426000" />
-    </task>
-    <task id="LOCAL-00002" summary="Project Data">
-      <created>1648111240400</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1648111240400</updated>
+      <workItem from="1652337895318" duration="2560000" />
     </task>
     <task id="LOCAL-00003" summary="Do it">
       <created>1648114335086</created>
@@ -579,7 +569,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652340114201</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Fixed">
+      <created>1652340501331</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1652340501331</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +595,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu. (There are things to delete in the new created Fragments)" />
     <MESSAGE value="Fixed Objects in Home Fragment." />
     <MESSAGE value="Refactoring home menu, redesigning the menu, and add new features, such as the connection with product view." />
@@ -623,7 +619,8 @@
     <MESSAGE value="Fixed bug" />
     <MESSAGE value="Fixed Null" />
     <MESSAGE value="Fixed group creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed group creation" />
+    <MESSAGE value="Fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

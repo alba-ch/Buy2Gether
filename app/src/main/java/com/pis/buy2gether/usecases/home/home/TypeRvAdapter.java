@@ -57,6 +57,7 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
         holder.product_price.setText(String.valueOf(grup.getPrice()) + " €");
         holder.setId(grup.getId());
 
+
     }
 
     @Override
@@ -85,7 +86,7 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(act, GrupActivity.class);
-                    i.putExtra("ProductID", product_id);
+                    i.putExtra("product_id", product_id);
                     act.startActivity(i);}
             });
         }
