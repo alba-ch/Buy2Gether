@@ -9,12 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.pojo.Notificacions;
+
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class NotificationsListAdapter extends RecyclerView.Adapter<NotificationsListAdapter.ViewHolder> {
 
+
+    public void updateNotificacions(ArrayList<Notificacions> list) {
+
+    }
 
     enum notiType {FRIEND_REQUEST,GROUP_INVITE,PURCHASE_REVIEW}
     private LinkedHashMap<String,String> fromUserName;

@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.databinding.FragmentNotificationsBinding;
+import com.pis.buy2gether.model.domain.pojo.Notificacions;
 import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.usecases.home.user.address.AddressListAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -42,6 +44,14 @@ public class NotificationsFragment extends Fragment implements NotificationsList
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         setList();
+
+        MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
+
+        notificacions.observe(this, list ->{
+            if(list != null){
+                notificationsListAdapter.updateNotificacions(list);
+            }
+        });
 
 
         return root;

@@ -7,11 +7,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.pis.buy2gether.model.domain.data.NotificationData;
+import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
+import com.pis.buy2gether.model.domain.pojo.Notificacions;
 import com.pis.buy2gether.model.session.Session;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class NotificationsViewModel extends ViewModel {
+    public MutableLiveData<ArrayList<Notificacions>> notificacions;
+
+    public NotificationsViewModel() {
+        notificacions = new MutableLiveData<>();
+        init();
+    }
+
+    private void init() {
+        notificacions = NotificationData.INSTANCE.getData();
+    }
+
+    public MutableLiveData<ArrayList<Notificacions>> getNotificacions() {
+        return notificacions;
+    }
 
     public void addFriend(String id1,String id2){
         HashMap<String,String> friendShip = new HashMap<>();
