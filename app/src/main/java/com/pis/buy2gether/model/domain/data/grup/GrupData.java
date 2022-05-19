@@ -76,6 +76,10 @@ public enum GrupData {
         return data;
     }
 
+    public Task<DocumentSnapshot> getGrupTask(String id){
+        return firebaseGrup.getGrup(id);
+    }
+
 
 
     public MutableLiveData<ArrayList<Grup>> getAllGrups() {

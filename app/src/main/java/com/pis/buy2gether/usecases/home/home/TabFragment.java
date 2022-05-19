@@ -46,7 +46,6 @@ public class TabFragment extends Fragment {
         MutableLiveData<ArrayList<Grup>> list = TypeRvViewModel.getGrupBySearch(search);
         list.observe(this, newList -> {
             if(newList != null){
-                Log.e("TAB", "newList: " + newList.size());
                 typeRvAdapter.updateList(newList);
             }
         });

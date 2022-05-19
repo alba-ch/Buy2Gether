@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in_view);
         viewModel = new LoginViewModel(this);
         /* Comprovem si ja hi ha una sessió loguejada a l'app */
-        session();
+        //session();
 
         /* Recuperem els widgets */
         setup();

@@ -41,9 +41,6 @@ public class HistorialFragment extends Fragment{
     }
 
 
-
-
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,7 +64,8 @@ public class HistorialFragment extends Fragment{
         viewPageAdapter.addFragment(fragments.get("En procès"), "En procès");
         viewPageAdapter.addFragment(fragments.get("Valorats"), "Valorats");
 
-        menu.setScrollPosition(0,0f,true);
+
+
 
         viewpager.setCurrentItem(0);
         viewpager.setAdapter(viewPageAdapter);

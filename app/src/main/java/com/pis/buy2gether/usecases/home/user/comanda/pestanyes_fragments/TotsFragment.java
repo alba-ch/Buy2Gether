@@ -14,11 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.pis.buy2gether.R;
 
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 
 public class TotsFragment extends Fragment{
@@ -42,9 +45,9 @@ public class TotsFragment extends Fragment{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tots, container, false);
         viewModel = new TotsViewModel();
-
+        Log.i("TotsFragment", "onCreateView: ");
         MutableLiveData<ArrayList<Grup>> data = viewModel.getGrupList();
-        data.observe((LifecycleOwner) this, list ->{
+        data.observeForever(list ->{
             adapter.updateList(list);
         });
         recyclerView = view.findViewById(R.id.historial_list);
