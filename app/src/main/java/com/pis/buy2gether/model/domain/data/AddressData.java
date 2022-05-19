@@ -44,7 +44,17 @@ public enum AddressData{
             if(task.isSuccessful()) {
                 ArrayList<Address> addresses = new ArrayList<>();
                 for(QueryDocumentSnapshot documentSnapshot : result.getResult()){
-                    addresses.add(documentSnapshot.toObject(Address.class));
+                    Address a = new Address();
+                    Map<String, Object> info = documentSnapshot.getData();
+
+                    a.setAddress((String) info.get("Full address"));
+                    a.setName((String) info.get("Address name"));
+                    a.setTelephone((String) info.get("Telephone"));
+                    a.setZip((String) info.get("Zip code"));
+
+                    System.out.println(a.getAddress());
+
+                    addresses.add(a);
                 }
                 data.setValue(addresses);
                 data.postValue(addresses);

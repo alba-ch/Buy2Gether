@@ -33,15 +33,6 @@ public enum Session {
     public FirebaseUser getCurrentUser(){
         return currentUser;
     }
-/*
-    public String getCurrentUserName(){
-        return RDB.getUserByID(getCurrentUserID()).get
-    }
-
-    public String getCurrentUserCity(){
-        return currentUser.getUid();
-    }*/
-
 
     public Task<DocumentSnapshot> getUserInformation(String user){
         return RDB.get("users",user);
@@ -51,10 +42,6 @@ public enum Session {
     public StorageReference getPfpImageRef(String id){
         return storage.getReference("profileImages/"+id+".jpeg");
     }
-
-    /*public StorageReference getUnknownImageRef(){
-        return storage.getReference("profileImages/unknown.jpg");
-    }*/
 
     public StorageReference getCurrentUserPfpImageRef(){
         return storage.getReference("profileImages/"+getCurrentUserID()+".jpeg");
@@ -76,10 +63,6 @@ public enum Session {
     /* ----- Database ----- */
     public void saveDB(String coll, String doc, HashMap data){
         RDB.save(coll,doc,data);
-    }
-
-    public void saveAddressDB(String doc, HashMap data){
-        RDB.saveAddress(doc,data);
     }
 
     /**
@@ -112,9 +95,6 @@ public enum Session {
     public void deleteFriend(String id){
         RDB.delete("Friendships",id);
     }
-    public void deleteAddressDB(String user, String doc){
-        RDB.deleteAddress(user,doc);
-    }
 
     public Task<DocumentSnapshot> getDB(String coll, String doc){
         return RDB.get(coll,doc);
@@ -130,9 +110,6 @@ public enum Session {
         return RDB.getGroup(id);
     }
 
-    public Task<QuerySnapshot> getAddressesDB(String doc){
-        return RDB.getAddresses(doc);
-    }
     public Task<QuerySnapshot> getFriendsDB(String userID){
         return RDB.getFriends(userID);
     }

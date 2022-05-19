@@ -30,7 +30,5 @@ public class Firebase {
         return documents;
     }
 
-
-
 }
 
