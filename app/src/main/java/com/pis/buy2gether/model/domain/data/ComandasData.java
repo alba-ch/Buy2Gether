@@ -3,6 +3,7 @@ package com.pis.buy2gether.model.domain.data;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -14,20 +15,21 @@ import com.pis.buy2gether.provider.services.FirebaseComanda;
 import com.pis.buy2gether.provider.services.FirebaseFactory;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 public enum ComandasData{
     INSTANCE;
 
     private final FirebaseComanda firebaseComanda = (FirebaseComanda) FirebaseFactory.INSTANCE.getFirebase("FirebaseComanda");
-    private MutableLiveData<ArrayList<String>> comandas = new MutableLiveData<>();
+    private MutableLiveData<Collection<Task<DocumentSnapshot>>> comandas = new MutableLiveData<>();
     private HashSet<String> comandes_id = new HashSet<>();
-    private ArrayList<Grup> grups = new ArrayList<Grup>();
 
 
-    public MutableLiveData<ArrayList<String>> getComandes() {
+    public MutableLiveData<Collection<Task<DocumentSnapshot>>> getComandes() {
         updateComandes();
         return comandas;
     }
@@ -40,8 +42,12 @@ public enum ComandasData{
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot document = task.getResult();
                 ArrayList<String> grups = (ArrayList<String>) document.getData().get("Grups");
-                comandas.setValue(grups);
-                comandas.postValue(grups);
+                Collection<Task<DocumentSnapshot>> tasks = new ArrayList<>();
+                for(String grup : grups){
+                    tasks.add(GrupData.INSTANCE.getGrupTask(grup));
+                }
+                comandas.setValue(tasks);
+                comandas.postValue(tasks);
             }
         });
     }

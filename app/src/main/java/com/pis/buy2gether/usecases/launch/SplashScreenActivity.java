@@ -17,10 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.model.domain.data.ComandasData;
+import com.pis.buy2gether.model.domain.data.NotificationData;
 import com.pis.buy2gether.model.domain.data.grup.GrupData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
+import com.pis.buy2gether.model.domain.pojo.Notificacions;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.usecases.home.MainActivity;
 import com.pis.buy2gether.R;
@@ -29,7 +32,7 @@ import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
 import java.util.UUID;
 
 public class SplashScreenActivity extends AppCompatActivity {
-    public static boolean login = true;
+    public static boolean login = false;
     private static int SPLASH_TIME_OUT = 1500;
     private Animation topAnim, bottomAnim;
     private ImageView image;
@@ -53,17 +56,23 @@ public class SplashScreenActivity extends AppCompatActivity {
         name.setAnimation(topAnim);
 
         //Test
-        //test();
-
-
+        test();
         new Handler().postDelayed(() -> {
-            Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            Intent i;
+            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                i = new Intent(SplashScreenActivity.this, MainActivity.class).putExtra("provider",Session.INSTANCE.getDataSession(this,"provider")).putExtra("email",Session.INSTANCE.getDataSession(this,"email"));
+                startActivity(i);
+                finish();
+            }
+            else {
+                i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(image, "image");
                 pairs[1] = new Pair<View, String>(name, "text");
 
                 ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashScreenActivity.this, pairs);
                 startActivity(i, options.toBundle());
+            }
         }, SPLASH_TIME_OUT);
 
     }
@@ -71,18 +80,19 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void test() {
         Log.e("UUID", Session.INSTANCE.getCurrentUserID());
-        Grup grup = new Grup();
+        Notificacions not = new Notificacions();
         String uuid = UUID.randomUUID().toString();
-        grup.setCat(Category.HOGAR);
-        grup.setId(uuid);
-        grup.setName("Grup de prova");
-        grup.setDate("11-11-11");
-        grup.setProces(1);
-        grup.setPrice(10.65f);
-        GrupData.INSTANCE.saveGrup(grup);
-        ComandasData.INSTANCE.saveComanda(uuid);
+        not.setIdNotificacion(uuid);
+        not.setFromID(Session.INSTANCE.getCurrentUserID());
+        not.setToID(Session.INSTANCE.getCurrentUserID());
+        NotificationData.INSTANCE.saveFriendRequest(not);
+        Log.e("UUID - request", uuid);
 
-        MutableLiveData<Grup> data = GrupData.INSTANCE.getGrup(uuid);
+        NotificationData.INSTANCE.getData().observeForever( notificacions -> {
+            for (Notificacions n : notificacions) {
+                Log.e("UUID dadadasdasd", n.getIdNotificacion());
+            }
+        });
 
 
     }

@@ -1,8 +1,6 @@
 package com.pis.buy2gether.usecases.home.notifications;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +8,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.model.session.Session;
-import com.pis.buy2gether.usecases.home.user.friends.UsersListAdapter;
+import com.pis.buy2gether.model.domain.pojo.Notificacions;
+
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 public class NotificationsListAdapter extends RecyclerView.Adapter<NotificationsListAdapter.ViewHolder> {
 
+
+    public void updateNotificacions(ArrayList<Notificacions> list) {
+
+    }
 
     enum notiType {FRIEND_REQUEST,GROUP_INVITE,PURCHASE_REVIEW}
     private LinkedHashMap<String,String> fromUserName;
@@ -40,19 +42,6 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         this.mClickListener = itemClickListener;
     }
 
-    public void setUserPfp(String id, @NonNull @NotNull NotificationsListAdapter.ViewHolder holder){
-        final long ONE_MEGABYTE = 1024 * 1024;
-
-        Session.INSTANCE.getPfpImageRef(id).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                if(bm!=null){ holder.pfp.setImageBitmap(bm); }
-
-            }
-        });
-    }
-
     // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -63,7 +52,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         String id = (String) fromUserName.keySet().toArray()[position];
-        setUserPfp(id,holder);
+
         switch (mType.get(id)){
             case GROUP_INVITE:
                 holder.myTextView.setText(fromUserName.get(id) + " has invited you to group: " + groupName.get(id));
@@ -87,6 +76,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         groupName.put(id,information);
         specialID.put(id,specialIDStr);
 
+
         mType.put(id,type);
 
         notifyItemInserted(fromUserName.size());
@@ -102,7 +92,6 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
-        ImageView pfp;
         ImageView acceptButton;
         ImageView denyButton;
 
@@ -111,7 +100,6 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
             myTextView = itemView.findViewById(R.id.Text);
             acceptButton = itemView.findViewById(R.id.accept_tick);
             denyButton = itemView.findViewById(R.id.deny_cross);
-            pfp = itemView.findViewById(R.id.img_pfp_noti);
             itemView.setOnClickListener(this);
         }
 

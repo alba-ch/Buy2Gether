@@ -23,7 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".elementos_sin_clasificar.register.RegisterFragment">
+            tools:context=".doc.register.RegisterFragment">
 
 
             <TextView
