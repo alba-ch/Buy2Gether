@@ -121,48 +121,20 @@ public class FriendsViewModel extends ViewModel{
         Toast.makeText(context, "Amic eliminat", Toast.LENGTH_SHORT).show();
     }
 
-    public String getUsername(){
-        final String[] username = new String[1];
+    public void sendRequest(String toID) {
         Task task = Session.INSTANCE.getUserByID(getUserID()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                username[0] = documentSnapshot.getString("username");
-                Log.e("FRIEND REQUEST","actual username is: " + username[0]);
+                HashMap inviteInfo = new HashMap();
+                String username = documentSnapshot.get("username").toString();
+                Log.e("FRIEND REQUEST","actual username is: " + username);
+                inviteInfo.put("FromUsername",username);
+                inviteInfo.put("fromID",getUserID());
+                inviteInfo.put("toID",toID);
+                inviteInfo.put("notiType", NotiType.FRIEND_REQUEST);
+                Session.INSTANCE.CreateFriendRequest(inviteInfo);
             }
         });
-        return String.valueOf(username);
-    }
-
-
-    public void sendRequest(String toID) {
-
-        HashMap inviteInfo = new HashMap();
-        inviteInfo.put("fromID",getUserID());
-        inviteInfo.put("toID",toID);
-        String username;
-
-        inviteInfo.put("FromUsername",getUsername());
-
-        /*
-        * getUserName(FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                inviteInfo.put("FromUsername",(String)documentSnapshot.get("username"));
-            }
-        });
-        * */
-        /*
-        *
-        * inviteInfo.put("FromUsername",getUserName(getUserID()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                username = documentSnapshot.get("username");
-            }
-        }));
-        * */
-        inviteInfo.put("notiType", NotiType.FRIEND_REQUEST);
-
-        Session.INSTANCE.CreateFriendRequest(inviteInfo);
     }
 
     public void setList(FriendsListAdapter friendsListAdapter){
