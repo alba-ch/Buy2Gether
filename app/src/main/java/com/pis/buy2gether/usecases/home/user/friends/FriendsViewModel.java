@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentFriendsBinding;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
+import com.pis.buy2gether.usecases.home.notifications.NotiType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,10 +121,46 @@ public class FriendsViewModel extends ViewModel{
         Toast.makeText(context, "Amic eliminat", Toast.LENGTH_SHORT).show();
     }
 
+    public String getUsername(){
+        final String[] username = new String[1];
+        Task task = Session.INSTANCE.getUserByID(getUserID()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                username[0] = documentSnapshot.getString("username");
+                Log.e("FRIEND REQUEST","actual username is: " + username[0]);
+            }
+        });
+        return String.valueOf(username);
+    }
+
+
     public void sendRequest(String toID) {
+
         HashMap inviteInfo = new HashMap();
         inviteInfo.put("fromID",getUserID());
         inviteInfo.put("toID",toID);
+        String username;
+
+        inviteInfo.put("FromUsername",getUsername());
+
+        /*
+        * getUserName(FirebaseAuth.getInstance().getCurrentUser().getUid()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                inviteInfo.put("FromUsername",(String)documentSnapshot.get("username"));
+            }
+        });
+        * */
+        /*
+        *
+        * inviteInfo.put("FromUsername",getUserName(getUserID()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                username = documentSnapshot.get("username");
+            }
+        }));
+        * */
+        inviteInfo.put("notiType", NotiType.FRIEND_REQUEST);
 
         Session.INSTANCE.CreateFriendRequest(inviteInfo);
     }
