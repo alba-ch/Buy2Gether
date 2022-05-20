@@ -57,8 +57,8 @@ public enum NotificationData {
     }
 
 
-    public void deleteNotification(String id) {
-        firebaseNotification.deleteNotification(id);
+    public Task<Void> deleteNotification(String id) {
+        return firebaseNotification.deleteNotification(id);
     }
 }
 

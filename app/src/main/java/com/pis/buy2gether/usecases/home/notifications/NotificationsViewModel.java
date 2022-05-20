@@ -31,6 +31,14 @@ public class NotificationsViewModel extends ViewModel {
         return notificacions;
     }
 
+    /**
+     * elimina la notificacio de firebase
+     * @param id
+     */
+    public Task<Void> deleteNotification(String id){
+        return NotificationData.INSTANCE.deleteNotification(id);
+    }
+
     public void addFriend(String id1,String id2){
         HashMap<String,String> friendShip = new HashMap<>();
         friendShip.put(id1,id1);

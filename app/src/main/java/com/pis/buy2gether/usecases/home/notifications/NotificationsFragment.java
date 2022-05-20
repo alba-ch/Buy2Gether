@@ -1,6 +1,7 @@
 package com.pis.buy2gether.usecases.home.notifications;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,8 +48,10 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
         MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
 
+
         notificacions.observe(this, list ->{
             if(list != null){
+                Log.e("NOTIFICATION","list: " + list.size());
                 notificationsListAdapter.updateNotificacions(list);
             }
         });
@@ -84,6 +87,15 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     default:
                         break;
                 }
+                //delete notification from data base
+                Task task = notificationsViewModel.deleteNotification(notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition())).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getContext(), "delete noti from db", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                //remove notification
                 notificationsListAdapter.swipe(notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
             }
         });
