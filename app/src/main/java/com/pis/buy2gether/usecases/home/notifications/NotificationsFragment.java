@@ -101,7 +101,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
         /**
-         * get friend request
+         * get friend requests
          */
         Task task = notificationsViewModel.getFriendRequests().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override

@@ -13,6 +13,8 @@ import com.pis.buy2gether.provider.services.FirebaseNotification;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.UUID;
 
 public enum NotificationData {
     INSTANCE;
@@ -59,6 +61,15 @@ public enum NotificationData {
 
     public Task<Void> deleteNotification(String id) {
         return firebaseNotification.deleteNotification(id);
+    }
+
+
+    public Task<QuerySnapshot> getFriendRequests() {
+        return firebaseNotification.getFriendRequests();
+    }
+
+    public Task<QuerySnapshot> getGroupInvites() {
+        return firebaseNotification.getGroupInvites();
     }
 
 }

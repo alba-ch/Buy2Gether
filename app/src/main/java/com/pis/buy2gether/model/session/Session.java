@@ -65,12 +65,7 @@ public enum Session {
         RDB.save(coll,doc,data);
     }
 
-    /**
-     * actualitza un sol parametre de user en base de dades
-     * @param doc
-     * @param field
-     * @param value
-     */
+
     public void updateUser(String doc,String field, String value){
         RDB.update(doc,field,value);
     }
@@ -128,7 +123,6 @@ public enum Session {
     }
 
     public void addFriendship(HashMap<String,String> friendship) {
-
         String UUIDString = UUID.randomUUID().toString();
         RDB.addFriend(UUIDString,friendship);
     }
@@ -138,16 +132,10 @@ public enum Session {
         RDB.joinGroup(UUIDString,membership);
     }
 
-    public Task<QuerySnapshot> getFriendRequests(String user) {
-        return RDB.getFriendRequests(user);
-    }
-
     public Task<DocumentSnapshot> getFavorite(String user) {
         return RDB.getFavorite(user);
     }
-    public Task<QuerySnapshot> getGroupInvites(String user) {
-        return RDB.getGroupInvites(user);
-    }
+
 
     public void deleteFav(String UserID, String id) {
         RDB.deleteFav(UserID, id);

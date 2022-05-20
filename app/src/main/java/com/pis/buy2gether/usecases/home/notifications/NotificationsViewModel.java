@@ -80,9 +80,9 @@ public class NotificationsViewModel extends ViewModel {
     }
 
     public Task<QuerySnapshot> getFriendRequests() {
-        return Session.INSTANCE.getFriendRequests(getUser());
+        return NotificationData.INSTANCE.getFriendRequests();
     }
     public Task<QuerySnapshot> getGroupInvites() {
-        return Session.INSTANCE.getGroupInvites(getUser());
+        return NotificationData.INSTANCE.getGroupInvites();
     }
 }

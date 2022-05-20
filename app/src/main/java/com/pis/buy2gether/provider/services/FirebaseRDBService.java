@@ -38,12 +38,6 @@ public enum FirebaseRDBService {
         db.collection("users").document(user).collection("Addresses").document(doc).delete();
     }
 
-    /**
-     * actualitza un sol parametre de users en base de dades
-     * @param doc
-     * @param field
-     * @param value
-     */
     public void update(String doc,String field, String value){
         db.collection("users").document(doc).update(field,value);
     }
@@ -92,19 +86,9 @@ public enum FirebaseRDBService {
         save("Memberships",uuidString,membership);
     }
 
-    public Task<QuerySnapshot> getFriendRequests(String user) {
-        Query q = db.collection("Requests").whereEqualTo("toID",user);
-        return q.get();
-    }
-
     public Task<DocumentSnapshot> getFavorite(String user) {
         Task<DocumentSnapshot> q = db.collection("users").document(user).get();
         return q;
-    }
-
-    public Task<QuerySnapshot> getGroupInvites(String user) {
-        Query q = db.collection("Invites").whereEqualTo("UserID",user);
-        return q.get();
     }
 
     public void deleteFav(String uid, String id) {
