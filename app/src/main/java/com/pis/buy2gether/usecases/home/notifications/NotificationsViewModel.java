@@ -32,6 +32,18 @@ public class NotificationsViewModel extends ViewModel {
     }
 
     /**
+     * save notification to data base
+     * @param notiType
+     * @param fromUsername
+     * @param groupname
+     * @param fromId
+     * @return
+     */
+    public Task<Void> saveNotification(HashMap notificationInfo){
+        return NotificationData.INSTANCE.saveNotification(notificationInfo);
+    }
+
+    /**
      * elimina la notificacio de firebase
      * @param id
      */
@@ -46,16 +58,18 @@ public class NotificationsViewModel extends ViewModel {
         Session.INSTANCE.addFriendship(friendShip);
     }
 
+    public void joinGroup(String user, String extraID) {
+        HashMap<String,String> membership = new HashMap<>();
+        membership.put("UserID",user);
+        membership.put("GroupID",extraID);
+        Session.INSTANCE.joinGroup(membership);
+    }
+
     /*
     * public void removeGroupInvite(String id){
         Session.INSTANCE.deleteGroupInvite(id);
     }
     * */
-
-
-    public String getUser(){
-        return FirebaseAuth.getInstance().getCurrentUser().getUid();
-    }
 
     /*
     * public void removeFriendRequest(String id){
@@ -63,13 +77,11 @@ public class NotificationsViewModel extends ViewModel {
     }
     * */
 
-
-    public void joinGroup(String user, String extraID) {
-        HashMap<String,String> membership = new HashMap<>();
-        membership.put("UserID",user);
-        membership.put("GroupID",extraID);
-        Session.INSTANCE.joinGroup(membership);
+    public String getUser(){
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
+
+
 
     public Task<DocumentSnapshot> getGroup(String id) {
         return Session.INSTANCE.getGroup(id);

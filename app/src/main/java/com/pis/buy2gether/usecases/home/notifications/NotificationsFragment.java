@@ -29,12 +29,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NotificationsFragment extends Fragment implements NotificationsListAdapter.ItemClickListener {
 
     private NotificationsViewModel notificationsViewModel;
     private NotificationsListAdapter notificationsListAdapter;
+    private RecyclerView recyclerView;
     private FragmentNotificationsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,25 +46,39 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        setList();
+
 
         MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
 
+        // set up the RecyclerView
+        setRV();
+
         notificacions.observe(this, list ->{
             if(list != null){
-                Log.e("NOTIFICATION","list: " + list.size());
-                notificationsListAdapter.updateNotificacions(list);
+                Log.e("NOTIFICATION","list size: " + list.size());
+                setList(list);
+                //notificationsListAdapter.updateNotificacions(list);
             }
         });
 
         return root;
     }
 
-    private void setList(){
-        // set up the RecyclerView
-        RecyclerView recyclerView = binding.notificationsList;
+    /**
+     * set up the RecyclerView
+     */
+    private void setRV(){
+        recyclerView = binding.notificationsList;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        notificationsListAdapter = new NotificationsListAdapter(getContext(), this);
+    }
+
+    /**
+     * set up adapter
+     * @param notificacions
+     */
+    private void setList(List<Notificacions> notificacions){
+
+        notificationsListAdapter = new NotificationsListAdapter(getContext(), this, notificacions);
         recyclerView.setAdapter(notificationsListAdapter);
         notificationsListAdapter.setClickListener(this);
         binding.notificationsList.setAdapter(notificationsListAdapter);
@@ -94,8 +110,8 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     }
                 });
 
-                //remove notification
-                notificationsListAdapter.swipe(notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), viewHolder.getAdapterPosition());
+                //remove notification from NotificationsList
+                notificationsListAdapter.swipe(viewHolder.getAdapterPosition());
             }
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
@@ -110,7 +126,17 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String)documentSnapshot.get("fromID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot1) {
-                            notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
+                            HashMap notificationInfo = new HashMap<>();
+                            notificationInfo.put("notiType",NotiType.FRIEND_REQUEST);
+                            notificationInfo.put("idNotification",documentSnapshot.getId());
+                            notificationInfo.put("fromUsername",(String) documentSnapshot1.get("username"));
+                            notificationInfo.put("groupname","");
+                            notificationInfo.put("fromId",(String)documentSnapshot.get("fromID"));
+
+                            notificationsViewModel.saveNotification(notificationInfo);
+
+                            notificationsListAdapter.addNotification(NotiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
+                            //notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
                             MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
                         }
                     });
@@ -131,7 +157,8 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                                 Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String) documentSnapshot.getData().get("fromUser")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                 @Override
                                 public void onSuccess(DocumentSnapshot documentSnapshot2) {
-                                    notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.GROUP_INVITE,documentSnapshot.getId(),(String)documentSnapshot2.get("username"),(String)documentSnapshot1.get("Product Name"),documentSnapshot1.getId());
+                                    //notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.GROUP_INVITE,documentSnapshot.getId(),(String)documentSnapshot2.get("username"),(String)documentSnapshot1.get("Product Name"),documentSnapshot1.getId());
+                                    notificationsListAdapter.addNotification(NotiType.GROUP_INVITE,documentSnapshot.getId(),(String)documentSnapshot2.get("username"),(String)documentSnapshot1.get("Product Name"),documentSnapshot1.getId());
 
                                     MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
                                 }
@@ -150,7 +177,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
      * @param notiID
      * @param extraID
      */
-    private void acceptNoti(NotificationsListAdapter.notiType notiType, String notiID, String extraID) {
+    private void acceptNoti(NotiType notiType, String notiID, String extraID) {
         switch(notiType){
             case GROUP_INVITE:
                 Toast.makeText(getContext(), "accept group invite: " + notiID, Toast.LENGTH_SHORT).show();

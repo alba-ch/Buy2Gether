@@ -10,6 +10,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.model.domain.pojo.Notificacions;
 import com.pis.buy2gether.provider.services.FirebaseFactory;
 import com.pis.buy2gether.provider.services.FirebaseNotification;
+import com.pis.buy2gether.usecases.home.notifications.NotiType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -40,12 +41,17 @@ public enum NotificationData {
         tasks.add(data_1);
         Tasks.whenAll(tasks).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+
                 ArrayList<Notificacions> notificacions = new ArrayList<>();
+
+                // add every notifications whatever the type of notification
                 for (Task<QuerySnapshot> querySnapshot : tasks) {
                     QuerySnapshot result = querySnapshot.getResult();
+
                     for (int i = 0; i < result.size(); i++) {
+                        //notifications.add();
                         notificacions.add(result.getDocuments().get(i).toObject(Notificacions.class));
-                        Log.i("NotificationData", "getNotification: " + result.getDocuments().get(i).toObject(Notificacions.class).toString());
+                        Log.e("NotificationData", " we getNotification!!!!!: " + result.getDocuments().get(i).toObject(Notificacions.class).toString());
                     }
                 }
                 data.setValue(notificacions);
@@ -58,11 +64,17 @@ public enum NotificationData {
         firebaseNotification.saveFriendRequest(notificacions);
     }
 
+    /**
+     * save notification data in data base
+     * @param data
+     */
+    public Task<Void> saveNotification(HashMap data){
+        return firebaseNotification.saveNotification(data);
+    }
 
     public Task<Void> deleteNotification(String id) {
         return firebaseNotification.deleteNotification(id);
     }
-
 
     public Task<QuerySnapshot> getFriendRequests() {
         return firebaseNotification.getFriendRequests();

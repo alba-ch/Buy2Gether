@@ -6,6 +6,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.model.domain.pojo.Notificacions;
 import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.usecases.home.notifications.NotiType;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -34,6 +35,10 @@ public class FirebaseNotification extends Firebase{
 
     public void saveFriendRequest(Notificacions notificacions) {
         db.collection("Requests").document(notificacions.getIdNotificacion()).set(notificacions);
+    }
+
+    public Task<Void> saveNotification(HashMap data){
+        return db.collection("Requests").document((String) data.get("idNotification")).set(data);
     }
 
 }

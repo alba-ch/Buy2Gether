@@ -79,7 +79,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
     private void test() {
-        Log.e("UUID", Session.INSTANCE.getCurrentUserID());
+        /*
+        * Log.e("UUID", Session.INSTANCE.getCurrentUserID());
         Notificacions not = new Notificacions();
         String uuid = UUID.randomUUID().toString();
         not.setIdNotificacion(uuid);
@@ -93,6 +94,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                 Log.e("UUID dadadasdasd", n.getIdNotificacion());
             }
         });
+        * */
+
 
 
     }
