@@ -63,7 +63,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
             default:
                 break;
         }
-        holder.acceptButton.setVisibility(View.INVISIBLE);
+        holder.acceptButton.setVisibility(View.VISIBLE);
         holder.denyButton.setVisibility(View.VISIBLE);
 
     }

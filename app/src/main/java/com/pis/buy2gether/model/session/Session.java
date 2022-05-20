@@ -86,12 +86,15 @@ public enum Session {
     public void deleteDB(String coll, String doc){
         RDB.delete(coll,doc);
     }
-    public void deleteGroupInvite(String id){
+    /*
+    * public void deleteGroupInvite(String id){
         RDB.delete("Invites",id);
     }
     public void deleteFriendRequest(String id){
         RDB.delete("Requests",id);
     }
+    * */
+
     public void deleteFriend(String id){
         RDB.delete("Friendships",id);
     }

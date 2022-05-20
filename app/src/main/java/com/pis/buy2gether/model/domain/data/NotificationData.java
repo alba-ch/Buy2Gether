@@ -60,5 +60,6 @@ public enum NotificationData {
     public Task<Void> deleteNotification(String id) {
         return firebaseNotification.deleteNotification(id);
     }
+
 }
 

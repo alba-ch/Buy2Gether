@@ -25,11 +25,13 @@ public class FirebaseNotification extends Firebase{
     }
 
     public Task<Void> deleteNotification(String id){
-        Task<Void> delete = db.collection("Request").document(id).delete();
+        Task<Void> delete = db.collection("Requests").document(id).delete();
         return delete;
     }
 
     public void saveFriendRequest(Notificacions notificacions) {
         db.collection("Requests").document(notificacions.getIdNotificacion()).set(notificacions);
     }
+
+
 }

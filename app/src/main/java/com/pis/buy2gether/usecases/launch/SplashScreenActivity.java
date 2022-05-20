@@ -56,7 +56,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         name.setAnimation(topAnim);
 
         //Test
-        test();
+        //test();
         new Handler().postDelayed(() -> {
             Intent i;
             if (FirebaseAuth.getInstance().getCurrentUser() != null) {

@@ -48,14 +48,12 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
         MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
 
-
         notificacions.observe(this, list ->{
             if(list != null){
                 Log.e("NOTIFICATION","list: " + list.size());
                 notificationsListAdapter.updateNotificacions(list);
             }
         });
-
 
         return root;
     }
@@ -79,7 +77,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 switch(swipeDir){
                     case ItemTouchHelper.LEFT:
-                        denyNoti(notificationsListAdapter.getNotiType(viewHolder.getAdapterPosition()), notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()));
+                        Toast.makeText(getContext(), "denying noti: " + notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
                         break;
                     case ItemTouchHelper.RIGHT:
                         acceptNoti(notificationsListAdapter.getNotiType(viewHolder.getAdapterPosition()), notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition()), notificationsListAdapter.getExtraID(viewHolder.getAdapterPosition()));
@@ -87,6 +85,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     default:
                         break;
                 }
+
                 //delete notification from data base
                 Task task = notificationsViewModel.deleteNotification(notificationsListAdapter.getNotiID(viewHolder.getAdapterPosition())).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -101,6 +100,9 @@ public class NotificationsFragment extends Fragment implements NotificationsList
         });
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
+        /**
+         * get friend request
+         */
         Task task = notificationsViewModel.getFriendRequests().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -108,14 +110,17 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String)documentSnapshot.get("fromID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot1) {
-                                notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
-
+                            notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
                             MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
                         }
                     });
                 }
             }
         });
+
+        /**
+         * get group invites
+         */
         task = notificationsViewModel.getGroupInvites().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -134,34 +139,26 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
                         }
                     });
-
                 }
             }
         });
     }
+
+    /**
+     * accept notification
+     * @param notiType
+     * @param notiID
+     * @param extraID
+     */
     private void acceptNoti(NotificationsListAdapter.notiType notiType, String notiID, String extraID) {
         switch(notiType){
             case GROUP_INVITE:
+                Toast.makeText(getContext(), "accept group invite: " + notiID, Toast.LENGTH_SHORT).show();
                 notificationsViewModel.joinGroup(notificationsViewModel.getUser(),extraID);
-                notificationsViewModel.removeGroupInvite(notiID);
                 break;
             case FRIEND_REQUEST:
+                Toast.makeText(getContext(), "accept friend request: " + notiID, Toast.LENGTH_SHORT).show();
                 notificationsViewModel.addFriend(notificationsViewModel.getUser(),extraID);
-                notificationsViewModel.removeFriendRequest(notiID);
-                break;
-            default:
-                break;
-        }
-        MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
-    }
-    private void denyNoti(NotificationsListAdapter.notiType notiType, String notiID) {
-        Toast.makeText(getContext(), "denying noti" + notiID, Toast.LENGTH_SHORT).show();
-        switch(notiType){
-            case GROUP_INVITE:
-                notificationsViewModel.removeGroupInvite(notiID);
-                break;
-            case FRIEND_REQUEST:
-                notificationsViewModel.removeFriendRequest(notiID);
                 break;
             default:
                 break;

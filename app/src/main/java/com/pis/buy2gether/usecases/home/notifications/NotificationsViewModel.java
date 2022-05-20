@@ -46,16 +46,23 @@ public class NotificationsViewModel extends ViewModel {
         Session.INSTANCE.addFriendship(friendShip);
     }
 
-    public void removeGroupInvite(String id){
+    /*
+    * public void removeGroupInvite(String id){
         Session.INSTANCE.deleteGroupInvite(id);
     }
+    * */
+
 
     public String getUser(){
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
-    public void removeFriendRequest(String id){
+
+    /*
+    * public void removeFriendRequest(String id){
         Session.INSTANCE.deleteFriendRequest(id);
     }
+    * */
+
 
     public void joinGroup(String user, String extraID) {
         HashMap<String,String> membership = new HashMap<>();
