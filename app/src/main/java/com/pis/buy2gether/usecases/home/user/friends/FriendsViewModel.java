@@ -130,6 +130,7 @@ public class FriendsViewModel extends ViewModel{
                 Log.e("FRIEND REQUEST","actual username is: " + username);
                 inviteInfo.put("FromUsername",username);
                 inviteInfo.put("fromID",getUserID());
+                inviteInfo.put("groupname","");
                 inviteInfo.put("toID",toID);
                 inviteInfo.put("notiType", NotiType.FRIEND_REQUEST);
                 Session.INSTANCE.CreateFriendRequest(inviteInfo);

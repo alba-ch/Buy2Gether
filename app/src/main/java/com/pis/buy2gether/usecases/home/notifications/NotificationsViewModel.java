@@ -33,10 +33,6 @@ public class NotificationsViewModel extends ViewModel {
 
     /**
      * save notification to data base
-     * @param notiType
-     * @param fromUsername
-     * @param groupname
-     * @param fromId
      * @return
      */
     public Task<Void> saveNotification(HashMap notificationInfo){

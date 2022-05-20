@@ -30,19 +30,13 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     private LinkedHashMap<String,NotiType> mType;
     * */
 
-
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-
     //list of notifications
     private List<Notificacions> mData;
 
-    public void updateNotificacions(ArrayList<Notificacions> list) {
-        this.mData = list;
-    }
-
     // data is passed into the constructor
-    NotificationsListAdapter(Context context, ItemClickListener itemClickListener, List<Notificacions> data) {
+    NotificationsListAdapter(Context context, ItemClickListener itemClickListener) {
         /*
         *   this.fromUserName = new LinkedHashMap<>();
         this.mType = new LinkedHashMap<>();
@@ -51,8 +45,11 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         * */
         this.mInflater = LayoutInflater.from(context);
         this.mClickListener = itemClickListener;
+        this.mData = new ArrayList<>();
+    }
 
-        this.mData = data;
+    public void updateNotificacions(ArrayList<Notificacions> list) {
+        this.mData = list;
     }
 
     // inflates the row layout from xml when needed
@@ -64,48 +61,33 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-
-        /*
-        *  String id = (String) fromUserName.keySet().toArray()[position];
-
-        switch (mType.get(id)){
-            case GROUP_INVITE:
-                holder.myTextView.setText(fromUserName.get(id) + " has invited you to group: " + groupName.get(id));
-                break;
-            case FRIEND_REQUEST:
-                holder.myTextView.setText(fromUserName.get(id) + " has requested to be your friend");
-                break;
-            default:
-                break;
-        }
-        * */
-
-
         /*
         * set textView of the holder according to the type of this notification
         * */
         Notificacions notificacions = mData.get(position);
         Log.e("NOTIFICATION"," mData size: " + mData.size());
         Log.e("NOTIFICATION"," we get the notification CLASS: " + notificacions.toString());
-
+        Log.e("NOTIFICATION"," we get the notification group: " + notificacions.getGroupName());
         Log.e("NOTIFICATION"," we get the notification ID: " + notificacions.getIdNotificacion());
         Log.e("NOTIFICATION"," we get the notification fromUserName: " + notificacions.getFromUsername());
         Log.e("NOTIFICATION"," we get the notification fromID: " + notificacions.getFromID());
         Log.e("NOTIFICATION"," we get the notification TYPE: " + notificacions.getNotiType());
 
-
-        switch(notificacions.getNotiType()){
-            case GROUP_INVITE:
-                holder.myTextView.setText(notificacions.getFromUsername() + " has invited you to group: " + notificacions.getGroupName());
-                break;
-            case FRIEND_REQUEST:
-                holder.myTextView.setText(notificacions.getFromUsername() + " has requested to be your friend ");
-                break;
-            default:
-                break;
+        if(notificacions.getIdNotificacion()!= null){
+            switch(notificacions.getNotiType()){
+                case GROUP_INVITE:
+                    holder.myTextView.setText(notificacions.getFromUsername() + " has invited you to group: " + notificacions.getGroupName());
+                    break;
+                case FRIEND_REQUEST:
+                    holder.myTextView.setText(notificacions.getFromUsername() + " has requested to be your friend ");
+                    break;
+                default:
+                    break;
+            }
+            holder.acceptButton.setVisibility(View.VISIBLE);
+            holder.denyButton.setVisibility(View.VISIBLE);
         }
-        holder.acceptButton.setVisibility(View.VISIBLE);
-        holder.denyButton.setVisibility(View.VISIBLE);
+
 
     }
 

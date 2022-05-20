@@ -47,17 +47,17 @@ public class NotificationsFragment extends Fragment implements NotificationsList
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-        MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
-
         // set up the RecyclerView
         setRV();
+
+        // Display list of addresses with mutable live data
+        MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
+        setList();
 
         notificacions.observe(this, list ->{
             if(list != null){
                 Log.e("NOTIFICATION","list size: " + list.size());
-                setList(list);
-                //notificationsListAdapter.updateNotificacions(list);
+                notificationsListAdapter.updateNotificacions(list);
             }
         });
 
@@ -74,11 +74,10 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
     /**
      * set up adapter
-     * @param notificacions
      */
-    private void setList(List<Notificacions> notificacions){
+    private void setList(){
 
-        notificationsListAdapter = new NotificationsListAdapter(getContext(), this, notificacions);
+        notificationsListAdapter = new NotificationsListAdapter(getContext(), this);
         recyclerView.setAdapter(notificationsListAdapter);
         notificationsListAdapter.setClickListener(this);
         binding.notificationsList.setAdapter(notificationsListAdapter);
@@ -133,7 +132,7 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                             notificationInfo.put("groupname","");
                             notificationInfo.put("fromId",(String)documentSnapshot.get("fromID"));
 
-                            notificationsViewModel.saveNotification(notificationInfo);
+                            //notificationsViewModel.saveNotification(notificationInfo);
 
                             notificationsListAdapter.addNotification(NotiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
                             //notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
