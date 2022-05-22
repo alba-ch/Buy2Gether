@@ -12,10 +12,7 @@ import com.pis.buy2gether.provider.services.FirebaseFactory;
 import com.pis.buy2gether.provider.services.FirebaseNotification;
 import com.pis.buy2gether.usecases.home.notifications.NotiType;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 
 public enum NotificationData {
     INSTANCE;
@@ -49,8 +46,17 @@ public enum NotificationData {
                     QuerySnapshot result = querySnapshot.getResult();
 
                     for (int i = 0; i < result.size(); i++) {
-                        //notifications.add();
-                        notificacions.add(result.getDocuments().get(i).toObject(Notificacions.class));
+                        //get information from document
+                        Map<String, Object> info = result.getDocuments().get(i).getData();
+                        //create a notification from database and add to our notifications list
+                        Notificacions notificacions1 = new Notificacions();
+                        notificacions1.setIdNotificacion(result.getDocuments().get(i).getId());
+                        notificacions1.setFromID((String) info.get("fromID"));
+                        notificacions1.setNotiType(NotiType.valueOf((String) info.get("notiType")));
+                        notificacions1.setFromUsername((String) info.get("FromUsername"));
+                        notificacions1.setGroupName((String) info.get("groupname"));
+                        notificacions.add(notificacions1);
+                        //notificacions.add(result.getDocuments().get(i).toObject(Notificacions.class));
                         Log.e("NotificationData", " we getNotification!!!!!: " + result.getDocuments().get(i).toObject(Notificacions.class).toString());
                     }
                 }

@@ -52,15 +52,14 @@ public class NotificationsFragment extends Fragment implements NotificationsList
 
         // Display list of addresses with mutable live data
         MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
-        setList();
-
         notificacions.observe(this, list ->{
             if(list != null){
                 Log.e("NOTIFICATION","list size: " + list.size());
-                notificationsListAdapter.updateNotificacions(list);
+                notificationsListAdapter = new NotificationsListAdapter(getContext(), this, list);
+                setList();
+                //notificationsListAdapter.updateNotificacions(list);
             }
         });
-
         return root;
     }
 
@@ -76,8 +75,6 @@ public class NotificationsFragment extends Fragment implements NotificationsList
      * set up adapter
      */
     private void setList(){
-
-        notificationsListAdapter = new NotificationsListAdapter(getContext(), this);
         recyclerView.setAdapter(notificationsListAdapter);
         notificationsListAdapter.setClickListener(this);
         binding.notificationsList.setAdapter(notificationsListAdapter);
@@ -125,17 +122,8 @@ public class NotificationsFragment extends Fragment implements NotificationsList
                     Task<DocumentSnapshot> task = notificationsViewModel.getUserName((String)documentSnapshot.get("fromID")).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot1) {
-                            HashMap notificationInfo = new HashMap<>();
-                            notificationInfo.put("notiType",NotiType.FRIEND_REQUEST);
-                            notificationInfo.put("idNotification",documentSnapshot.getId());
-                            notificationInfo.put("fromUsername",(String) documentSnapshot1.get("username"));
-                            notificationInfo.put("groupname","");
-                            notificationInfo.put("fromId",(String)documentSnapshot.get("fromID"));
-
-                            //notificationsViewModel.saveNotification(notificationInfo);
-
+                            //notificationsViewModel.saveNotification(NotiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
                             notificationsListAdapter.addNotification(NotiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
-                            //notificationsListAdapter.addNotification(NotificationsListAdapter.notiType.FRIEND_REQUEST,documentSnapshot.getId(),(String) documentSnapshot1.get("username"),"",(String)documentSnapshot.get("fromID"));
                             MainActivity.changeNotificationBadge(MainActivity.getNotificationBadge()-1);
                         }
                     });

@@ -36,7 +36,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     private List<Notificacions> mData;
 
     // data is passed into the constructor
-    NotificationsListAdapter(Context context, ItemClickListener itemClickListener) {
+    NotificationsListAdapter(Context context, ItemClickListener itemClickListener, List<Notificacions> data) {
         /*
         *   this.fromUserName = new LinkedHashMap<>();
         this.mType = new LinkedHashMap<>();
@@ -45,7 +45,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         * */
         this.mInflater = LayoutInflater.from(context);
         this.mClickListener = itemClickListener;
-        this.mData = new ArrayList<>();
+        this.mData = data;
     }
 
     public void updateNotificacions(ArrayList<Notificacions> list) {
@@ -73,7 +73,8 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         Log.e("NOTIFICATION"," we get the notification fromID: " + notificacions.getFromID());
         Log.e("NOTIFICATION"," we get the notification TYPE: " + notificacions.getNotiType());
 
-        if(notificacions.getIdNotificacion()!= null){
+        /*
+        * if(notificacions.getIdNotificacion()!= null){
             switch(notificacions.getNotiType()){
                 case GROUP_INVITE:
                     holder.myTextView.setText(notificacions.getFromUsername() + " has invited you to group: " + notificacions.getGroupName());
@@ -84,11 +85,21 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
                 default:
                     break;
             }
-            holder.acceptButton.setVisibility(View.VISIBLE);
-            holder.denyButton.setVisibility(View.VISIBLE);
+
         }
-
-
+        * */
+        switch(notificacions.getNotiType()){
+            case GROUP_INVITE:
+                holder.myTextView.setText(notificacions.getFromUsername() + " has invited you to group: " + notificacions.getGroupName());
+                break;
+            case FRIEND_REQUEST:
+                holder.myTextView.setText(notificacions.getFromUsername() + " has requested to be your friend ");
+                break;
+            default:
+                break;
+        }
+        holder.acceptButton.setVisibility(View.VISIBLE);
+        holder.denyButton.setVisibility(View.VISIBLE);
     }
 
 
@@ -106,20 +117,7 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         * add notification with corresponding parametres to our notification list
         * */
         Notificacions notificacions = new Notificacions(notiType,idNotification,fromUsername,groupname,fromId);
-        mData.add(notificacions);
-
-
-        /*
-        *fromUserName.put(idNotification,fromUsername);
-
-        groupName.put(idNotification,groupname);
-        specialID.put(idNotification,fromId);
-
-
-        mType.put(idNotification, notiType);
-
-        notifyItemInserted(fromUserName.size());
-        * */
+        //mData.add(notificacions);
 
         // is correct to notify registred observers conseidering that actual position is the size of mData??
         notifyItemInserted(mData.size());

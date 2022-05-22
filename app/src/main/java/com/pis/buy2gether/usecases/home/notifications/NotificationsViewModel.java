@@ -35,12 +35,21 @@ public class NotificationsViewModel extends ViewModel {
      * save notification to data base
      * @return
      */
-    public Task<Void> saveNotification(HashMap notificationInfo){
+    public Task<Void> saveNotification(NotiType notiType, String idNotification, String fromUsername, String groupname, String fromId){
+        HashMap notificationInfo = new HashMap<>();
+        notificationInfo.put("notiType", notiType);
+        notificationInfo.put("idNotification", idNotification);
+        notificationInfo.put("fromUsername",fromUsername);
+        notificationInfo.put("groupname",groupname);
+        notificationInfo.put("fromId",fromId);
+        //should we create the notification class here???
+        //Notificacions notificacions = new Notificacions(notiType,idNotification,fromUsername,groupname,fromId);
+
         return NotificationData.INSTANCE.saveNotification(notificationInfo);
     }
 
     /**
-     * elimina la notificacio de firebase
+     * delete notification from data base
      * @param id
      */
     public Task<Void> deleteNotification(String id){
@@ -61,23 +70,9 @@ public class NotificationsViewModel extends ViewModel {
         Session.INSTANCE.joinGroup(membership);
     }
 
-    /*
-    * public void removeGroupInvite(String id){
-        Session.INSTANCE.deleteGroupInvite(id);
-    }
-    * */
-
-    /*
-    * public void removeFriendRequest(String id){
-        Session.INSTANCE.deleteFriendRequest(id);
-    }
-    * */
-
     public String getUser(){
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
-
-
 
     public Task<DocumentSnapshot> getGroup(String id) {
         return Session.INSTANCE.getGroup(id);
