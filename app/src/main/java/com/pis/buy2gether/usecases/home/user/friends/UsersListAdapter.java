@@ -12,12 +12,10 @@ import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.pojo.User;
 import com.pis.buy2gether.model.session.Session;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,24 +23,20 @@ import java.util.*;
 
 public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.ViewHolder> implements Filterable {
 
-    private LinkedHashMap<String,String> user;
-    private LinkedHashMap<String,String> allUsers;
-    private LinkedHashMap<String,String> pfp;
-    private ArrayList<String> users;
+    private List<User> mData;
+    private List<User> allUsers;
+
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-    int row_idx = -1;
 
-    // data is passed into the constructor
-    UsersListAdapter(Context context, ItemClickListener itemClickListener) {
+    // Data is passed into the constructor
+    UsersListAdapter(Context context, ArrayList<User> data) {
         this.mInflater = LayoutInflater.from(context);
-        this.user= new LinkedHashMap<>();
-        this.allUsers= new LinkedHashMap<>();
-        this.pfp = new LinkedHashMap<>();
-        this.mClickListener = itemClickListener;
+        this.mData = data;
+        this.allUsers = data; // Copy to preserve original user list after filtering query
     }
 
-    // inflates the row layout from xml when needed
+    // Inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.fragment_user_list_item, parent, false);
@@ -51,39 +45,16 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        String id = (String) user.keySet().toArray()[position];
+        Bitmap pfp = mData.get(position).getProfileImage();
 
-        holder.myTextView.setText(user.get(id));
-        // Modifiquem la foto de perfil (per implementar)
-        setUserPfp(id,holder);
-
-        //holder.acceptButton.setVisibility(View.INVISIBLE);
+        holder.myTextView.setText(mData.get(position).getUsername());
+        if(pfp != null) holder.pfp.setImageBitmap(pfp);
         holder.selectButton.setVisibility(View.VISIBLE);
     }
 
-    public void setUserPfp(String id, @NonNull @NotNull UsersListAdapter.ViewHolder holder){
-        final long ONE_MEGABYTE = 1024 * 1024;
-
-        Session.INSTANCE.getPfpImageRef(id).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                if(bm!=null){ holder.pfp.setImageBitmap(bm); }
-
-            }
-        });
-    }
-
-    public void addUser(String userID, String username){
-        user.put(userID,username);
-        allUsers.put(userID,username);
-        notifyItemInserted(user.size());
-    }
-
-    // total number of rows
     @Override
     public int getItemCount() {
-        return user.size();
+        return (mData == null) ? 0 : mData.size();
     }
 
     @Override
@@ -91,34 +62,31 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
         Filter filter = new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence) {
-                LinkedHashMap<String,String> filteredUsernameList = new LinkedHashMap<String,String>();
-                LinkedHashMap<String,String> filteredPfpList = new LinkedHashMap<String,String>();
+                ArrayList<User> filteredUserList = new ArrayList<>();
                 if (charSequence.toString().isEmpty()) {
-                    filteredUsernameList.putAll(allUsers);
+                    filteredUserList.addAll(allUsers);
                 } else {
-                    for (String idUser : allUsers.keySet()) {
-                        if (allUsers.get(idUser).toLowerCase().contains(charSequence.toString().toLowerCase())) {
-                            filteredUsernameList.put(idUser,allUsers.get(idUser));
-                            filteredPfpList.put(idUser,pfp.get(idUser));
+                    for (int i=0; i<allUsers.size(); i++) {
+                        String username = allUsers.get(i).getUsername();
+                        if (username.toLowerCase().contains(charSequence.toString().toLowerCase())) {
+                            filteredUserList.add(allUsers.get(i));
                         }
                     }
                 }
                 FilterResults filterResults = new FilterResults();
-                filterResults.values = filteredUsernameList;
+                filterResults.values = filteredUserList;
                 return filterResults;
             }
 
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                user.clear();
-                user.putAll((Map<? extends String, ? extends String>) filterResults.values);
-
+                mData.clear();
+                mData.addAll((Collection<? extends User>) filterResults.values);
                 notifyDataSetChanged();
             }
         };
         return filter;
     }
-
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -138,7 +106,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
         public void onClick(View view) {
             if(view.getId() == -1){
                 selectButton.setChecked(!selectButton.isChecked());
-                // change item background color
+                // Change item background color
                 if(selectButton.isChecked()){
                     itemView.setBackgroundColor(Color.parseColor("#E7D3F4"));
                     selectButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
@@ -151,11 +119,35 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                     myTextView.setTextColor(Color.parseColor("#707070"));
                 }
             }
-            if (mClickListener != null) mClickListener.sendRequest(view, (String) user.keySet().toArray()[getAdapterPosition()]);
+            if (mClickListener != null) mClickListener.sendRequest(view, mData.get(getAdapterPosition()).getUsername());
         }
     }
 
+    void setClickListener(ItemClickListener itemClickListener) {
+        this.mClickListener = itemClickListener;
+    }
+
+    // parent activity will implement this method to respond to click events
+    public interface ItemClickListener {
+        void sendRequest(View view, String userID);
+        void onClick(View view);
+    }
+
+    // Not necessary
+/*  public void addUser(String userID, String username){
+        user.put(userID,username);
+        allUsers.put(userID,username);
+        notifyItemInserted(user.size());
+    }
+
+    // total number of rows
+    @Override
+    public int getItemCount() {
+        return user.size();
+    }*/
+
     // convenience method for getting data at click position
+    /*
     String getItem(int id) {
         return user.get(id);
     }
@@ -163,20 +155,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     // convenience method for getting all the usernames
     List<String> getList(){
         return  Arrays.asList(user.values().toString());
-    }
+    }*/
 
     // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    /*public void swipe(ViewHolder viewHolder) {
-        usernameFriend.remove(viewHolder.getAdapterPosition());
-        notifyItemRemoved(viewHolder.getAdapterPosition());
-    }*/
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void sendRequest(View view, String userID);
-        void onClick(View view);
-    }
 }

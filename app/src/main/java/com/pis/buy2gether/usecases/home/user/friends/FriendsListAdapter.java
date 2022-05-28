@@ -23,32 +23,30 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.pojo.Address;
+import com.pis.buy2gether.model.domain.pojo.User;
 import com.pis.buy2gether.model.session.Session;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.ViewHolder> {
 
-    private LinkedHashMap<String,String> usernameFriend;
-    private LinkedHashMap<String,String> idFriend;
-    private LinkedHashMap<String,String> pfpFriend;
+    private List<User> mData;
+
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-    int row_idx = -1;
 
-    // data is passed into the constructor
-    FriendsListAdapter(Context context, ItemClickListener itemClickListener) {
+    // Data is passed into the constructor
+    FriendsListAdapter(Context context, ArrayList<User> data) {
         this.mInflater = LayoutInflater.from(context);
-        this.usernameFriend = new LinkedHashMap<>();
-        this.idFriend = new LinkedHashMap<>();
-        this.pfpFriend = new LinkedHashMap<>();
-        this.mClickListener = itemClickListener;
+        this.mData = data;
     }
 
-    // inflates the row layout from xml when needed
+    // Inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.fragment_friend_list_item, parent, false);
@@ -57,39 +55,12 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        String id = (String) usernameFriend.keySet().toArray()[position];
+        Bitmap pfp = mData.get(position).getProfileImage();
 
-        holder.myTextView.setText(usernameFriend.get(id));
-        // Modifiquem la foto de perfil (per implementar)
-        setUserPfp(usernameFriend.get(id),holder);
-        //holder.acceptButton.setVisibility(View.INVISIBLE);
+        holder.myTextView.setText(mData.get(position).getUsername());
+        if(pfp != null) holder.pfp.setImageBitmap(pfp);
         holder.selectButton.setVisibility(View.VISIBLE);
     }
-
-    public void setUserPfp(String friend, @NonNull @NotNull ViewHolder holder){
-        final long ONE_MEGABYTE = 1024 * 1024;
-
-        Session.INSTANCE.getPfpImageRef(idFriend.get(friend)).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                if(bm!=null){ holder.pfp.setImageBitmap(bm); }
-            }
-        });
-    }
-
-    public void addFriend(String friendshipID, String friendID, String friendName){
-        usernameFriend.put(friendshipID,friendName);
-        idFriend.put(friendName,friendID);
-        notifyItemInserted(usernameFriend.size());
-    }
-
-    // total number of rows
-    @Override
-    public int getItemCount() {
-        return usernameFriend.size();
-    }
-
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -125,14 +96,9 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             }
 
             if(view.getId() == R.id.friend_SEL){
-                if (mClickListener != null) mClickListener.onItemClick(view, (String) usernameFriend.keySet().toArray()[getAdapterPosition()]);
+                if (mClickListener != null) mClickListener.onItemClick(view, mData.get(getAdapterPosition()).getUsername());
             }
         }
-    }
-
-    // convenience method for getting data at click position
-    String getItem(int id) {
-        return usernameFriend.get(id);
     }
 
     // allows clicks events to be caught
@@ -140,13 +106,15 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
         this.mClickListener = itemClickListener;
     }
 
-    /*public void swipe(ViewHolder viewHolder) {
-        usernameFriend.remove(viewHolder.getAdapterPosition());
-        notifyItemRemoved(viewHolder.getAdapterPosition());
-    }*/
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, String friendshipID);
         void onClick(View view);
+    }
+
+    // total number of rows
+    @Override
+    public int getItemCount() {
+        return (mData == null) ? 0 : mData.size();
     }
 }

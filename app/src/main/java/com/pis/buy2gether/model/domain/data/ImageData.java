@@ -52,6 +52,13 @@ public enum ImageData {
         return bitmap;
     }
 
+    public Bitmap getProfilePhoto(String pathPhoto){
+        String path = path_profile + "/" + pathPhoto + ".jpeg";
+        byte[] data = firebaseImages.getImage(path);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+        return bitmap;
+    }
+
 
 
 }

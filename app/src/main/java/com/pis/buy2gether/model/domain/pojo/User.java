@@ -54,11 +54,7 @@ public class User {
     }
 
     public void setProfileImage(String path) {
-        if(ImageData.INSTANCE.getProfilePhoto(path) != null) {
-            profileImage = ImageData.INSTANCE.getProfilePhoto(path);
-        }else{
-            profileImage = ImageData.INSTANCE.getProfilePhoto("unknown.jpg");
-        }
+        profileImage = ImageData.INSTANCE.getProfilePhoto(path);
     }
 
     public List<String> getAddressIds() {

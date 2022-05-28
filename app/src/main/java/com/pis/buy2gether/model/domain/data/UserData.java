@@ -48,7 +48,7 @@ public enum UserData {
                     a.setUsername((String) info.get("username"));
                     a.setEmail((String) info.get("email"));
                     a.setProvider((String) info.get("provider"));
-                   // a.setProfileImage(documentSnapshot.getId()); // Cargar imágenes no funciona.
+                    a.setProfileImage(documentSnapshot.getId()); // Cargar imágenes no funciona.
                     data.add(a);
                 }
                 users.setValue(data);
@@ -86,7 +86,7 @@ public enum UserData {
                             a.setUsername((String) info.get("username"));
                             a.setEmail((String) info.get("email"));
                             a.setProvider((String) info.get("provider"));
-                            //a.setProfileImage(documentSnapshot2.getId()); // Cargar imágenes no funciona.
+                            a.setProfileImage(documentSnapshot2.getId()); // Cargar imágenes no funciona.
                             ids.add(documentSnapshot2.getId());
                             data.add(a);
                         }
