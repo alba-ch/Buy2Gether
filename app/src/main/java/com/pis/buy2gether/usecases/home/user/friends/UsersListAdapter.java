@@ -119,7 +119,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                     myTextView.setTextColor(Color.parseColor("#707070"));
                 }
             }
-            if (mClickListener != null) mClickListener.sendRequest(view, mData.get(getAdapterPosition()).getUsername());
+            if (mClickListener != null) mClickListener.sendRequest(view, mData.get(getAdapterPosition()).getId());
         }
     }
 
