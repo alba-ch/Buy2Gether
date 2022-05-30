@@ -78,6 +78,8 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
     }
 
     public void updateList(final ArrayList<Grup> newData) {
+        if (newData == null)
+            return;
         this.mData.clear();
         this.mData = newData;
         notifyDataSetChanged();

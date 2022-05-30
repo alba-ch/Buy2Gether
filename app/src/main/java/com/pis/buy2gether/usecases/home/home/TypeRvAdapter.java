@@ -2,6 +2,7 @@ package com.pis.buy2gether.usecases.home.home;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pis.buy2gether.R;
@@ -52,7 +55,10 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
         //assign values to components when initializing and sliding recyclerView
 
         Grup grup = products.get(position);
-        //holder.product_image.setImageBitmap(TypeRvViewModel.getPhoto(grup.getId()));
+        MutableLiveData<Bitmap> liveData = TypeRvViewModel.getPhoto(grup.getId());
+        liveData.observeForever( b ->{
+            holder.product_image.setImageBitmap(b);
+        });
         holder.product_name.setText(grup.getName());
         holder.product_price.setText(String.valueOf(grup.getPrice()) + " €");
         holder.setId(grup.getId());

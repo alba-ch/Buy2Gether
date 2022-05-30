@@ -1,6 +1,9 @@
 package com.pis.buy2gether.model.domain.pojo;
 
 import android.graphics.Bitmap;
+
+import androidx.lifecycle.MutableLiveData;
+
 import com.pis.buy2gether.model.domain.data.ImageData;
 
 import java.util.List;
@@ -10,7 +13,7 @@ public class User {
     private String id;
     private String email;
     private String provider;
-    private Bitmap profileImage;
+    private MutableLiveData<Bitmap> profileImage;
     private List<String> addressIds;
 
     public String getUsername() {
@@ -45,11 +48,11 @@ public class User {
         this.provider = provider;
     }
 
-    public void setProfileImage(Bitmap profileImage) {
+    public void setProfileImage(MutableLiveData<Bitmap> profileImage) {
         this.profileImage = profileImage;
     }
 
-    public Bitmap getProfileImage() {
+    public MutableLiveData<Bitmap> getProfileImage() {
         return profileImage;
     }
 

@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -55,10 +57,14 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        Bitmap pfp = mData.get(position).getProfileImage();
+        MutableLiveData<Bitmap> pfp = mData.get(position).getProfileImage();
 
         holder.myTextView.setText(mData.get(position).getUsername());
-        if(pfp != null) holder.pfp.setImageBitmap(pfp);
+        if(pfp != null) {
+            pfp.observeForever( b ->{
+                holder.pfp.setImageBitmap(b);
+            });
+        }
         holder.selectButton.setVisibility(View.VISIBLE);
     }
 

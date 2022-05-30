@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.pis.buy2gether.model.domain.data.grup.GrupData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
+import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.services.FirebaseComanda;
 import com.pis.buy2gether.provider.services.FirebaseFactory;
 
@@ -40,14 +41,20 @@ public enum ComandasData{
         firebaseComanda.getUserInfo().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot document = task.getResult();
-                ArrayList<String> grups = (ArrayList<String>) document.getData().get("Grups");
                 Collection<Task<DocumentSnapshot>> tasks = new ArrayList<>();
-                for(String grup : grups){
-                    tasks.add(GrupData.INSTANCE.getGrupTask(grup));
+                DocumentSnapshot document = task.getResult();
+                Log.i("effefe", String.valueOf(document.getData()) + Session.INSTANCE.getCurrentUserID());
+                if (document.getData() == null){
+                    comandas.setValue(tasks);
+                    return;
+                }
+                ArrayList<String> grups = (ArrayList<String>) document.getData().get("Grups");
+                if (grups != null) {
+                    for(String grup : grups){
+                        tasks.add(GrupData.INSTANCE.getGrupTask(grup));
+                    }
                 }
                 comandas.setValue(tasks);
-                comandas.postValue(tasks);
             }
         });
     }

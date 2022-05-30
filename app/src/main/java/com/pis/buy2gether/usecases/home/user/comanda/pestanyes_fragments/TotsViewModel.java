@@ -27,6 +27,12 @@ public class TotsViewModel extends ViewModel{
         init();
     }
 
+    public TotsViewModel(int state){
+        grupList = new MutableLiveData<>();
+        this.state = state;
+        init();
+    }
+
     public MutableLiveData<ArrayList<Grup>> getGrupList() {
         populateList();
         return grupList;
@@ -48,7 +54,7 @@ public class TotsViewModel extends ViewModel{
                         if (t.isSuccessful()) {
                             Grup g = documentSnapshot.toObject(Grup.class);
                             Log.i("Grup", g.getName());
-                            if (g != null) {
+                            if (g != null && g.getProces() == state) {
                                 grupAux.add(g);
                             }
                         }

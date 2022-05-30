@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
@@ -45,10 +47,14 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        Bitmap pfp = mData.get(position).getProfileImage();
+        MutableLiveData<Bitmap> pfp = mData.get(position).getProfileImage();
 
         holder.myTextView.setText(mData.get(position).getUsername());
-        if(pfp != null) holder.pfp.setImageBitmap(pfp);
+        if(pfp != null) {
+            pfp.observeForever(b ->{
+                holder.pfp.setImageBitmap(b);
+            });
+        };
         holder.selectButton.setVisibility(View.VISIBLE);
     }
 

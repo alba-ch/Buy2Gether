@@ -384,7 +384,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         FirebaseAuth.getInstance().signOut();
         // Mostrem missatge d'èxit per confirmar que s'ha tancat sessió
         showSuccessAlert();
-        Intent i = new Intent(getActivity(), MainActivity.class);
+        Intent i = new Intent(getActivity(), LoginActivity.class);
         startActivity(i);
         this.getActivity().finish();
 

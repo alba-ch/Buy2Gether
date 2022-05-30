@@ -48,7 +48,8 @@ public class TotsFragment extends Fragment{
         Log.i("TotsFragment", "onCreateView: ");
         MutableLiveData<ArrayList<Grup>> data = viewModel.getGrupList();
         data.observeForever(list ->{
-            adapter.updateList(list);
+            if (list != null)
+                adapter.updateList(list);
         });
         recyclerView = view.findViewById(R.id.historial_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

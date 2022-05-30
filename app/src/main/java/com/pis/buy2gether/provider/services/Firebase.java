@@ -1,6 +1,8 @@
 package com.pis.buy2gether.provider.services;
 
 
+import android.util.Log;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;

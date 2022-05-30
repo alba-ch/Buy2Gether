@@ -1,10 +1,12 @@
 package com.pis.buy2gether.usecases.onboarding.log_in;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.Task;
 import com.pis.buy2gether.R;
@@ -44,5 +46,17 @@ class LoginViewModel extends ViewModel {
         userInfo.put("username",username);
         userInfo.put("provider",provider);
         Session.INSTANCE.saveDB("users",userID, userInfo);
+    }
+
+    public MutableLiveData<String> googleLogIn(Intent data) {
+        return Session.INSTANCE.googleLogIn(data);
+    }
+
+    public MutableLiveData<String> emailLogIn(String e, String p){
+        return Session.INSTANCE.emailLogIn(e,p);
+    }
+
+    public void guestLogIn() {
+
     }
 }

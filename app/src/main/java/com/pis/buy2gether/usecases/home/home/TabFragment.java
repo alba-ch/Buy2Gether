@@ -30,25 +30,13 @@ public class TabFragment extends Fragment {
     public TabFragment(){}
 
     public TabFragment(Category category) {
-
-        TypeRvViewModel TypeRvViewModel = new TypeRvViewModel();
-        MutableLiveData<ArrayList<Grup>> list = TypeRvViewModel.getGrupByCategory(category);
-        list.observe(this, newList -> {
-            if(newList != null && newList.size() > 0){
-                Log.e("TAB", "newList: " + newList.size());
-                typeRvAdapter.updateList(newList);
-            }
-        });
+        TypeRvViewModel typeRvViewModel = new TypeRvViewModel();
+        list = typeRvViewModel.getGrupByCategory(category);
     }
 
     public TabFragment(String search){
-        TypeRvViewModel TypeRvViewModel = new TypeRvViewModel();
-        MutableLiveData<ArrayList<Grup>> list = TypeRvViewModel.getGrupBySearch(search);
-        list.observe(this, newList -> {
-            if(newList != null){
-                typeRvAdapter.updateList(newList);
-            }
-        });
+        TypeRvViewModel typeRvViewModel = new TypeRvViewModel();
+        list = typeRvViewModel.getGrupBySearch(search);
     }
 
     @Nullable
@@ -63,6 +51,12 @@ public class TabFragment extends Fragment {
         typeRvAdapter = new TypeRvAdapter(new ArrayList<>(), getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         recyclerView.setAdapter(typeRvAdapter);
+        list.observe(this, newList -> {
+            if(newList != null && newList.size() > 0){
+                Log.e("TAB", "newList: " + newList.size());
+                typeRvAdapter.updateList(newList);
+            }
+        });
         return root;
     }
 }

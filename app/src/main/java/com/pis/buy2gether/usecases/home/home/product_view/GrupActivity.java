@@ -3,9 +3,11 @@ package com.pis.buy2gether.usecases.home.home.product_view;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 
 import java.util.ArrayList;
 
@@ -61,7 +64,6 @@ public class GrupActivity extends AppCompatActivity {
     private void binding() {
         image = findViewById(R.id.foto_producto);
         unirse = findViewById(R.id.btn_unirse);
-        unirse.setText(viewModel.btn_text());
         precio = findViewById(R.id.precios);
         description = findViewById(R.id.descripcion);
     }
@@ -73,8 +75,16 @@ public class GrupActivity extends AppCompatActivity {
     }
 
     private void observeView(GrupViewModel viewModel) {
-        description.setText(viewModel.getDescription());
-        precio.setText(viewModel.getPrecio());
-        image.setImageBitmap(viewModel.getPhoto());
+        MutableLiveData<Grup> grup = viewModel.getLiveGrup();
+        grup.observe(this, g -> {
+            viewModel.setGrup(g);
+            unirse.setText(viewModel.btn_text());
+            description.setText(viewModel.getDescription());
+            precio.setText(viewModel.getPrecio());
+            MutableLiveData<Bitmap> bitmap = viewModel.getPhoto();
+            bitmap.observe(this, b->{
+                image.setImageBitmap(b);
+            });
+        });
     }
 }

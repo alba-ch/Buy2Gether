@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
 
@@ -49,30 +50,18 @@ public class UserViewModel extends ViewModel {
         String provider = session.getDataSession(context,"provider");
 
         if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
-            String currentUser = session.getCurrentUserID();
-            session.getUserByID(currentUser).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if(documentSnapshot.get("username").toString() != null) username.setText(documentSnapshot.get("username").toString());
-                    description.setText(documentSnapshot.get("email").toString());
-                }
-            });
+            username.setText(Session.INSTANCE.getMail());
+            description.setText(Session.INSTANCE.getMail());
         }
     }
 
     private void setUserPfp(){
-        session.getCurrentUserPfpImageRef().getBytes(1024 * 1024)
-          .addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                img_pfp.setImageBitmap(bm);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(context,"Error al carregar l'imatge de perfil\n"+exception,Toast.LENGTH_SHORT).show();
-            }
-        });
+
+        MutableLiveData<Bitmap> lifeData = ImageData.INSTANCE.getProfilePhoto();
+        lifeData.observeForever(
+                data ->{
+                    img_pfp.setImageBitmap(data);
+                }
+        );
     }
 }

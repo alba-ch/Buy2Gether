@@ -86,9 +86,8 @@ public class MainActivity extends AppCompatActivity {
         notiBadge = Math.max(number, 0);
     }
     private void setup(){
-        Bundle bundle = getIntent().getExtras();
-        String email = bundle.getString("email");
-        String provider = bundle.getString("provider");
+        String email = Session.INSTANCE.getMail();
+        String provider = Session.INSTANCE.getProvider();
         Session.INSTANCE.setDataSession(this,"email",email);
         Session.INSTANCE.setDataSession(this,"provider",provider);
     }

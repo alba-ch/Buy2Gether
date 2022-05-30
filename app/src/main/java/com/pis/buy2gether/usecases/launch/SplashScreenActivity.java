@@ -46,7 +46,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         //Animation
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
-
+        FirebaseAuth.getInstance().signOut();
         //Hooks
         image = findViewById(R.id.shopping);
         name = findViewById(R.id.name);
@@ -58,13 +58,17 @@ public class SplashScreenActivity extends AppCompatActivity {
         //Test
         //test();
         new Handler().postDelayed(() -> {
-            Intent i;
-            if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                i = new Intent(SplashScreenActivity.this, MainActivity.class).putExtra("provider",Session.INSTANCE.getDataSession(this,"provider")).putExtra("email",Session.INSTANCE.getDataSession(this,"email"));
-                startActivity(i);
-                finish();
+            if (!Session.INSTANCE.checkSession()) {
+                MutableLiveData<String> check = Session.INSTANCE.chargeUserInfo();
+                check.observe(this, task ->{
+                    Intent i;
+                    i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
+                });
             }
             else {
+                Intent i;
                 i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                 Pair[] pairs = new Pair[2];
                 pairs[0] = new Pair<View, String>(image, "image");

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.Task;
 import com.pis.buy2gether.model.session.Session;
@@ -20,17 +21,17 @@ class RegisterViewModel extends ViewModel {
 
     RegisterViewModel(Context context){ this.context = context; }
 
-    void showAlert(Task task){
+    void showAlert(){
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Error");
-        builder.setMessage("S'ha produït un error autentificant l'usuari." + task.getException());
+        builder.setMessage("S'ha produït un error autentificant l'usuari.");
         builder.setPositiveButton("Acceptar",null);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    void showHome(String email, ProviderType provider){
-        Intent i = new Intent(context, MainActivity.class).putExtra("provider",provider.name()).putExtra("email",email);
+    void showHome(){
+        Intent i = new Intent(context, MainActivity.class);
         context.startActivity(i);
     }
 
@@ -41,12 +42,9 @@ class RegisterViewModel extends ViewModel {
         return shake;
     }
 
-    public void saveUserInfo(String uid, String email, String username, ProviderType provider){
-        HashMap userInfo = new HashMap();
-        userInfo.put("email",email);
-        userInfo.put("username",username);
-        userInfo.put("provider",provider);
-        userInfo.put("Favorite","");
-        Session.INSTANCE.saveDB("users",uid, userInfo);
+
+
+    public MutableLiveData<String> emailSignIn(String e, String p, String username){
+        return Session.INSTANCE.emailSignIn(e,p, username);
     }
 }

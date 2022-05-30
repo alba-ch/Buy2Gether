@@ -1,33 +1,57 @@
 package com.pis.buy2gether.model.session;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.pis.buy2gether.model.domain.data.grup.GrupData;
+import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
+import com.pis.buy2gether.model.domain.pojo.Profile;
+import com.pis.buy2gether.provider.ProviderType;
 import com.pis.buy2gether.provider.preferences.PreferencesProvider;
+import com.pis.buy2gether.provider.services.FirebaseAuthentification;
+import com.pis.buy2gether.provider.services.FirebaseFactory;
 import com.pis.buy2gether.provider.services.FirebaseRDBService;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
 /* Class for user data persistence and write/read database info (only user session data)*/
 public enum Session {
-    INSTANCE;
+    INSTANCE, DocumentSnapshot;
 
     private FirebaseRDBService RDB = FirebaseRDBService.INSTANCE; // Link with Firestore Firebase database
     private FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser(); // Link with Firebase Authentication
     private FirebaseStorage storage = FirebaseStorage.getInstance(); // Link with Firebase Storage
+    private String email;
+    private String displayName;
+    private ProviderType type;
+    private String uuid;
+
+    private FirebaseAuthentification firebaseAuth = (FirebaseAuthentification) FirebaseFactory.INSTANCE.getFirebase("FirebaseAuthentification");
 
     /* ----- Current User Data ----- */
     public String getCurrentUserID(){
-        return currentUser.getUid();
+        return uuid;
     }
 
     public FirebaseUser getCurrentUser(){
@@ -139,5 +163,123 @@ public enum Session {
 
     public void deleteFav(String UserID, String id) {
         RDB.deleteFav(UserID, id);
+    }
+
+
+
+    //Refactoring
+
+    public MutableLiveData<String> googleLogIn(Intent data){
+        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+        GoogleSignInAccount account = task.getResult();
+        Task<AuthResult> result = firebaseAuth.googleLogIn(account);
+        if (result == null)
+            return null;
+        MutableLiveData<String> lifeUuid = new MutableLiveData<>();
+        result.addOnCompleteListener(
+                user ->{
+                    email = account.getEmail();
+                    displayName = account.getDisplayName();
+                    type = ProviderType.GOOGLE;
+                    uuid = firebaseAuth.getUUID();
+
+                    Task<DocumentSnapshot> user_info = firebaseAuth.getUserInfo();
+
+                    user_info.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.getData() == null){
+                                Profile pf = new Profile();
+                                pf.setEmail(email);
+                                pf.setUsername(displayName);
+                                pf.setProvider(type);
+                                firebaseAuth.saveUser(pf);
+                                lifeUuid.setValue(uuid);
+                                return;
+                            }
+                            lifeUuid.setValue(uuid);
+                        }
+                    });
+                }
+        );
+        return lifeUuid;
+    }
+
+    public boolean checkSession(){
+            Boolean result = firebaseAuth.checkSession();
+            return result;
+    }
+
+    public MutableLiveData<String> chargeUserInfo(){
+        uuid = firebaseAuth.getUUID();
+        Task<DocumentSnapshot> userInfo = firebaseAuth.getUserInfo();
+        MutableLiveData<String> lifeUuid = new MutableLiveData<>();
+        userInfo.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                uuid = firebaseAuth.getUUID();
+                //Log.e("UUID", firebaseAuth.getUUID());
+                DocumentSnapshot document = task.getResult();
+                email = (String) document.getData().get("email");
+                displayName = (String) document.getData().get("username");
+                type = ProviderType.valueOf((String) document.getData().get("provider"));
+                lifeUuid.setValue(uuid);
+            }
+        });
+        return lifeUuid;
+    }
+
+    public MutableLiveData<String> emailLogIn(String m, String p){
+        Task<AuthResult> result = firebaseAuth.emailLogIn(m,p);
+        MutableLiveData<String> lifeUuid = new MutableLiveData<>();
+        result.addOnCompleteListener(
+                task -> {
+                    if(task.isSuccessful()){
+                        email = task.getResult().getUser().getEmail();
+                        type = ProviderType.BASIC;
+                        uuid = firebaseAuth.getUUID();
+                        lifeUuid.setValue(uuid);
+                    }else{
+                        lifeUuid.setValue("Error 404");
+                    }
+                }
+        );
+        return lifeUuid;
+    }
+
+    public MutableLiveData<String> emailSignIn(String email, String psw, String username){
+        Task<AuthResult> result = firebaseAuth.emailSignIn(email, psw);
+        MutableLiveData<String> lifeUuid = new MutableLiveData<>();
+        result.addOnCompleteListener(
+                task -> {
+                    if(task.isSuccessful()){
+                        this.email = email;
+                        type = ProviderType.BASIC;
+                        displayName = username;
+                        uuid = firebaseAuth.getUUID();
+                        Profile pf = new Profile();
+                        pf.setEmail(email);
+                        pf.setUsername(displayName);
+                        pf.setProvider(type);
+                        firebaseAuth.saveUser(pf);
+                        lifeUuid.setValue(uuid);
+                    }else{
+                        Log.e("dedewd", "no suss");
+                        lifeUuid.setValue("Error 404");
+                    }
+                }
+        );
+        return lifeUuid;
+    }
+
+
+
+
+    public String getMail() {
+        return email;
+    }
+    public String getProvider(){
+        return String.valueOf(type);
     }
 }

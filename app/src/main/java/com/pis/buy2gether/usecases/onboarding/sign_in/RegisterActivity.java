@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.pis.buy2gether.R;
@@ -44,13 +46,13 @@ public class RegisterActivity extends AppCompatActivity {
 
             /* Check if user filled both email and password text fields. */
             if(!(email.isEmpty()) && !(psw.isEmpty()) && !(username.isEmpty())){
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,psw).addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        viewModel.saveUserInfo(FirebaseAuth.getInstance().getUid(),email,username,ProviderType.BASIC);
-                        viewModel.showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
-                        finish();
+                MutableLiveData<String> data = viewModel.emailSignIn(email, psw, username);
+                data.observe(this, result->{
+                    if(result.equals("Error 404")){
+                        //Show error
+                        viewModel.showAlert();
                     }else{
-                        viewModel.showAlert(task);
+                        viewModel.showHome();
                     }
                 });
             }else{
@@ -67,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         } );
 
         guest.setOnClickListener(v -> {
-            viewModel.showHome("guest", ProviderType.GUEST);
+            viewModel.showHome();
             finish();
         });
     }

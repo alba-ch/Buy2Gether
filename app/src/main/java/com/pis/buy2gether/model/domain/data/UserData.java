@@ -43,7 +43,6 @@ public enum UserData {
                 for(QueryDocumentSnapshot documentSnapshot : result.getResult()){
                     User a = new User();
                     Map<String, Object> info = documentSnapshot.getData();
-
                     a.setId(documentSnapshot.getId());
                     a.setUsername((String) info.get("username"));
                     a.setEmail((String) info.get("email"));
@@ -52,7 +51,6 @@ public enum UserData {
                     data.add(a);
                 }
                 users.setValue(data);
-                users.postValue(data);
             }
         });
     }
@@ -86,7 +84,7 @@ public enum UserData {
                             a.setUsername((String) info.get("username"));
                             a.setEmail((String) info.get("email"));
                             a.setProvider((String) info.get("provider"));
-                            a.setProfileImage(documentSnapshot2.getId()); // Cargar imágenes no funciona.
+                            //a.setProfileImage(documentSnapshot2.getId()); // Cargar imágenes no funciona.
                             ids.add(documentSnapshot2.getId());
                             data.add(a);
                         }

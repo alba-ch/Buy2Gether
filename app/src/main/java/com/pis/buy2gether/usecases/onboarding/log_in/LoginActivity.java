@@ -63,11 +63,13 @@ public class LoginActivity extends AppCompatActivity {
 
             /* Check if user filled both email and password text fields. */
             if(!(email.isEmpty()) && !(psw.isEmpty())){
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email,psw).addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        showHome(task.getResult().getUser().getEmail(), ProviderType.BASIC);
+                viewModel.emailLogIn(email, psw).observe(this, task->{
+                    if (task.equals("Error 404")){
+                        //Show error
+                        userEditText.startAnimation(viewModel.shakeError());
+                        pswEditText.startAnimation(viewModel.shakeError());
                     }else{
-                        viewModel.showAlert(task);
+                        showHome();
                     }
                 });
             }else{
@@ -83,13 +85,15 @@ public class LoginActivity extends AppCompatActivity {
         } );
 
         guest.setOnClickListener(v -> {
-            showHome("guest", ProviderType.GUEST);
+            viewModel.guestLogIn();
+            showHome();
         });
 
         google_signin.setOnClickListener(v -> {
             GoogleSignInOptions googleConf = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestIdToken(getString(R.string.default_web_client_id))
                     .requestEmail().build();
+
 
             GoogleSignInClient googleClient = GoogleSignIn.getClient(this,googleConf);
             googleClient.signOut();
@@ -106,22 +110,10 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.invitado).setVisibility(View.INVISIBLE);
     }
 
-    private void showHome(String email, ProviderType provider){
-        Intent i = new Intent(LoginActivity.this, MainActivity.class).putExtra("provider",provider.name()).putExtra("email",email);
+    private void showHome(){
+        Intent i = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(i);
         finish();
-    }
-
-    /* Comprovem si ja hi ha una sessió guardada */
-    private void session(){
-        String email = viewModel.getSession(this, "email");
-        String provider = viewModel.getSession(this,"provider");
-
-        if(Session.INSTANCE.getCurrentUser() != null){
-            showHome(email, ProviderType.valueOf(provider));
-        }else{
-            Toast.makeText(LoginActivity.this,"SON NULL",Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
@@ -130,21 +122,10 @@ public class LoginActivity extends AppCompatActivity {
 
         /* Si la resposta retornada és igual l'ID de GOOGLE_SIGN_IN, la resposta d'aquest activity correspon al de Google */
         if(requestCode == GOOGLE_SIGN_IN){
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            GoogleSignInAccount account = task.getResult();
+            viewModel.googleLogIn(data).observe(this, task->{
+                showHome();
+            });
 
-            /* Finalitzem autentificant-nos a Firebase com a Login normal, amb email i contrasenya */
-            if(account != null) {
-                AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
-                FirebaseAuth.getInstance().signInWithCredential(credential).addOnCompleteListener(t -> {
-                    if(t.isSuccessful()){
-                        viewModel.saveUserInfo(FirebaseAuth.getInstance().getCurrentUser().getUid(),account.getEmail(),account.getDisplayName(),ProviderType.GOOGLE);
-                        showHome(account.getEmail(), ProviderType.GOOGLE);
-                    }else{
-                        viewModel.showAlert(t);
-                    }
-                });
-            }
         }
     }
 

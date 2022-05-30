@@ -40,21 +40,8 @@ public class FirebaseImages extends Firebase{
     }
 
 
-    public byte[] getImage(String path){
+    public StorageReference getImage(String path){
         StorageReference ref = st.getReference().child(path);
-        final byte[][] data = new byte[1][1];
-        ref.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                // Data for "images/island.jpg" is returns, use this as needed
-                data[0] = bytes;
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
-            }
-        });
-        return data[0];
+        return ref;
     }
 }

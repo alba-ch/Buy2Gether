@@ -33,7 +33,7 @@ public class TypeRvViewModel {
         return this.grupList;
     }
 
-    public Bitmap getPhoto(String grupID){
+    public static MutableLiveData<Bitmap> getPhoto(String grupID){
         return ImageData.INSTANCE.getGrupPhoto(grupID);
     }
 

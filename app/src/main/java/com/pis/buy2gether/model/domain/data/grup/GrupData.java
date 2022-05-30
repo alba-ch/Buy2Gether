@@ -115,7 +115,6 @@ public enum GrupData {
                         data.add(g);
                     }
                     grups.setValue(data);
-                    grups.postValue(data);
                 }
             }
         });
