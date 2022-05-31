@@ -5,11 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,61 +18,63 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentFriendsBinding;
-import com.pis.buy2gether.model.domain.data.AddressData;
-import com.pis.buy2gether.model.domain.data.UserData;
-import com.pis.buy2gether.model.domain.pojo.Address;
 import com.pis.buy2gether.model.domain.pojo.User;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
-import com.pis.buy2gether.usecases.home.notifications.NotiType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FriendsViewModel extends ViewModel{
-
-    /* Mutable Live Data for Friends and User List autoupdate */
-    public MutableLiveData<ArrayList<User>> userList;
-    public MutableLiveData<ArrayList<User>> friendList;
-
-    private Session session;
     private FragmentFriendsBinding binding;
-    private Context context;
-
-    private FriendsListAdapter friendsListAdapter;
-    private UsersListAdapter usersListAdapter;
     private RecyclerView recyclerView;
-    private ArrayList<ClipData.Item> list;
-
     android.widget.SearchView searchView;
 
-    FriendsViewModel(Context context, FragmentFriendsBinding binding){
-        this.userList = new MutableLiveData<>();
-        this.friendList = new MutableLiveData<>();
+    private Session session;
+    private Context context;
 
+    /* --- ListAdapters --- */
+    private FriendsListAdapter friendsListAdapter;
+    private UsersListAdapter usersListAdapter;
+
+    /***
+     * Constructor
+     * @param context context
+     * @param friendsListAdapter listAdapter of friends
+     * @param usersListAdapter listAdapter of users
+     * @param binding binding
+     */
+    FriendsViewModel(Context context, FriendsListAdapter friendsListAdapter, UsersListAdapter usersListAdapter, FragmentFriendsBinding binding){
         this.session = Session.INSTANCE;
         this.context = context;
+        this.friendsListAdapter = friendsListAdapter;
+        this.usersListAdapter = usersListAdapter;
         this.binding = binding;
-
-        init();
+        this.recyclerView = binding.friendsList;
     }
 
-    private void init(){
-        userList = UserData.INSTANCE.getListUsers(getUserID());
-        friendList = UserData.INSTANCE.getListFriends(getUserID());
-    }
-
+    /***
+     * Set up interface
+     */
     public void setup(){
         setupUserInfo();
         setUserPfp();
     }
 
+    /***
+     * Display current user information at the top
+     */
     private void setupUserInfo(){
         String provider = session.getDataSession(context,"provider");
 
@@ -87,6 +90,9 @@ public class FriendsViewModel extends ViewModel{
         }
     }
 
+    /***
+     * Sets de profile image. TODO: Cambiar a ImageData cuando funcione.
+     */
     private void setUserPfp(){
         session.getCurrentUserPfpImageRef().getBytes(1024 * 1024)
                 .addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -103,10 +109,27 @@ public class FriendsViewModel extends ViewModel{
                 });
     }
 
-    public MutableLiveData<ArrayList<User>> getFriends(){  return friendList; }
+    /***
+     * Returns friends of the current user
+     * @return Task
+     */
+    public Task getFriends(){
+        return Session.INSTANCE.getFriendsDB(getUserID());
+    }
 
-    public MutableLiveData<ArrayList<User>> getUsers(){ return userList; }
+    /***
+     * Returns all users without including friends nor current user
+     * @param friends Friends of the current user
+     * @return Task
+     */
+    public Task getUsers(List friends){
+        return Session.INSTANCE.getUsers(friends);
+    }
 
+    /***
+     * Returns current user ID
+     * @return String of current user ID
+     */
     public String getUserID(){
         String userID = "unknown";
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
@@ -115,56 +138,62 @@ public class FriendsViewModel extends ViewModel{
         return userID;
     }
 
+    /***
+     * Returns username given an ID
+     * @param id ID
+     * @return Task
+     */
     public Task<DocumentSnapshot> getUserName(String id) {
         return Session.INSTANCE.getUserByID(id);
     }
-    /*public Task<DocumentSnapshot> getFriendshipID(String friendID) {
-        return Session.INSTANCE.getFriendshipID(getUserID(), friendID);
-    }*/
+
+    /***
+     * Delete a friend
+     * @param id ID of the friend
+     */
     public void deleteFriend(String id){
-        //Session.INSTANCE.deleteFriend(id);
+        Session.INSTANCE.deleteFriend(id);
         Toast.makeText(context, "Amic eliminat", Toast.LENGTH_SHORT).show();
+        setList();
     }
 
-    public void sendRequest(String toID) {
-        Task task = Session.INSTANCE.getUserByID(getUserID()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                HashMap inviteInfo = new HashMap();
-                String username = documentSnapshot.get("username").toString();
-                Log.e("FRIEND REQUEST","actual username is: " + username);
-                inviteInfo.put("FromUsername",username);
-                inviteInfo.put("fromID",getUserID());
-                inviteInfo.put("groupname","");
-                inviteInfo.put("toID",toID);
-                inviteInfo.put("notiType", NotiType.FRIEND_REQUEST);
-                Session.INSTANCE.CreateFriendRequest(inviteInfo);
+    /***
+     * Send friend request
+     * @param toID ID of user
+     */
+    public void request(String toID) {
+        HashMap inviteInfo = new HashMap();
+        inviteInfo.put("fromID",getUserID());
+        inviteInfo.put("toID",toID);
+
+        Session.INSTANCE.CreateFriendRequest(inviteInfo);
+    }
+
+    public void sendRequest(String toID){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage("Enviar sol·licitud d'amistad");
+        builder.setNegativeButton("NO",null);
+        builder.setPositiveButton("SÍ",new DialogInterface.OnClickListener() {
+            @Override public void onClick(DialogInterface dialog, int which) {
+                request(toID);
             }
         });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
-    public void showFriendList(){
-        recyclerView = binding.friendsList;
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+    /***
+     * Display list of friends
+     */
+    public void setList(){
+        friendsListAdapter.clear();
+
         recyclerView.setAdapter(friendsListAdapter);
-        binding.friendsList.setAdapter(friendsListAdapter);
-        hideSearch();
-        //friendsListAdapter = new FriendsListAdapter(context,getFriends().getValue());
-    }
-
-    public void showUserList(){
-        recyclerView = binding.friendsList;
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(usersListAdapter);
-        binding.friendsList.setAdapter(usersListAdapter);
 
-        //usersListAdapter = new UsersListAdapter(context,getUsers().getValue());
-    }
+        hideSearch();
 
-    public void setList(ArrayList<User> list){
-        friendsListAdapter = new FriendsListAdapter(context,list);
-        //friendList=list;
-        /*Task task = getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        Task task = getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
@@ -173,20 +202,27 @@ public class FriendsViewModel extends ViewModel{
                     Task<DocumentSnapshot> task = getUserName(friendID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot2) {
-                            String username = documentSnapshot2.get("username")== null ? "unknown" : documentSnapshot2.get("username").toString();
-                            friendsListAdapter.addFriend(documentSnapshot.getId(),friendID,username);
+                            User user = info(documentSnapshot2.getData(), documentSnapshot);
+                            friendsListAdapter.addFriend(user,documentSnapshot.getId());
                         }
                     });
                 }
             }
-        });*/
+        });
     }
 
-    public void setListUsers(ArrayList<User> list){
-        usersListAdapter = new UsersListAdapter(context,list);
+    /***
+     * Display list of users
+     */
+    public void setListUsers(){
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(usersListAdapter);
 
-        /* Generate list of users available to send User request */
-        /*List friendIDs = new ArrayList<>();
+        showSearch();
+
+        usersListAdapter.clear();
+        /* Generate list of users available to send Friend request */
+        List friendIDs = new ArrayList<>();
         Task t = getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -200,48 +236,68 @@ public class FriendsViewModel extends ViewModel{
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshotsUsers) {
                         for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshotsUsers) {
-                            String username = documentSnapshot.get("username")== null ? "unknown" : documentSnapshot.get("username").toString();
-                            usersListAdapter.addUser(documentSnapshot.getId(), username);
+                            User user = info(documentSnapshot.getData(), documentSnapshot);
+                            usersListAdapter.addUser(user);
                         }
                     }
                 });
             }
-        });*/
-    }
-
-    public void sendRequest(View view, String toID){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Enviar sol·licitud d'amistad");
-        builder.setNegativeButton("NO",null);
-        builder.setPositiveButton("SÍ",new DialogInterface.OnClickListener() {
-            @Override public void onClick(DialogInterface dialog, int which) {
-                sendRequest(toID);
-            }
         });
-        AlertDialog dialog = builder.create();
-        dialog.show();
     }
 
+    /***
+     * Auxiliar function to generate new users
+     * @param data info about the user
+     * @param documentSnapshot documentSnapshot
+     * @return new User
+     */
+    public User info(Map<String, Object> data, QueryDocumentSnapshot documentSnapshot) {
+        String id = documentSnapshot.getId();
+        User user = new User();
+        Map<String, Object> info = data;
+
+        user.setId(id);
+        user.setUsername((String) info.get("username"));
+        user.setEmail((String) info.get("email"));
+        user.setProvider((String) info.get("provider"));
+        return user;
+    }
+
+    /* ---- Functions for Query changes ---- */
+
+    /***
+     * User presses enter in searchbar
+     * @param query input
+     */
     public void queryTextSubmit(String query){
         /* User prem enter */
         searchView.setQuery(query,false);
         searchView.clearFocus();
-        //if(usersListAdapter.getList().contains(query)){
         usersListAdapter.getFilter().filter(query);
-        //}
     }
 
+    /***
+     * User enters new character in searchbar
+     * @param newText input
+     */
     public void queryTextChange(String newText){
         usersListAdapter.getFilter().filter(newText);
     }
 
+    /* ---- Show/Hide User search bar ---- */
+
+    /***
+     * Set visibility of searchView to visible
+     */
     public void showSearch(){
         binding.searchViewFriends.setVisibility(View.VISIBLE);
         binding.btnAmics.setVisibility(View.GONE);
         binding.name.setVisibility(View.INVISIBLE);
-
     }
 
+    /***
+     * Set visibility of searchView to invisible
+     */
     public void hideSearch(){
         binding.searchViewFriends.setVisibility(View.GONE);
         binding.btnAmics.setVisibility(View.VISIBLE);

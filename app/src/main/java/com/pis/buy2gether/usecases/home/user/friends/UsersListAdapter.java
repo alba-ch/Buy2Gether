@@ -1,5 +1,6 @@
 package com.pis.buy2gether.usecases.home.user.friends;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,7 +36,8 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     UsersListAdapter(Context context, ArrayList<User> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
-        this.allUsers = data; // Copy to preserve original user list after filtering query
+        this.allUsers = new ArrayList<>(); // Copy to preserve original user list after filtering query
+        allUsers.addAll(data);
     }
 
     // Inflates the row layout from xml when needed
@@ -84,9 +86,11 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                 return filterResults;
             }
 
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
                 mData.clear();
+
                 mData.addAll((Collection<? extends User>) filterResults.values);
                 notifyDataSetChanged();
             }
@@ -140,12 +144,17 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     }
 
     // Not necessary
-/*  public void addUser(String userID, String username){
-        user.put(userID,username);
-        allUsers.put(userID,username);
-        notifyItemInserted(user.size());
+    public void addUser(User user){
+        mData.add(user);
+        allUsers.add(user);
+        notifyItemInserted(mData.size());
     }
 
+    public void clear(){
+        mData.clear();
+        allUsers.clear();
+    }
+/*
     // total number of rows
     @Override
     public int getItemCount() {

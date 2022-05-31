@@ -38,6 +38,7 @@ import java.util.Map;
 public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.ViewHolder> {
 
     private List<User> mData;
+    private List<String> friendships;
 
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
@@ -46,6 +47,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     FriendsListAdapter(Context context, ArrayList<User> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
+        this.friendships = new ArrayList<>();
     }
 
     // Inflates the row layout from xml when needed
@@ -102,11 +104,16 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
             }
 
             if(view.getId() == R.id.friend_SEL){
-                if (mClickListener != null) mClickListener.onItemClick(view, mData.get(getAdapterPosition()).getUsername());
+                if (mClickListener != null) mClickListener.onItemClick(view, friendships.get(getAdapterPosition()));
             }
         }
     }
 
+    public void addFriend(User friend, String id){
+        mData.add(friend);
+        friendships.add(id);
+        notifyItemInserted(mData.size());
+    }
     // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
@@ -116,6 +123,11 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public interface ItemClickListener {
         void onItemClick(View view, String friendshipID);
         void onClick(View view);
+    }
+
+    public void clear(){
+        mData.clear();
+        friendships.clear();
     }
 
     // total number of rows

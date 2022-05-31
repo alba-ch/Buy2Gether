@@ -47,6 +47,10 @@ public class FirebaseUser extends Firebase{
         return q.get();
     }
 
+    public Task<QuerySnapshot> getFriends(){
+        Query q = db.collection("Friendships").whereNotEqualTo(getCurrentUserID(),null);
+        return q.get();
+    }
     public void deleteFriend(String user, String doc){
         db.collection("users").document(user).collection("Addresses").document(doc).delete();
     }

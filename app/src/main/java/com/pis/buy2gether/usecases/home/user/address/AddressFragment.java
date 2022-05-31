@@ -79,7 +79,6 @@ public class AddressFragment extends Fragment implements AddressListAdapter.Item
 
     private void setAdapter(){
         recyclerView.setAdapter(addressListAdapter);
-        binding.addressList.setAdapter(addressListAdapter);
         addressListAdapter.setClickListener(this);
     }
 
