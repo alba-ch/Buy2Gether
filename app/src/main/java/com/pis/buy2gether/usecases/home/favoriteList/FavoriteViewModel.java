@@ -9,6 +9,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.pis.buy2gether.model.domain.data.FavoriteData;
 import com.pis.buy2gether.model.domain.pojo.Favorite;
 import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -62,5 +63,9 @@ public class FavoriteViewModel extends ViewModel {
 
     public void delete(String groupID) {
         FavoriteData.INSTANCE.deleteFav(groupID);
+    }
+
+    public Boolean checkSession(){
+        return Session.INSTANCE.getProvider() != ProviderType.GUEST;
     }
 }

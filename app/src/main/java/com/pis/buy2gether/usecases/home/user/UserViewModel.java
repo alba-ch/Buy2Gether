@@ -23,6 +23,8 @@ import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
 
+import java.security.Provider;
+
 public class UserViewModel extends ViewModel {
 
     TextView username;
@@ -36,6 +38,9 @@ public class UserViewModel extends ViewModel {
         this.session = Session.INSTANCE;
         this.context = context;
     }
+    public Boolean checkGuest(){
+        return Session.INSTANCE.getProvider() != ProviderType.GUEST;
+    }
 
     public void setup(View view){
         username = view.findViewById(R.id.txt_user);
@@ -47,21 +52,18 @@ public class UserViewModel extends ViewModel {
     }
 
     private void setupUserInfo(){
-        String provider = session.getDataSession(context,"provider");
-
-        if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
             username.setText(Session.INSTANCE.getDisplayName());
             description.setText(Session.INSTANCE.getMail());
-        }
     }
 
     private void setUserPfp(){
-
+        if(Session.INSTANCE.getProvider() != ProviderType.GUEST){
         MutableLiveData<Bitmap> lifeData = ImageData.INSTANCE.getProfilePhoto();
         lifeData.observeForever(
                 data ->{
                     img_pfp.setImageBitmap(data);
                 }
         );
+        }
     }
 }

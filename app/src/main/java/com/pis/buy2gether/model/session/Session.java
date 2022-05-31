@@ -198,11 +198,11 @@ public enum Session {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 uuid = firebaseAuth.getUUID();
-                //Log.e("UUID", firebaseAuth.getUUID());
                 DocumentSnapshot document = task.getResult();
                 email = (String) document.getData().get("email");
                 displayName = (String) document.getData().get("username");
                 type = ProviderType.valueOf((String) document.getData().get("provider"));
+                Log.e("UUID", email + " "+ displayName + " "+String.valueOf(type));
                 lifeUuid.setValue(uuid);
             }
         });
@@ -215,10 +215,19 @@ public enum Session {
         result.addOnCompleteListener(
                 task -> {
                     if(task.isSuccessful()){
-                        email = task.getResult().getUser().getEmail();
                         type = ProviderType.BASIC;
-                        uuid = firebaseAuth.getUUID();
-                        lifeUuid.setValue(uuid);
+                        Task<DocumentSnapshot> userInfo = firebaseAuth.getUserInfo();
+                        userInfo.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                uuid = firebaseAuth.getUUID();
+                                DocumentSnapshot document = task.getResult();
+                                email = (String) document.getData().get("email");
+                                displayName = (String) document.getData().get("username");
+                                type = ProviderType.valueOf((String) document.getData().get("provider"));
+                                lifeUuid.setValue(uuid);
+                            }
+                        });
                     }else{
                         lifeUuid.setValue("Error 404");
                     }
@@ -258,12 +267,18 @@ public enum Session {
     public String getMail() {
         return email;
     }
-    public String getProvider(){
-        return String.valueOf(type);
+    public ProviderType getProvider(){
+        return type;
     }
 
     public String getDisplayName(){
         return displayName;
     }
 
+    public void guestAccess() {
+        this.displayName = "CONVIDAT";
+        this.email = "";
+        this.type = ProviderType.GUEST;
+        this.uuid = "-1";
+    }
 }

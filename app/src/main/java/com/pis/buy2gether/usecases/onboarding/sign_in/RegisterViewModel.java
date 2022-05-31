@@ -47,4 +47,8 @@ class RegisterViewModel extends ViewModel {
     public MutableLiveData<String> emailSignIn(String e, String p, String username){
         return Session.INSTANCE.emailSignIn(e,p, username);
     }
+
+    public void guestAccess() {
+        Session.INSTANCE.guestAccess();
+    }
 }
