@@ -27,6 +27,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.data.ImageData;
+import com.pis.buy2gether.model.domain.data.grup.GrupData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
 
@@ -115,23 +117,6 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         friendListAdapter = new FriendListAdapter(getContext(),this);
         recyclerView.setAdapter(friendListAdapter);
 
-        Task<QuerySnapshot> task = groupCreationViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots){
-                    String[] id = documentSnapshot.getData().keySet().toArray(new String[0]);
-                    String friendID = id[0].equals(groupCreationViewModel.getUser()) ? id[1] : id[0];
-                    Task<DocumentSnapshot> task = groupCreationViewModel.getUserName(friendID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                friendListAdapter.addUser(friendID,documentSnapshot.get("username").toString());
-
-                        }
-                    });
-                }
-            }
-        });
-
     }
 
     @Override
@@ -175,7 +160,7 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
     }
 
     private void saveGroupImageDB(Bitmap bitmap){
-        groupCreationViewModel.saveImage(bitmap, groupID);
+        ImageData.INSTANCE.saveGrupPhoto(groupID,bitmap);
     }
 
     private void showMediaDialog(){
