@@ -81,7 +81,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
     @Override
     public void onClick(View view) {
         int offset = 0, size = favoriteListAdapter.getItemCount();
-        if(view.getId() == getActivity().findViewById(R.id.submitButton).getId()){
+        if(view.getId() == getActivity().findViewById(R.id.btn_submit).getId()){
             for(int i  = 0; i < size; i ++) {
                 Favorite f = favoriteListAdapter.getItem(i-offset);
                 if(f.isChecked()) {
