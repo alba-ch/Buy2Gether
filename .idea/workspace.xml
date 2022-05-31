@@ -13,45 +13,22 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="REFECATOR AND SOLVE BUGS OF THE LOG IN AND REGISTER CLASSES">
-      <change afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaViewModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/no_image.png" afterDir="false" />
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="DCU UPDATED AT DOC FOLDER">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/FavoriteData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/pojo/Favorite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/provider/services/FirebaseFavorite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ImageData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ImageData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/GrupData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/GrupData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/products/ProductViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/products/products.plantuml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/Comanda_view.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_comanda_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_comanda_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_historial_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_historial_list_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home_rv_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home_rv_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteViewModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[C:\Users\li471\.android\avd\Nexus_5X_API_31.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -73,24 +50,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="android" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -110,12 +70,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="GenerateSignedApkSettings">
-    <option name="KEY_STORE_PATH" value="C:\Users\li471\Desktop\Hola.jks" />
-    <option name="KEY_ALIAS" value="key0" />
-    <option name="REMEMBER_PASSWORDS" value="true" />
-    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <favorite-branches>
@@ -157,16 +111,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="ApkExportedModule" value="Buy2Gether.app" />
-    <property name="ExportApk.ApkPath" value="C:\Users\li471\StudioProjects\Buy2Gether_Last\app" />
-    <property name="ExportApk.BuildVariants" value="release" />
-    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
-    <property name="cidr.known.project.marker" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="experimental" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="android.template.313858937">
       <recent name="com.pis.buy2gether" />
@@ -229,33 +178,9 @@
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
       <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_PROFILING_ENABLED" value="false" />
@@ -268,9 +193,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
+      <method v="2" />
     </configuration>
     <configuration name="Buy2Gether_Last [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -656,14 +579,7 @@
       <option name="project" value="LOCAL" />
       <updated>1651711377964</updated>
     </task>
-    <task id="LOCAL-00048" summary="REFECATOR AND SOLVE BUGS OF THE LOG IN AND REGISTER CLASSES">
-      <created>1653913362082</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1653913362083</updated>
-    </task>
-    <option name="localTasksCounter" value="49" />
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -679,10 +595,10 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Implementació de fragment historial / no funciona be encara" />
     <MESSAGE value="Implementació de fragment historial / ja es mostra bé al ui" />
     <MESSAGE value="Fix setting menu superpositions, add go back to the main menu functionality in historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu." />
@@ -707,8 +623,7 @@
     <MESSAGE value="Implemented Favorite List" />
     <MESSAGE value="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix." />
     <MESSAGE value="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)" />
-    <MESSAGE value="REFECATOR AND SOLVE BUGS OF THE LOG IN AND REGISTER CLASSES" />
-    <option name="LAST_COMMIT_MESSAGE" value="REFECATOR AND SOLVE BUGS OF THE LOG IN AND REGISTER CLASSES" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
