@@ -33,22 +33,6 @@ public class GrupViewModel {
         return getGrup().getName();
     }
 
-    public void btn_action() {
-        if (ComandasData.INSTANCE.isComanda(getGrup().getId())) {
-            ComandasData.INSTANCE.deleteComanda(getGrup().getId());
-        }else{
-            ComandasData.INSTANCE.saveComanda(getGrup().getId());
-        }
-    }
-
-    public String btn_text() {
-        if (ComandasData.INSTANCE.isComanda(getGrup().getId())) {
-            return "Abandonar grup";
-        }else{
-            return "Unirse-grup";
-        }
-    }
-
 
     public String getPrecio() {
         return String.valueOf(getGrup().getPrice()) + " €";
@@ -58,9 +42,15 @@ public class GrupViewModel {
         return ImageData.INSTANCE.getGrupPhoto(getGrup().getId());
     }
 
-
+    public void addGrup(){
+        ComandasData.INSTANCE.saveComanda(grup.getId());
+    }
     public void setGrup(Grup g) {
         this.grup = g;
+    }
+
+    public void favGrup() {
+
     }
 }
 

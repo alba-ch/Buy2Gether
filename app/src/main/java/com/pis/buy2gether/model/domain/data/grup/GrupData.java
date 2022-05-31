@@ -55,9 +55,6 @@ public enum GrupData {
                         Grup g = document.toObject(Grup.class);
                             Log.e("myTag", "L2" + g.getName());
                             data_1.setValue(g);
-                            Log.e("myTag", "L3");
-                            data_1.postValue(g);
-                            Log.e("myTag", "Existe " + g.getId());
 
                         }
                         catch (Exception e){

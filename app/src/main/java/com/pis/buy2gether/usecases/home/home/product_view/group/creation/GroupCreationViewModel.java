@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.data.grup.GrupData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
@@ -46,7 +47,7 @@ public class GroupCreationViewModel extends ViewModel {
         grup.setCat(Category.valueOf(type));
 
         GrupData.INSTANCE.saveGrup(grup);
-        return Session.INSTANCE.CreateGroupDB(groupInfo);
+        return grup.getId();
     }
 
     public void SendInvite(String userID, String groupID) {
@@ -67,6 +68,10 @@ public class GroupCreationViewModel extends ViewModel {
     public String getUser(){
         //Toast.makeText(contex,"Error al carregar l'imatge de perfil\n",Toast.LENGTH_SHORT).show();
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
+    public void saveImage(Bitmap bitmap, String id){
+        ImageData.INSTANCE.saveGrupPhoto(id, bitmap);
     }
 
 }

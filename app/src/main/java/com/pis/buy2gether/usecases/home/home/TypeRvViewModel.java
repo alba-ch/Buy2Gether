@@ -24,7 +24,7 @@ public class TypeRvViewModel {
         grupList.observeForever(grups -> {
             ArrayList<Grup> grupListFiltered = new ArrayList<>();
             for (Grup grup : grups) {
-                if (grup.getCat() == category) {
+                if (grup.getCat() == category && grup.getProces() == 0) {
                     grupListFiltered.add(grup);
                 }
             }

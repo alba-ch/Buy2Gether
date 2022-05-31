@@ -50,7 +50,7 @@ public class UserViewModel extends ViewModel {
         String provider = session.getDataSession(context,"provider");
 
         if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
-            username.setText(Session.INSTANCE.getMail());
+            username.setText(Session.INSTANCE.getDisplayName());
             description.setText(Session.INSTANCE.getMail());
         }
     }

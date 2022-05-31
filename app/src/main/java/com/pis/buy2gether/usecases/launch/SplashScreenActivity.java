@@ -46,7 +46,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         //Animation
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.bottom_animation);
-        FirebaseAuth.getInstance().signOut();
+
         //Hooks
         image = findViewById(R.id.shopping);
         name = findViewById(R.id.name);

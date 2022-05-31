@@ -28,6 +28,8 @@ public class GrupActivity extends AppCompatActivity {
     private TextView description;
     private TextView precio;
     private Button unirse;
+    private ImageButton fav;
+    private TextView nom;
 
 
     @Override
@@ -40,8 +42,8 @@ public class GrupActivity extends AppCompatActivity {
         }
 
         viewModel = new GrupViewModel(product_id);
-        binding();
-        addListeners();
+        //binding();
+
 
         setContentView(R.layout.activity_product_view);
         back = findViewById(R.id.back);
@@ -50,9 +52,10 @@ public class GrupActivity extends AppCompatActivity {
         description = findViewById(R.id.descripcion);
 
 
+
         ArrayList<String> valoraciones = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            valoraciones.add("Hola" + i);
+            valoraciones.add("No disponible a la fase alpha");
         }
 
         ValoracionsAdapter adapter = new ValoracionsAdapter(valoraciones);
@@ -66,25 +69,38 @@ public class GrupActivity extends AppCompatActivity {
         unirse = findViewById(R.id.btn_unirse);
         precio = findViewById(R.id.precios);
         description = findViewById(R.id.descripcion);
+        fav = findViewById(R.id.btn_favorite);
+        nom = findViewById(R.id.nom_prducte);
+
+
     }
 
-    private void addListeners(){
-        unirse.setOnClickListener(v -> {
-            viewModel.btn_action();
-        } );
-    }
 
     private void observeView(GrupViewModel viewModel) {
         MutableLiveData<Grup> grup = viewModel.getLiveGrup();
         grup.observe(this, g -> {
+            binding();
             viewModel.setGrup(g);
-            unirse.setText(viewModel.btn_text());
-            description.setText(viewModel.getDescription());
+            unirse.setOnClickListener(v -> {
+                viewModel.addGrup();
+            } );
+            fav.setOnClickListener(v->{
+                viewModel.favGrup();
+            });
+            nom.setText(g.getName().toUpperCase());
+
+            unirse.setText("UNIR-SE GRUP");
+            String descriptio = viewModel.getDescription();
+            if (descriptio == null || descriptio.equals("")){
+                descriptio = "No hi ha descripció";}
+            description.setText(descriptio);
             precio.setText(viewModel.getPrecio());
             MutableLiveData<Bitmap> bitmap = viewModel.getPhoto();
             bitmap.observe(this, b->{
                 image.setImageBitmap(b);
             });
         });
+
+
     }
 }

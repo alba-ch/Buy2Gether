@@ -7,14 +7,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
-import com.pis.buy2gether.usecases.home.user.comanda.comanda_view.Comanda_view;
+import com.pis.buy2gether.usecases.home.user.comanda.comanda_view.ComandaActivity;
 
 import java.util.ArrayList;
 
@@ -29,6 +32,7 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
         TextView product_name;
         TextView product_price;
         TextView product_proces;
+        ImageView product_image;
         AppCompatImageButton product_click;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -39,7 +43,8 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
             product_click.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(act, Comanda_view.class);
+                    Intent intent = new Intent(act, ComandaActivity.class);
+                    intent.putExtra("Grup", product_id);
                     act.startActivity(intent);
 
                 }
@@ -64,6 +69,10 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
 
         public void setProces(String proces){
             product_proces.setText(proces);
+        }
+
+        public void setImageBitmap(Bitmap bitmap){
+            product_image.setImageBitmap(bitmap);
         }
     }
 
@@ -99,6 +108,13 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
         holder.setName(comanda.getName());
         holder.setPrice(String.valueOf(comanda.getPrice()));;
         holder.setProces(String.valueOf(comanda.getProces()));
+        ImageData.INSTANCE.getGrupPhoto(comanda.getId()).observeForever(
+                obs->{
+                    if (obs != null)
+                    holder.setImageBitmap(obs);
+                }
+                );
+
     }
 
     @Override

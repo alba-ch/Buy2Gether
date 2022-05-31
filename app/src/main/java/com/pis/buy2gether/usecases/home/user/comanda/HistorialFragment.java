@@ -56,8 +56,8 @@ public class HistorialFragment extends Fragment{
 
         fragments = new HashMap<>();
         fragments.put("Tots", new TotsFragment(-1));
-        fragments.put("En procès", new TotsFragment(-1));
-        fragments.put("Valorats", new TotsFragment(-1));
+        fragments.put("En procès", new TotsFragment(0));
+        fragments.put("Valorats", new TotsFragment(1));
 
 
         viewPageAdapter.addFragment(fragments.get("Tots"), "Tots");

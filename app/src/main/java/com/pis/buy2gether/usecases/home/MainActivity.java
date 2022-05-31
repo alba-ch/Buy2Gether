@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_notifications, R.id.navigation_favorite_list,R.id.navigation_profile)
                 .build();
         mainActivity=this;
-        // setup (temporal)
-        setup();
+
+
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -85,12 +85,7 @@ public class MainActivity extends AppCompatActivity {
         badge.setNumber(number);
         notiBadge = Math.max(number, 0);
     }
-    private void setup(){
-        String email = Session.INSTANCE.getMail();
-        String provider = Session.INSTANCE.getProvider();
-        Session.INSTANCE.setDataSession(this,"email",email);
-        Session.INSTANCE.setDataSession(this,"provider",provider);
-    }
+
     @Override
     public void onBackPressed() {
         int count = getSupportFragmentManager().getBackStackEntryCount();

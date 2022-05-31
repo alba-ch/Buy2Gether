@@ -42,6 +42,7 @@ public enum Session {
     private FirebaseRDBService RDB = FirebaseRDBService.INSTANCE; // Link with Firestore Firebase database
     private FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser(); // Link with Firebase Authentication
     private FirebaseStorage storage = FirebaseStorage.getInstance(); // Link with Firebase Storage
+
     private String email;
     private String displayName;
     private ProviderType type;
@@ -54,18 +55,12 @@ public enum Session {
         return uuid;
     }
 
-    public FirebaseUser getCurrentUser(){
-        return currentUser;
-    }
 
     public Task<DocumentSnapshot> getUserInformation(String user){
         return RDB.get("users",user);
     }
 
     /* ----- Storage Data ----- */
-    public StorageReference getPfpImageRef(String id){
-        return storage.getReference("profileImages/"+id+".jpeg");
-    }
 
     public StorageReference getCurrentUserPfpImageRef(){
         return storage.getReference("profileImages/"+getCurrentUserID()+".jpeg");
@@ -102,25 +97,6 @@ public enum Session {
     public void SaveGroupDB(String UUIDString, HashMap data){
         RDB.saveGroup(UUIDString,data);
     }
-    public void deleteDB(String coll, String doc){
-        RDB.delete(coll,doc);
-    }
-    /*
-    * public void deleteGroupInvite(String id){
-        RDB.delete("Invites",id);
-    }
-    public void deleteFriendRequest(String id){
-        RDB.delete("Requests",id);
-    }
-    * */
-
-    public void deleteFriend(String id){
-        RDB.delete("Friendships",id);
-    }
-
-    public Task<DocumentSnapshot> getDB(String coll, String doc){
-        return RDB.get(coll,doc);
-    }
 
     public Task<QuerySnapshot> getUsers(List friends){
         return RDB.getUsers(friends);
@@ -139,6 +115,9 @@ public enum Session {
     public void CreateInvite(HashMap inviteInfo) {
         String UUIDString = UUID.randomUUID().toString();
         RDB.SaveInviteDB(UUIDString,inviteInfo);
+    }
+    public void deleteFriend(String id){
+        RDB.delete("Friendships",id);
     }
 
     public void CreateFriendRequest(HashMap inviteInfo) {
@@ -282,4 +261,9 @@ public enum Session {
     public String getProvider(){
         return String.valueOf(type);
     }
+
+    public String getDisplayName(){
+        return displayName;
+    }
+
 }

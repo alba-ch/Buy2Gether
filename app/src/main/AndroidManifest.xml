@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Buy2Gether">
         <activity
-            android:name=".usecases.home.user.comanda.comanda_view.Comanda_view"
+            android:name=".usecases.home.user.comanda.comanda_view.ComandaActivity"
             android:exported="false" />
         <activity
                 android:name=".usecases.home.user.settings.CheckImageActivity"

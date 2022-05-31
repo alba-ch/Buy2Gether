@@ -2,8 +2,10 @@ package com.pis.buy2gether.model.domain.data;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,7 +19,7 @@ import java.io.ByteArrayOutputStream;
 public enum ImageData {
     INSTANCE;
     private final long ONE_MEGABYTE = 1024 * 1024;
-    private final String path_grup = "grupImages";
+    private final String path_grup = "groupImages";
     private final String path_profile = "profileImages";
     private final FirebaseImages firebaseImages = (FirebaseImages) FirebaseFactory.INSTANCE.getFirebase("FirebaseImages");
 
@@ -48,8 +50,6 @@ public enum ImageData {
     public MutableLiveData<Bitmap> getGrupPhoto(String grupID){
         String path = path_grup + "/" + grupID + ".jpg";
         StorageReference data = firebaseImages.getImage(path);
-        if (data == null)
-            return getProfilePhoto("unknown");
         MutableLiveData<Bitmap> liveData = new MutableLiveData<Bitmap>();
 
         data.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
@@ -70,7 +70,7 @@ public enum ImageData {
     }
 
     public MutableLiveData<Bitmap> getProfilePhoto(){
-        String path = path_profile + "/" + Session.INSTANCE.getCurrentUserID() + ".jpg";
+        String path = path_profile +"/"+ Session.INSTANCE.getCurrentUserID() + ".jpg";
         StorageReference data = firebaseImages.getImage(path);
         MutableLiveData<Bitmap> liveData = new MutableLiveData<Bitmap>();
 
@@ -85,12 +85,23 @@ public enum ImageData {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
+                getUnknown().getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        byte[] dataPx = bytes;
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(dataPx, 0, dataPx.length);
+                        liveData.setValue(bitmap);
+                    }
+                });
             }
         });
         return liveData;
     }
 
+    public StorageReference getUnknown(){
+        String path = path_profile + "/unknown.jpg";
+        return firebaseImages.getImage(path);
+    }
 
 
 
@@ -110,7 +121,14 @@ public enum ImageData {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                // Handle any errors
+                getUnknown().getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                    @Override
+                    public void onSuccess(byte[] bytes) {
+                        byte[] dataPx = bytes;
+                        Bitmap bitmap = BitmapFactory.decodeByteArray(dataPx, 0, dataPx.length);
+                        liveData.setValue(bitmap);
+                    }
+                });
             }
         });
         return liveData;

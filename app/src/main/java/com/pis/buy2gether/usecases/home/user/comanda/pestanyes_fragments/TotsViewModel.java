@@ -53,8 +53,9 @@ public class TotsViewModel extends ViewModel{
                         DocumentSnapshot  documentSnapshot = t.getResult();
                         if (t.isSuccessful()) {
                             Grup g = documentSnapshot.toObject(Grup.class);
-                            Log.i("Grup", g.getName());
-                            if (g != null && g.getProces() == state) {
+                            Log.i("Grup", String.valueOf(g.getProces()) + " "+ String.valueOf(state));
+                            if (g != null && (g.getProces() == state || state == -1)) {
+                                Log.i("Afegit", g.getName());
                                 grupAux.add(g);
                             }
                         }

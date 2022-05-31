@@ -26,17 +26,24 @@ public class TabFragment extends Fragment {
     private TypeRvAdapter typeRvAdapter;
     private Context context;
     private MutableLiveData<ArrayList<Grup>> list;
+    private TypeRvViewModel viewModel;
+    Category category;
 
     public TabFragment(){}
 
     public TabFragment(Category category) {
-        TypeRvViewModel typeRvViewModel = new TypeRvViewModel();
-        list = typeRvViewModel.getGrupByCategory(category);
+        this.category = category;
     }
 
     public TabFragment(String search){
         TypeRvViewModel typeRvViewModel = new TypeRvViewModel();
         list = typeRvViewModel.getGrupBySearch(search);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 
     @Nullable
@@ -45,18 +52,22 @@ public class TabFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         //ViewGroup root = (ViewGroup) inflater.inflate(R.layout.informatica_tab_fragment, container,false);
         //return root;
+
         View root = inflater.inflate(R.layout.fragment_tab, container, false);
         context = root.getContext();
         recyclerView = root.findViewById(R.id.rv_tab3);
         typeRvAdapter = new TypeRvAdapter(new ArrayList<>(), getActivity());
         recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         recyclerView.setAdapter(typeRvAdapter);
-        list.observe(this, newList -> {
+        viewModel = new TypeRvViewModel();
+        list = viewModel.getGrupByCategory(category);
+        list.observe(requireActivity(), newList -> {
             if(newList != null && newList.size() > 0){
-                Log.e("TAB", "newList: " + newList.size());
                 typeRvAdapter.updateList(newList);
             }
         });
         return root;
     }
+
+
 }

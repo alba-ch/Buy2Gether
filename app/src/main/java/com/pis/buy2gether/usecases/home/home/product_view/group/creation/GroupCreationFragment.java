@@ -174,29 +174,8 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         dialog.show();
     }
 
-    void saveGroupImageDB(Bitmap bitmap){
-        //create an outputstream that in which the data is written to a byte array
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
-
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference()
-                .child("groupImages")
-                .child(groupID+".jpeg");
-
-        //upload taks that asynchronously upload byte data to this storageRef creating a byte array and copy the valid content to buffer
-        storageRef.putBytes(baos.toByteArray()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                //getDownloadURL(storageRef);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                showFailureAlert(e);
-            }
-        });
-
-        //ImageData.INSTANCE.saveGrupPhoto(groupID,bitmap);
+    private void saveGroupImageDB(Bitmap bitmap){
+        groupCreationViewModel.saveImage(bitmap, groupID);
     }
 
     private void showMediaDialog(){

@@ -62,16 +62,7 @@ public class HomeFragment extends Fragment {
         tabLayout_categoria.setupWithViewPager(viewPager_categoria);
 
 
-        /*
-        * homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        *
-        *
-        * */
+
         cloud_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

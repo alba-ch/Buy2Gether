@@ -44,7 +44,7 @@ public class TotsFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tots, container, false);
-        viewModel = new TotsViewModel();
+        viewModel = new TotsViewModel(state);
         Log.i("TotsFragment", "onCreateView: ");
         MutableLiveData<ArrayList<Grup>> data = viewModel.getGrupList();
         data.observeForever(list ->{

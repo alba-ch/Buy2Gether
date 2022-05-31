@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".usecases.home.user.comanda.comanda_view.Comanda_view">
+    tools:context=".usecases.home.user.comanda.comanda_view.ComandaActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/comanda"
@@ -83,7 +83,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/roundImageView" />
+                    app:shapeAppearanceOverlay="@style/roundImageView"
+                    app:srcCompat="@drawable/no_image" />
 
                 <TextView
                     android:id="@+id/nom_producte"
@@ -114,7 +115,7 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginBottom="20dp"
                     android:fontFamily="@font/negrita"
-                    android:text="x0 unitats"
+                    android:text="x1 unitats"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                     app:layout_constraintEnd_toEndOf="parent" />
@@ -151,7 +152,7 @@
                     android:layout_marginStart="80dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="30dp"
-                    android:text="Hfewfewf feefwefwewe fwe fwe fwe fwe fwe fwe few fwe f wef wef e fwe fwe fe f wef"
+                    android:text="No disponible a aquesta versió"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/lliurar_a" />
