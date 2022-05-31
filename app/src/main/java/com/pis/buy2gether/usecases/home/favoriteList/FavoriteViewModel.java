@@ -68,4 +68,8 @@ public class FavoriteViewModel extends ViewModel {
     public Boolean checkSession(){
         return Session.INSTANCE.getProvider() != ProviderType.GUEST;
     }
+
+    public boolean checkGuest() {
+        return Session.INSTANCE.getProvider() != ProviderType.GUEST;
+    }
 }

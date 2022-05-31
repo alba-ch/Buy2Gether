@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.model.domain.pojo.Favorite;
+import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -28,7 +31,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         favoriteViewModel =
                 new ViewModelProvider(this).get(FavoriteViewModel.class);
         View view = inflater.inflate(R.layout.fragment_tots, container, false);
-
+        if(favoriteViewModel.checkGuest()){
         MutableLiveData<ArrayList<Favorite>> data = favoriteViewModel.getFavoriteList();
         data.observeForever(list -> {
             if (list != null)
@@ -36,6 +39,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         });
 
         setList(view);
+        }
         return view;
     }
 
