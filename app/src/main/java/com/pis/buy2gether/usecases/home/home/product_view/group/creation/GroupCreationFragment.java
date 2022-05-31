@@ -102,13 +102,11 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
 
         privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
 
-
         return view;
     }
     @Override
     public void onItemClick(View view, int position) {
-        groupCreationViewModel.SendInvite(friendListAdapter.getUserID(position),groupID);
-        Toast.makeText(getActivity(), friendListAdapter.getUserID(position),Toast.LENGTH_SHORT).show();
+        groupCreationViewModel.SendInvite(friendListAdapter.getUser(position).getId(),groupID);
     }
 
     private void setList(View view){

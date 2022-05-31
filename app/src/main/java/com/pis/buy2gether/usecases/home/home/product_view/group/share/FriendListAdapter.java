@@ -1,31 +1,36 @@
 package com.pis.buy2gether.usecases.home.home.product_view.group.share;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.button.MaterialButton;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.pojo.User;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.ViewHolder> {
 
-    private LinkedHashMap<String,String> mData;
+    private List<User> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
     public FriendListAdapter(Context context, ItemClickListener itemClickListener) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = new LinkedHashMap<>();
+        this.mData = new ArrayList<>();
         this.mClickListener = itemClickListener;
     }
 
@@ -38,25 +43,32 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        String user = (String) mData.keySet().toArray()[position];
-        holder.myTextView.setText(user);
+        User user = mData.get(position);
+        holder.myTextView.setText(user.getUsername());
+        MutableLiveData<Bitmap> pfp = user.getProfileImage();
+
+        if(pfp != null) {
+            pfp.observeForever(b ->{
+                holder.imageView.setImageBitmap(b);
+            });
+        }
 
     }
-
-    public void addUser(String userID, String Username){
-        mData.put(Username,userID);
-        notifyItemInserted(mData.size());
-    }
-
     // total number of rows
     @Override
     public int getItemCount() {
         return mData.size();
     }
 
+    public void setList(ArrayList<User> listFriends) {
+        mData=listFriends;
+        notifyDataSetChanged();
+    }
+
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        ImageView imageView;
         TextView myTextView;
         MaterialButton inviteButton;
 
@@ -65,6 +77,7 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
             super(itemView);
             inviteButton = itemView.findViewById(R.id.invitButton);
             myTextView = itemView.findViewById(R.id.Text);
+            imageView = itemView.findViewById(R.id.inviteListPic);
             itemView.setOnClickListener(this);
             inviteButton.setOnClickListener(this);
         }
@@ -76,17 +89,8 @@ public class FriendListAdapter extends RecyclerView.Adapter<FriendListAdapter.Vi
         }
     }
     // convenience method for getting data at click position
-    public String getUserID(int index) {
-        return (String) mData.values().toArray()[index];
-    }
-    // convenience method for getting data at click position
-    public String getUserName(int index) {
-        return (String) mData.keySet().toArray()[index];
-    }
-
-    // convenience method for getting data at click position
-    String getUserID(String username) {
-        return mData.get(username);
+    public User getUser(int index) {
+        return mData.get(index);
     }
 
     // parent activity will implement this method to respond to click events

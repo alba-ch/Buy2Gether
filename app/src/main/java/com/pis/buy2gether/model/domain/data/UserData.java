@@ -104,7 +104,6 @@ public enum UserData {
         });
     }
 
-
     public ArrayList<User> getListFriends() {
         Task<QuerySnapshot> result = firebaseUsers.getFriends(); // TODO: Revisar caso null
         ArrayList<User> data = new ArrayList<>();

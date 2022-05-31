@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.model.domain.pojo.Favorite;
@@ -58,6 +59,13 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
     @Override
     public int getItemCount() {
         return favoriteList.size();
+    }
+
+    public void setList(MutableLiveData<ArrayList<Favorite>> favoriteList) {
+        favoriteList.observeForever(list ->{
+            if (list != null)
+                this.favoriteList = list;
+        });
     }
 
     // stores and recycles views as they are scrolled off screen
