@@ -215,6 +215,7 @@ public enum Session {
         result.addOnCompleteListener(
                 task -> {
                     if(task.isSuccessful()){
+                        uuid = firebaseAuth.getUUID();
                         type = ProviderType.BASIC;
                         Task<DocumentSnapshot> userInfo = firebaseAuth.getUserInfo();
                         userInfo.addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
