@@ -27,7 +27,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
                              ViewGroup container, Bundle savedInstanceState) {
         favoriteViewModel =
                 new ViewModelProvider(this).get(FavoriteViewModel.class);
-        View view = inflater.inflate(R.layout.fragment_tots, container, false);
+        View view = inflater.inflate(R.layout.fragment_favorite_list, container, false);
 
         MutableLiveData<ArrayList<Favorite>> data = favoriteViewModel.getFavoriteList();
         data.observeForever(list ->{
