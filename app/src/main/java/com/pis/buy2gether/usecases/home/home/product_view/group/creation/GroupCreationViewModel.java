@@ -1,12 +1,8 @@
 package com.pis.buy2gether.usecases.home.home.product_view.group.creation;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.widget.Toast;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,8 +14,6 @@ import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.model.session.Session;
 
-import java.util.HashMap;
-
 public class GroupCreationViewModel extends ViewModel {
 
 
@@ -30,33 +24,20 @@ public class GroupCreationViewModel extends ViewModel {
         return shake;
     }
 
-    public String createGroupDB(String productName, String productURL, String type, int userLimit, double originalPrice, int groupVisibility, String adminUser){
-        HashMap groupInfo = new HashMap();
-        groupInfo.put("Product Name",productName);
-        groupInfo.put("Product URL",productURL);
-        groupInfo.put("Type",type);
-        groupInfo.put("User Limit",userLimit);
-        groupInfo.put("Original Price",originalPrice);
-        groupInfo.put("Group Visibility",groupVisibility);
-        groupInfo.put("Admin User",adminUser);
-
+    public String createGroupDB(String productName, Category type, double originalPrice, int groupVisibility, String adminUser){
         Grup grup = new Grup();
-
-        grup.setPrice((float) originalPrice);
         grup.setName(productName);
-        grup.setCat(Category.valueOf(type));
+        grup.setCat(type);
+        grup.setPrice((float)originalPrice);
+        grup.setVisibility(groupVisibility);
+        grup.setOwner(adminUser);
 
         GrupData.INSTANCE.saveGrup(grup);
         return grup.getId();
     }
 
     public void SendInvite(String userID, String groupID) {
-        HashMap inviteInfo = new HashMap();
-        inviteInfo.put("UserID",userID);
-        inviteInfo.put("GroupID",groupID);
-        inviteInfo.put("fromUser",getUser());
-
-        Session.INSTANCE.CreateInvite(inviteInfo);
+        GrupData.INSTANCE.sendInvite(userID,getUser(),groupID);
     }
     public Task<DocumentSnapshot> getUserName(String id){
         return Session.INSTANCE.getUserByID(id);

@@ -12,9 +12,7 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -23,26 +21,15 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.databinding.FragmentGroupCreationBinding;
-import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Category;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import static android.app.Activity.RESULT_OK;
@@ -52,7 +39,6 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 public class GroupCreationFragment extends Fragment implements View.OnClickListener, FriendListAdapter.ItemClickListener {
     private FriendListAdapter friendListAdapter;
     private GroupCreationViewModel groupCreationViewModel;
-    private FragmentGroupCreationBinding binding;
 
     private final int TAKE_IMAGE_CODE = 10001;
     private final int GALLERY_IMAGE_CODE = 1000;
@@ -66,18 +52,25 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         groupCreationViewModel =
                 new ViewModelProvider(this).get(GroupCreationViewModel.class);
 
-        binding = FragmentGroupCreationBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
-        binding.submitButton.setOnClickListener(this);
-        root.setClickable(true);
-        root.setOnClickListener(this);
+        View view = inflater.inflate(R.layout.fragment_group_creation, container, false);
+        Button submitButton = view.findViewById(R.id.submitButton);
+        submitButton.setOnClickListener(this);
+        view.setClickable(true);
+        view.setOnClickListener(this);
 
-        binding.groupPopup.otherUsers.setClickable(true);
-        binding.groupPopup.otherUsers.setFocusable(true);
-        binding.groupPopup.otherUsers.setOnClickListener(this);
+        ImageView otherUsers = view.findViewById(R.id.otherUsers);
 
-        binding.imageView.setClickable(true);
-        binding.imageView.setOnClickListener(this);
+        otherUsers.setClickable(true);
+        otherUsers.setFocusable(true);
+        otherUsers.setOnClickListener(this);
+
+        ImageView groupFoto = view.findViewById(R.id.imageView);
+        groupFoto.setClickable(true);
+        groupFoto.setOnClickListener(this);
+        Spinner type = view.findViewById(R.id.type);
+        Button publicButton = view.findViewById(R.id.publicButton);
+        Button hiddenButton = view.findViewById(R.id.hiddenButton);
+        Button privateButton = view.findViewById(R.id.privateButton);
 
 
         String[] items = new String[Category.values().length];
@@ -86,23 +79,29 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
             items[category.ordinal()] = category.toString();
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, items);
-        binding.type.setAdapter(adapter);
+        type.setAdapter(adapter);
         // set up the RecyclerView
-        setList();
+        setList(view);
         //recyclerView.setAdapter(friendListAdapter);
         //binding.groupPopup.friendList.setAdapter(friendListAdapter);
-        binding.publicButton.setOnClickListener(this);
-        binding.privateButton.setOnClickListener(this);
-        binding.hiddenButton.setOnClickListener(this);
-        binding.groupPopup.codiImage.setOnClickListener(this);
-        binding.groupPopup.moreinformation.setOnClickListener(this);
-        binding.groupPopup.sharemessages.setOnClickListener(this);
+        publicButton.setOnClickListener(this);
+        privateButton.setOnClickListener(this);
+        hiddenButton.setOnClickListener(this);
 
-        binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+        ImageView codiImage = view.findViewById(R.id.codi_image);
+        ImageView moreInformation = view.findViewById(R.id.moreinformation);
+        ImageView shareMessages = view.findViewById(R.id.sharemessages);
+
+        RelativeLayout shr = view.findViewById(R.id.shareDummy);
+        shr.setOnClickListener(this);
+        codiImage.setOnClickListener(this);
+        moreInformation.setOnClickListener(this);
+        shareMessages.setOnClickListener(this);
+
+        privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
 
 
-        binding.groupPopup.shareDummy.setOnClickListener(this);
-        return root;
+        return view;
     }
     @Override
     public void onItemClick(View view, int position) {
@@ -110,12 +109,12 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         Toast.makeText(getActivity(), friendListAdapter.getUserID(position),Toast.LENGTH_SHORT).show();
     }
 
-    private void setList(){
-        RecyclerView recyclerView = binding.groupPopup.friendList;
+    private void setList(View view){
+        RecyclerView recyclerView = view.findViewById(R.id.friendList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         friendListAdapter = new FriendListAdapter(getContext(),this);
         recyclerView.setAdapter(friendListAdapter);
-        binding.groupPopup.friendList.setAdapter(friendListAdapter);
+
         Task<QuerySnapshot> task = groupCreationViewModel.getFriends().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -139,7 +138,6 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
     public void onDestroyView() {
         getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
         super.onDestroyView();
-        binding = null;
     }
 
     @Override
@@ -149,16 +147,18 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         if(requestCode == TAKE_IMAGE_CODE){
             switch (resultCode){
                 case RESULT_OK:
+                    ImageView imageView = getView().findViewById(R.id.imageView);
                     //get image captured
-                    Bitmap bitmap = Bitmap.createScaledBitmap((Bitmap) data.getExtras().get("data"), binding.imageView.getWidth(), binding.imageView.getHeight(), true);
-                    binding.imageView.setImageBitmap(bitmap);
+                    Bitmap bitmap = Bitmap.createScaledBitmap((Bitmap) data.getExtras().get("data"), imageView.getWidth(), imageView.getHeight(), true);
+                    imageView.setImageBitmap(bitmap);
                     break;
             }
         }
         //foto des de galeria
         if(requestCode == GALLERY_IMAGE_CODE){
             try {
-                binding.imageView.setImageBitmap(Bitmap.createScaledBitmap((MediaStore.Images.Media.getBitmap(this.requireContext().getContentResolver(), data.getData())), binding.imageView.getWidth(), binding.imageView.getHeight(), true));
+                ImageView imageView = getView().findViewById(R.id.imageView);
+                imageView.setImageBitmap(Bitmap.createScaledBitmap((MediaStore.Images.Media.getBitmap(this.requireContext().getContentResolver(), data.getData())), imageView.getWidth(), imageView.getHeight(), true));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -209,45 +209,69 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
     @Override
     public void onClick(View view) {
         boolean process = view.getId() != R.id.shareDummy;
+
+
+        Spinner type = view.findViewById(R.id.type);
+        EditText name = view.findViewById(R.id.Name);
+        EditText link = view.findViewById(R.id.link);
+        EditText usersLimit = view.findViewById(R.id.usersLimit);
+        EditText originalPriceET = view.findViewById(R.id.originalPrice);
+        Button privateButton = view.findViewById(R.id.privateButton);
+        Button hiddenButton = view.findViewById(R.id.hiddenButton);
+        Button publicButton = view.findViewById(R.id.publicButton);
+        View groupPopUp = view.findViewById(R.id.group_popup);
+        Button submitButton = view.findViewById(R.id.submitButton);
+        ImageView otherUsers = view.findViewById(R.id.otherUsers);
+        ImageView sharemessages = view.findViewById(R.id.sharemessages);
+        ImageView moreInformation = view.findViewById(R.id.moreinformation);
+        RelativeLayout shareDummy = view.findViewById(R.id.shareDummy);
+
+        RecyclerView friendList = view.findViewById(R.id.friendList);
+
+        ImageView codiImage = view.findViewById(R.id.codi_image);
+        TextView codiInvitacio = view.findViewById(R.id.codi_invitacio);
+        EditText linkText = view.findViewById(R.id.linkText);
+
+        ImageView groupFoto = view.findViewById(R.id.imageView);
         switch (view.getId()){
             case R.id.privateButton:
-                binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
-                binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+                hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 groupVisibility = 0;
                 process = false;
                 break;
             case R.id.hiddenButton:
-                binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
-                binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+                publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 groupVisibility = 1;
                 process = false;
                 break;
             case R.id.publicButton:
-                binding.hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                binding.publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
-                binding.privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                hiddenButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                publicButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));
+                privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 groupVisibility = 2;
                 process = false;
                 break;
             case R.id.submitButton:
-                String prodName = binding.Name.getText().toString();
-                String prodLink = binding.link.getText().toString();
-                String userLimit = binding.usersLimit.getText().toString();
-                String originalPrice = binding.originalPrice.getText().toString();
+                String prodName = name.getText().toString();
+                String prodLink = link.getText().toString();
+                String userLimit = usersLimit.getText().toString();
+                String originalPrice = originalPriceET.getText().toString();
                 if(!(prodName.isEmpty()) && !(prodLink.isEmpty()) && !(userLimit.isEmpty()) && !(originalPrice.isEmpty()) ){
-                    groupID = groupCreationViewModel.createGroupDB(prodName, prodLink, binding.type.getSelectedItem().toString(),Integer.parseInt(userLimit), Double.parseDouble(originalPrice),groupVisibility,groupCreationViewModel.getUser());
-                    saveGroupImageDB(((BitmapDrawable) binding.imageView.getDrawable()).getBitmap());
+                    groupID = groupCreationViewModel.createGroupDB(prodName, Category.valueOf(type.getSelectedItem().toString()), Double.parseDouble(originalPrice),groupVisibility,groupCreationViewModel.getUser());
+                    saveGroupImageDB(((BitmapDrawable) groupFoto.getDrawable()).getBitmap());
                 }else {
                     if(prodName.isEmpty())
-                        binding.Name.startAnimation(groupCreationViewModel.shakeError());
+                        name.startAnimation(groupCreationViewModel.shakeError());
                     if(prodLink.isEmpty())
-                        binding.link.startAnimation(groupCreationViewModel.shakeError());
+                        link.startAnimation(groupCreationViewModel.shakeError());
                     if(userLimit.isEmpty())
-                        binding.usersLimit.startAnimation(groupCreationViewModel.shakeError());
+                        usersLimit.startAnimation(groupCreationViewModel.shakeError());
                     if(originalPrice.isEmpty())
-                        binding.originalPrice.startAnimation(groupCreationViewModel.shakeError());
+                        originalPriceET.startAnimation(groupCreationViewModel.shakeError());
                 }
 
                 break;
@@ -282,77 +306,77 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 break;
         }
         if(process) {
-            if (view.getId() == binding.getRoot().getId()) {
-                binding.groupPopup.otherUsers.setClickable(false);
-                binding.groupPopup.otherUsers.setFocusable(false);
+            if (view.getId() == getView().getId()) {
+                otherUsers.setClickable(false);
+                otherUsers.setFocusable(false);
 
-                binding.groupPopup.sharemessages.setClickable(false);
-                binding.groupPopup.sharemessages.setFocusable(false);
-                binding.groupPopup.codiImage.setClickable(false);
-                binding.groupPopup.codiImage.setFocusable(false);
-                binding.groupPopup.codiInvitacio.setClickable(false);
-                binding.groupPopup.codiInvitacio.setFocusable(false);
-                binding.groupPopup.linkText.setClickable(false);
-                binding.groupPopup.linkText.setFocusable(false);
-                binding.groupPopup.moreinformation.setClickable(false);
-                binding.groupPopup.moreinformation.setFocusable(false);
-                binding.groupPopup.friendList.setFocusable(false);
-                binding.groupPopup.friendList.setClickable(false);
-                binding.submitButton.setVisibility(View.VISIBLE);
-                binding.groupPopup.shareDummy.setClickable(false);
-                binding.groupPopup.shareDummy.setFocusable(false);
-                binding.groupPopup.getRoot().setVisibility(View.INVISIBLE);
-            } else if (view.getId() == binding.groupPopup.otherUsers.getId()) {
-                binding.groupPopup.codiImage.setVisibility(View.INVISIBLE);
-                binding.groupPopup.codiImage.setClickable(false);
-                binding.groupPopup.codiImage.setFocusable(false);
-                binding.groupPopup.codiInvitacio.setVisibility(View.INVISIBLE);
-                binding.groupPopup.codiInvitacio.setClickable(false);
-                binding.groupPopup.codiInvitacio.setFocusable(false);
-                binding.groupPopup.linkText.setVisibility(View.INVISIBLE);
-                binding.groupPopup.linkText.setClickable(false);
-                binding.groupPopup.linkText.setFocusable(false);
-                binding.groupPopup.moreinformation.setVisibility(View.INVISIBLE);
-                binding.groupPopup.moreinformation.setClickable(false);
-                binding.groupPopup.moreinformation.setFocusable(false);
-                binding.groupPopup.sharemessages.setVisibility(View.INVISIBLE);
-                binding.groupPopup.sharemessages.setClickable(false);
-                binding.groupPopup.sharemessages.setFocusable(false);
-                binding.groupPopup.otherUsers.setVisibility(View.INVISIBLE);
-                binding.groupPopup.otherUsers.setClickable(false);
-                binding.groupPopup.otherUsers.setFocusable(false);
-                binding.groupPopup.friendList.setVisibility(View.VISIBLE);
-                binding.groupPopup.friendList.setFocusable(true);
-                binding.groupPopup.friendList.setClickable(true);
+                sharemessages.setClickable(false);
+                sharemessages.setFocusable(false);
+                codiImage.setClickable(false);
+                codiImage.setFocusable(false);
+                codiInvitacio.setClickable(false);
+                codiInvitacio.setFocusable(false);
+                linkText.setClickable(false);
+                linkText.setFocusable(false);
+                moreInformation.setClickable(false);
+                moreInformation.setFocusable(false);
+                friendList.setFocusable(false);
+                friendList.setClickable(false);
+                submitButton.setVisibility(View.VISIBLE);
+                shareDummy.setClickable(false);
+                shareDummy.setFocusable(false);
+                groupPopUp.setVisibility(View.INVISIBLE);
+            } else if (view.getId() == otherUsers.getId()) {
+                codiImage.setVisibility(View.INVISIBLE);
+                codiImage.setClickable(false);
+                codiImage.setFocusable(false);
+                codiInvitacio.setVisibility(View.INVISIBLE);
+                codiInvitacio.setClickable(false);
+                codiInvitacio.setFocusable(false);
+                linkText.setVisibility(View.INVISIBLE);
+                linkText.setClickable(false);
+                linkText.setFocusable(false);
+                moreInformation.setVisibility(View.INVISIBLE);
+                moreInformation.setClickable(false);
+                moreInformation.setFocusable(false);
+                sharemessages.setVisibility(View.INVISIBLE);
+                sharemessages.setClickable(false);
+                sharemessages.setFocusable(false);
+                otherUsers.setVisibility(View.INVISIBLE);
+                otherUsers.setClickable(false);
+                otherUsers.setFocusable(false);
+                friendList.setVisibility(View.VISIBLE);
+                friendList.setFocusable(true);
+                friendList.setClickable(true);
             } else if (!groupID.isEmpty()){
-                binding.groupPopup.shareDummy.setClickable(true);
-                binding.groupPopup.shareDummy.setFocusable(true);
+                shareDummy.setClickable(true);
+                shareDummy.setFocusable(true);
 
-                binding.groupPopup.otherUsers.setVisibility(View.VISIBLE);
-                binding.groupPopup.otherUsers.setClickable(true);
-                binding.groupPopup.otherUsers.setFocusable(true);
+                otherUsers.setVisibility(View.VISIBLE);
+                otherUsers.setClickable(true);
+                otherUsers.setFocusable(true);
 
-                binding.groupPopup.sharemessages.setVisibility(View.VISIBLE);
-                binding.groupPopup.sharemessages.setClickable(true);
-                binding.groupPopup.sharemessages.setFocusable(true);
-                binding.groupPopup.codiImage.setVisibility(View.VISIBLE);
-                binding.groupPopup.codiImage.setClickable(true);
-                binding.groupPopup.codiImage.setFocusable(true);
-                binding.groupPopup.codiInvitacio.setVisibility(View.VISIBLE);
-                binding.groupPopup.codiInvitacio.setClickable(true);
-                binding.groupPopup.codiInvitacio.setFocusable(true);
-                binding.groupPopup.linkText.setText(groupID);
-                binding.groupPopup.linkText.setVisibility(View.VISIBLE);
-                binding.groupPopup.linkText.setClickable(true);
-                binding.groupPopup.linkText.setFocusable(true);
-                binding.groupPopup.moreinformation.setVisibility(View.VISIBLE);
-                binding.groupPopup.moreinformation.setClickable(true);
-                binding.groupPopup.moreinformation.setFocusable(true);
-                binding.groupPopup.friendList.setVisibility(View.INVISIBLE);
-                binding.groupPopup.friendList.setFocusable(false);
-                binding.groupPopup.friendList.setClickable(false);
-                binding.submitButton.setVisibility(View.INVISIBLE);
-                binding.groupPopup.getRoot().setVisibility(View.VISIBLE);
+                sharemessages.setVisibility(View.VISIBLE);
+                sharemessages.setClickable(true);
+                sharemessages.setFocusable(true);
+                codiImage.setVisibility(View.VISIBLE);
+                codiImage.setClickable(true);
+                codiImage.setFocusable(true);
+                codiInvitacio.setVisibility(View.VISIBLE);
+                codiInvitacio.setClickable(true);
+                codiInvitacio.setFocusable(true);
+                linkText.setText(groupID);
+                linkText.setVisibility(View.VISIBLE);
+                linkText.setClickable(true);
+                linkText.setFocusable(true);
+                moreInformation.setVisibility(View.VISIBLE);
+                moreInformation.setClickable(true);
+                moreInformation.setFocusable(true);
+                friendList.setVisibility(View.INVISIBLE);
+                friendList.setFocusable(false);
+                friendList.setClickable(false);
+                submitButton.setVisibility(View.INVISIBLE);
+                groupPopUp.setVisibility(View.VISIBLE);
             }
         }
     }
