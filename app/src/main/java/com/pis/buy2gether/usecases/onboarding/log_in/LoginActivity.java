@@ -106,8 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         });
-        findViewById(R.id.invitado).setEnabled(false);
-        findViewById(R.id.invitado).setVisibility(View.INVISIBLE);
+
     }
 
     private void showHome(){

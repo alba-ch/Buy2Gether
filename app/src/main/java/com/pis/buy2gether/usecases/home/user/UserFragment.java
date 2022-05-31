@@ -1,5 +1,6 @@
 package com.pis.buy2gether.usecases.home.user;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -32,6 +33,8 @@ import com.pis.buy2gether.usecases.home.user.friends.FriendsFragment;
 import com.pis.buy2gether.usecases.home.user.help.HelpFragment;
 import com.pis.buy2gether.usecases.home.user.comanda.HistorialFragment;
 import com.pis.buy2gether.usecases.home.user.settings.SettingsFragment;
+import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
+import com.pis.buy2gether.usecases.onboarding.sign_in.RegisterActivity;
 
 public class UserFragment extends Fragment implements View.OnClickListener {
 
@@ -44,11 +47,32 @@ public class UserFragment extends Fragment implements View.OnClickListener {
 
         View root = binding.getRoot();
 
-        setOnClickListeners();
+        if(viewModel.checkGuest()){
+            binding.btnComandes.setImageResource(R.drawable.btn_comandes);
+            setOnClickListeners();
+        }else{
+            binding.btnComandes.setImageResource(R.drawable.btn_reg);
+            guestSetUp();
+        }
 
         viewModel.setup(root);
 
         return root;
+    }
+
+    private void guestSetUp() {
+        binding.btnComandes.setOnClickListener(
+                act ->{
+                    Intent i = new Intent(getActivity(), RegisterActivity.class);
+                    startActivity(i);
+                    this.getActivity().finish();
+                }
+        );
+        binding.btnAdreces.setVisibility(View.INVISIBLE);
+        binding.btnAjuda.setVisibility(View.INVISIBLE);
+        binding.btnAmics.setVisibility(View.INVISIBLE);
+        binding.btnSettings.setVisibility(View.INVISIBLE);
+
     }
 
     private void setOnClickListeners(){

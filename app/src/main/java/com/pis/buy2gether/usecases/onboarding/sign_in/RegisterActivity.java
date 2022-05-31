@@ -70,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         guest.setOnClickListener(v -> {
             viewModel.showHome();
+            viewModel.guestAccess();
             finish();
         });
     }

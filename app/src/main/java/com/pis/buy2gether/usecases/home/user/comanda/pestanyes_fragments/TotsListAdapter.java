@@ -3,6 +3,7 @@ package com.pis.buy2gether.usecases.home.user.comanda.pestanyes_fragments;
 import androidx.annotation.NonNull;
 
 import androidx.appcompat.widget.AppCompatImageButton;
+import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
@@ -15,11 +16,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pis.buy2gether.R;
-import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
+import com.pis.buy2gether.usecases.home.home.TypeRvViewModel;
 import com.pis.buy2gether.usecases.home.user.comanda.comanda_view.ComandaActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHolder> {
@@ -33,6 +36,7 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
         TextView product_price;
         TextView product_proces;
         ImageView product_image;
+        TextView product_date;
         AppCompatImageButton product_click;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -40,6 +44,7 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
             product_proces = itemView.findViewById(R.id.pd_proces);
             product_name = itemView.findViewById(R.id.pd_name);
             product_click = itemView.findViewById(R.id.click_button);
+            product_date = itemView.findViewById(R.id.pd_date);
             product_click.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -49,6 +54,7 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
 
                 }
             });
+            product_image = itemView.findViewById(R.id.image);
         }
 
         public String getId(){
@@ -73,6 +79,9 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
 
         public void setImageBitmap(Bitmap bitmap){
             product_image.setImageBitmap(bitmap);
+        }
+        private void setDate(String date){
+            product_date.setText(date);
         }
     }
 
@@ -106,14 +115,31 @@ public class TotsListAdapter extends RecyclerView.Adapter<TotsListAdapter.ViewHo
         Grup comanda = mData.get(position);
         holder.setId(comanda.getId());
         holder.setName(comanda.getName());
-        holder.setPrice(String.valueOf(comanda.getPrice()));;
-        holder.setProces(String.valueOf(comanda.getProces()));
-        ImageData.INSTANCE.getGrupPhoto(comanda.getId()).observeForever(
-                obs->{
-                    if (obs != null)
-                    holder.setImageBitmap(obs);
-                }
-                );
+        holder.setPrice(String.valueOf(comanda.getPrice()));
+        String proces = "NONE";
+        switch (comanda.getProces()) {
+            case 0:
+                proces = "EN PROCÈS";
+                break;
+            case 1:
+                proces = "FINALITZAT";
+                break;
+            case 2:
+                proces = "VALORAT";
+                break;
+            default:
+                proces = "DESCONEGUT";
+                break;
+
+        }
+        Date data = new Date();
+        String newstring = new SimpleDateFormat("dd-MM-yyyy").format(data);
+        holder.setDate(newstring);
+        holder.setProces(proces);
+        MutableLiveData<Bitmap> liveData = TypeRvViewModel.getPhoto(comanda.getId());
+        liveData.observeForever( b ->{
+            holder.setImageBitmap(b);
+        });
 
     }
 

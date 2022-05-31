@@ -92,7 +92,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/light"
-                    android:text="Mascarillas"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toTopOf="@+id/imageView3" />
@@ -103,7 +102,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/light"
-                    android:text="XX€"
                     android:textSize="18sp"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/nom_producte" />
@@ -203,7 +201,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/light"
-        android:text="rwfrwfwfew"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/comanda_label"
         app:layout_constraintTop_toBottomOf="@+id/scroll" />
@@ -214,7 +211,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:fontFamily="@font/light"
-        android:text="dewdewdwedwewed"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/data_label"
         app:layout_constraintTop_toBottomOf="@+id/comanda_info" />

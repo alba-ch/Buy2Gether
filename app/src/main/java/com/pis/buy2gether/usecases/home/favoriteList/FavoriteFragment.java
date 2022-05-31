@@ -45,6 +45,8 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
 
         binding = FragmentFavoriteListBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        if(favoriteViewModel.checkSession()){
         binding.btnSubmit.setOnClickListener(this);
 
 
@@ -56,7 +58,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         favoriteListAdapter.setClickListener(this);
         binding.favoriteList.setAdapter(favoriteListAdapter);*/
 
-        setList();
+        setList();}
         return root;
     }
 

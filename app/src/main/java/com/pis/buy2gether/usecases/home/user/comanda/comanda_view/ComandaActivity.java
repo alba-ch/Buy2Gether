@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ComandaActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class ComandaActivity extends AppCompatActivity {
     private TextView data;
     private TextView comanda;
     private ComandaViewModel viewModel;
+    private TextView title;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +43,9 @@ public class ComandaActivity extends AppCompatActivity {
         product_price =  findViewById(R.id.preu_producte);
         data = findViewById(R.id.data_info);
         comanda = findViewById(R.id.comanda_info);
+        title = findViewById(R.id.titulo);
+
+
 
         MutableLiveData<Grup> grup = viewModel.getGrup();
 
@@ -53,11 +58,13 @@ public class ComandaActivity extends AppCompatActivity {
             viewModel.getProductPhoto().observe(this, bm ->{
                 product_image.setImageBitmap(bm);
             });
+            title.setText("COMANDA " + viewModel.getProcess());
             product_name.setText(viewModel.getProductName());
             product_price.setText(viewModel.getProductPrice() + " €");
             comanda.setText(grup.getId());
-            Date date = new Date();
-            data.setText(date.toString());
+            Date data = new Date();
+            String newstring = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss").format(data);
+            this.data.setText(newstring);
         });
     }
 }

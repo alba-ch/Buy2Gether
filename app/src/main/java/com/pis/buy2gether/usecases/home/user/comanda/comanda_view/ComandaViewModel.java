@@ -33,4 +33,24 @@ public class ComandaViewModel {
     public String getProductPrice(){
         return String.valueOf(grup.getPrice());
     }
+
+    public String getProcess(){
+        String proces = "NONE";
+        switch (grup.getProces()) {
+            case 0:
+                proces = "EN PROCÈS";
+                break;
+            case 1:
+                proces = "FINALITZAT";
+                break;
+            case 2:
+                proces = "VALORAT";
+                break;
+            default:
+                proces = "DESCONEGUT";
+                break;
+
+        }
+        return proces;
+    }
 }

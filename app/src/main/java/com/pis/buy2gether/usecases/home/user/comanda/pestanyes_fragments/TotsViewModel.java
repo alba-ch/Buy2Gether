@@ -66,22 +66,7 @@ public class TotsViewModel extends ViewModel{
         });
     }
 
-    private void test() {
-        Log.e("UUID", Session.INSTANCE.getCurrentUserID());
-        Grup grup = new Grup();
-        String uuid = UUID.randomUUID().toString();
-        grup.setId(uuid);
-        grup.setName("Grup de prova");
-        grup.setDate("11-11-11");
-        grup.setProces(1);
-        grup.setPrice(10.65f);
-        GrupData.INSTANCE.saveGrup(grup);
-        ComandasData.INSTANCE.saveComanda(uuid);
 
-        ArrayList<Grup> grupList = new ArrayList<>();
-        grupList.add(grup);
-        //this.grupList.setValue(grupList);
-    }
 
 
 

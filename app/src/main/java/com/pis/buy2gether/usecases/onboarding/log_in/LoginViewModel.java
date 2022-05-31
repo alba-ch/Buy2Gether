@@ -36,17 +36,7 @@ class LoginViewModel extends ViewModel {
         return shake;
     }
 
-    String getSession(Context context, String key){
-        return Session.INSTANCE.getDataSession(context,key);
-    }
 
-    public void saveUserInfo(String userID, String email, String username, ProviderType provider){
-        HashMap userInfo = new HashMap();
-        userInfo.put("email",email);
-        userInfo.put("username",username);
-        userInfo.put("provider",provider);
-        Session.INSTANCE.saveDB("users",userID, userInfo);
-    }
 
     public MutableLiveData<String> googleLogIn(Intent data) {
         return Session.INSTANCE.googleLogIn(data);
@@ -57,6 +47,6 @@ class LoginViewModel extends ViewModel {
     }
 
     public void guestLogIn() {
-
+        Session.INSTANCE.guestAccess();
     }
 }

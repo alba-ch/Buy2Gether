@@ -76,18 +76,10 @@ public class FriendsViewModel extends ViewModel{
      * Display current user information at the top
      */
     private void setupUserInfo(){
-        String provider = session.getDataSession(context,"provider");
 
-        if(ProviderType.valueOf(provider) != ProviderType.GUEST) {
-            String currentUser = session.getCurrentUserID();
-            session.getUserByID(currentUser).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    if(documentSnapshot.get("username").toString() != null) binding.txtUser.setText(documentSnapshot.get("username").toString());
-                    binding.txtDesc.setText(documentSnapshot.get("email").toString());
-                }
-            });
-        }
+        binding.txtUser.setText(Session.INSTANCE.getDisplayName());
+        binding.txtDesc.setText(Session.INSTANCE.getMail());
+
     }
 
     /***

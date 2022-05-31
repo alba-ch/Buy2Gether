@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pis.buy2gether.model.session.Session;
+import com.pis.buy2gether.provider.ProviderType;
 
 public class FavoriteViewModel extends ViewModel {
 
@@ -30,5 +31,9 @@ public class FavoriteViewModel extends ViewModel {
 
     public void delete(String id) {
         Session.INSTANCE.deleteFav(getUser(),id);
+    }
+
+    public Boolean checkSession(){
+        return Session.INSTANCE.getProvider() != ProviderType.GUEST;
     }
 }
