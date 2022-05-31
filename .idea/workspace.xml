@@ -13,32 +13,38 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="SOLVE BUGS AND IMPLEMENTATE BUTTONS OF PRODUCT VIEW.">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/btn_reg.png" afterDir="false" />
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="REFECATOR AND SOLVE BUGS OF THE LOG IN AND REGISTER CLASSES">
+      <change afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/no_image.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ImageData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ImageData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/GrupData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/grup/GrupData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/favoriteList/FavoriteViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/paymentWall/PaymentWallFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/paymentWall/PaymentWallViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/paymentWall/paymentWall.plantuml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/HomeFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TabFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/TypeRvViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/GrupViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/product_view/group/creation/GroupCreationViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/products/ProductViewModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/home/products/products.plantuml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/UserViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/HistorialFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/Comanda_view.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/comanda_view/ComandaActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsListAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/comanda/pestanyes_fragments/TotsViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/FriendsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/FriendsViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/log_in/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/log_in/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/log_in/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/log_in/LoginViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/sign_in/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/sign_in/RegisterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/sign_in/RegisterViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/onboarding/sign_in/RegisterViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/launch/SplashScreenActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_comanda_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_comanda_view.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_friends.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_product_view.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_historial_list_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_historial_list_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_user.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home_rv_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_home_rv_item.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -657,14 +663,7 @@
       <option name="project" value="LOCAL" />
       <updated>1653913362083</updated>
     </task>
-    <task id="LOCAL-00049" summary="SOLVE BUGS AND IMPLEMENTATE BUTTONS OF PRODUCT VIEW.">
-      <created>1654003840003</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1654003840003</updated>
-    </task>
-    <option name="localTasksCounter" value="50" />
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -684,6 +683,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Implementació de fragment historial / ja es mostra bé al ui" />
     <MESSAGE value="Fix setting menu superpositions, add go back to the main menu functionality in historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu. (There are things to delete in the new created Fragments)" />
@@ -708,8 +708,7 @@
     <MESSAGE value="ADD SEARCH FEATURE AND JOIN A GRUP FEATURE (NOT FINISHED).&#10;&#10;Add new back-end features:&#10;- Search Strategy&#10;- Firebase Factory&#10;- Diferents Pojos&#10;- Save/Delete Grup funcionality for a user&#10;&#10;Front-End Features:&#10;- Product_view change name to GrupActivity&#10;- Create a GrupViewModel &#10;- Create a TotsViewModel and TotsAdapter.&#10;- Change the button to buy a product to join the group.&#10;&#10;Other:&#10;- There codes for testing in the TotsViewModel&#10;&#10;Bugs:&#10;- By some reason all the sets in a listener doesn't work in the outer class, so I can't read the pojos from the database. Need to fix." />
     <MESSAGE value="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)" />
     <MESSAGE value="REFECATOR AND SOLVE BUGS OF THE LOG IN AND REGISTER CLASSES" />
-    <MESSAGE value="SOLVE BUGS AND IMPLEMENTATE BUTTONS OF PRODUCT VIEW." />
-    <option name="LAST_COMMIT_MESSAGE" value="SOLVE BUGS AND IMPLEMENTATE BUTTONS OF PRODUCT VIEW." />
+    <option name="LAST_COMMIT_MESSAGE" value="REFECATOR AND SOLVE BUGS OF THE LOG IN AND REGISTER CLASSES" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
