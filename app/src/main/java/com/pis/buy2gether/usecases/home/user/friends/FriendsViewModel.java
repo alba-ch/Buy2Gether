@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import com.pis.buy2gether.databinding.FragmentFriendsBinding;
 import com.pis.buy2gether.model.domain.pojo.User;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
+import com.pis.buy2gether.usecases.home.notifications.NotiType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -154,11 +156,20 @@ public class FriendsViewModel extends ViewModel{
      * @param toID ID of user
      */
     public void request(String toID) {
-        HashMap inviteInfo = new HashMap();
-        inviteInfo.put("fromID",getUserID());
-        inviteInfo.put("toID",toID);
-
-        Session.INSTANCE.CreateFriendRequest(inviteInfo);
+        Task task = Session.INSTANCE.getUserByID(getUserID()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                HashMap inviteInfo = new HashMap();
+                String username = documentSnapshot.get("username").toString();
+                Log.e("FRIEND REQUEST","actual username is: " + username);
+                inviteInfo.put("FromUsername",username);
+                inviteInfo.put("fromID",getUserID());
+                inviteInfo.put("groupname","");
+                inviteInfo.put("toID",toID);
+                inviteInfo.put("notiType", NotiType.FRIEND_REQUEST);
+                Session.INSTANCE.CreateFriendRequest(inviteInfo);
+            }
+        });
     }
 
     public void sendRequest(String toID){

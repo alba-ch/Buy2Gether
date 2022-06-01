@@ -22,14 +22,6 @@ import java.util.List;
 
 public class NotificationsListAdapter extends RecyclerView.Adapter<NotificationsListAdapter.ViewHolder> {
 
-
-    /*
-    * private LinkedHashMap<String,String> fromUserName;
-    private LinkedHashMap<String,String> groupName;
-    private LinkedHashMap<String,String> specialID;
-    private LinkedHashMap<String,NotiType> mType;
-    * */
-
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     //list of notifications
@@ -37,19 +29,15 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
 
     // data is passed into the constructor
     NotificationsListAdapter(Context context, ItemClickListener itemClickListener, List<Notificacions> data) {
-        /*
-        *   this.fromUserName = new LinkedHashMap<>();
-        this.mType = new LinkedHashMap<>();
-        this.groupName = new LinkedHashMap<>();
-        this.specialID = new LinkedHashMap<>();
-        * */
         this.mInflater = LayoutInflater.from(context);
         this.mClickListener = itemClickListener;
         this.mData = data;
     }
 
     public void updateNotificacions(ArrayList<Notificacions> list) {
+        this.mData.clear();
         this.mData = list;
+        notifyDataSetChanged();
     }
 
     // inflates the row layout from xml when needed
@@ -73,21 +61,6 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         Log.e("NOTIFICATION"," we get the notification fromID: " + notificacions.getFromID());
         Log.e("NOTIFICATION"," we get the notification TYPE: " + notificacions.getNotiType());
 
-        /*
-        * if(notificacions.getIdNotificacion()!= null){
-            switch(notificacions.getNotiType()){
-                case GROUP_INVITE:
-                    holder.myTextView.setText(notificacions.getFromUsername() + " has invited you to group: " + notificacions.getGroupName());
-                    break;
-                case FRIEND_REQUEST:
-                    holder.myTextView.setText(notificacions.getFromUsername() + " has requested to be your friend ");
-                    break;
-                default:
-                    break;
-            }
-
-        }
-        * */
         switch(notificacions.getNotiType()){
             case GROUP_INVITE:
                 holder.myTextView.setText(notificacions.getFromUsername() + " has invited you to group: " + notificacions.getGroupName());
@@ -164,14 +137,6 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
     }
 
     public void swipe(int adapterPosition) {
-        /*
-        *
-        * fromUserName.remove(notiID);
-        groupName.remove(notiID);
-        specialID.remove(notiID);
-        notifyItemRemoved(adapterPosition);
-        * */
-
         //remove notification from notification list
         mData.remove(adapterPosition);
 
