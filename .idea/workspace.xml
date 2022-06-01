@@ -13,9 +13,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="SOLVE BUGS AND IMPLEMENT GUEST LOG IN.">
+    <list default="true" id="d9e2424a-fa23-49c4-8768-ab886f25efe7" name="Changes" comment="MINOR CHANGES">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/session/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ImageData.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/model/domain/data/ImageData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/FriendsListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/FriendsListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/FriendsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/FriendsViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/UsersListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/friends/UsersListAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/settings/SettingsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/settings/SettingsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/settings/SettingsViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/pis/buy2gether/usecases/home/user/settings/SettingsViewModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,24 +49,7 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="android" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Buy2Gether" type="f1a62948:ProjectNode" />
-                <item name="app" type="2d1252cf:ModuleNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -98,11 +86,10 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feec1da5e184c294352f11c8f7ca880b47bf2f8a" />
+        <entry key="$PROJECT_DIR$" value="UI-Development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="RESET_MODE" value="KEEP" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -249,7 +236,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Buy2Gether_Last [signingReport]" />
         <item itemvalue="Gradle.Buy2Gether_Last [signingReport]" />
       </list>
     </recent_temporary>
@@ -638,6 +624,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Fix setting menu superpositions, add go back to the main menu functionality in historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu." />
     <MESSAGE value="Fix Home Menu (things dissapear after visiting other menus) and implement swipe menu for the historial menu. (There are things to delete in the new created Fragments)" />
     <MESSAGE value="Fixed Objects in Home Fragment." />
@@ -662,8 +649,7 @@
     <MESSAGE value="ADD NEW FIREBASE CLASSES AND ADD SHOW GROUPS FUNCTION (BY CATEGORIES)&#10;&#10;First Approach:&#10;-Tried to implement the function of searching a product. However, the view is not well made of all. The transition of the fragments is not smooth. The next approach will be changing the structure of the view and dividing the fragments into smaller fragments.&#10;&#10;View of the public groups:&#10;- It is available the view of all the public groups by different categories in the home fragment. However, it working well. (Read Bug section)&#10;&#10;New Firebase classes:&#10;- Firebase Image: Manages the upload and load of images of the app, the class ImageData is to manage the data after loading it to the programme of before uploading it ti the cloud.&#10;&#10;Bugs:&#10;- The data is read asynchronously from firebase with listeners. So, the there assignment in the listeners does not change the value outside. Try to find a solution. (Tried a solution using own callback, but the implementation would be a little mess)" />
     <MESSAGE value="Refactoring.." />
     <MESSAGE value="refactoring USers" />
-    <MESSAGE value="SOLVE BUGS AND IMPLEMENT GUEST LOG IN." />
-    <option name="LAST_COMMIT_MESSAGE" value="SOLVE BUGS AND IMPLEMENT GUEST LOG IN." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactoring USers" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

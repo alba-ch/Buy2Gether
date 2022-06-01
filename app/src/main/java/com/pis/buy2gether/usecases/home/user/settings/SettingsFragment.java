@@ -23,6 +23,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -93,25 +95,9 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
      * configura la imatge de perfil del boto UserPfp
      */
     private void setUserPfp(){
-        // mImageRef represents a reference to a Google Cloud Storage object initialized with a child Firebase Storage location
-        StorageReference mImageRef =
-                FirebaseStorage.getInstance().getReference("profileImages/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+".jpeg");
-        final long ONE_MEGABYTE = 1024 * 1024;
-
-        //Asynchronously download the object from mImageRef with the maximum size allowed ONE_MEGABYTE and if the task completes succesfully:
-        mImageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
-            @Override
-            public void onSuccess(byte[] bytes) {
-                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                DisplayMetrics dm = new DisplayMetrics();
-                //set the bitmap we decoded before as the content of btnEditPfp imageView
-                binding.btnEditPfp.setImageBitmap(bm);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(getActivity(),"Error al carregar l'imatge de perfil\n"+exception,Toast.LENGTH_SHORT).show();
-                    }
+        MutableLiveData<Bitmap> data = viewModel.getProfilePhoto();
+        data.observe(requireActivity(), bm ->{
+            binding.btnEditPfp.setImageBitmap(bm);
         });
     }
 
@@ -232,60 +218,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     }
 
     void saveUserImageDB(Bitmap bitmap){
-        //create an outputstream that in which the data is written to a byte array
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
-
-        String userID = FirebaseAuth.getInstance().getUid();
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference()
-                .child("profileImages")
-                .child(userID+".jpeg");
-
-        //upload taks that asynchronously upload byte data to this storageRef creating a byte array and copy the valid content to buffer
-        storageRef.putBytes(baos.toByteArray()).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                getDownloadURL(storageRef);
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull @NotNull Exception e) {
-                showFailureAlert(e);
-            }
-        });
-    }
-
-    /**
-     * Actualitza la infromació del perfil de l'usuari
-     * @param ref
-     */
-    private void getDownloadURL(StorageReference ref){
-        //Asynchronously retrieves a long lived download URL with a revokable token.??
-        //share file (uri represents the download url)
-        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                //create a request used to update user profile information. -> Sets the updated photo Uri.
-                UserProfileChangeRequest request = new UserProfileChangeRequest.Builder()
-                        .setPhotoUri(uri).build();
-
-                //update the user profile info with the request
-                user.updateProfile(request).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        FirebaseAuth.getInstance().getCurrentUser().updateProfile(request);
-                        Toast.makeText(getActivity(),"Imatge guardada amb èxit",Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        Toast.makeText(getActivity(),"Error: Imatge no guardada\n"+e,Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+        viewModel.saveImage(bitmap);
+        Toast.makeText(getActivity(),"Imatge guardada amb èxit",Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -36,14 +36,14 @@ public enum ImageData {
     }
 
     public void saveProfilePhoto(String photo_path){
-        String path = path_grup + "/" + Session.INSTANCE.getCurrentUserID() + ".jpg";
+        String path = path_profile + "/" + Session.INSTANCE.getCurrentUserID() + ".jpg";
         firebaseImages.saveImageUri(photo_path, path);
     }
 
     public void saveProfilePhoto(Bitmap bitmap){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
-        String path = path_grup + "/" + Session.INSTANCE.getCurrentUserID() + ".jpg";
+        String path = path_profile + "/" + Session.INSTANCE.getCurrentUserID() + ".jpg";
         firebaseImages.saveImageBitmap(baos.toByteArray(), path);
     }
 

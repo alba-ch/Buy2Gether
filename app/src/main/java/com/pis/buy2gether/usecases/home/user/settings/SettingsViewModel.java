@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
 
@@ -56,11 +57,15 @@ public class SettingsViewModel extends ViewModel {
      * @return
      */
     private String getUser(){
-        String emailUser = "unknown";
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            emailUser = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        }
-        return emailUser;
+        return Session.INSTANCE.getCurrentUserID();
+    }
+
+    public MutableLiveData<Bitmap> getProfilePhoto(){
+        return ImageData.INSTANCE.getProfilePhoto();
+    }
+
+    public void saveImage(Bitmap bm){
+        ImageData.INSTANCE.saveProfilePhoto(bm);
     }
 
 }

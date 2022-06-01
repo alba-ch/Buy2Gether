@@ -28,6 +28,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentFriendsBinding;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.pojo.User;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.provider.ProviderType;
@@ -78,7 +79,6 @@ public class FriendsViewModel extends ViewModel{
      * Display current user information at the top
      */
     private void setupUserInfo(){
-
         binding.txtUser.setText(Session.INSTANCE.getDisplayName());
         binding.txtDesc.setText(Session.INSTANCE.getMail());
 
@@ -88,19 +88,14 @@ public class FriendsViewModel extends ViewModel{
      * Sets de profile image. TODO: Cambiar a ImageData cuando funcione.
      */
     private void setUserPfp(){
-        session.getCurrentUserPfpImageRef().getBytes(1024 * 1024)
-                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        binding.imgPfp.setImageBitmap(bm);
+        if(Session.INSTANCE.getProvider() != ProviderType.GUEST){
+            MutableLiveData<Bitmap> lifeData = ImageData.INSTANCE.getProfilePhoto();
+            lifeData.observeForever(
+                    data ->{
+                        binding.imgPfp.setImageBitmap(data);
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(context,"Error al carregar l'imatge de perfil\n"+exception,Toast.LENGTH_SHORT).show();
-                    }
-                });
+            );
+        }
     }
 
     /***
@@ -125,11 +120,7 @@ public class FriendsViewModel extends ViewModel{
      * @return String of current user ID
      */
     public String getUserID(){
-        String userID = "unknown";
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        }
-        return userID;
+        return Session.INSTANCE.getCurrentUserID();
     }
 
     /***
