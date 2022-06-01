@@ -1,10 +1,12 @@
 package com.pis.buy2gether.usecases.home.home.product_view.group.creation;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.animation.CycleInterpolator;
 import android.view.animation.TranslateAnimation;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,9 +22,11 @@ import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.model.domain.pojo.User;
 import com.pis.buy2gether.model.session.Session;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
+import com.pis.buy2gether.usecases.home.notifications.NotiType;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 public class GroupCreationViewModel extends ViewModel {
 
@@ -48,7 +52,15 @@ public class GroupCreationViewModel extends ViewModel {
     }
 
     public void SendInvite(String userID, String groupID) {
-        GrupData.INSTANCE.sendInvite(userID,getUser(),groupID);
+        Task task = Session.INSTANCE.getUserByID(userID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String username = documentSnapshot.get("username").toString();
+                Log.e("FRIEND REQUEST","actual username is: " + username);
+                GrupData.INSTANCE.sendInvite(username,getUser(),userID,groupID);
+            }
+        });
+
     }
 
     public String getUser(){

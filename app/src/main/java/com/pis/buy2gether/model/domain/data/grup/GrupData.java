@@ -35,8 +35,10 @@ public enum GrupData {
     public void saveGrup(Grup grup) {
         firebaseGrup.saveGrup(grup);
     }
-    public void sendInvite(String toUser, String fromUser, String grup) {
-        firebaseGrup.sendInvite(toUser, fromUser, grup);
+
+    public void sendInvite(String username,String toID, String fromID, String grupID) {
+        /*String username,String toID, String fromID, String grupID*/
+        firebaseGrup.sendInvite(username, toID, fromID,grupID);
     }
 
     public HashMap<String,Grup> getHashMap() {
