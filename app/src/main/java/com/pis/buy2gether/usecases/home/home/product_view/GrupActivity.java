@@ -2,6 +2,7 @@ package com.pis.buy2gether.usecases.home.home.product_view;
 
 
 
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -85,6 +86,7 @@ public class GrupActivity extends AppCompatActivity {
                 viewModel.addGrup();
             } );
             fav.setOnClickListener(v->{
+                Toast.makeText(this, "ADD TO FAVORITE", Toast.LENGTH_SHORT).show();
                 viewModel.favGrup();
             });
             nom.setText(g.getName().toUpperCase());

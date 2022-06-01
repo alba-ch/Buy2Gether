@@ -50,14 +50,18 @@ public class NotificationsFragment extends Fragment implements NotificationsList
         // set up the RecyclerView
         setRV();
 
+        //set up adapter
+        //notificationsListAdapter = new NotificationsListAdapter(getContext(), this, new ArrayList<>());
+
+
         // Display list of addresses with mutable live data
         MutableLiveData<ArrayList<Notificacions>> notificacions = notificationsViewModel.getNotificacions();
         notificacions.observe(this, list ->{
             if(list != null){
                 Log.e("NOTIFICATION","list size: " + list.size());
                 notificationsListAdapter = new NotificationsListAdapter(getContext(), this, list);
+                setAdapter();
                 setList();
-                //notificationsListAdapter.updateNotificacions(list);
             }
         });
         return root;
@@ -74,10 +78,13 @@ public class NotificationsFragment extends Fragment implements NotificationsList
     /**
      * set up adapter
      */
-    private void setList(){
+    private void setAdapter(){
         recyclerView.setAdapter(notificationsListAdapter);
         notificationsListAdapter.setClickListener(this);
         binding.notificationsList.setAdapter(notificationsListAdapter);
+    }
+
+    private void setList(){
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override

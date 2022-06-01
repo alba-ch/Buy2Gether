@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import androidx.lifecycle.MutableLiveData;
 
 import com.pis.buy2gether.model.domain.data.ComandasData;
+import com.pis.buy2gether.model.domain.data.FavoriteData;
 import com.pis.buy2gether.model.domain.data.grup.GrupData;
 import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
@@ -49,8 +50,11 @@ public class GrupViewModel {
         this.grup = g;
     }
 
+    /**
+     * add this group to favorite list
+     */
     public void favGrup() {
-
+        FavoriteData.INSTANCE.saveFav(grup.getId());
     }
 }
 
