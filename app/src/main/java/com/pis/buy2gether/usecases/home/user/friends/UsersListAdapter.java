@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.pis.buy2gether.R;
+import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.pojo.User;
 import com.pis.buy2gether.model.session.Session;
 import org.jetbrains.annotations.NotNull;
@@ -49,14 +51,16 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        MutableLiveData<Bitmap> pfp = mData.get(position).getProfileImage();
-
+        User user =  mData.get(position);
+        Log.e("dafdafad", user.getId() + "");
+        MutableLiveData<Bitmap> pfp = ImageData.INSTANCE.getProfilePhoto(user.getId());
         holder.myTextView.setText(mData.get(position).getUsername());
-        if(pfp != null) {
+
             pfp.observeForever(b ->{
-                holder.pfp.setImageBitmap(b);
+                if(b != null)
+                    holder.pfp.setImageBitmap(b);
             });
-        };
+
         holder.selectButton.setVisibility(View.VISIBLE);
     }
 
