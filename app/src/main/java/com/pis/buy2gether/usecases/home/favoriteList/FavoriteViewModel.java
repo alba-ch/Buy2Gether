@@ -50,7 +50,7 @@ public class FavoriteViewModel extends ViewModel {
                         DocumentSnapshot  documentSnapshot = t.getResult();
                         if (t.isSuccessful()) {
                             Favorite f = documentSnapshot.toObject(Favorite.class);
-                            if (f != null && f.getProces() == state) {
+                            if (f != null) {
                                 favAux.add(f);
                             }
                         }
