@@ -56,6 +56,7 @@ public class FavoriteViewModel extends ViewModel {
                         }
                     }
                     this.favoriteList.setValue(favAux);
+
                 }
             });
         });

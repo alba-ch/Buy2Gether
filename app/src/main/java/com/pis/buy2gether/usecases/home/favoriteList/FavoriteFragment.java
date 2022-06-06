@@ -34,8 +34,9 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         if(favoriteViewModel.checkGuest()){
         MutableLiveData<ArrayList<Favorite>> data = favoriteViewModel.getFavoriteList();
         data.observeForever(list -> {
-            if (list != null)
-                favoriteListAdapter.updateList(list);
+            if (list != null && favoriteListAdapter != null) {
+                    favoriteListAdapter.updateList(list);
+            }
         });
 
         setList(view);
@@ -63,6 +64,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
                     case ItemTouchHelper.LEFT:
                     case ItemTouchHelper.RIGHT:
                         favoriteViewModel.delete(favoriteListAdapter.getItem(viewHolder.getAdapterPosition()).getId());
+                        favoriteListAdapter.updateList(favoriteViewModel.getFavoriteList().getValue());
                         break;
                     default:
                         break;
@@ -95,5 +97,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
                 }
             }
         }
+
+        favoriteListAdapter.updateList(favoriteViewModel.getFavoriteList().getValue());
     }
 }
