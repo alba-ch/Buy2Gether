@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.pis.buy2gether.R;
 import com.pis.buy2gether.databinding.FragmentSearchBinding;
+import com.pis.buy2gether.model.domain.pojo.Grup.Grup;
 import com.pis.buy2gether.usecases.home.home.TabFragment;
 
 
@@ -19,22 +20,13 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment {
 
     private SearchViewModel searchViewModel;
-    private FragmentSearchBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search,container,false);
 
-        ArrayList<String> items = new ArrayList<>();
-        items.add("Horse");
-        items.add("Cow");
-        items.add("Camel");
-        items.add("Sheep");
-        items.add("Chen");
-        items.add("Tula");
-        items.add("Chica");
-        items.add("Golfo");
+        ArrayList<Grup> items = new ArrayList<>();
 
-        ArrayAdapter<String> searchAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, items);
+        ArrayAdapter<Grup> searchAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, items);
 
         SearchView search_bar = view.findViewById(R.id.searchView);
         ListView historial_list = view.findViewById(R.id.historial_list);
@@ -46,9 +38,10 @@ public class SearchFragment extends Fragment {
                 /* User prem enter */
                 search_bar.setQuery(query,false);
                 search_bar.clearFocus();
-                if(items.contains(query)){
+                /*if(items.contains(query)){
                     searchAdapter.getFilter().filter(query);
-                }
+                }*/
+
 
                 getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
                 FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
@@ -76,7 +69,6 @@ public class SearchFragment extends Fragment {
     public void onDestroyView() {
         getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
         super.onDestroyView();
-        binding = null;
     }
 
 }

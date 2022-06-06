@@ -11,15 +11,8 @@ import java.util.ArrayList;
 
 public class SearchViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
 
     public SearchViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is user fragment");
-    }
-
-    public LiveData<String> getText() {
-        return mText;
     }
 
     public static ArrayList<Grup> getGrupByName(String name) {
