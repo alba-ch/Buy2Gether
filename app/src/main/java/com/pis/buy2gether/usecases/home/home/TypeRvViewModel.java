@@ -2,6 +2,7 @@ package com.pis.buy2gether.usecases.home.home;
 
 import android.graphics.Bitmap;
 
+import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.pis.buy2gether.model.domain.data.grup.GrupData;
@@ -42,8 +43,10 @@ public class TypeRvViewModel {
         grupList.observeForever(grups -> {
             ArrayList<Grup> grupListFiltered = new ArrayList<>();
             for (Grup grup : grups) {
-                if (grup.getName().toLowerCase().contains(search.toLowerCase())) {
-                    grupListFiltered.add(grup);
+                if(grup.getName()!= null) {
+                    if (grup.getName().toLowerCase().contains(search.toLowerCase())) {
+                        grupListFiltered.add(grup);
+                    }
                 }
             }
             setList(grupListFiltered);

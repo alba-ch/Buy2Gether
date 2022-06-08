@@ -31,24 +31,18 @@ public class SearchFragment extends Fragment {
         SearchView search_bar = view.findViewById(R.id.searchView);
         ListView historial_list = view.findViewById(R.id.historial_list);
         historial_list.setAdapter(searchAdapter);
+        search_bar.requestFocusFromTouch();
 
         search_bar.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 /* User prem enter */
-                search_bar.setQuery(query,false);
-                search_bar.clearFocus();
-                /*if(items.contains(query)){
-                    searchAdapter.getFilter().filter(query);
-                }*/
-
-
-                getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
-                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.viewPager, new TabFragment(query));
-                fragmentTransaction.addToBackStack("home").commit();
-
-
+                    search_bar.setQuery(query, false);
+                    search_bar.clearFocus();
+                    getActivity().findViewById(R.id.nav_view).setVisibility(View.VISIBLE);
+                    FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.viewPager, new TabFragment(query));
+                    fragmentTransaction.addToBackStack("home").commit();
 
                 return false;
             }

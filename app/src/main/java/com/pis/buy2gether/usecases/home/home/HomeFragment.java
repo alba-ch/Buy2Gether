@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment {
     private TabLayout tabLayout_categoria;
     private ViewPager viewPager_categoria;
     private EditText search_bar;
+    private SearchFragment searchFragment;
 
     private Button cloud_upload;
     //private FragmentHomeBinding binding;
@@ -75,19 +76,17 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.addToBackStack("home").commit();
             }
         });
-        //afegim les dades de homevViewModel a la llista d'observed, si hi ha algun canvi es mostrara el missatge per pantalla
-        search_bar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getActivity(),"CERCA",Toast.LENGTH_SHORT).show();
-                /* Ocultem el menú inferior */
-                getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
-                /* Canviem de fragment al d'ajuda */
-                FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, new SearchFragment());
-                fragmentTransaction.addToBackStack("home").commit();
-            }
+        searchFragment = new SearchFragment();
+        search_bar.setOnFocusChangeListener((v, hasFocus) -> {
+
+            /* Ocultem el menú inferior */
+            getActivity().findViewById(R.id.nav_view).setVisibility(View.INVISIBLE);
+            /* Canviem de fragment al d'ajuda */
+            FragmentTransaction fragmentTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.nav_host_fragment_activity_main, searchFragment);
+            fragmentTransaction.addToBackStack("home").commit();
         });
+
         return root;
     }
 
