@@ -24,11 +24,15 @@ import java.util.ArrayList;
 
 public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvViewHolder>{
 
+    private ArrayList<Grup> originalList;
     private ArrayList<Grup> products;
+
+    private String currentFilter = "";
     private static Activity act;
 
     public TypeRvAdapter(ArrayList<Grup> products, Activity activity) {
-        this.products = products;
+        this.originalList = products;
+        this.products = new ArrayList<>(originalList);
         act = activity;
     }
 
@@ -46,10 +50,21 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
 
     public void updateList(ArrayList<Grup> products) {
         this.products.clear();
-        this.products = products;
+        this.originalList.clear();
+        this.originalList = products;
+        this.products = new ArrayList<>(originalList);
+        changeFilter(currentFilter);
         notifyDataSetChanged();
     }
 
+    public void changeFilter(String newFilter) {
+        currentFilter = newFilter;
+        this.products.clear();
+        for(Grup grup : originalList)
+            if(grup.getName().toLowerCase().contains(currentFilter.toLowerCase()))
+                products.add(grup);
+        notifyDataSetChanged();
+    }
     @Override
     public void onBindViewHolder(@NonNull @NotNull TypeRvViewHolder holder, int position) {
         //assign values to components when initializing and sliding recyclerView

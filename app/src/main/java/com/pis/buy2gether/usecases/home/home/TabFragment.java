@@ -69,5 +69,10 @@ public class TabFragment extends Fragment {
         return root;
     }
 
+    public void filterText(String filter) {
+        if(filter != null)
+            typeRvAdapter.changeFilter(filter);
+    }
+
 
 }
