@@ -3,8 +3,11 @@ package com.pis.buy2gether.usecases.home.home.product_view;
 
 
 import android.graphics.PorterDuff;
+import android.graphics.drawable.AnimationDrawable;
+import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.MutableLiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,11 +50,14 @@ public class GrupActivity extends AppCompatActivity {
         //binding();
 
 
+
         setContentView(R.layout.activity_product_view);
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> finish());
         valoracion = findViewById(R.id.lista_valoraciones);
         description = findViewById(R.id.descripcion);
+
+        animateBackground();
 
 
 
@@ -105,7 +111,14 @@ public class GrupActivity extends AppCompatActivity {
                 image.setImageBitmap(b);
             });
         });
+    }
 
+    private void animateBackground(){
+        View v = findViewById(R.id.view);
+        AnimationDrawable animationDrawable = (AnimationDrawable) v.getBackground();
 
+        animationDrawable.setEnterFadeDuration(2000);
+        animationDrawable.setExitFadeDuration(5000);
+        animationDrawable.start();
     }
 }

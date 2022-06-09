@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Buy2Gether</string>
+    <string name="title_home">Home</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_favorites">Favorites</string>
+
     <string name="preu_original">Preu Original</string>
     <string name="l_mit_d_usuaris">Límit d\'usuaris</string>
     <string name="privat">Privat</string>
@@ -7,9 +14,15 @@
     <string name="p_blic">Públic</string>
     <string name="crear_grup">Crear Grup</string>
     <string name="productpicturedesc">ProductPictureDesc</string>
+    <string name="register">REGISTRAR</string>
+    <string name="login">LOG IN</string>
     <string name="username">Nom</string>
+    <string name="password">Contrasenya</string>
+    <string name="phone">Telèfon</string>
+    <string name="prefs_file">com.pis.buy2gether.provider.preferences.PREFERENCE_FILE_KEY</string>
     <string name="enlla_del_producte">Enllaç del producte</string>
     <string name="tipus_de_producte">Tipus de producte</string>
+    <string name="buy_n_2gether">BUY \n 2GETHER</string>
     <string-array name="typeItems">
         <item>Electrónica</item>
         <item>Electrodoméstico</item>
@@ -18,4 +31,5 @@
         <item>Mueble</item>
         <item>Otros</item>
     </string-array>
+
 </resources>

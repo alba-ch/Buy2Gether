@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:duration="5000">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <gradient
-        android:startColor="#9E1903E4"
-        android:endColor="#C8AA71FF"
-        android:angle="270" />
-    <corners
-        android:radius="1000dp"
-        android:bottomLeftRadius="0dp"
-        android:topLeftRadius="0dp" android:topRightRadius="0dp"
-        />
+            <gradient
+                android:startColor="#9E1903E4"
+                android:endColor="#C8AA71FF"
+                android:angle="270" />
+            <corners
+                android:radius="1000dp"
+                android:bottomLeftRadius="0dp"
+                android:topLeftRadius="0dp" android:topRightRadius="0dp"
+                />
+        </shape>
+    </item>
+    <item android:duration="5000">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-</shape>
+            <gradient
+                    android:startColor="#00EAFF"
+                    android:endColor="@color/colorAccent"
+                    android:angle="135" />
+            <corners
+                    android:radius="1000dp"
+                    android:bottomLeftRadius="0dp"
+                    android:topLeftRadius="0dp" android:topRightRadius="0dp"
+            />
+        </shape>
+    </item>
+    <item android:duration="5000">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <gradient
+                    android:startColor="#8C2372"
+                    android:endColor="#5900FF"
+                    android:angle="315" />
+            <corners
+                    android:radius="1000dp"
+                    android:bottomLeftRadius="0dp"
+                    android:topLeftRadius="0dp" android:topRightRadius="0dp"
+            />
+        </shape>
+    </item>
+</animation-list>
