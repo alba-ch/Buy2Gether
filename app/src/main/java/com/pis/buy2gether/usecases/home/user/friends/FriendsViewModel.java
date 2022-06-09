@@ -85,7 +85,7 @@ public class FriendsViewModel extends ViewModel{
     }
 
     /***
-     * Sets de profile image. TODO: Cambiar a ImageData cuando funcione.
+     * Sets de profile image.
      */
     private void setUserPfp(){
         if(Session.INSTANCE.getProvider() != ProviderType.GUEST){
@@ -254,6 +254,8 @@ public class FriendsViewModel extends ViewModel{
         user.setUsername((String) info.get("username"));
         user.setEmail((String) info.get("email"));
         user.setProvider((String) info.get("provider"));
+        user.setProfileImage(id);
+
         return user;
     }
 

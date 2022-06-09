@@ -70,7 +70,7 @@ public class TabFragment extends Fragment {
     }
 
     public void filterText(String filter) {
-        if(filter != null)
+        if(!filter.isEmpty())
             typeRvAdapter.changeFilter(filter);
     }
 

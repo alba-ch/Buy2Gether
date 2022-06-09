@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,15 +51,12 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         User user =  mData.get(position);
-        Log.e("dafdafad", user.getId() + "");
         MutableLiveData<Bitmap> pfp = ImageData.INSTANCE.getProfilePhoto(user.getId());
+        pfp.observeForever(b ->{
+            if(b != null)
+                holder.pfp.setImageBitmap(b);
+        });
         holder.myTextView.setText(mData.get(position).getUsername());
-
-            pfp.observeForever(b ->{
-                if(b != null)
-                    holder.pfp.setImageBitmap(b);
-            });
-
         holder.selectButton.setVisibility(View.VISIBLE);
     }
 
