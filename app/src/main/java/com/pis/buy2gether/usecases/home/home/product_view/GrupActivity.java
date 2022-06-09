@@ -2,6 +2,7 @@ package com.pis.buy2gether.usecases.home.home.product_view;
 
 
 
+import android.graphics.PorterDuff;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
@@ -28,7 +29,7 @@ public class GrupActivity extends AppCompatActivity {
     private ShapeableImageView image;
     private TextView description;
     private TextView precio;
-    private Button unirse;
+    private ImageButton unirse;
     private ImageButton fav;
     private TextView nom;
 
@@ -56,7 +57,7 @@ public class GrupActivity extends AppCompatActivity {
 
         ArrayList<String> valoraciones = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            valoraciones.add("No disponible a la fase alpha");
+            valoraciones.add("No disponible");
         }
 
         ValoracionsAdapter adapter = new ValoracionsAdapter(valoraciones);
@@ -83,15 +84,17 @@ public class GrupActivity extends AppCompatActivity {
             binding();
             viewModel.setGrup(g);
             unirse.setOnClickListener(v -> {
+                Toast.makeText(this, "Producte afegit a comandes", Toast.LENGTH_SHORT).show();
                 viewModel.addGrup();
             } );
             fav.setOnClickListener(v->{
                 Toast.makeText(this, "ADD TO FAVORITE", Toast.LENGTH_SHORT).show();
+                fav.setBackgroundTintMode(PorterDuff.Mode.MULTIPLY);
                 viewModel.favGrup();
             });
             nom.setText(g.getName().toUpperCase());
 
-            unirse.setText("UNIR-SE GRUP");
+            //unirse.setText("UNIR-SE GRUP");
             String descriptio = viewModel.getDescription();
             if (descriptio == null || descriptio.equals("")){
                 descriptio = "No hi ha descripció";}
