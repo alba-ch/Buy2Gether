@@ -47,6 +47,7 @@ import com.pis.buy2gether.usecases.onboarding.log_in.LoginActivity;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -226,7 +227,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
         super.onActivityResult(requestCode,resultCode,data);
         //foto des de càmera
-        if(requestCode == TAKE_IMAGE_CODE){
+        if(requestCode == TAKE_IMAGE_CODE && data != null){
             switch (resultCode){
                 case RESULT_OK:
                     //get image captured
@@ -237,11 +238,15 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
             }
         }
         //foto des de galeria
-        if(requestCode == GALLERY_IMAGE_CODE){
-            binding.btnEditPfp.setImageURI(data.getData());
+        if(requestCode == GALLERY_IMAGE_CODE && resultCode == RESULT_OK && data != null){
             try {
+                binding.btnEditPfp.setImageURI(data.getData());
                 saveUserImageDB((MediaStore.Images.Media.getBitmap(this.requireContext().getContentResolver(), data.getData())));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(getActivity(),"Error: La imatge no s'ha pogut carregar\n"+e,Toast.LENGTH_SHORT).show();
             } catch (IOException e) {
+                e.printStackTrace();
                 Toast.makeText(getActivity(),"Error: La imatge no s'ha pogut carregar\n"+e,Toast.LENGTH_SHORT).show();
             }
         }

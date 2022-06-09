@@ -93,6 +93,8 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
         binding.btnReturn.setOnClickListener(this::onClick);
         binding.btnAmics.setOnClickListener(this::onClick);
         binding.btnSettings.setOnClickListener(this::onClick);
+        binding.btnLan.setEnabled(false);
+        binding.btnLan.setVisibility(View.INVISIBLE);
 
         friendsListAdapter.setClickListener(this);
         usersListAdapter.setClickListener(this);
@@ -109,6 +111,11 @@ public class FriendsFragment extends Fragment implements FriendsListAdapter.Item
             case R.id.btn_amics:
                 Toast.makeText(getActivity(), "CERCA D'AMICS", Toast.LENGTH_SHORT).show();
                 viewModel.setListUsers();
+                break;
+            case R.id.btn_settings:
+                //change to settings Fragment
+                fragmentTransaction.replace(R.id.useropt, new SettingsFragment());
+                fragmentTransaction.addToBackStack("friends").commit();
                 break;
             default:
                 break;

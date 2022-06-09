@@ -58,12 +58,12 @@ public class UserViewModel extends ViewModel {
 
     private void setUserPfp(){
         if(Session.INSTANCE.getProvider() != ProviderType.GUEST){
-        MutableLiveData<Bitmap> lifeData = ImageData.INSTANCE.getProfilePhoto();
-        lifeData.observeForever(
-                data ->{
-                    img_pfp.setImageBitmap(data);
-                }
-        );
+            MutableLiveData<Bitmap> lifeData = ImageData.INSTANCE.getProfilePhoto();
+            lifeData.observeForever(
+                    data ->{
+                        img_pfp.setImageBitmap(data);
+                    }
+            );
         }
     }
 }

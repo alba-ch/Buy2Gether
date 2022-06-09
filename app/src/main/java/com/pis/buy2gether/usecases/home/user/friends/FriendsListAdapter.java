@@ -63,12 +63,11 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         User user =  mData.get(position);
         MutableLiveData<Bitmap> pfp = ImageData.INSTANCE.getProfilePhoto(user.getId());
-        holder.myTextView.setText(mData.get(position).getUsername());
-        if(pfp != null) {
-            pfp.observeForever( b ->{
+        pfp.observeForever(b ->{
+            if(b != null)
                 holder.pfp.setImageBitmap(b);
-            });
-        }
+        });
+        holder.myTextView.setText(mData.get(position).getUsername());
         holder.selectButton.setVisibility(View.VISIBLE);
     }
 

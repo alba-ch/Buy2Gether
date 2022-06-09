@@ -85,7 +85,7 @@ public class FriendsViewModel extends ViewModel{
     }
 
     /***
-     * Sets de profile image. TODO: Cambiar a ImageData cuando funcione.
+     * Sets de profile image.
      */
     private void setUserPfp(){
         if(Session.INSTANCE.getProvider() != ProviderType.GUEST){
@@ -196,8 +196,8 @@ public class FriendsViewModel extends ViewModel{
                     Task<DocumentSnapshot> task = getUserName(friendID).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot2) {
-                            User user = info(documentSnapshot2.getData(), documentSnapshot);
-                            friendsListAdapter.addFriend(user,documentSnapshot.getId());
+                            User user = info(documentSnapshot2.getData(), documentSnapshot2);
+                            friendsListAdapter.addFriend(user,documentSnapshot2.getId());
                         }
                     });
                 }
@@ -245,7 +245,7 @@ public class FriendsViewModel extends ViewModel{
      * @param documentSnapshot documentSnapshot
      * @return new User
      */
-    public User info(Map<String, Object> data, QueryDocumentSnapshot documentSnapshot) {
+    public User info(Map<String, Object> data, DocumentSnapshot documentSnapshot) {
         String id = documentSnapshot.getId();
         User user = new User();
         Map<String, Object> info = data;
@@ -254,6 +254,8 @@ public class FriendsViewModel extends ViewModel{
         user.setUsername((String) info.get("username"));
         user.setEmail((String) info.get("email"));
         user.setProvider((String) info.get("provider"));
+        user.setProfileImage(id);
+
         return user;
     }
 
