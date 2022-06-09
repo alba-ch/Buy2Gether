@@ -7,6 +7,7 @@
         android:paddingTop="75dp"
         android:background="@color/white"
         android:layout_height="match_parent"
+        android:id="@+id/groupCreation"
         tools:context=".usecases.home.home.product_view.group.creation.GroupCreationFragment">
     <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
         <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">

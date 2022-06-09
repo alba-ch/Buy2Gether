@@ -191,31 +191,35 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
     }
     @Override
     public void onClick(View view) {
+        View rootView = view;
+        while(rootView.getId() != R.id.groupCreation)
+            rootView = (View) rootView.getParent();
         boolean process = view.getId() != R.id.shareDummy;
 
 
-        Spinner type = view.findViewById(R.id.type);
-        EditText name = view.findViewById(R.id.Name);
-        EditText link = view.findViewById(R.id.link);
-        EditText usersLimit = view.findViewById(R.id.usersLimit);
-        EditText originalPriceET = view.findViewById(R.id.originalPrice);
-        Button privateButton = view.findViewById(R.id.privateButton);
-        Button hiddenButton = view.findViewById(R.id.hiddenButton);
-        Button publicButton = view.findViewById(R.id.publicButton);
-        View groupPopUp = view.findViewById(R.id.group_popup);
-        Button submitButton = view.findViewById(R.id.submitButton);
-        ImageView otherUsers = view.findViewById(R.id.otherUsers);
-        ImageView sharemessages = view.findViewById(R.id.sharemessages);
-        ImageView moreInformation = view.findViewById(R.id.moreinformation);
-        RelativeLayout shareDummy = view.findViewById(R.id.shareDummy);
+        Spinner type = rootView.findViewById(R.id.type);
+        EditText name = rootView.findViewById(R.id.Name);
+        EditText link = rootView.findViewById(R.id.link);
+        EditText usersLimit = rootView.findViewById(R.id.usersLimit);
+        EditText originalPriceET = rootView.findViewById(R.id.originalPrice);
+        Button privateButton = rootView.findViewById(R.id.privateButton);
+        Button hiddenButton = rootView.findViewById(R.id.hiddenButton);
+        Button publicButton = rootView.findViewById(R.id.publicButton);
+        View groupPopUp = rootView.findViewById(R.id.group_popup);
 
-        RecyclerView friendList = view.findViewById(R.id.friendList);
+        Button submitButton = rootView.findViewById(R.id.submitButton);
+        ImageView otherUsers = groupPopUp.findViewById(R.id.otherUsers);
+        ImageView sharemessages = groupPopUp.findViewById(R.id.sharemessages);
+        ImageView moreInformation = groupPopUp.findViewById(R.id.moreinformation);
+        RelativeLayout shareDummy = groupPopUp.findViewById(R.id.shareDummy);
 
-        ImageView codiImage = view.findViewById(R.id.codi_image);
-        TextView codiInvitacio = view.findViewById(R.id.codi_invitacio);
-        EditText linkText = view.findViewById(R.id.linkText);
+        RecyclerView friendList = groupPopUp.findViewById(R.id.friendList);
 
-        ImageView groupFoto = view.findViewById(R.id.imageView);
+        ImageView codiImage = groupPopUp.findViewById(R.id.codi_image);
+        TextView codiInvitacio = groupPopUp.findViewById(R.id.codi_invitacio);
+        EditText linkText = groupPopUp.findViewById(R.id.linkText);
+
+        ImageView groupFoto = rootView.findViewById(R.id.imageView);
         switch (view.getId()){
             case R.id.privateButton:
                 privateButton.setTextColor(ContextCompat.getColor(getContext(), R.color.purple_500));

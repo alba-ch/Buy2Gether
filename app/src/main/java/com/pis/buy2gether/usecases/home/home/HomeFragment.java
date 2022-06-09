@@ -71,6 +71,7 @@ public class HomeFragment extends Fragment {
                 fragmentTransaction.addToBackStack("home").commit();
             }
         });
+
         search_bar.addTextChangedListener(new TextWatcher() {
 
             @Override
