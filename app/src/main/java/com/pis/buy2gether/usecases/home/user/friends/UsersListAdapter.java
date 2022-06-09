@@ -121,6 +121,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                     itemView.setBackgroundColor(Color.parseColor("#E7D3F4"));
                     selectButton.setBackgroundTintMode(PorterDuff.Mode.SRC_ATOP);
                     myTextView.setTextColor(Color.BLACK);
+                    if (mClickListener != null) mClickListener.sendRequest(view, mData.get(getAdapterPosition()).getId());
                 }
                 else{
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {itemView.setBackground(itemView.getForeground());}
@@ -129,7 +130,6 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
                     myTextView.setTextColor(Color.parseColor("#707070"));
                 }
             }
-            if (mClickListener != null) mClickListener.sendRequest(view, mData.get(getAdapterPosition()).getId());
         }
     }
 
@@ -154,6 +154,7 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
         mData.clear();
         allUsers.clear();
     }
+
 /*
     // total number of rows
     @Override

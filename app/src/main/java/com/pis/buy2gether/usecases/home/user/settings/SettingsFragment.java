@@ -239,8 +239,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener {
         }
         //foto des de galeria
         if(requestCode == GALLERY_IMAGE_CODE && resultCode == RESULT_OK && data != null){
-            binding.btnEditPfp.setImageURI(data.getData());
             try {
+                binding.btnEditPfp.setImageURI(data.getData());
                 saveUserImageDB((MediaStore.Images.Media.getBitmap(this.requireContext().getContentResolver(), data.getData())));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
