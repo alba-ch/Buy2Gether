@@ -92,7 +92,6 @@ public class NotificationsListAdapter extends RecyclerView.Adapter<Notifications
         Notificacions notificacions = new Notificacions(notiType,idNotification,fromUsername,groupname,fromId);
         //mData.add(notificacions);
 
-        // is correct to notify registred observers conseidering that actual position is the size of mData??
         notifyItemInserted(mData.size());
 
     }

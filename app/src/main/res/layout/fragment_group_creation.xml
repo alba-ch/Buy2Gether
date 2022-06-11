@@ -1,153 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:paddingTop="75dp"
         android:background="@color/white"
         android:layout_height="match_parent"
         android:id="@+id/groupCreation"
         tools:context=".usecases.home.home.product_view.group.creation.GroupCreationFragment">
-    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
-        <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:backgroundTint="@color/colorHint"
+            android:background="@drawable/textview_background"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp">
+
+        <ImageButton
+                android:id="@+id/btn_return_group_creation"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:backgroundTint="@color/colorHint"
+                android:background="@drawable/ic_return"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="2dp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/titol_creacio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/regular"
+                android:text="CREACIÓ DE GRUP"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.511"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/transparent"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            app:layout_constraintVertical_bias="0.555">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/panel_creation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/colorHint"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp">
+
             <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
+
                     android:contentDescription="@string/productpicturedesc"
                     android:maxWidth="100dp"
                     android:maxHeight="100dp"
-                    android:src="@drawable/avatar_1"/>
-    <TextView
-            android:text="@string/tipus_de_producte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/productType"
-            android:layout_toStartOf="@id/originalPrice" android:layout_marginEnd="0dp"
-            android:layout_alignTop="@+id/originalPrice" android:layout_marginTop="-92dp"/>
+                    android:src="@drawable/avatar_1"
+                    android:gravity="center_vertical"
 
-    <TextView
-            android:text="@string/enlla_del_producte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/productLink"
+                    android:layout_marginTop="48dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-            android:layout_toStartOf="@id/originalPrice" android:layout_marginEnd="0dp"
-            android:layout_alignTop="@+id/originalPrice" android:layout_marginTop="-140dp"/>
-    <TextView
-            android:text="@string/preu_original"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/opLabel"
-            android:layout_toStartOf="@id/originalPrice" android:layout_marginEnd="19dp"
-            android:layout_alignTop="@+id/originalPrice" android:layout_marginTop="16dp"/>
-    <TextView
-            android:text="@string/l_mit_d_usuaris"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/ulLabel"
-            android:layout_toStartOf="@id/usersLimit" android:layout_marginEnd="18dp"
-            android:layout_alignTop="@+id/usersLimit" android:layout_marginTop="11dp"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/usersLimit"
-            android:layout_below="@id/imageView" android:layout_marginTop="173dp"
-            android:layout_marginBottom="0dp" android:layout_alignParentEnd="true"
-            android:layout_marginEnd="42dp" android:minHeight="48dp" tools:ignore="SpeakableTextPresentCheck"/>
+
+            <EditText
+                    android:id="@+id/Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="10"
+
+                    android:layout_marginTop="20dp"
+                    android:autoText="false"
+                    android:hint="Nom del producte"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+
+            <TextView
+                    android:text="@string/enlla_del_producte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/productLink"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginTop="20dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/Name"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:ems="10"
+                    android:id="@+id/link"
+                    android:layout_marginTop="20dp"
+
+                    app:layout_constraintStart_toEndOf="@+id/productLink"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Name"/>
+
+            <TextView
+                    android:text="@string/tipus_de_producte"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/productType"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginTop="48dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productLink"/>
+
             <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:id="@+id/type"
-                    android:layout_below="@id/usersLimit" android:layout_alignParentEnd="true"
                     android:entries="@array/typeItems"
                     android:spinnerMode="dropdown"
-                    android:layout_marginEnd="37dp" android:minHeight="48dp" android:layout_marginTop="-103dp"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="10"
-            android:id="@+id/Name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="80dp"
-            android:layout_below="@id/usersLimit" android:layout_alignParentEnd="true"
-            android:minHeight="48dp" android:layout_marginTop="-213dp" android:autoText="false"
-            android:hint="Nom del producte"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="10"
-            android:id="@+id/link"
-            android:layout_below="@id/usersLimit" android:layout_alignParentEnd="true"
-            android:layout_marginEnd="37dp" android:minHeight="48dp" android:layout_marginTop="-150dp"/>
-    <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:ems="10"
-            android:id="@+id/originalPrice"
-            android:layout_below="@id/usersLimit" android:layout_alignParentEnd="true"
-            android:layout_marginEnd="44dp" android:minHeight="48dp" android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="48dp"
 
-    <Button
-        android:id="@+id/privateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/hiddenButton"
-        android:layout_marginStart="133dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="50dp"
-        android:layout_toStartOf="@id/hiddenButton"
-        android:background="#00FFFFFF"
-        android:text="@string/privat"
-        android:textColor="#000000" />
+                    app:layout_constraintStart_toEndOf="@+id/productType"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productLink"/>
 
-    <Button
-            android:id="@+id/hiddenButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/originalPrice"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="69dp"
-            android:background="#00FFFFFF"
-            android:text="@string/ocult"
-            android:textColor="#000000"/>
+            <TextView
+                    android:text="@string/l_mit_d_usuaris"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ulLabel"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginTop="20dp"
 
-    <Button
-        android:id="@+id/publicButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/hiddenButton"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="12dp"
-        android:layout_toEndOf="@id/hiddenButton"
-        android:background="#00FFFFFF"
-        android:text="@string/p_blic"
-        android:textColor="#000000" />
-    <com.google.android.material.button.MaterialButton
-            android:theme="@style/Theme.MaterialComponents"
-            app:strokeColor="@color/colorAccent"
-            app:strokeWidth="2dp"
-            app:rippleColor="@color/colorAccentUltraLight"
-            app:backgroundTint="@android:color/transparent"
-            android:text="@string/crear_grup"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/submitButton"
-            android:layout_below="@id/hiddenButton"
-            android:layout_marginTop="43dp"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productType"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/usersLimit"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    android:layout_marginTop="20dp"
+
+                    app:layout_constraintStart_toEndOf="@+id/ulLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/productType"/>
+
+            <TextView
+                    android:text="@string/preu_original"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/opLabel"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginTop="48dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ulLabel"/>
+
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:id="@+id/originalPrice"
+                    android:layout_marginTop="48dp"
+
+                    app:layout_constraintStart_toEndOf="@+id/opLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ulLabel"/>
+
+            <Button
+                    android:id="@+id/privateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:text="@string/privat"
+                    android:textColor="#000000"
+                    app:layout_constraintHorizontal_bias="0.1"
+                    android:layout_marginTop="20dp"
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/opLabel"/>
+
+            <Button
+                    android:id="@+id/hiddenButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:text="@string/ocult"
+                    android:textColor="#000000"
+                    android:layout_marginTop="20dp"
+
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/opLabel"/>
+
+            <Button
+                    android:id="@+id/publicButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
+                    android:text="@string/p_blic"
+                    android:textColor="#000000"
+                    android:layout_marginTop="20dp"
+
+                    app:layout_constraintHorizontal_bias="0.9"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/opLabel"/>
+
+            <com.google.android.material.button.MaterialButton
+                    android:theme="@style/Theme.MaterialComponents"
+                    app:strokeColor="@color/colorAccent"
+                    app:strokeWidth="2dp"
+                    app:rippleColor="@color/colorAccentUltraLight"
+                    app:backgroundTint="@android:color/transparent"
+                    android:text="@string/crear_grup"
+                    android:layout_centerHorizontal="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/submitButton"
+                    android:layout_marginTop="20dp"
+
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hiddenButton"/>
 
             <include
                     android:id="@+id/group_popup"
                     layout="@layout/fragment_share_group"
                     android:layout_width="290dp"
                     android:layout_height="275dp"
-                    android:visibility="invisible" android:layout_centerInParent="true"/>
-        </RelativeLayout>
+                    android:visibility="invisible"
+                    android:gravity="center_vertical"
+
+
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/hiddenButton"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,9 +31,12 @@ import com.pis.buy2gether.R;
 import com.pis.buy2gether.model.domain.data.ImageData;
 import com.pis.buy2gether.model.domain.data.grup.GrupData;
 import com.pis.buy2gether.model.domain.pojo.Grup.Category;
+import com.pis.buy2gether.usecases.home.home.HomeFragment;
 import com.pis.buy2gether.usecases.home.home.product_view.group.share.FriendListAdapter;
+import com.pis.buy2gether.usecases.home.user.UserFragment;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.CLIPBOARD_SERVICE;
@@ -74,6 +78,9 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
         Button hiddenButton = view.findViewById(R.id.hiddenButton);
         Button privateButton = view.findViewById(R.id.privateButton);
 
+        //
+        ImageButton returnButton = view.findViewById(R.id.btn_return_group_creation);
+        returnButton.setOnClickListener(this);
 
         String[] items = new String[Category.values().length];
 
@@ -288,6 +295,13 @@ public class GroupCreationFragment extends Fragment implements View.OnClickListe
                 break;
             case R.id.imageView:
                 showMediaDialog();
+                break;
+            case R.id.btn_return_group_creation:
+                Toast.makeText(getActivity(),"RETURN",Toast.LENGTH_SHORT).show();
+                /* Canviem de fragment a home fragment*/
+                FragmentTransaction fragmentTransaction = Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.groupCreation, new HomeFragment());
+                fragmentTransaction.commit();
                 break;
             default:
                 break;
