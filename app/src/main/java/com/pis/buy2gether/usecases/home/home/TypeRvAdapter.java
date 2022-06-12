@@ -59,10 +59,14 @@ public class TypeRvAdapter extends RecyclerView.Adapter<TypeRvAdapter.TypeRvView
 
     public void changeFilter(String newFilter) {
         currentFilter = newFilter;
-        this.products.clear();
-        for(Grup grup : originalList)
-            if(grup.getName().toLowerCase().contains(currentFilter.toLowerCase()))
-                products.add(grup);
+        if(currentFilter.isEmpty()) {
+            this.products = new ArrayList<>(originalList);
+        } else {
+            this.products.clear();
+            for (Grup grup : originalList)
+                if (grup.getName().toLowerCase().contains(currentFilter.toLowerCase()))
+                    products.add(grup);
+        }
         notifyDataSetChanged();
     }
     @Override

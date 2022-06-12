@@ -92,6 +92,7 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
             for (int i = 0; i < size; i++) {
                 Favorite f = favoriteListAdapter.getItem(i - offset);
                 if (f.isChecked()) {
+
                     favoriteViewModel.delete(f.getId());
                     offset++;
                 }
@@ -99,5 +100,6 @@ public class FavoriteFragment extends Fragment implements FavoriteListAdapter.It
         }
 
         favoriteListAdapter.updateList(favoriteViewModel.getFavoriteList().getValue());
+        favoriteListAdapter.setList(favoriteViewModel.getFavoriteList());
     }
 }
